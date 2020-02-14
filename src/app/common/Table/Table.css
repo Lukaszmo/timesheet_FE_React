@@ -1,17 +1,8 @@
-.ui.button {
-    background: transparent !important;
-}
-
-.ui.button:hover{
-    background:  transparent;
-}
-
-.ui.button:not:hover{
-    background:  transparent;
+.ui.button.tableButton{
+    background: transparent ;
 }
 
 
-i.icon{
+i.icon.tableIcon{
     color: #00b5ad;
 }
-/*.ui.button*/

@@ -35,9 +35,17 @@ class HoursContainer extends Component {
             className: "width20",
             dataField: 'name2',
             type: "button",
+            action: "edit",
+            iconName: "edit outline"
+        },
+        {
+            id: "4",
+            columnName: "",
+            className: "width20",
+            dataField: 'name2',
+            type: "button",
             action: "delete",
             iconName: "trash alternate"
-
         }
     ]
 

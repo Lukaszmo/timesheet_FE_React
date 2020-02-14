@@ -114,7 +114,7 @@ class TableComponent extends Component {
                 <TableBody headers={this.props.headers} data={this.props.data} activePage={this.state.activePage} rowsPerPage={this.props.rowsPerPage} rowAction={this.rowAction}></TableBody>
                 <Table.Footer>
                     <Table.Row textAlign="center">
-                        <Table.HeaderCell colSpan='3'>
+                        <Table.HeaderCell colSpan='4'>
                             <Pagination size="small" className="pagina" onPageChange={(e, data) => this.onPageChange(e, data)} defaultActivePage={this.state.activePage} totalPages={Math.ceil(this.props.data.length / this.props.rowsPerPage)} />
                         </Table.HeaderCell>
                     </Table.Row>
@@ -155,7 +155,7 @@ const TableBody = ({ headers, data, activePage, rowsPerPage, rowAction }) => {
 //Wiersz
 const Row = ({ headers, singleRow, rowNumber, rowAction }) => {
     const row = headers.map(header => {
-        //console.log(singleRow);
+
         //Jeśli header.dataField nie ma wartości ustaw value na null
         const value = header.dataField ? singleRow[header.dataField] : null;
         const action = header.action ? header.action : null;
@@ -186,8 +186,7 @@ const Cell = ({ header, value, action, rowAction, rowObject }) => {
         return <Table.Cell >
             <Button size="small" className="tableButton" onClick={() => rowAction(action, rowObject)}>
                 <ButtonContent>
-                    <Icon className="iconClass" name={iconName} size="large" ></Icon>
-
+                    <Icon className="tableIcon" name={iconName} size="large" ></Icon>
                 </ButtonContent>
             </Button>
         </Table.Cell>
