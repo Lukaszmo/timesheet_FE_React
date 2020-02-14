@@ -1,0 +1,5 @@
+/*cssy dla elementów które są używane w całej aplikacji*/
+
+.ui.disabled.input.disabledInput{
+    opacity: 1;
+}

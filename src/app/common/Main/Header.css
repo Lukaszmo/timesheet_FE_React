@@ -1,0 +1,27 @@
+.header-container {
+    width: 100%;
+    display: block;
+    height: 10%;
+    background-color: #FAFAFA;
+    min-height: 60px;
+    text-align: center;
+    padding: 25px; 
+   
+}
+
+.logout{
+    float: right;
+   
+}
+
+#logout-link{
+    color:#009999;
+}
+
+.logout:hover #logout-link{
+    color: #008080;
+}
+
+
+
+

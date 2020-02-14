@@ -1,0 +1,17 @@
+.ui.button {
+    background: transparent !important;
+}
+
+.ui.button:hover{
+    background:  transparent;
+}
+
+.ui.button:not:hover{
+    background:  transparent;
+}
+
+
+i.icon{
+    color: #00b5ad;
+}
+/*.ui.button*/

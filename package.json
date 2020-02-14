@@ -1,0 +1,36 @@
+{
+    "name": "api-platform-react-app-course",
+    "version": "1.0.0",
+    "private": true,
+    "devDependencies": {
+        "cross-env": "^5.1.4",
+        "react-scripts": "1.1.1"
+    },
+    "dependencies": {
+        "@semantic-ui-react/event-stack": "^3.1.1",
+        "axios": "^0.19.1",
+        "formik": "^2.1.2",
+        "history": "4.9.0",
+        "marked": "^0.3.6",
+        "prop-types": "^15.5.10",
+        "react": "16.9.0",
+        "react-dom": "^16.3.0",
+        "react-redux": "^5.0.7",
+        "react-router": "5.0.1",
+        "react-router-dom": "5.0.1",
+        "react-router-redux": "^5.0.0-alpha.6",
+        "redux": "^3.6.0",
+        "redux-devtools-extension": "^2.13.2",
+        "redux-logger": "^3.0.1",
+        "redux-thunk": "^2.3.0",
+        "semantic-ui-react": "^0.88.2",
+        "superagent": "^3.8.2",
+        "superagent-promise": "^1.1.0"
+    },
+    "scripts": {
+        "start": "cross-env PORT=4100 react-scripts start",
+        "build": "react-scripts build",
+        "test": "cross-env PORT=4100 react-scripts test --env=jsdom",
+        "eject": "react-scripts eject"
+    }
+}

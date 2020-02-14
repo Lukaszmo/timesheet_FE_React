@@ -1,0 +1,25 @@
+.inputs-login-container {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    font-size: 20px;
+}
+
+.inputs-login-form-field {
+    width: 350px;
+   
+}
+
+.inputs-login-form {
+    width: 400px;
+    height: 260px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    border: 1px solid #949191;
+    background-color: #ffffff;
+}
