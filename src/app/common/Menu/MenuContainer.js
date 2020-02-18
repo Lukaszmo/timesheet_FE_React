@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { connect } from 'react-redux';
+//import { connect } from 'react-redux';
 
 import MenuComponent from "./MenuComponent";
 import { setMenu } from "../Menu/Menu";
@@ -16,7 +16,5 @@ class MenuContainer extends Component {
         )
     }
 }
-
-
 
 export default MenuContainer;
