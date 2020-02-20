@@ -10,7 +10,7 @@ class HoursComponent extends Component {
     render() {
         return (    //TODO tabela jako osobny komponent
 
-            <TableComponent headers={this.props.headers} data={this.props.data} rowsPerPage={5} />
+            <TableComponent headers={this.props.headers} data={this.props.data} onTableChange={this.props.onTableChange} rowsPerPage={5} />
         )
     }
 }

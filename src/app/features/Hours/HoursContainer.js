@@ -14,6 +14,13 @@ class HoursContainer extends Component {
         this.props.fetchAllTypes();
     }
 
+    onTableChange = (rowAction, rowId) => {
+
+        console.log(rowAction, rowId);
+        this.setState({ selectedId: rowId });
+
+    }
+
     headers = [
         {
             id: "1",
@@ -32,7 +39,7 @@ class HoursContainer extends Component {
         {
             id: "3",
             columnName: "",
-            className: "width20",
+            className: "width5",
             dataField: 'name2',
             type: "button",
             action: "edit",
@@ -41,7 +48,7 @@ class HoursContainer extends Component {
         {
             id: "4",
             columnName: "",
-            className: "width20",
+            className: "width5",
             dataField: 'name2',
             type: "button",
             action: "delete",
@@ -63,7 +70,7 @@ class HoursContainer extends Component {
         return (
             <Container className="hours">
                 <HoursAddComponent types={this.props.hourTypes} />
-                <HoursComponent headers={this.headers} data={this.data} />
+                <HoursComponent headers={this.headers} data={this.data} onTableChange={this.onTableChange} />
             </Container>
         );
     }

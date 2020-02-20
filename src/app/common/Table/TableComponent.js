@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Icon, Table, Pagination, Button, FormButton, ButtonContent } from 'semantic-ui-react';
+import { Icon, Table, Pagination, Button, ButtonContent, Confirm } from 'semantic-ui-react';
 import './Table.css';
 import { routerMiddleware } from "react-router-redux";
 
@@ -77,7 +77,9 @@ class TableComponent extends Component {
         super(props);
 
         this.state = {
-            activePage: 1
+            activePage: 1,
+            open: false,
+            selectedId: null
         }
 
     }
@@ -87,20 +89,27 @@ class TableComponent extends Component {
         this.setState({ activePage: data.activePage })
     }
 
-    rowAction = (rowAction, rowObject) => {
+    handleCancel = () => {
 
-        let action = rowAction.toUpperCase();
+        this.setState({ open: false });
+    }
 
-        if (action === 'DELETE') {
+    handleConfirm = () => {
 
-            console.log(rowObject);
-            //modal confirm i akcja do API usuniecie rekord
-        }
+        this.setState({ open: false });
+        console.log(this.state);
 
-        if (action === 'UPDATE') {
+        // Remove record
+    }
 
 
-        }
+    handleButtonClick = (rowAction, rowId) => {
+
+        if (rowAction === "DELETE") { this.setState({ open: true }) };
+        if (rowAction === "EDIT") { this.setState({ open: false }) };
+
+        this.setState({ selectedId: rowId });
+        this.props.onTableChange(rowAction, rowId);
 
 
     }
@@ -108,13 +117,22 @@ class TableComponent extends Component {
     render() {
 
         return (
-
             <Table celled >
                 <Headers headers={this.props.headers}> </Headers>
-                <TableBody headers={this.props.headers} data={this.props.data} activePage={this.state.activePage} rowsPerPage={this.props.rowsPerPage} rowAction={this.rowAction}></TableBody>
+                <TableBody
+                    headers={this.props.headers}
+                    data={this.props.data}
+                    activePage={this.state.activePage}
+                    rowsPerPage={this.props.rowsPerPage}
+                    rowAction={this.rowAction}
+                    tableState={this.state}
+                    handleButtonClick={this.handleButtonClick}
+                    handleCancel={this.handleCancel}
+                    handleConfirm={this.handleConfirm}
+                />
                 <Table.Footer>
                     <Table.Row textAlign="center">
-                        <Table.HeaderCell colSpan='4'>
+                        <Table.HeaderCell colSpan={this.props.headers.length}>
                             <Pagination size="small" className="pagina" onPageChange={(e, data) => this.onPageChange(e, data)} defaultActivePage={this.state.activePage} totalPages={Math.ceil(this.props.data.length / this.props.rowsPerPage)} />
                         </Table.HeaderCell>
                     </Table.Row>
@@ -135,7 +153,7 @@ const Headers = ({ headers }) => {
 };
 
 //Body tabeli
-const TableBody = ({ headers, data, activePage, rowsPerPage, rowAction }) => {
+const TableBody = ({ headers, data, activePage, rowsPerPage, rowAction, tableState, handleButtonClick, handleCancel, handleConfirm }) => {
 
     let tableData = data;
 
@@ -143,7 +161,17 @@ const TableBody = ({ headers, data, activePage, rowsPerPage, rowAction }) => {
 
         if ((rowNumber >= (activePage - 1) * rowsPerPage) && (rowNumber <= (activePage * rowsPerPage) - 1)) {
 
-            return <Row headers={headers} singleRow={row} key={rowNumber} rowNumber={rowNumber} rowAction={rowAction} ></Row>
+            return <Row
+                headers={headers}
+                singleRow={row}
+                key={rowNumber}
+                rowNumber={rowNumber}
+                rowAction={rowAction}
+                tableState={tableState}
+                handleButtonClick={handleButtonClick}
+                handleCancel={handleCancel}
+                handleConfirm={handleConfirm}
+            />
         }
     })
 
@@ -153,7 +181,7 @@ const TableBody = ({ headers, data, activePage, rowsPerPage, rowAction }) => {
 };
 
 //Wiersz
-const Row = ({ headers, singleRow, rowNumber, rowAction }) => {
+const Row = ({ headers, singleRow, rowNumber, rowAction, tableState, handleButtonClick, handleCancel, handleConfirm }) => {
     const row = headers.map(header => {
 
         //Jeśli header.dataField nie ma wartości ustaw value na null
@@ -161,7 +189,18 @@ const Row = ({ headers, singleRow, rowNumber, rowAction }) => {
         const action = header.action ? header.action : null;
         const id = header.id + rowNumber;
 
-        return <Cell header={header} value={value} key={id} action={action} rowAction={rowAction} rowObject={singleRow}></Cell>
+        return <Cell
+            header={header}
+            value={value}
+            key={id}
+            action={action}
+            rowAction={rowAction}
+            rowObject={singleRow}
+            tableState={tableState}
+            handleButtonClick={handleButtonClick}
+            handleCancel={handleCancel}
+            handleConfirm={handleConfirm}
+        />
     });
 
     return (
@@ -170,26 +209,36 @@ const Row = ({ headers, singleRow, rowNumber, rowAction }) => {
 };
 
 //Komórki
-const Cell = ({ header, value, action, rowAction, rowObject }) => {
+const Cell = ({ header, value, action, rowAction, rowObject, tableState, handleButtonClick, handleCancel, handleConfirm }) => {
 
     let type = header.type.toUpperCase();
+    let actionType = action ? action.toUpperCase() : null;
     let iconName = header.iconName;
     let displayValue = value;
 
-    console.log(action);
-
     if (type === 'DATA') {
-        return <Table.Cell >{displayValue}</Table.Cell>;
+        return <Table.Cell className={header.className}>{displayValue}</Table.Cell>;
     }
 
     if (type === 'BUTTON') {
-        return <Table.Cell >
-            <Button size="small" className="tableButton" onClick={() => rowAction(action, rowObject)}>
+
+        return <Table.Cell className={header.className}>
+
+            <Button size="small" className="tableButton" title={header.action} onClick={() => handleButtonClick(actionType, rowObject.id)}>
                 <ButtonContent>
                     <Icon className="tableIcon" name={iconName} size="large" ></Icon>
                 </ButtonContent>
-            </Button>
-        </Table.Cell>
+            </Button >
+
+            <Confirm
+                header="Usuwanie rekordu"
+                content="Czy na pewno chcesz usunąć rekord?"
+                open={tableState.open}
+                onCancel={handleCancel}
+                onConfirm={handleConfirm}
+            />
+        </Table.Cell >
+
     }
 
 };
