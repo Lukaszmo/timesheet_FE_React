@@ -1,50 +1,109 @@
 import React, { Component } from "react";
 
-import { Grid, Segment, Header, Input, Dropdown } from 'semantic-ui-react';
+import { Formik } from 'formik';
+import { Grid, Segment, Header, Input, Dropdown, Button, Form } from 'semantic-ui-react';
 import './HoursComponent.css';
 
 
 
 class HoursAddComponent extends Component {
 
+    state = {}
+
+    onSubmit(values) {
+
+        const type = this.state.type;
+        const object = {
+            ...values,
+            type
+        };
+
+        this.props.onSubmit(object);
+    }
+
+    dropdownHandleChange = (e, data) => {
+
+        this.setState({ type: data.value });
+
+    }
+
     render() {
 
         //console.log(this.props.types);
         return (
+
             <Segment color="teal">
-                <Header size='medium'>Test</Header>
+                <Header size='medium'>Czas pracy</Header>
+                <Formik
+                    initialValues={{ date: '', quantity: '' }}
 
-                <Grid columns={2} textAlign="right" verticalAlign="middle" >
-                    <Grid.Row>
-                        <Grid.Column width={2}>
-                            Props1
-                        </Grid.Column >
-                        <Grid.Column width={2}>
-                            <Dropdown placeholder="Wybierz.." fluid options={this.props.types} />
-                        </Grid.Column>
-                    </Grid.Row>
+                    onSubmit={(values, { setSubmitting }) => {
+                        this.onSubmit(values);
+                        setSubmitting(false);
+                    }}
 
-                    <Grid.Row>
-                        <Grid.Column width={2}>
-                            Props2
-                            </Grid.Column >
-                        <Grid.Column width={2}>
-                            <Input />
-                        </Grid.Column>
-                    </Grid.Row>
+                >
+                    {({
+                        values,
+                        handleSubmit,
+                        handleChange
 
-                    <Grid.Row>
-                        <Grid.Column width={2}>
-                            Props3
-                            </Grid.Column >
-                        <Grid.Column width={2}>
-                            <Input />
-                        </Grid.Column>
-                    </Grid.Row>
+                    }) => (
+                            <Form onSubmit={handleSubmit}>
+                                <Grid columns={2} textAlign="right" verticalAlign="middle" >
+                                    <Grid.Row>
+                                        <Grid.Column width={2}>
+                                            Typ
+                                        </Grid.Column >
+                                        <Grid.Column width={2}>
+                                            <Dropdown fluid
+                                                name='type'
+                                                placeholder="Wybierz.."
+                                                value={this.state.type}
+                                                onChange={(e, data) => this.dropdownHandleChange(e, data)}
+                                                options={this.props.types} />
+                                        </Grid.Column>
+                                    </Grid.Row>
 
-                </Grid>
+                                    <Grid.Row>
+                                        <Grid.Column width={2}>
+                                            Data
+                                        </Grid.Column >
+                                        <Grid.Column width={2}>
+                                            <Input
+                                                type='date'
+                                                name='date'
+                                                value={values.date}
+                                                onChange={handleChange} />
+                                        </Grid.Column>
+                                    </Grid.Row>
 
+                                    <Grid.Row>
+                                        <Grid.Column width={2}>
+                                            Ilość godzin
+                                        </Grid.Column >
+                                        <Grid.Column width={2}>
+                                            <Input
+                                                type='number'
+                                                name='quantity'
+                                                value={values.quantity}
+                                                onChange={handleChange} />
+                                        </Grid.Column>
+                                    </Grid.Row>
+                                </Grid>
+
+                                <Button
+                                    type='submit'
+                                    className='addButton'
+                                    color='teal'>
+                                    {/*onClick={this.props.onButtonClick}>*/}
+                                    Dodaj rekord
+                                </Button>
+                            </Form>
+                        )}
+                </Formik>
             </Segment>
+
         )
     }
 }

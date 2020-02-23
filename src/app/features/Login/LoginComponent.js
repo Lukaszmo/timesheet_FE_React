@@ -58,7 +58,7 @@ class LoginComponent extends Component {
                                 {errors.password && touched.password && errors.password}
                                 <Button type="submit" color="teal" disabled={isSubmitting}>
                                     ZALOGUJ SIĘ
-                        </Button>
+                                </Button>
                             </Form>
                         )}
                 </Formik>

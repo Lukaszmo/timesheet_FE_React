@@ -8,3 +8,8 @@
     background-color: grey;
 }
 
+.ui.button.addButton{
+    margin-left: 120px;
+    margin-top: 20px ;
+}
+

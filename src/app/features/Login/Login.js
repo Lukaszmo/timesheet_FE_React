@@ -1,5 +1,5 @@
 import axios from 'axios';
-//import { toastr } from 'react-redux-toastr';
+import { toastr } from 'react-redux-toastr';
 import history from '../../../history';
 import { GENERATE } from '../../../routes';
 
@@ -41,7 +41,7 @@ export function userLoginOperation(user) {
             })
             .catch(function (error) {
                 console.log(error);
-                //toastr.error("Login failed", null);
+                toastr.error("Nieprawidłowy login lub hasło");
                 dispatch(loginFail());
             });
     }

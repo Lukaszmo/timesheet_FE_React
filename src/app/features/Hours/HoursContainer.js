@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import HoursComponent from "./HoursComponent";
 import HoursAddComponent from "./HoursAddComponent";
-import { fetchAllTypes } from "./Hours";
+import { fetchAllTypes, fetchAllRecords, addRecord } from "./Hours";
 import { Container } from 'semantic-ui-react';
 
 
@@ -12,13 +12,19 @@ class HoursContainer extends Component {
     componentDidMount() {
 
         this.props.fetchAllTypes();
+        this.props.fetchAllRecords();
     }
 
     onTableChange = (rowAction, rowId) => {
 
-        console.log(rowAction, rowId);
+        //TODO nowa metoda
         this.setState({ selectedId: rowId });
 
+    }
+
+    onSubmit = (object) => {
+
+        this.props.addRecord(object);
     }
 
     headers = [
@@ -56,33 +62,27 @@ class HoursContainer extends Component {
         }
     ]
 
-    data = [
-        { id: 1, email: "email1@email.com", phone: "111111111" },
-        { id: 2, email: "email2@email.com", phone: "222222222" },
-        { id: 3, email: "email3@email.com", phone: "333333333" },
-        { id: 4, email: "email4@email.com", phone: "444444444" },
-        { id: 5, email: "email5@email.com", phone: "555555555" },
-        { id: 6, email: "email6@email.com", phone: "666666666" }
-    ]
-
     render() {
         //console.log(this.props);
         return (
             <Container className="hours">
-                <HoursAddComponent types={this.props.hourTypes} />
-                <HoursComponent headers={this.headers} data={this.data} onTableChange={this.onTableChange} />
+                <HoursAddComponent types={this.props.hourTypes} onSubmit={this.onSubmit} />
+                <HoursComponent headers={this.headers} data={this.props.data} onTableChange={this.onTableChange} />
             </Container>
         );
     }
 }
 
-//pobiera stan ze store i przekazuje do komponentu
+//pobiera stan ze store i przekazuje do propsów komponentu
 const mapStateToProps = state => ({
-    hourTypes: state.hour
+    hourTypes: state.hour.types,
+    data: state.hour.records,
 })
 
 const mapDispatchToProps = dispatch => ({
-    fetchAllTypes: () => dispatch(fetchAllTypes())
+    fetchAllTypes: () => dispatch(fetchAllTypes()),
+    fetchAllRecords: () => dispatch(fetchAllRecords()),
+    addRecord: (object) => dispatch(addRecord(object))
 })
 
 export default connect(
