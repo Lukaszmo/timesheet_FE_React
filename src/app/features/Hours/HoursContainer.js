@@ -30,19 +30,26 @@ class HoursContainer extends Component {
     headers = [
         {
             id: "1",
-            columnName: "email",
+            columnName: "id",
             className: "width20",
-            dataField: 'email',
+            dataField: 'id',
             type: "data"
         },
         {
             id: "2",
-            columnName: "phone number",
+            columnName: "date",
             className: "width20",
-            dataField: 'phone',
+            dataField: 'date',
             type: "data"
         },
         {
+            id: "3",
+            columnName: "type",
+            className: "width20",
+            dataField: 'type',
+            type: "data"
+        }
+        /*{
             id: "3",
             columnName: "",
             className: "width5",
@@ -59,11 +66,12 @@ class HoursContainer extends Component {
             type: "button",
             action: "delete",
             iconName: "trash alternate"
-        }
+        } */
     ]
 
     render() {
-        //console.log(this.props);
+        console.log(this.props);
+
         return (
             <Container className="hours">
                 <HoursAddComponent types={this.props.hourTypes} onSubmit={this.onSubmit} />

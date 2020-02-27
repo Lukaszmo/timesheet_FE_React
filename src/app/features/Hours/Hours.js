@@ -10,7 +10,7 @@ const ADD_RECORD = 'ADD_RECORD';
 const DELETE_RECORD = 'DELETE_RECORD';
 
 //actions
-function setHourTypes(types) {
+export function setHourTypes(types) {
     return {
         type: SET_HOUR_TYPES,
         payload: {
@@ -19,7 +19,7 @@ function setHourTypes(types) {
     }
 }
 
-function setRecords(records) {
+export function setRecords(records) {
     return {
         type: SET_RECORDS,
         payload: {
@@ -28,7 +28,7 @@ function setRecords(records) {
     }
 }
 
-function addNewRecord(object) {
+export function addNewRecord(object) {
     return {
         type: ADD_RECORD,
         payload: {
@@ -37,7 +37,7 @@ function addNewRecord(object) {
     }
 }
 
-function deleteRecord(id) {
+export function deleteRecord(id) {
     return {
         type: DELETE_RECORD,
         payload: id
@@ -72,7 +72,7 @@ export const fetchAllTypes = () => {
 export const fetchAllRecords = () => {
 
     //do zrobienia Api
-    const response = [
+    /*const response = [
         { id: 1, email: "email1@email.com", phone: "111111111" },
         { id: 2, email: "email2@email.com", phone: "222222222" },
         { id: 3, email: "email3@email.com", phone: "333333333" },
@@ -81,17 +81,17 @@ export const fetchAllRecords = () => {
         { id: 6, email: "email6@email.com", phone: "666666666" }
     ]
 
-
-    /*return (dispatch) => {
-        axios.get(HOUR_TYPES).then(response => {
-            dispatch(setHourTypes(response.data));
-
-        })
-    } */
-
     return (dispatch) => {
         dispatch(setRecords(response));
-        console.log(response);
+
+    } */
+
+
+    return (dispatch) => {
+        axios.get(HOURS + '/71').then(response => {
+            dispatch(setRecords([response.data]));
+            console.log(response.data);
+        })
 
     }
 }
@@ -107,14 +107,10 @@ export const addRecord = (object) => {
             .then(function (response) {
                 toastr.success('Rekord został zapisany');
                 dispatch(addNewRecord(newrecord));
-            })
-            .catch(function (error) {
-                console.log(error);
-                toastr.error("Błąd zapisu");
-                //dispatch(InsertFail());
             });
     }
 }
+
 
 const initialState = {
     types: [],

@@ -79,7 +79,8 @@ class TableComponent extends Component {
         this.state = {
             activePage: 1,
             open: false,
-            selectedId: null
+            selectedId: null,
+            totalPages: Math.ceil(this.props.data.length / this.props.rowsPerPage)
         }
 
     }
@@ -133,7 +134,7 @@ class TableComponent extends Component {
                 <Table.Footer>
                     <Table.Row textAlign="center">
                         <Table.HeaderCell colSpan={this.props.headers.length}>
-                            <Pagination size="small" className="pagina" onPageChange={(e, data) => this.onPageChange(e, data)} defaultActivePage={this.state.activePage} totalPages={Math.ceil(this.props.data.length / this.props.rowsPerPage)} />
+                            <Pagination size="small" className="pagina" onPageChange={(e, data) => this.onPageChange(e, data)} defaultActivePage={this.state.activePage} totalPages={this.state.totalPages} />
                         </Table.HeaderCell>
                     </Table.Row>
                 </Table.Footer>
@@ -156,6 +157,8 @@ const Headers = ({ headers }) => {
 const TableBody = ({ headers, data, activePage, rowsPerPage, rowAction, tableState, handleButtonClick, handleCancel, handleConfirm }) => {
 
     let tableData = data;
+
+    if (tableData === undefined) return null;
 
     const tableBody = tableData.map(function (row, rowNumber) {
 
