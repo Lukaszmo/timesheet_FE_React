@@ -79,8 +79,7 @@ class TableComponent extends Component {
         this.state = {
             activePage: 1,
             open: false,
-            selectedId: null,
-            totalPages: Math.ceil(this.props.data.length / this.props.rowsPerPage)
+            selectedId: null
         }
 
     }
@@ -102,7 +101,6 @@ class TableComponent extends Component {
 
         // Remove record
     }
-
 
     handleButtonClick = (rowAction, rowId) => {
 
@@ -134,7 +132,7 @@ class TableComponent extends Component {
                 <Table.Footer>
                     <Table.Row textAlign="center">
                         <Table.HeaderCell colSpan={this.props.headers.length}>
-                            <Pagination size="small" className="pagina" onPageChange={(e, data) => this.onPageChange(e, data)} defaultActivePage={this.state.activePage} totalPages={this.state.totalPages} />
+                            {this.props.data ? <Pagination size="small" className="pagina" onPageChange={(e, data) => this.onPageChange(e, data)} defaultActivePage={this.state.activePage} totalPages={Math.ceil(this.props.data.length / this.props.rowsPerPage)} /> : null}
                         </Table.HeaderCell>
                     </Table.Row>
                 </Table.Footer>
