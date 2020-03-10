@@ -48,9 +48,9 @@ class HoursContainer extends Component {
             className: "width20",
             dataField: 'type',
             type: "data"
-        }
-        /*{
-            id: "3",
+        },
+        {
+            id: "4",
             columnName: "",
             className: "width5",
             dataField: 'name2',
@@ -59,14 +59,14 @@ class HoursContainer extends Component {
             iconName: "edit outline"
         },
         {
-            id: "4",
+            id: "5",
             columnName: "",
             className: "width5",
             dataField: 'name2',
             type: "button",
             action: "delete",
             iconName: "trash alternate"
-        } */
+        }
     ]
 
     render() {
