@@ -85,12 +85,12 @@ export const fetchAllRecords = () => {
         dispatch(setRecords(response));
 
     } */
-
+    const userid = localStorage.getItem('userId');
 
     return (dispatch) => {
-        axios.get(HOURS + '/71').then(response => {
-            dispatch(setRecords([response.data]));
-            console.log(response.data);
+        axios.get(HOURS + '?userid=' + userid).then(response => {
+            dispatch(setRecords(response.data['hydra:member']));
+            console.log(response.data['hydra:member']);
         })
 
     }
