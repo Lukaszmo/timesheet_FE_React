@@ -5,67 +5,63 @@ import { routerMiddleware } from "react-router-redux";
 
 
 /**
- * Params:
- * - onChange - function which will be fired when table change occurs(cell modification, row addition/removal). 
- *   User has acces to fields such as: modifiedTable, modifiedRow, operationType (UPDATE, ADD, DELETE). (required if one of header types equals 
- *   input or rowsRemoval equals true)
-     Example 
-           (modifiedTable, modifiedRow, operationType) => {
-                console.log(modifiedTable);
-                console.log(modifiedRow);
-                console.log(operationType);
-                this.setState({
-                    data: modifiedTable
-                })
-            }
- * - data = array that contains data which will be shown in the table (required)
- * - headers = array of header objects (required)
- * - rowsRemoval - boolean, if set to true there will be shown button to delete row (default = false)
+ * Params: 
+ * - data: array that contains data which will be shown in the table (required)
+ * - onTableChange: function which will be fired when table change occurs(cell modification, row removal)
+ * - rowsPerPage: number of rows displayed per page  
+ * - headers: array of header objects (required)
  * 
  * Header object fields:
- * - id - identifier (required)
- * - columName - column name 
- * - dataField - name of the field in the object in data array from which value will be shown in the table (required for link, label and input types)
- * - type - type of filed (link, lable, input, button) (required)
- * - action - action that will be fired when given object is clicked. User has acces to row. Example (row) => console.log(row) (required for button and link types)
- * - name - Name of the element (required for button type) 
- * - iconName - name of the icon to be displayed on the button, full list available here https://react.semantic-ui.com/elements/icon/ (required for button)
- * - buttonColor - name of the color that displayed button should have, full list available here https://react.semantic-ui.com/elements/button/ (required for button)
- * - disabled - determines whether the cell should be not editable {true- not editable, no exsist or false - cell editable}
- * - dropdown - names and values of Dropdown content, full list available here https://react.semantic-ui.com/modules/dropdown/
- * - className - css class defined in TableStyle.css ("width10" , "min-width50")
- * - checkAll = object for checkbox type field. Makes it possible to select all checkboxes.
- * - textAlign - left/center/right, default is center.
- * 
- * - isActionDisabled - function to determine if button/component should be disabled or not
- * If one of headers type equals input below table will be shown button which gives possibility to add new rows to the table.
- *  
- *
+ * - id: identifier (required)
+ * - columName: column name 
+ * - className: css class defined in TableStyle.css ("width10" , "min-width50")
+ * - dataField: name of the field in the object in data array from which value will be shown in the table (required for link, label and input types)
+ * - type: type of field (link, label, input, button) (required)
+ * - action: action that will be fired when given object is clicked. User has acces to row. Example (row) => console.log(row) (required for button and link types)
+ * - iconName: name of the icon to be displayed on the button, full list available here https://react.semantic-ui.com/elements/icon/ (required for button)
+ * - dropdown: names and values of Dropdown content, full list available here https://react.semantic-ui.com/modules/dropdown/
 
 Usage example
 
-headers = [
+    headers = [
         {
             id: "1",
-            columnName: "email",
+            columnName: "id",
             className: "width20",
-            dataField: 'email',
+            dataField: 'id',
             type: "data"
         },
         {
             id: "2",
-            columnName: "phone number",
+            columnName: "date",
             className: "width20",
-            dataField: 'phone',
+            dataField: 'date',
             type: "data"
         },
         {
             id: "3",
-            columnName: "",
+            columnName: "type",
             className: "width20",
+            dataField: 'type',
+            type: "data"
+        },
+        {
+            id: "4",
+            columnName: "",
+            className: "width5",
             dataField: 'name2',
             type: "button",
-            iconName: "folder"
+            action: "edit",
+            iconName: "edit outline"
+        },
+        {
+            id: "5",
+            columnName: "",
+            className: "width5",
+            dataField: 'name2',
+            type: "button",
+            action: "delete",
+            iconName: "trash alternate"
         }
     ]
 */
