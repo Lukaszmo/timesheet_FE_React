@@ -31,16 +31,23 @@ export function setRecords(records) {
 export function addNewRecord(object) {
     return {
         type: ADD_RECORD,
-        payload: {
-            records: object
-        }
+        payload: object
+
     }
 }
 
 export function deleteRecord(id) {
     return {
         type: DELETE_RECORD,
-        payload: id
+        payload: {
+            deletedRecordId: id
+        }
+    }
+}
+
+export function updateHourList(records) {
+    return (dispatch) => {
+        dispatch(setRecords(records));
     }
 }
 
@@ -57,7 +64,7 @@ export const fetchAllTypes = () => {
     /*return (dispatch) => {
         axios.get(HOUR_TYPES).then(response => {
             dispatch(setHourTypes(response.data));
-
+ 
         })
     } */
 
@@ -71,7 +78,7 @@ export const fetchAllTypes = () => {
 
 export const fetchAllRecords = () => {
 
-    //do zrobienia Api
+    //tests
     /*const response = [
         { id: 1, email: "email1@email.com", phone: "111111111" },
         { id: 2, email: "email2@email.com", phone: "222222222" },
@@ -80,10 +87,10 @@ export const fetchAllRecords = () => {
         { id: 5, email: "email5@email.com", phone: "555555555" },
         { id: 6, email: "email6@email.com", phone: "666666666" }
     ]
-
+ 
     return (dispatch) => {
         dispatch(setRecords(response));
-
+ 
     } */
     const userid = localStorage.getItem('userId');
 
@@ -106,7 +113,19 @@ export const addRecord = (object) => {
         axios.post(HOURS, newrecord)
             .then(function (response) {
                 toastr.success('Rekord został zapisany');
-                dispatch(addNewRecord(newrecord));
+                dispatch(addNewRecord(response.data));
+            });
+    }
+}
+
+export const removeRecord = (rowId) => {
+
+    return function (dispatch) {
+        console.log(rowId);
+        axios.delete(HOURS + '/' + rowId)
+            .then(function (response) {
+                toastr.success('Rekord został usuniety');
+                dispatch(deleteRecord(rowId));
             });
     }
 }
@@ -119,14 +138,24 @@ const initialState = {
 
 //reducers
 export default (state = initialState, action) => {
+
     switch (action.type) {
 
         case SET_HOUR_TYPES: {
             return action.payload;
 
         }
+
         case SET_RECORDS: {
             return { ...state, ...action.payload };
+        }
+
+        case ADD_RECORD: {
+            return { ...state, records: [...state.records, action.payload] }
+        }
+
+        case DELETE_RECORD: {
+            return state;
         }
 
         //jeśli nie było żadnej akcji zwraca stan bez zmiany

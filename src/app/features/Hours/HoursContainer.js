@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import HoursComponent from "./HoursComponent";
 import HoursAddComponent from "./HoursAddComponent";
-import { fetchAllTypes, fetchAllRecords, addRecord } from "./Hours";
+import { fetchAllTypes, fetchAllRecords, addRecord, removeRecord, updateHourList } from "./Hours";
 import { Container } from 'semantic-ui-react';
 
 
@@ -17,14 +17,22 @@ class HoursContainer extends Component {
 
     onTableChange = (rowAction, rowId) => {
 
-        //TODO nowa metoda
         this.setState({ selectedId: rowId });
+        console.log(rowAction, rowId);
+
+        if (rowAction === 'DELETE') {
+
+            this.props.removeRecord(rowId);
+            let filteredArray = this.props.data.filter(item => item.id !== rowId)
+            this.props.updateHourList(filteredArray);
+        }
 
     }
 
     onSubmit = (object) => {
 
         this.props.addRecord(object);
+
     }
 
     headers = [
@@ -90,7 +98,9 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     fetchAllTypes: () => dispatch(fetchAllTypes()),
     fetchAllRecords: () => dispatch(fetchAllRecords()),
-    addRecord: (object) => dispatch(addRecord(object))
+    addRecord: (object) => dispatch(addRecord(object)),
+    removeRecord: (id) => dispatch(removeRecord(id)),
+    updateHourList: (records) => dispatch(updateHourList(records))
 })
 
 export default connect(

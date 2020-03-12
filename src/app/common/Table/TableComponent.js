@@ -93,9 +93,9 @@ class TableComponent extends Component {
     handleConfirm = () => {
 
         this.setState({ open: false });
-        console.log(this.state);
 
         // Remove record
+        this.props.onTableChange(this.state.action, this.state.selectedId);
     }
 
     handleButtonClick = (rowAction, rowId) => {
@@ -104,7 +104,10 @@ class TableComponent extends Component {
         if (rowAction === "EDIT") { this.setState({ open: false }) };
 
         this.setState({ selectedId: rowId });
-        this.props.onTableChange(rowAction, rowId);
+        this.setState({ action: rowAction });
+
+        //if EDIT
+        //this.props.onTableChange(rowAction, rowId);
 
 
     }
