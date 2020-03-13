@@ -6,7 +6,6 @@ import HoursAddComponent from "./HoursAddComponent";
 import { fetchAllTypes, fetchAllRecords, addRecord, removeRecord, updateHourList } from "./Hours";
 import { Container } from 'semantic-ui-react';
 
-
 class HoursContainer extends Component {
 
     componentDidMount() {
@@ -38,27 +37,20 @@ class HoursContainer extends Component {
     headers = [
         {
             id: "1",
-            columnName: "id",
-            className: "width20",
-            dataField: 'id',
-            type: "data"
-        },
-        {
-            id: "2",
-            columnName: "date",
+            columnName: "data",
             className: "width20",
             dataField: 'date',
             type: "data"
         },
         {
-            id: "3",
-            columnName: "type",
+            id: "2",
+            columnName: "rodzaj",
             className: "width20",
             dataField: 'type',
             type: "data"
         },
         {
-            id: "4",
+            id: "3",
             columnName: "",
             className: "width5",
             dataField: 'name2',
@@ -67,7 +59,7 @@ class HoursContainer extends Component {
             iconName: "edit outline"
         },
         {
-            id: "5",
+            id: "4",
             columnName: "",
             className: "width5",
             dataField: 'name2',
