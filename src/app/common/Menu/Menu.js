@@ -27,21 +27,21 @@ export const menuItems = [
         ]
     },
     {
-        id: "PAGE2",
-        name: "PAGE2",
-        redirect: "/page2_sub1",
+        id: "TIMESHEET",
+        name: "Czas pracy",
+        redirect: "/czas-pracy",
         image: {},
         subMenu: [
             {
-                id: 'PAGE2_SUB1',
-                name: "page2_sub1",
-                redirect: "page2_sub1",
+                id: 'TIMESHEET_SUB',
+                name: "Czas pracy",
+                redirect: "czas-pracy",
                 image: {}
             },
             {
-                id: 'PAGE2_SUB2',
-                name: "page2_sub2",
-                redirect: "page2_sub2",
+                id: 'WORK_TIME_SCHEDULE',
+                name: "Grafik",
+                redirect: "grafik",
                 image: {}
             },
             {

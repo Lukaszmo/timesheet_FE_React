@@ -28,8 +28,8 @@ function App() {
                 */}
 
 
-                <Route exact path='/page2_sub1'
-                    component={(props) => <MainContainer content={<HoursContainer {...props} />} menuId={"PAGE2"} />} />
+                <Route exact path='/czas-pracy'
+                    component={(props) => <MainContainer content={<HoursContainer {...props} />} menuId={"TIMESHEET"} />} />
 
                 <Route exact path='/page3'
                     component={(props) => <MainContainer content={"PAGE3"} menuId={"PAGE3"} />} />
