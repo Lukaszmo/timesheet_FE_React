@@ -214,7 +214,9 @@ const Cell = ({ header, value, action, rowAction, rowObject, tableState, handleB
     let type = header.type.toUpperCase();
     let actionType = action ? action.toUpperCase() : null;
     let iconName = header.iconName;
-    let displayValue = value;
+
+    //konwersja dla pola typu data poniważ api zwraca format datetime "2020-03-13T00:00:00+01:00"
+    let displayValue = header.dataField === 'date' ? value.substr(0, 10) : value;
 
     if (type === 'DATA') {
         return <Table.Cell className={header.className}>{displayValue}</Table.Cell>;
