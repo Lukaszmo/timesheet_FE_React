@@ -231,12 +231,14 @@ const Cell = ({ header, value, action, rowAction, rowObject, tableState, handleB
             </Button >
 
             <Confirm
+                className="del-confirm"
                 header="Usuwanie rekordu"
                 content="Czy na pewno chcesz usunąć rekord?"
                 open={tableState.open}
                 onCancel={handleCancel}
                 onConfirm={handleConfirm}
             />
+
         </Table.Cell >
 
     }

@@ -7,6 +7,24 @@ i.icon.tableIcon{
     color: #00b5ad;
 }
 
+.ui.modal.del-confirm{
+    margin: auto;
+    width: 50%;
+    height: 200px;
+}
+
+.ui.modal.del-confirm>.header{
+    color: #00b5ad;
+}
+
+.ui.primary.button{
+    background-color: #00b5ad;
+}
+
+.ui.primary.button:hover{
+    background-color: #009c95;
+}
+
 .width5{
     width: 5%;
 }
