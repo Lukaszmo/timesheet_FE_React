@@ -38,19 +38,26 @@ class HoursContainer extends Component {
         {
             id: "1",
             columnName: "data",
-            className: "width20",
+            className: "width10",
             dataField: 'date',
             type: "data"
         },
         {
             id: "2",
-            columnName: "rodzaj",
-            className: "width20",
+            columnName: "typ",
+            className: "width10",
             dataField: 'type',
             type: "data"
         },
         {
             id: "3",
+            columnName: "ilość godzin",
+            className: "width5",
+            dataField: 'quantity',
+            type: "data"
+        },
+        {
+            id: "4",
             columnName: "",
             className: "width5",
             dataField: 'name2',
@@ -59,7 +66,7 @@ class HoursContainer extends Component {
             iconName: "edit outline"
         },
         {
-            id: "4",
+            id: "5",
             columnName: "",
             className: "width5",
             dataField: 'name2',
