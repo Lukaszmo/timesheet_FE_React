@@ -34,7 +34,7 @@ export const menuItems = [
         subMenu: [
             {
                 id: 'TIMESHEET_SUB',
-                name: "Czas pracy",
+                name: "Rejestracja czasu",
                 redirect: "czas-pracy",
                 image: {}
             },

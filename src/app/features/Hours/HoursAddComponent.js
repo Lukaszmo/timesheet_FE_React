@@ -33,7 +33,7 @@ class HoursAddComponent extends Component {
         return (
 
             <Segment color="teal">
-                <Header size='medium'>Czas pracy</Header>
+                <Header size='medium'>Rejestracja czasu</Header>
                 <Formik
                     initialValues={{ date: '', quantity: '' }}
 
