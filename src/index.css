@@ -3,3 +3,7 @@
 .ui.disabled.input.disabledInput{
     opacity: 1;
 }
+
+.ui.dimmer{
+    background-color: rgba(0,0,0,0.1); 
+} 

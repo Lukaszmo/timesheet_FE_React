@@ -2,7 +2,6 @@
     background: transparent ;
 }
 
-
 i.icon.tableIcon{
     color: #00b5ad;
 }
@@ -11,6 +10,7 @@ i.icon.tableIcon{
     margin: auto;
     width: 50%;
     height: 200px;
+    
 }
 
 .ui.modal.del-confirm>.header{
@@ -27,16 +27,20 @@ i.icon.tableIcon{
 
 .width5{
     width: 5%;
+    vertical-align: middle !important;
 }
 
 .width10{
     width: 10%;
+    vertical-align: middle !important;
 }
 
 .width15{
     width: 15%;
+    vertical-align: middle !important;
 }
 
 .width20{
     width: 20%;
+    vertical-align: middle !important;
 }
