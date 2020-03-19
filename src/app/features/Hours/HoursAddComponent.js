@@ -1,53 +1,54 @@
 import React, { Component } from "react";
 
 import { Formik } from 'formik';
-import { Grid, Segment, Header, Input, Dropdown, Button, Form } from 'semantic-ui-react';
+import { Grid, Segment, Header, Input, Dropdown, Button, Form, Label } from 'semantic-ui-react';
 import './HoursComponent.css';
 
+import * as Yup from 'yup';
 
+const addHourValidationSchema = Yup.object().shape({
+    type: Yup.string()
+        .required('Pole wymagane'),
+    date: Yup.date()
+        .required('Pole wymagane'),
+    quantity: Yup.number()
+        .required('Pole wymagane')
+});
 
 class HoursAddComponent extends Component {
 
-    state = {}
-
     onSubmit(values) {
 
-        const type = this.state.type;
-        const object = {
-            ...values,
-            type
-        };
-
-        this.props.onSubmit(object);
+        this.props.onSubmit(values);
     }
 
-    dropdownHandleChange = (e, data) => {
+    dropdownHandleChange(e, data, setFieldValue) {
 
-        this.setState({ type: data.value });
-
+        setFieldValue(data.name, data.value);
     }
 
     render() {
 
-        //console.log(this.props.types);
         return (
-
             <Segment color="teal">
                 <Header size='medium'>Rejestracja czasu</Header>
                 <Formik
-                    initialValues={{ date: '', quantity: '' }}
+                    initialValues={{ date: '', quantity: '', type: '' }}
+
+                    validationSchema={addHourValidationSchema}
 
                     onSubmit={(values, { setSubmitting }) => {
                         this.onSubmit(values);
                         setSubmitting(false);
-                    }}
+                    }}>
 
-                >
                     {({
                         values,
                         handleSubmit,
-                        handleChange
-
+                        handleChange,
+                        setFieldValue,
+                        errors,
+                        touched
                     }) => (
                             <Form onSubmit={handleSubmit}>
                                 <Grid columns={2} textAlign="right" verticalAlign="middle" >
@@ -57,11 +58,13 @@ class HoursAddComponent extends Component {
                                         </Grid.Column >
                                         <Grid.Column width={2}>
                                             <Dropdown fluid
+                                                id='type'
                                                 name='type'
                                                 placeholder="Wybierz.."
-                                                value={this.state.type}
-                                                onChange={(e, data) => this.dropdownHandleChange(e, data)}
+                                                value={values.type}
+                                                onChange={(e, data) => this.dropdownHandleChange(e, data, setFieldValue)}
                                                 options={this.props.types} />
+                                            {errors.type && touched.type ? <div><Label color="red" pointing>{errors.type}</Label></div> : null}
                                         </Grid.Column>
                                     </Grid.Row>
 
@@ -75,6 +78,7 @@ class HoursAddComponent extends Component {
                                                 name='date'
                                                 value={values.date}
                                                 onChange={handleChange} />
+                                            {errors.date && touched.date ? <div><Label color="red" pointing>{errors.date}</Label></div> : null}
                                         </Grid.Column>
                                     </Grid.Row>
 
@@ -88,6 +92,7 @@ class HoursAddComponent extends Component {
                                                 name='quantity'
                                                 value={values.quantity}
                                                 onChange={handleChange} />
+                                            {errors.quantity && touched.quantity ? <div><Label color="red" pointing>{errors.quantity}</Label></div> : null}
                                         </Grid.Column>
                                     </Grid.Row>
                                 </Grid>
@@ -102,7 +107,7 @@ class HoursAddComponent extends Component {
                             </Form>
                         )}
                 </Formik>
-            </Segment>
+            </Segment >
 
         )
     }
