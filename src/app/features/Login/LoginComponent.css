@@ -1,9 +1,22 @@
+.login-container{
+    height: 100%;
+}
+
+.login-header-container{
+    margin-top: 200px;
+}
+
+.ui.header.login-header{
+   text-align: center; 
+    color: #595959;
+}
+
 .inputs-login-container {
     text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    height: 300px;
     font-size: 20px;
 }
 
