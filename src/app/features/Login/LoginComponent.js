@@ -1,7 +1,16 @@
 import React, { Component } from "react";
-import { Form, Button, Header } from 'semantic-ui-react';
+import { Form, Button, Header, Label } from 'semantic-ui-react';
 import { Formik } from 'formik';
 import './LoginComponent.css';
+import * as Yup from 'yup';
+import CustomLabel from '../../common/CustomLabel/CustomLabel';
+
+const loginFormValidationSchema = Yup.object().shape({
+    login: Yup.string()
+        .required('Pole login jest wymagane'),
+    password: Yup.string()
+        .required('Pole hasło jest wymagane')
+});
 
 
 class LoginComponent extends Component {
@@ -21,7 +30,8 @@ class LoginComponent extends Component {
                 <div className='inputs-login-container' >
                     <Formik
                         initialValues={{ login: '', password: '' }}
-                        //validacje
+
+                        validationSchema={loginFormValidationSchema}
 
                         onSubmit={(values, { setSubmitting }) => {
                             this.onSubmit(values);
@@ -47,7 +57,7 @@ class LoginComponent extends Component {
                                         onBlur={handleBlur}
                                         value={values.login}
                                     />
-                                    {errors.login && touched.login && errors.login}
+                                    {errors.login && touched.login ? <div><CustomLabel text={errors.login}></CustomLabel></div> : null}
                                     <Form.Field
                                         type="password"
                                         name="password"
@@ -58,8 +68,8 @@ class LoginComponent extends Component {
                                         onBlur={handleBlur}
                                         value={values.password}
                                     />
-                                    {errors.password && touched.password && errors.password}
-                                    <Button type="submit" color="teal" disabled={isSubmitting}>
+                                    {errors.password && touched.password ? <div><CustomLabel text={errors.password}></CustomLabel></div> : null}
+                                    <Button type="submit" className="login-form-submit" color="teal" disabled={isSubmitting}>
                                         ZALOGUJ SIĘ
                                 </Button>
                                 </Form>
