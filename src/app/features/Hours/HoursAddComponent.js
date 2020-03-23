@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import { Formik } from 'formik';
 import { Grid, Segment, Header, Input, Dropdown, Button, Form, Label } from 'semantic-ui-react';
 import './HoursComponent.css';
+import CustomLabel from '../../common/CustomLabel/CustomLabel';
 
 import * as Yup from 'yup';
 
@@ -64,7 +65,7 @@ class HoursAddComponent extends Component {
                                                 value={values.type}
                                                 onChange={(e, data) => this.dropdownHandleChange(e, data, setFieldValue)}
                                                 options={this.props.types} />
-                                            {errors.type && touched.type ? <div><Label color="red" pointing>{errors.type}</Label></div> : null}
+                                            {errors.type && touched.type ? <div><CustomLabel text={errors.type}></CustomLabel></div> : null}
                                         </Grid.Column>
                                     </Grid.Row>
 
@@ -78,7 +79,7 @@ class HoursAddComponent extends Component {
                                                 name='date'
                                                 value={values.date}
                                                 onChange={handleChange} />
-                                            {errors.date && touched.date ? <div><Label color="red" pointing>{errors.date}</Label></div> : null}
+                                            {errors.date && touched.date ? <div><CustomLabel text={errors.date}></CustomLabel></div> : null}
                                         </Grid.Column>
                                     </Grid.Row>
 
@@ -92,7 +93,7 @@ class HoursAddComponent extends Component {
                                                 name='quantity'
                                                 value={values.quantity}
                                                 onChange={handleChange} />
-                                            {errors.quantity && touched.quantity ? <div><Label color="red" pointing>{errors.quantity}</Label></div> : null}
+                                            {errors.quantity && touched.quantity ? <div><CustomLabel text={errors.quantity}></CustomLabel></div> : null}
                                         </Grid.Column>
                                     </Grid.Row>
                                 </Grid>

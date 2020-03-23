@@ -25,6 +25,10 @@ i.icon.tableIcon{
     background-color: #009c95;
 }
 
+.ui.grid>.row{
+    padding: 20px;
+}
+
 .width5{
     width: 5%;
     vertical-align: middle !important;
