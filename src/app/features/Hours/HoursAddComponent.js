@@ -5,17 +5,6 @@ import { Grid, Segment, Header, Input, Dropdown, Button, Form, Label } from 'sem
 import './HoursComponent.css';
 import CustomLabel from '../../common/CustomLabel/CustomLabel';
 
-import * as Yup from 'yup';
-
-const addHourValidationSchema = Yup.object().shape({
-    type: Yup.string()
-        .required('Pole wymagane'),
-    date: Yup.date()
-        .required('Pole wymagane'),
-    quantity: Yup.number()
-        .required('Pole wymagane')
-});
-
 class HoursAddComponent extends Component {
 
     onSubmit(values) {
@@ -36,7 +25,7 @@ class HoursAddComponent extends Component {
                 <Formik
                     initialValues={{ date: '', quantity: '', type: '' }}
 
-                    validationSchema={addHourValidationSchema}
+                    validationSchema={this.props.validationSchema}
 
                     onSubmit={(values, { setSubmitting }) => {
                         this.onSubmit(values);

@@ -2,6 +2,16 @@ import axios from 'axios';
 import { toastr } from 'react-redux-toastr';
 
 import { HOUR_TYPES, HOURS } from '../../../routes';
+import * as Yup from 'yup';
+
+export const HourValidationSchema = Yup.object().shape({
+    type: Yup.string()
+        .required('Pole wymagane'),
+    date: Yup.date()
+        .required('Pole wymagane'),
+    quantity: Yup.number()
+        .required('Pole wymagane')
+});
 
 //action types
 const SET_HOUR_TYPES = 'SET_HOUR_TYPES';
