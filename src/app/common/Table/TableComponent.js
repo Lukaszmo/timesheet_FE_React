@@ -101,15 +101,13 @@ class TableComponent extends Component {
     handleButtonClick = (rowAction, rowId) => {
 
         if (rowAction === "DELETE") { this.setState({ open: true }) };
-        if (rowAction === "EDIT") { this.setState({ open: false }) };
+        if (rowAction === "EDIT") {
+            this.setState({ open: false })
+            this.props.onTableChange(rowAction, rowId);
+        };
 
         this.setState({ selectedId: rowId });
         this.setState({ action: rowAction });
-
-        //if EDIT
-        //this.props.onTableChange(rowAction, rowId);
-
-
     }
 
     render() {
@@ -239,6 +237,8 @@ const Cell = ({ header, value, action, rowAction, rowObject, tableState, handleB
                 open={tableState.open}
                 onCancel={handleCancel}
                 onConfirm={handleConfirm}
+                cancelButton='Anuluj'
+                confirmButton='Usuń'
             />
 
         </Table.Cell >

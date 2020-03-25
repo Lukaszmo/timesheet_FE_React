@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import HoursComponent from "./HoursComponent";
 import HoursAddComponent from "./HoursAddComponent";
-import { fetchAllTypes, fetchAllRecords, addRecord, removeRecord, updateHourList } from "./Hours";
+import HoursDetailContainer from "./HoursDetailContainer";
+import { fetchAllTypes, fetchAllRecords, addRecord, removeRecord, updateHourList, HourValidationSchema } from "./Hours";
 import { Container } from 'semantic-ui-react';
 
 class HoursContainer extends Component {
+
+    state = { modalOpen: false }
 
     componentDidMount() {
 
@@ -15,9 +17,16 @@ class HoursContainer extends Component {
     }
 
     onTableChange = (rowAction, rowId) => {
+        //console.log(rowAction, rowId);
 
-        this.setState({ selectedId: rowId });
-        console.log(rowAction, rowId);
+        if (rowAction === 'EDIT') {
+
+            this.setState({ selectedId: rowId });
+            this.setState({ modalOpen: true });
+
+            let record = this.props.data.filter(item => item.id === rowId);
+            this.setState({ recordDetails: record });
+        }
 
         if (rowAction === 'DELETE') {
 
@@ -32,6 +41,10 @@ class HoursContainer extends Component {
 
         this.props.addRecord(object);
 
+    }
+
+    closeModal = () => {
+        this.setState({ modalOpen: false });
     }
 
     headers = [
@@ -77,12 +90,20 @@ class HoursContainer extends Component {
     ]
 
     render() {
-        console.log(this.props);
+        //console.log(this.props);
 
         return (
             <Container className="hours">
-                <HoursAddComponent types={this.props.hourTypes} onSubmit={this.onSubmit} />
-                <HoursComponent headers={this.headers} data={this.props.data} onTableChange={this.onTableChange} />
+                <HoursAddComponent types={this.props.hourTypes} onSubmit={this.onSubmit} validationSchema={HourValidationSchema} />
+                <HoursDetailContainer
+                    headers={this.headers}
+                    data={this.props.data}
+                    onTableChange={this.onTableChange}
+                    open={this.state.modalOpen}
+                    types={this.props.hourTypes}
+                    recordDetails={this.state.recordDetails}
+                    validationSchema={HourValidationSchema}
+                    closeModal={this.closeModal} />
             </Container>
         );
     }

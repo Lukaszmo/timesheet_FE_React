@@ -47,9 +47,9 @@ class HoursAddComponent extends Component {
                                             Typ
                                         </Grid.Column >
                                         <Grid.Column width={2}>
-                                            <Dropdown fluid
-                                                id='type'
+                                            <Dropdown fluid selection
                                                 name='type'
+                                                className='dropdown-hour-types'
                                                 placeholder="Wybierz.."
                                                 value={values.type}
                                                 onChange={(e, data) => this.dropdownHandleChange(e, data, setFieldValue)}
