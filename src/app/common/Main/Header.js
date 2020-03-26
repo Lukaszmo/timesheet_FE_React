@@ -1,9 +1,6 @@
 import React, { Component } from "react";
 import { Link } from 'react-router-dom';
 
-import { Button, Icon, Image } from 'semantic-ui-react';
-
-
 import './Header.css';
 
 class Header extends Component {
