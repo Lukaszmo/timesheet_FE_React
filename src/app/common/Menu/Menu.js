@@ -29,13 +29,13 @@ export const menuItems = [
     {
         id: "TIMESHEET",
         name: "Czas pracy",
-        redirect: "/czas-pracy",
+        redirect: "/czas-pracy-rejestracja",
         image: {},
         subMenu: [
             {
                 id: 'TIMESHEET_SUB',
                 name: "Rejestracja czasu",
-                redirect: "czas-pracy",
+                redirect: "czas-pracy-rejestracja",
                 image: {}
             },
             {
@@ -45,54 +45,27 @@ export const menuItems = [
                 image: {}
             },
             {
-                id: 'PAGE2_SUB3',
-                name: "page2_sub3",
-                redirect: "page2_sub3",
-                image: {}
-            }
-        ]
-    }
-    /* do odkomentowania
-    {
-        id: "TIMESHEET",
-        name: "Czas pracy",
-        redirect: "/timesheet/register",
-        image: {},
-        subMenu: [
-            {
-                id: 'TIMESHEET_REGISTER',
-                name: "Rejestruj",
-                redirect: "/timesheet/register",
-                image: {}
-            },
-            {
-                id: 'TIMESHEET_WORK_SCHEDULE',
-                name: "Grafik pracy",
-                redirect: "/timesheet/work-schedule",
-                image: {}
-            },
-            {
-                id: 'TIMESHEET_SUMMARY',
+                id: 'SUMMARY',
                 name: "Podsumowanie",
-                redirect: "/timesheet/summary",
+                redirect: "podsumowanie",
                 image: {}
             }
         ]
     },
     {
-        id: "PAGE3",
+        id: "VACATION",
         name: "Urlopy",
-        redirect: "page3",
+        redirect: "/urlopy-dodaj-wniosek",
         image: {},
         subMenu: []
     },
     {
-        id: "PAGE4",
+        id: "REPORTS",
         name: "Raporty",
-        redirect: "page4",
+        redirect: "/raporty",
         image: {},
         subMenu: []
-    }, */
+    }
 ]
 
 //zwraca Menu Główne aplikacji

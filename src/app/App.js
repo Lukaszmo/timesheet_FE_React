@@ -18,21 +18,20 @@ function App() {
                 <Route exact path='/home'
                     component={(props) => <MainContainer content={<HomeContainer {...props} />} menuId={"HOME"} />} />
 
-                {/*} do odkomentowania
-                <Route exact path='/timesheet/register'
-                    component={(props) => <MainContainer content={"REGISTER"} menuId={"TIMESHEET"} />} />
-                <Route exact path='/timesheet/work-schedule'
-                    component={(props) => <MainContainer content={"WORK-SCHEDULE"} menuId={"TIMESHEET"} />} />
-                <Route exact path='/timesheet/summary'
-                    component={(props) => <MainContainer content={"SUMMARY"} menuId={"TIMESHEET"} />} />
-                */}
-
-
-                <Route exact path='/czas-pracy'
+                <Route exact path='/czas-pracy-rejestracja'
                     component={(props) => <MainContainer content={<HoursContainer {...props} />} menuId={"TIMESHEET"} />} />
 
-                <Route exact path='/page3'
-                    component={(props) => <MainContainer content={"PAGE3"} menuId={"PAGE3"} />} />
+                <Route exact path='/grafik'
+                    component={(props) => <MainContainer content={"GRAFIK IN PROGRESS..."} menuId={"TIMESHEET"} />} />
+
+                <Route exact path='/podsumowanie'
+                    component={(props) => <MainContainer content={"PODSUMOWANIE IN PROGRESS..."} menuId={"TIMESHEET"} />} />
+
+                <Route exact path='/urlopy-dodaj-wniosek'
+                    component={(props) => <MainContainer content={"URLOPY IN PROGRESS..."} menuId={"VACATION"} />} />
+
+                <Route exact path='/raporty'
+                    component={(props) => <MainContainer content={"RAPORTY IN PROGRESS..."} menuId={"REPORTS"} />} />
 
                 <Route exact path='/home_sub1'
                     component={(props) => <MainContainer content={"HOME_SUB1"} menuId={"HOME"} />} />
