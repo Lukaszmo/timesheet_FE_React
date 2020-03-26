@@ -3,15 +3,21 @@ import { connect } from 'react-redux';
 
 import TableComponent from '../../common/Table/TableComponent.js';
 import HoursEditModal from "./HoursEditModal";
+import { updateRecord } from "./Hours";
 
 class HoursDetailContainer extends Component {
 
-    render() {
-        console.log(this.props);
+    onEditFormSubmit = (id, values) => {
 
-        //renderuj modal warunkowo
+        this.props.updateRecord(id, values);
+    }
+
+    render() {
+        //  console.log(this.props);
+
         let hoursEditModal;
 
+        //renderuj modal warunkowo
         if (this.props.open === false) {
             hoursEditModal = null
         } else {
@@ -20,7 +26,8 @@ class HoursDetailContainer extends Component {
                 recordDetails={this.props.recordDetails}
                 closeModal={this.props.closeModal}
                 validationSchema={this.props.validationSchema}
-                types={this.props.types} />
+                types={this.props.types}
+                onEditFormSubmit={this.onEditFormSubmit} />
         }
 
         return (
@@ -38,6 +45,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
+    updateRecord: (id, values) => dispatch(updateRecord(id, values))
 })
 
 export default connect(

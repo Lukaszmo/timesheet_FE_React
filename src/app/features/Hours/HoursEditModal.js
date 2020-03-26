@@ -10,9 +10,10 @@ class HoursEditModal extends Component {
 
     onSubmit(values) {
 
-        console.log(values);
-        // this.props.editFormSubmit(values);
-        //this.props.closeModal();
+        let recordId = this.props.recordDetails[0].id
+
+        this.props.onEditFormSubmit(recordId, values);
+        this.props.closeModal();
     }
 
     handleButtonClick = () => {
@@ -27,7 +28,6 @@ class HoursEditModal extends Component {
 
 
     render() {
-        console.log(this.props);
 
         let type = this.props.recordDetails[0].type;
         let quantity = this.props.recordDetails[0].quantity;
@@ -114,8 +114,7 @@ class HoursEditModal extends Component {
                                             type='submit'
                                             className='saveButton'
                                             color='teal'>
-                                            {/*onClick={this.props.onButtonClick}>*/}
-                                        Zapisz
+                                            Zapisz
                                         </Button>
                                     </div>
 
@@ -123,7 +122,6 @@ class HoursEditModal extends Component {
                             )}
                     </Formik>
                 </Modal.Content>
-
             </Modal>
 
         )

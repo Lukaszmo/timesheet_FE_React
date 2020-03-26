@@ -8,7 +8,7 @@ const ErrorHandler = (error) => {
         toastr.error("Błąd autoryzacji");
     }
     else {
-        toastr.error("Błąd");
+        toastr.error("Nieoczekiwany Błąd");
     }
 
     store.dispatch(Loader.hideLoader());

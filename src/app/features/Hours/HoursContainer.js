@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import HoursAddComponent from "./HoursAddComponent";
 import HoursDetailContainer from "./HoursDetailContainer";
-import { fetchAllTypes, fetchAllRecords, addRecord, removeRecord, updateHourList, HourValidationSchema } from "./Hours";
+import { fetchAllTypes, fetchAllRecords, addRecord, removeRecord, HourValidationSchema } from "./Hours";
 import { Container } from 'semantic-ui-react';
 
 class HoursContainer extends Component {
@@ -17,11 +17,9 @@ class HoursContainer extends Component {
     }
 
     onTableChange = (rowAction, rowId) => {
-        //console.log(rowAction, rowId);
 
         if (rowAction === 'EDIT') {
 
-            this.setState({ selectedId: rowId });
             this.setState({ modalOpen: true });
 
             let record = this.props.data.filter(item => item.id === rowId);
@@ -31,8 +29,6 @@ class HoursContainer extends Component {
         if (rowAction === 'DELETE') {
 
             this.props.removeRecord(rowId);
-            let filteredArray = this.props.data.filter(item => item.id !== rowId)
-            this.props.updateHourList(filteredArray);
         }
 
     }
@@ -119,8 +115,7 @@ const mapDispatchToProps = dispatch => ({
     fetchAllTypes: () => dispatch(fetchAllTypes()),
     fetchAllRecords: () => dispatch(fetchAllRecords()),
     addRecord: (object) => dispatch(addRecord(object)),
-    removeRecord: (id) => dispatch(removeRecord(id)),
-    updateHourList: (records) => dispatch(updateHourList(records))
+    removeRecord: (id) => dispatch(removeRecord(id))
 })
 
 export default connect(
