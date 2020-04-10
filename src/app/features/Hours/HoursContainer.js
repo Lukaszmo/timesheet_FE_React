@@ -54,8 +54,9 @@ class HoursContainer extends Component {
         {
             id: "2",
             columnName: "typ",
-            className: "width10",
+            className: "width20",
             dataField: 'type',
+            subField: 'description',
             type: "data"
         },
         {

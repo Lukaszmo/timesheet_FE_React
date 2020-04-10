@@ -183,7 +183,8 @@ const Row = ({ headers, singleRow, rowNumber, rowAction, tableState, handleButto
     const row = headers.map(header => {
 
         //Jeśli header.dataField nie ma wartości ustaw value na null
-        const value = header.dataField ? singleRow[header.dataField] : null;
+        let value = header.dataField ? singleRow[header.dataField] : null;
+        value = header.subField ? value[header.subField] : value;
         const action = header.action ? header.action : null;
         const id = header.id + rowNumber;
 
