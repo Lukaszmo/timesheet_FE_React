@@ -68,50 +68,44 @@ export function updateRecords(record) {
 //operations
 export const fetchAllTypes = () => {
 
-    //do zrobienia Api
-    const response = [
+    //do testów
+    /*const response = [
         { key: 1, text: "Regularne godziny pracy", value: "TYPE1" },
         { key: 2, text: "Nadgodziny", value: "TYPE2" },
         { key: 3, text: "Nieobecność", value: "TYPE3" }
-    ]
+    ] */
 
     /*return (dispatch) => {
-        axios.get(HOUR_TYPES).then(response => {
-            dispatch(setHourTypes(response.data));
- 
-        })
-    } */
-
-    return (dispatch) => {
         dispatch(setHourTypes(response));
         console.log(response);
 
+    }*/
+
+    return (dispatch) => {
+        axios.get(HOUR_TYPES).then(response => {
+
+            const types = response.data['hydra:member'].map(function (object) {
+                return ({
+                    'key': object.id,
+                    'text': object.description,
+                    'value': object.id
+                })
+            })
+
+            dispatch(setHourTypes(types));
+        })
     }
 
 }
 
 export const fetchAllRecords = () => {
 
-    //tests
-    /*const response = [
-        { id: 1, email: "email1@email.com", phone: "111111111" },
-        { id: 2, email: "email2@email.com", phone: "222222222" },
-        { id: 3, email: "email3@email.com", phone: "333333333" },
-        { id: 4, email: "email4@email.com", phone: "444444444" },
-        { id: 5, email: "email5@email.com", phone: "555555555" },
-        { id: 6, email: "email6@email.com", phone: "666666666" }
-    ]
- 
-    return (dispatch) => {
-        dispatch(setRecords(response));
- 
-    } */
     const userid = localStorage.getItem('userId');
 
     return (dispatch) => {
         axios.get(HOURS + '?userid=' + userid).then(response => {
+
             dispatch(setRecords(response.data['hydra:member']));
-            console.log(response.data['hydra:member']);
         })
 
     }
@@ -198,7 +192,7 @@ export default (state = initialState, action) => {
 
         case UPDATE_RECORDS: {
 
-            let index = state.records.findIndex(item => item.id == action.payload.updatedRecord.id);
+            let index = state.records.findIndex(item => item.id === action.payload.updatedRecord.id);
 
             return {
                 ...state,

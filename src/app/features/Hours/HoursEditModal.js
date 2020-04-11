@@ -29,7 +29,7 @@ class HoursEditModal extends Component {
 
     render() {
 
-        let type = this.props.recordDetails[0].type;
+        let type = this.props.recordDetails[0].type.id;
         let quantity = this.props.recordDetails[0].quantity;
         let date = this.props.recordDetails[0].date.substr(0, 10);  //extract only date from datetime
 
