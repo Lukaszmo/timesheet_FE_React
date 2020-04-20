@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import HoursAddComponent from "./HoursAddComponent";
-import HoursDetailContainer from "./HoursDetailContainer";
-import { fetchAllTypes, fetchAllRecords, addRecord, removeRecord, HourValidationSchema } from "./Hours";
+import TableComponent from '../../common/Table/TableComponent.js';
+import HoursEditModal from "./HoursEditModal";
+import { fetchAllTypes, fetchAllRecords, addRecord, updateRecord, removeRecord, HourValidationSchema } from "./Hours";
 import { Container } from 'semantic-ui-react';
 
 class HoursContainer extends Component {
@@ -37,6 +38,11 @@ class HoursContainer extends Component {
 
         this.props.addRecord(object);
 
+    }
+
+    onEditFormSubmit = (id, values) => {
+
+        this.props.updateRecord(id, values);
     }
 
     closeModal = () => {
@@ -89,18 +95,26 @@ class HoursContainer extends Component {
     render() {
         //console.log(this.props);
 
+        let hoursEditModal;
+
+        //renderuj modal w trybie edycji
+        if (this.state.modalOpen === false) {
+            hoursEditModal = null
+        } else {
+            hoursEditModal = <HoursEditModal
+                open={this.state.modalOpen}
+                recordDetails={this.state.recordDetails}
+                closeModal={this.closeModal}
+                validationSchema={HourValidationSchema}
+                types={this.props.hourTypes}
+                onEditFormSubmit={this.onEditFormSubmit} />
+        }
+
         return (
             <Container className="hours">
                 <HoursAddComponent types={this.props.hourTypes} onSubmit={this.onSubmit} validationSchema={HourValidationSchema} />
-                <HoursDetailContainer
-                    headers={this.headers}
-                    data={this.props.data}
-                    onTableChange={this.onTableChange}
-                    open={this.state.modalOpen}
-                    types={this.props.hourTypes}
-                    recordDetails={this.state.recordDetails}
-                    validationSchema={HourValidationSchema}
-                    closeModal={this.closeModal} />
+                <TableComponent headers={this.headers} data={this.props.data} onTableChange={this.onTableChange} rowsPerPage={5} />
+                {hoursEditModal}
             </Container>
         );
     }
@@ -116,7 +130,8 @@ const mapDispatchToProps = dispatch => ({
     fetchAllTypes: () => dispatch(fetchAllTypes()),
     fetchAllRecords: () => dispatch(fetchAllRecords()),
     addRecord: (object) => dispatch(addRecord(object)),
-    removeRecord: (id) => dispatch(removeRecord(id))
+    removeRecord: (id) => dispatch(removeRecord(id)),
+    updateRecord: (id, values) => dispatch(updateRecord(id, values))
 })
 
 export default connect(
