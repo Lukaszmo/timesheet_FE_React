@@ -5,7 +5,6 @@ import './Menu.css';
 
 const MenuComponent = ({ menu }) => {
 
-    console.log(menu);
     return (
 
         <div className="main-menu">

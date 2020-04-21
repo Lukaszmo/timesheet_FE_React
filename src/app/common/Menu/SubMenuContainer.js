@@ -9,7 +9,7 @@ class SubMenuContainer extends Component {
     subMenu = setSubMenu(this.props.data.menuId);
 
     render() {
-        console.log(this.subMenu);
+
         return (
             <SubMenuComponent
                 menu={this.subMenu}

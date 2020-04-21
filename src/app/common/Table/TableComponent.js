@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Icon, Table, Pagination, Button, ButtonContent, Confirm } from 'semantic-ui-react';
 import './Table.css';
-import { routerMiddleware } from "react-router-redux";
 
 
 /**

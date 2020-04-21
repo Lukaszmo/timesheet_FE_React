@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 import { Formik } from 'formik';
-import { Grid, Segment, Header, Input, Dropdown, Button, Form, Label } from 'semantic-ui-react';
+import { Grid, Segment, Header, Input, Dropdown, Button, Form } from 'semantic-ui-react';
 import './HoursComponent.css';
 import CustomLabel from '../../common/CustomLabel/CustomLabel';
 

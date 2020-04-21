@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Form, Button, Header, Label } from 'semantic-ui-react';
+import { Form, Button, Header } from 'semantic-ui-react';
 import { Formik } from 'formik';
 import './LoginComponent.css';
 import * as Yup from 'yup';
