@@ -42,10 +42,12 @@ class HoursContainer extends Component {
 
     onEditFormSubmit = (id, values) => {
 
-        this.props.updateRecord(id, values);
+        this.props.updateRecord(id, values)
+            .then(() => this.closeModal());
     }
 
     closeModal = () => {
+
         this.setState({ modalOpen: false });
     }
 

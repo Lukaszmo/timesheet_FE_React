@@ -144,18 +144,13 @@ export const updateRecord = (id, values) => {
         'Content-Type': 'application/json'
     }
 
-    console.log(id, values);
-    return function (dispatch) {
-
-        axios.put(HOURS + '/' + id, values, {
+    return (dispatch) => {
+        return axios.put(HOURS + '/' + id, values, {
             headers: headers
-
         })
-            .then(function (response) {
+            .then((response) => {
                 toastr.success('Rekord został zmodyfikowany');
-                console.log(response.data);
                 dispatch(updateRecords(response.data));
-
             });
     }
 }

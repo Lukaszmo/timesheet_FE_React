@@ -13,7 +13,6 @@ class HoursEditModal extends Component {
         let recordId = this.props.recordDetails[0].id
 
         this.props.onEditFormSubmit(recordId, values);
-        this.props.closeModal();
     }
 
     handleButtonClick = () => {
