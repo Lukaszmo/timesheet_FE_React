@@ -1,0 +1,8 @@
+.vacation{
+    padding: 15px 15px 15px;
+    float: left;  
+}
+
+.ui.dropdown.dropdown-vacation-types{
+    width: max-content;
+}

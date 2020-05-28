@@ -57,7 +57,20 @@ export const menuItems = [
         name: "Urlopy",
         redirect: "/urlopy-dodaj-wniosek",
         image: {},
-        subMenu: []
+        subMenu: [
+            {
+                id: 'VACATION_ADD',
+                name: "Dodaj wniosek",
+                redirect: "/urlopy-dodaj-wniosek",
+                image: {}
+            },
+            {
+                id: 'VACATION_PLAN',
+                name: "Planowanie",
+                redirect: "/urlopy-planowanie",
+                image: {}
+            }
+        ]
     },
     {
         id: "REPORTS",

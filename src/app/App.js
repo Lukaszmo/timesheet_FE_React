@@ -6,6 +6,7 @@ import MainContainer from "./common/Main/MainContainer";
 import HomeContainer from "./common/Home/HomeContainer";
 import LoginContainer from "./features/Login/LoginContainer";
 import HoursContainer from './features/Hours/HoursContainer';
+import VacationContainer from './features/Vacation/VacationContainer';
 
 function App() {
     return (
@@ -28,7 +29,10 @@ function App() {
                     component={(props) => <MainContainer content={"PODSUMOWANIE IN PROGRESS..."} menuId={"TIMESHEET"} />} />
 
                 <Route exact path='/urlopy-dodaj-wniosek'
-                    component={(props) => <MainContainer content={"URLOPY IN PROGRESS..."} menuId={"VACATION"} />} />
+                    component={(props) => <MainContainer content={<VacationContainer {...props} />} menuId={"VACATION"} />} />
+
+                <Route exact path='/urlopy-planowanie'
+                    component={(props) => <MainContainer content={"PLANOWANIE IN PROGRESS..."} menuId={"VACATION"} />} />
 
                 <Route exact path='/raporty'
                     component={(props) => <MainContainer content={"RAPORTY IN PROGRESS..."} menuId={"REPORTS"} />} />
