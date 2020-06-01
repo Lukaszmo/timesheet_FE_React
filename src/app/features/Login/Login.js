@@ -11,6 +11,9 @@ const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
 function loginSuccess(userId) {
     return {
         type: LOGIN_SUCCESS,
+        payload: {
+            userId: userId
+        }
     }
 }
 
@@ -62,7 +65,7 @@ export default (state = initialState, action) => {
         case LOGIN_SUCCESS: {
             //return { ...state, loginFailureCounter: 0, "userId": action.payload.userId };
             return {
-                ...state,
+                ...state, ...action.payload,
                 loginFailureCounter: 0
             };
         }

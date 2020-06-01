@@ -36,7 +36,7 @@ class HoursContainer extends Component {
 
     onSubmit = (object) => {
 
-        this.props.addRecord(object);
+        this.props.addRecord(object, this.props.user.id);
 
     }
 
@@ -132,7 +132,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     fetchAllTypes: () => dispatch(fetchAllTypes()),
     fetchAllRecords: (userid) => dispatch(fetchAllRecords(userid)),
-    addRecord: (object) => dispatch(addRecord(object)),
+    addRecord: (object, id) => dispatch(addRecord(object, id)),
     removeRecord: (id) => dispatch(removeRecord(id)),
     updateRecord: (id, values) => dispatch(updateRecord(id, values))
 })

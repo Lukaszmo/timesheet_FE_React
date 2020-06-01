@@ -8,8 +8,7 @@ class HomeContainer extends Component {
 
     componentDidMount() {
 
-        const id = localStorage.getItem('userId');
-        this.props.getUserDetails(id);
+        this.props.getUserDetails(this.props.login.userId);
     }
 
     render() {

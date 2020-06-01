@@ -109,11 +109,10 @@ export const fetchAllRecords = (userId) => {
     }
 }
 
-export const addRecord = (object) => {
+export const addRecord = (object, userid) => {
 
     return function (dispatch) {
 
-        let userid = parseInt(localStorage.getItem("userId"));
         let newrecord = { ...object, userid };
 
         axios.post(HOURS, newrecord)
