@@ -36,7 +36,6 @@ export function userLoginOperation(user) {
                 dispatch(loginSuccess(response.data.userId));
                 //toastr.success("Login successfully", null);
                 localStorage.setItem("token", response.data.token);
-                localStorage.setItem("userId", response.data.userId);
                 history.push('/home');
             })
             .catch(function (error) {

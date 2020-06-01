@@ -14,7 +14,7 @@ class HoursContainer extends Component {
     componentDidMount() {
 
         this.props.fetchAllTypes();
-        this.props.fetchAllRecords();
+        this.props.fetchAllRecords(this.props.user.id);
     }
 
     onTableChange = (rowAction, rowId) => {
@@ -126,11 +126,12 @@ class HoursContainer extends Component {
 const mapStateToProps = state => ({
     hourTypes: state.hour.types,
     data: state.hour.records,
+    user: state.user,
 })
 
 const mapDispatchToProps = dispatch => ({
     fetchAllTypes: () => dispatch(fetchAllTypes()),
-    fetchAllRecords: () => dispatch(fetchAllRecords()),
+    fetchAllRecords: (userid) => dispatch(fetchAllRecords(userid)),
     addRecord: (object) => dispatch(addRecord(object)),
     removeRecord: (id) => dispatch(removeRecord(id)),
     updateRecord: (id, values) => dispatch(updateRecord(id, values))
