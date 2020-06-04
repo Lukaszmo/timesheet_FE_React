@@ -44,7 +44,7 @@ class HoursAddComponent extends Component {
                                 <Grid columns={2} textAlign="right" verticalAlign="middle" >
                                     <Grid.Row>
                                         <Grid.Column width={2}>
-                                            Typ
+                                            <p className='data-field-header'>Typ</p>
                                         </Grid.Column >
                                         <Grid.Column width={2}>
                                             <Dropdown fluid selection
@@ -60,7 +60,7 @@ class HoursAddComponent extends Component {
 
                                     <Grid.Row>
                                         <Grid.Column width={2}>
-                                            Data
+                                            <p className='data-field-header'>Data</p>
                                         </Grid.Column >
                                         <Grid.Column width={2}>
                                             <Input
@@ -74,7 +74,7 @@ class HoursAddComponent extends Component {
 
                                     <Grid.Row>
                                         <Grid.Column width={2}>
-                                            Ilość godzin
+                                            <p className='data-field-header'>Ilość godzin</p>
                                         </Grid.Column >
                                         <Grid.Column width={2}>
                                             <Input

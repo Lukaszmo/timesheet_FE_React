@@ -150,16 +150,7 @@ class VacApplComponent extends Component {
                                             </Input>
                                         </Grid.Column>
                                     </Grid.Row>
-                                    <Grid.Row>
-                                        <Grid.Column width={2}>
-                                            <p className='data-field-header'>Łączna liczba godzin</p>
-                                        </Grid.Column >
-                                        <Grid.Column width={2}>
-                                            <Input disabled
-                                                value={16} >
-                                            </Input>
-                                        </Grid.Column>
-                                    </Grid.Row>
+
                                     <Grid.Row>
                                         <Grid.Column width={2}>
                                             <p className='data-field-header'>Komentarz</p>
