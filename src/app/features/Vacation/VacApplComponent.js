@@ -11,10 +11,12 @@ class VacApplComponent extends Component {
         super(props);
 
         this.defaultDate = new Date().toISOString().slice(0, 10);
+        this.input = React.createRef();
 
         this.state = {
             datefrom: this.defaultDate,
             dateto: this.defaultDate,
+            nofdays: 1,
         }
     }
 
@@ -26,18 +28,47 @@ class VacApplComponent extends Component {
 
     ]
 
+    onSubmit(values) {
+
+        let nofdays = this.input.current.props.value
+        values = { ...values, nofdays: nofdays };
+
+        console.log(values);
+        //this.props.onSubmit(values);
+    }
+
+    handleChange(e, data, setFieldValue) {
+
+        setFieldValue(data.name, data.value);
+    }
 
     dateHandleChange(e, data, setFieldValue) {
 
         setFieldValue(data.name, data.value);
 
-        if (data.name === 'datefrom') this.setState({ datefrom: data.value });
-        if (data.name === 'dateto') this.setState({ dateto: data.value });
+        let datefrom = '';
+        let dateto = '';
+
+        if (data.name === 'datefrom') {
+            this.setState({ datefrom: data.value });
+            datefrom = data.value;
+            dateto = this.state.dateto;
+        }
+
+        if (data.name === 'dateto') {
+            this.setState({ dateto: data.value });
+            datefrom = this.state.datefrom;
+            dateto = data.value;
+        }
+
+        this.setState({ nofdays: this.calculateWorkingDays(datefrom, dateto) });
     }
 
     calculateWorkingDays(datefrom, dateto) {
 
         //TODO exclude holidays
+
+        if ((datefrom == '') || (dateto == '')) return 0;
 
         let curDate = new Date(datefrom);
         let endDate = new Date(dateto);
@@ -45,7 +76,7 @@ class VacApplComponent extends Component {
 
         while (curDate <= endDate) {
             let dayOfWeek = curDate.getDay();
-            if (!((dayOfWeek == 6) || (dayOfWeek == 0)))
+            if (!((dayOfWeek === 6) || (dayOfWeek === 0)))
                 count++;
             curDate.setDate(curDate.getDate() + 1);
         }
@@ -59,7 +90,7 @@ class VacApplComponent extends Component {
             <Segment color="teal">
                 <Header size='medium'>Nowy wniosek</Header>
                 <Formik
-                    initialValues={{ datefrom: this.defaultDate, dateto: this.defaultDate }}
+                    initialValues={{ type: '', datefrom: this.defaultDate, dateto: this.defaultDate, nofdays: '', comment: '' }}
 
                     //validationSchema={this.props.validationSchema}
 
@@ -106,9 +137,8 @@ class VacApplComponent extends Component {
                                                 className='dropdown-vacation-types'
                                                 placeholder="Wybierz.."
                                                 value={values.type}
-                                                //   onChange={(e, data) => this.dropdownHandleChange(e, data, setFieldValue)}
+                                                onChange={(e, data) => this.handleChange(e, data, setFieldValue)}
                                                 options={this.options} />
-
                                         </Grid.Column>
                                     </Grid.Row>
 
@@ -122,19 +152,16 @@ class VacApplComponent extends Component {
                                                 name='datefrom'
                                                 value={values.datefrom}
                                                 onChange={(e, data) => this.dateHandleChange(e, data, setFieldValue)} />
-
                                         </Grid.Column>
                                         <Grid.Column width={1}>
                                             <p className='data-field-header'>do: </p>
                                         </Grid.Column >
-
                                         <Grid.Column width={2}>
                                             <Input
                                                 type='date'
                                                 name='dateto'
                                                 value={values.dateto}
                                                 onChange={(e, data) => this.dateHandleChange(e, data, setFieldValue)} />
-
                                         </Grid.Column>
                                     </Grid.Row>
 
@@ -144,10 +171,10 @@ class VacApplComponent extends Component {
                                         </Grid.Column >
                                         <Grid.Column width={2}>
                                             <Input disabled
-                                                name='noOfDays'
-                                                //value={this.state.noOfDays} >
-                                                value={this.calculateWorkingDays(this.state.datefrom, this.state.dateto)}>
-                                            </Input>
+                                                type='number'
+                                                name='nofdays'
+                                                value={this.state.nofdays}
+                                                ref={this.input} />
                                         </Grid.Column>
                                     </Grid.Row>
 
@@ -156,10 +183,10 @@ class VacApplComponent extends Component {
                                             <p className='data-field-header'>Komentarz</p>
                                         </Grid.Column >
                                         <Grid.Column width={2}>
-                                            <TextArea>
-
-                                            </TextArea>
-
+                                            <TextArea
+                                                name='comment'
+                                                value={values.comment}
+                                                onChange={(e, data) => this.handleChange(e, data, setFieldValue)} />
                                         </Grid.Column>
                                     </Grid.Row>
 
