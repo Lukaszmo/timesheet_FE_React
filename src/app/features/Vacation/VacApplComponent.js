@@ -34,7 +34,7 @@ class VacApplComponent extends Component {
         values = { ...values, nofdays: nofdays };
 
         console.log(values);
-        //this.props.onSubmit(values);
+        this.props.onSubmit(values);
     }
 
     handleChange(e, data, setFieldValue) {
