@@ -16,10 +16,10 @@ class HomeComponent extends Component {
                     <Grid columns={2} textAlign="right" verticalAlign="middle" >
                         <Grid.Row>
                             <Grid.Column width={2}>
-                                <p className='data-field-header'>Id</p>
+                                <p className='data-field-header'>Numer ewidencyjny</p>
                             </Grid.Column >
                             <Grid.Column width={2}>
-                                <p className='data-field'>{this.props.user.id}</p>
+                                <p className='data-field'>{this.props.user.regnum}</p>
                             </Grid.Column>
                         </Grid.Row>
 
