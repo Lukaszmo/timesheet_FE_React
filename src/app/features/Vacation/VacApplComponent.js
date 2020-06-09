@@ -68,7 +68,7 @@ class VacApplComponent extends Component {
 
         //TODO exclude holidays
 
-        if ((datefrom == '') || (dateto == '')) return 0;
+        if ((datefrom === '') || (dateto === '')) return 0;
 
         let curDate = new Date(datefrom);
         let endDate = new Date(dateto);

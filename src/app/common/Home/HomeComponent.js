@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { Input, Header, Grid, Container, Segment, Label } from 'semantic-ui-react';
+import { Header, Grid, Container, Segment } from 'semantic-ui-react';
 import './HomeComponent.css';
 import '../../../index.css';
 
