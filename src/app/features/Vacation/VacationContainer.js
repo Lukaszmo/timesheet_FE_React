@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import VacApplComponent from "./VacApplComponent";
 import { Container } from 'semantic-ui-react';
-import { sendMail } from "./Vacation";
+import { sendMail, validationSchema } from "./Vacation";
 
 
 class VacationContainer extends Component {
@@ -21,7 +21,7 @@ class VacationContainer extends Component {
 
         return (
             <Container className="vacation">
-                <VacApplComponent user={this.props.user} onSubmit={this.onSubmit}></VacApplComponent>
+                <VacApplComponent user={this.props.user} onSubmit={this.onSubmit} validationSchema={validationSchema}></VacApplComponent>
 
             </Container>
         );

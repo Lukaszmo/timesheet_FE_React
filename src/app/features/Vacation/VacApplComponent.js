@@ -92,7 +92,7 @@ class VacApplComponent extends Component {
                 <Formik
                     initialValues={{ type: '', datefrom: this.defaultDate, dateto: this.defaultDate, nofdays: '', comment: '' }}
 
-                    //validationSchema={this.props.validationSchema}
+                    validationSchema={this.props.validationSchema}
 
                     onSubmit={(values, { setSubmitting }) => {
                         this.onSubmit(values);
@@ -139,6 +139,7 @@ class VacApplComponent extends Component {
                                                 value={values.type}
                                                 onChange={(e, data) => this.handleChange(e, data, setFieldValue)}
                                                 options={this.options} />
+                                            {errors.type && touched.type ? <div><CustomLabel text={errors.type}></CustomLabel></div> : null}
                                         </Grid.Column>
                                     </Grid.Row>
 
@@ -152,6 +153,7 @@ class VacApplComponent extends Component {
                                                 name='datefrom'
                                                 value={values.datefrom}
                                                 onChange={(e, data) => this.dateHandleChange(e, data, setFieldValue)} />
+                                            {errors.datefrom && touched.datefrom ? <div><CustomLabel text={errors.datefrom}></CustomLabel></div> : null}
                                         </Grid.Column>
                                         <Grid.Column width={1}>
                                             <p className='data-field-header'>do: </p>
@@ -162,6 +164,7 @@ class VacApplComponent extends Component {
                                                 name='dateto'
                                                 value={values.dateto}
                                                 onChange={(e, data) => this.dateHandleChange(e, data, setFieldValue)} />
+                                            {errors.dateto && touched.dateto ? <div><CustomLabel text={errors.dadateto}></CustomLabel></div> : null}
                                         </Grid.Column>
                                     </Grid.Row>
 
