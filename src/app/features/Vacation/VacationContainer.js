@@ -11,7 +11,7 @@ class VacationContainer extends Component {
     onSubmit = (object) => {
 
         let employeeName = this.props.user.firstname + ' ' + this.props.user.lastname;
-        object = { ...object, employeeName: employeeName };
+        object = { ...object, employeeName: employeeName, managerId: this.props.user.managerid };
         sendMail(object);
 
     }
