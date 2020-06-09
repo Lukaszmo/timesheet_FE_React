@@ -11,6 +11,7 @@ export const HourValidationSchema = Yup.object().shape({
         .required('Pole wymagane'),
     quantity: Yup.number()
         .required('Pole wymagane')
+        .positive('Tylko wartości dodatnie')
 });
 
 //action types
