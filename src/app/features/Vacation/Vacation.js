@@ -2,6 +2,7 @@ import axios from 'axios';
 import { toastr } from 'react-redux-toastr';
 import * as Yup from 'yup';
 import { MAIL } from '../../../routes';
+import history from '../../../history';
 
 export const validationSchema = Yup.object().shape({
     type: Yup.string()
@@ -22,7 +23,9 @@ export function sendMail(object) {
 
     axios.post(MAIL, object)
         .then(function (response) {
+            //dispatch(addHolidayRequest(object));
             toastr.success('Wniosek został wysłany');
+            history.push('/urlopy-lista-wnioskow');
         });
 
 }

@@ -65,6 +65,12 @@ export const menuItems = [
                 image: {}
             },
             {
+                id: 'REQUEST_LIST',
+                name: "Lista wniosków",
+                redirect: "/urlopy-lista-wnioskow",
+                image: {}
+            },
+            {
                 id: 'VACATION_PLAN',
                 name: "Planowanie",
                 redirect: "/urlopy-planowanie",

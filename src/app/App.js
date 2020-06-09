@@ -31,6 +31,9 @@ function App() {
                 <Route exact path='/urlopy-dodaj-wniosek'
                     component={(props) => <MainContainer content={<VacationContainer {...props} />} menuId={"VACATION"} />} />
 
+                <Route exact path='/urlopy-lista-wnioskow'
+                    component={(props) => <MainContainer content={"LISTA WNIOSKÓW IN PROGRESS..."} menuId={"VACATION"} />} />
+
                 <Route exact path='/urlopy-planowanie'
                     component={(props) => <MainContainer content={"PLANOWANIE IN PROGRESS..."} menuId={"VACATION"} />} />
 
