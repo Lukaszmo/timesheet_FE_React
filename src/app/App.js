@@ -7,6 +7,7 @@ import HomeContainer from "./common/Home/HomeContainer";
 import LoginContainer from "./features/Login/LoginContainer";
 import HoursContainer from './features/Hours/HoursContainer';
 import VacationContainer from './features/Vacation/VacationContainer';
+import VacationListContainer from './features/VacationList/VacationListContainer';
 
 function App() {
     return (
@@ -32,7 +33,7 @@ function App() {
                     component={(props) => <MainContainer content={<VacationContainer {...props} />} menuId={"VACATION"} />} />
 
                 <Route exact path='/urlopy-lista-wnioskow'
-                    component={(props) => <MainContainer content={"LISTA WNIOSKÓW IN PROGRESS..."} menuId={"VACATION"} />} />
+                    component={(props) => <MainContainer content={<VacationListContainer {...props} />} menuId={"VACATION"} />} />
 
                 <Route exact path='/urlopy-planowanie'
                     component={(props) => <MainContainer content={"PLANOWANIE IN PROGRESS..."} menuId={"VACATION"} />} />
