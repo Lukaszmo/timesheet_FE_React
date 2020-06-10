@@ -54,14 +54,14 @@ class HoursContainer extends Component {
     headers = [
         {
             id: "1",
-            columnName: "data",
+            columnName: "Data",
             className: "width10",
             dataField: 'date',
             type: "data"
         },
         {
             id: "2",
-            columnName: "typ",
+            columnName: "Rodzaj",
             className: "width20",
             dataField: 'type',
             subField: 'description',
@@ -69,7 +69,7 @@ class HoursContainer extends Component {
         },
         {
             id: "3",
-            columnName: "ilość godzin",
+            columnName: "Ilość godzin",
             className: "width5",
             dataField: 'quantity',
             type: "data"
