@@ -16,22 +16,22 @@ class VacApplComponent extends Component {
         this.state = {
             datefrom: this.defaultDate,
             dateto: this.defaultDate,
-            nofdays: 1,
+            quantity: 1,
         }
     }
 
     //do testów
     options = [
-        { key: 1, text: "Urlop wypoczynkowy", value: "TYPE1" },
-        { key: 2, text: "Urlop na żądanie", value: "TYPE2" },
-        { key: 3, text: "Urlop okolicznościowy", value: "TYPE3" },
+        { key: 1, text: "Urlop wypoczynkowy", value: 1 },
+        { key: 2, text: "Urlop na żądanie", value: 2 },
+        { key: 3, text: "Urlop okolicznościowy", value: 3 },
 
     ]
 
     onSubmit(values) {
 
-        let nofdays = this.input.current.props.value
-        values = { ...values, nofdays: nofdays };
+        let quantity = this.input.current.props.value
+        values = { ...values, quantity: quantity };
 
         console.log(values);
         this.props.onSubmit(values);
@@ -61,7 +61,7 @@ class VacApplComponent extends Component {
             dateto = data.value;
         }
 
-        this.setState({ nofdays: this.calculateWorkingDays(datefrom, dateto) });
+        this.setState({ quantity: this.calculateWorkingDays(datefrom, dateto) });
     }
 
     calculateWorkingDays(datefrom, dateto) {
@@ -90,7 +90,7 @@ class VacApplComponent extends Component {
             <Segment color="teal">
                 <Header size='medium'>Nowy wniosek</Header>
                 <Formik
-                    initialValues={{ type: '', datefrom: this.defaultDate, dateto: this.defaultDate, nofdays: '', comment: '' }}
+                    initialValues={{ type: '', datefrom: this.defaultDate, dateto: this.defaultDate, quantity: '', comment: '' }}
 
                     validationSchema={this.props.validationSchema}
 
@@ -175,8 +175,8 @@ class VacApplComponent extends Component {
                                         <Grid.Column width={2}>
                                             <Input disabled
                                                 type='number'
-                                                name='nofdays'
-                                                value={this.state.nofdays}
+                                                name='quantity'
+                                                value={this.state.quantity}
                                                 ref={this.input} />
                                         </Grid.Column>
                                     </Grid.Row>

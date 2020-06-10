@@ -3,16 +3,15 @@ import { connect } from 'react-redux';
 
 import VacApplComponent from "./VacApplComponent";
 import { Container } from 'semantic-ui-react';
-import { sendMail, validationSchema } from "./Vacation";
+import { addHolidayRequest, validationSchema } from "./Vacation";
 
 
 class VacationContainer extends Component {
 
     onSubmit = (object) => {
 
-        let employeeName = this.props.user.firstname + ' ' + this.props.user.lastname;
-        object = { ...object, employeeName: employeeName, managerId: this.props.user.managerid };
-        sendMail(object);
+        object = { ...object, userid: this.props.user.id, state: 1 }; //state: 1 - nowy wniosek
+        addHolidayRequest(object);
 
     }
 

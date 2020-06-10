@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { toastr } from 'react-redux-toastr';
 import * as Yup from 'yup';
-import { MAIL } from '../../../routes';
+import { MAIL, VACREQUEST } from '../../../routes';
 import history from '../../../history';
 
 export const validationSchema = Yup.object().shape({
@@ -19,13 +19,20 @@ function formatDate(date) {
     return new Date(date).toLocaleDateString();
 }
 
-export function sendMail(object) {
+export function addHolidayRequest(object) {
 
-    axios.post(MAIL, object)
+    axios.post(VACREQUEST, object)
         .then(function (response) {
-            //dispatch(addHolidayRequest(object));
-            toastr.success('Wniosek został wysłany');
+            sendMail(object);
             history.push('/urlopy-lista-wnioskow');
         });
 
+}
+
+function sendMail(object) {
+
+    axios.post(MAIL, object)
+        .then(function (response) {
+            toastr.success('Wniosek został wysłany');
+        });
 }
