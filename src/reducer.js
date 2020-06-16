@@ -5,8 +5,7 @@ import loader from './app/common/Loader/Loader';
 import login from './app/features/Login/Login';
 import user from './app/features/User/User';
 import hour from './app/features/Hours/Hours';
-
-
+import vacation from './app/features/Vacation/Vacation';
 
 export default combineReducers({
     toastr: toastrReducer,
@@ -14,4 +13,5 @@ export default combineReducers({
     user: user,
     hour: hour,
     loader: loader,
+    vacation: vacation
 })

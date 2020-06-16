@@ -20,14 +20,6 @@ class VacApplComponent extends Component {
         }
     }
 
-    //do testów
-    options = [
-        { key: 1, text: "Urlop wypoczynkowy", value: 1 },
-        { key: 2, text: "Urlop na żądanie", value: 2 },
-        { key: 3, text: "Urlop okolicznościowy", value: 3 },
-
-    ]
-
     onSubmit(values) {
 
         let quantity = this.input.current.props.value
@@ -138,7 +130,7 @@ class VacApplComponent extends Component {
                                                 placeholder="Wybierz.."
                                                 value={values.type}
                                                 onChange={(e, data) => this.handleChange(e, data, setFieldValue)}
-                                                options={this.options} />
+                                                options={this.props.types} />
                                             {errors.type && touched.type ? <div><CustomLabel text={errors.type}></CustomLabel></div> : null}
                                         </Grid.Column>
                                     </Grid.Row>
