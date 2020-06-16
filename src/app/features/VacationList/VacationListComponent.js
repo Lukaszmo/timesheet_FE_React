@@ -18,21 +18,26 @@ class VacationListComponent extends Component {
             id: "2",
             columnName: "Status",
             className: "width10",
-            dataField: 'status',
+            dataField: 'state',
+            subField: 'description',
             type: "data"
         },
+
         {
             id: "3",
             columnName: "Imię i nazwisko",
             className: "width10",
-            dataField: 'employeeName',
+            dataField: 'userid',
+            subField: 'firstname',
             type: "data"
         },
+
         {
             id: "4",
             columnName: "Typ wniosku",
             className: "width10",
             dataField: 'type',
+            subField: 'description',
             type: "data",
         },
         {
@@ -41,6 +46,7 @@ class VacationListComponent extends Component {
             className: "width5",
             dataField: 'datefrom',
             type: "data",
+            subType: "date",
         },
         {
             id: "6",
@@ -48,6 +54,7 @@ class VacationListComponent extends Component {
             className: "width5",
             dataField: 'dateto',
             type: "data",
+            subType: "date",
         },
         {
             id: "7",
@@ -61,13 +68,13 @@ class VacationListComponent extends Component {
 
 
     render() {
-
+        console.log(this.props.data);
         return (
             <Container >
                 <Segment color="teal">
                     <Header size='medium'>Lista wniosków</Header>
 
-                    <TableComponent headers={this.headers} />
+                    <TableComponent headers={this.headers} data={this.props.data} rowsPerPage={5} />
 
                 </Segment>
 

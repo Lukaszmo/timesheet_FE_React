@@ -4,19 +4,23 @@ import { connect } from 'react-redux';
 
 import { Container } from 'semantic-ui-react';
 import VacationListComponent from "./VacationListComponent";
+import { fetchAllRecords } from "../Vacation/Vacation";
 
 
 
 class VacationListContainer extends Component {
 
+    componentDidMount() {
+
+        this.props.fetchAllRecords(this.props.user.id);
+    }
 
 
     render() {
-        console.log(this.props);
 
         return (
             <Container className="vacation">
-                <VacationListComponent ></VacationListComponent>
+                <VacationListComponent data={this.props.requests}></VacationListComponent>
 
             </Container>
         );
@@ -26,12 +30,20 @@ class VacationListContainer extends Component {
 
 
 
-/*export default connect(
-    mapStateToProps
-)(VacationListContainer); */
+const mapStateToProps = state => ({
+    user: state.user,
+    requests: state.vacation.records,
+})
+
+const mapDispatchToProps = dispatch => ({
+    fetchAllRecords: (id) => dispatch(fetchAllRecords(id)),
+})
 
 
-export default VacationListContainer;
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(VacationListContainer);
 
 
 

@@ -57,7 +57,8 @@ class HoursContainer extends Component {
             columnName: "Data",
             className: "width10",
             dataField: 'date',
-            type: "data"
+            type: "data",
+            subType: "date",
         },
         {
             id: "2",

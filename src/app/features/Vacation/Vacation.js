@@ -16,6 +16,7 @@ export const validationSchema = Yup.object().shape({
 
 //action types
 const SET_VACREQ_TYPES = 'SET_VACREQ_TYPES';
+const SET_VACREQUESTS = 'SET_VACREQUESTS';
 
 //actions
 export function setVacReqTypes(types) {
@@ -23,6 +24,15 @@ export function setVacReqTypes(types) {
         type: SET_VACREQ_TYPES,
         payload: {
             types: types
+        }
+    }
+}
+
+export function setVacRequests(records) {
+    return {
+        type: SET_VACREQUESTS,
+        payload: {
+            records: records
         }
     }
 }
@@ -67,6 +77,17 @@ export const fetchVacRequestTypes = () => {
     }
 }
 
+export const fetchAllRecords = (userId) => {
+
+    return (dispatch) => {
+        axios.get(VACREQUEST + '?userid=' + userId).then(response => {
+
+            dispatch(setVacRequests(response.data['hydra:member']));
+        })
+
+    }
+}
+
 const initialState = {
     types: []
 };
@@ -78,6 +99,11 @@ export default (state = initialState, action) => {
         case SET_VACREQ_TYPES: {
             return action.payload;
         }
+
+        case SET_VACREQUESTS: {
+            return { ...state, ...action.payload };
+        }
+
         default: return state;
     }
 }
