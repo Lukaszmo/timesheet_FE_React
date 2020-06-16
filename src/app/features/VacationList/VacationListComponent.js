@@ -27,8 +27,7 @@ class VacationListComponent extends Component {
             id: "3",
             columnName: "Imię i nazwisko",
             className: "width10",
-            dataField: 'userid',
-            subField: 'firstname',
+            dataField: 'employeeFullname',
             type: "data"
         },
 

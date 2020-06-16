@@ -7,7 +7,6 @@ import VacationListComponent from "./VacationListComponent";
 import { fetchAllRecords } from "../Vacation/Vacation";
 
 
-
 class VacationListContainer extends Component {
 
     componentDidMount() {
@@ -15,20 +14,30 @@ class VacationListContainer extends Component {
         this.props.fetchAllRecords(this.props.user.id);
     }
 
+    filterData(data) {
+
+        const filteredData = data.map(function (object) {
+
+            object = { ...object, employeeFullname: object.userid.firstname + ' ' + object.userid.lastname }
+            return object;
+        })
+
+        return filteredData;
+    }
 
     render() {
 
-        return (
-            <Container className="vacation">
-                <VacationListComponent data={this.props.requests}></VacationListComponent>
+        if (this.props.requests) {
+            return (
+                <Container className="vacation">
+                    <VacationListComponent data={this.filterData(this.props.requests)}></VacationListComponent>
 
-            </Container>
-        );
-
+                </Container>
+            );
+        }
+        else return null;
     }
 }
-
-
 
 const mapStateToProps = state => ({
     user: state.user,
@@ -38,7 +47,6 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     fetchAllRecords: (id) => dispatch(fetchAllRecords(id)),
 })
-
 
 export default connect(
     mapStateToProps,
