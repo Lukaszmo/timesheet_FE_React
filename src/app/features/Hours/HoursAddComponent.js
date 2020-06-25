@@ -23,7 +23,7 @@ class HoursAddComponent extends Component {
             <Segment color="teal">
                 <Header size='medium'>Rejestracja czasu</Header>
                 <Formik
-                    initialValues={{ date: '', quantity: '', type: '' }}
+                    initialValues={{ date: '', quantity: '', type: 1 }}
 
                     validationSchema={this.props.validationSchema}
 

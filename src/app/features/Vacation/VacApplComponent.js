@@ -82,7 +82,7 @@ class VacApplComponent extends Component {
             <Segment color="teal">
                 <Header size='medium'>Nowy wniosek</Header>
                 <Formik
-                    initialValues={{ type: '', datefrom: this.defaultDate, dateto: this.defaultDate, quantity: '', comment: '' }}
+                    initialValues={{ type: 1, datefrom: this.defaultDate, dateto: this.defaultDate, quantity: '', comment: '' }}
 
                     validationSchema={this.props.validationSchema}
 
