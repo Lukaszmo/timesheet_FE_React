@@ -18,6 +18,7 @@ export const validationSchema = Yup.object().shape({
 const SET_VACREQ_TYPES = 'SET_VACREQ_TYPES';
 const SET_VACREQUESTS = 'SET_VACREQUESTS';
 
+
 //actions
 export function setVacReqTypes(types) {
     return {
@@ -42,22 +43,40 @@ function formatDate(date) {
     return new Date(date).toLocaleDateString();
 }
 
-export function addHolidayRequest(object) {
+export const addHolidayRequest = (object) => {
 
     axios.post(VACREQUEST, object)
         .then(function (response) {
-            sendMail(object);
-            history.push('/urlopy-lista-wnioskow');
+            sendMail(object, response.data.id);
         });
-
 }
 
-function sendMail(object) {
+function sendMail(object, recordId) {
 
     axios.post(MAIL, object)
         .then(function (response) {
+            setVacRequestState(recordId);
             toastr.success('Wniosek został wysłany');
         });
+}
+
+function setVacRequestState(id) {
+
+    // do wyniesienia do konfiguracji
+    const headers = {
+        'Content-Type': 'application/json'
+    }
+
+    const state = 2; //status: 2 czeka na akceptację
+
+    axios.put(VACREQUEST + '/' + id, { state: state }, {
+        headers: headers
+    }).then((response) => {
+        history.push('/urlopy-lista-wnioskow');
+    });
+
+
+
 }
 
 export const fetchVacRequestTypes = () => {
@@ -103,6 +122,7 @@ export default (state = initialState, action) => {
         case SET_VACREQUESTS: {
             return { ...state, ...action.payload };
         }
+
 
         default: return state;
     }

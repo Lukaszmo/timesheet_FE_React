@@ -73,7 +73,7 @@ class VacationListComponent extends Component {
                 <Segment color="teal">
                     <Header size='medium'>Lista wniosków</Header>
 
-                    <TableComponent headers={this.headers} data={this.props.data} rowsPerPage={5} />
+                    <TableComponent headers={this.headers} data={this.props.data} rowsPerPage={15} />
 
                 </Segment>
 

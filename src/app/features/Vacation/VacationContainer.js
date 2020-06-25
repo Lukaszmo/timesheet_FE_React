@@ -15,7 +15,7 @@ class VacationContainer extends Component {
 
     onSubmit = (object) => {
 
-        object = { ...object, userid: this.props.user.id, state: 1 }; //state: 1 - nowy wniosek
+        object = { ...object, userid: this.props.user.id, state: 1 }; //status: 1 - wniosek utworzony
         addHolidayRequest(object);
 
     }
