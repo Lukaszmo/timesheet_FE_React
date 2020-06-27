@@ -61,6 +61,15 @@ class VacationListComponent extends Component {
             className: "width5",
             dataField: 'quantity',
             type: "data",
+        },
+        {
+            id: "8",
+            columnName: "",
+            className: "width5",
+            dataField: 'quantity',
+            type: "button",
+            action: "details",
+            iconName: "search"
         }
 
     ]
