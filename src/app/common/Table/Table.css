@@ -32,19 +32,23 @@ i.icon.tableIcon{
 .width5{
     width: 5%;
     vertical-align: middle !important;
+    font-size: small;
 }
 
 .width10{
     width: 10%;
     vertical-align: middle !important;
+    font-size: small;
 }
 
 .width15{
     width: 15%;
     vertical-align: middle !important;
+    font-size: small;
 }
 
 .width20{
     width: 20%;
     vertical-align: middle !important;
+    font-size: small;
 }
