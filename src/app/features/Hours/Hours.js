@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { toastr } from 'react-redux-toastr';
+import history from '../../../history';
 
 import { HOUR_TYPES, HOURS } from '../../../routes';
 import * as Yup from 'yup';
@@ -120,6 +121,7 @@ export const addRecord = (object, userid) => {
             .then(function (response) {
                 toastr.success('Rekord został zapisany');
                 dispatch(addNewRecord(response.data));
+                history.push('/czas-pracy-lista');
             });
     }
 }
@@ -149,6 +151,7 @@ export const updateRecord = (id, values) => {
             .then((response) => {
                 toastr.success('Rekord został zmodyfikowany');
                 dispatch(updateRecords(response.data));
+                history.push('/czas-pracy-lista');
             });
     }
 }

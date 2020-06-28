@@ -1,15 +1,18 @@
 import React, { Component } from "react";
 
 import { Formik } from 'formik';
-import { Grid, Segment, Header, Input, Dropdown, Button, Form } from 'semantic-ui-react';
-import './HoursComponent.css';
+import { Segment, Header, Button, Dropdown, Grid, Input, Form } from 'semantic-ui-react';
 import CustomLabel from '../../common/CustomLabel/CustomLabel';
+import './HoursComponent.css';
 
-class HoursAddComponent extends Component {
+
+class HoursDetailsComponent extends Component {
 
     onSubmit(values) {
 
-        this.props.onSubmit(values);
+        let recordId = this.props.recordDetails[0].id
+
+        this.props.onEditFormSubmit(recordId, values);
     }
 
     dropdownHandleChange(e, data, setFieldValue) {
@@ -17,13 +20,22 @@ class HoursAddComponent extends Component {
         setFieldValue(data.name, data.value);
     }
 
+
     render() {
+        console.log(this.props.recordDetails);
+        let type = this.props.recordDetails[0].type.id;
+        let quantity = this.props.recordDetails[0].quantity;
+        let date = this.props.recordDetails[0].date.substr(0, 10);  //extract only date from datetime
+        let timestamp = this.props.recordDetails[0].timestamp;
+        let timestampDate = timestamp.substr(0, 10);
+        let timestampTime = timestamp.substr(11, 8);
 
         return (
             <Segment color="teal">
-                <Header size='medium'>Rejestracja czasu</Header>
+                <Header size='medium'>Edycja godzin</Header>
+
                 <Formik
-                    initialValues={{ date: '', quantity: '', type: 1 }}
+                    initialValues={{ date: date, quantity: quantity, type: type }}
 
                     validationSchema={this.props.validationSchema}
 
@@ -44,13 +56,12 @@ class HoursAddComponent extends Component {
                                 <Grid columns={2} textAlign="right" verticalAlign="middle" >
                                     <Grid.Row>
                                         <Grid.Column width={2}>
-                                            <p className='data-field-header'>Typ</p>
+                                            Typ
                                         </Grid.Column >
                                         <Grid.Column width={2}>
                                             <Dropdown fluid selection
                                                 name='type'
                                                 className='dropdown-hour-types'
-                                                placeholder="Wybierz.."
                                                 value={values.type}
                                                 onChange={(e, data) => this.dropdownHandleChange(e, data, setFieldValue)}
                                                 options={this.props.types} />
@@ -60,7 +71,7 @@ class HoursAddComponent extends Component {
 
                                     <Grid.Row>
                                         <Grid.Column width={2}>
-                                            <p className='data-field-header'>Data</p>
+                                            Data
                                         </Grid.Column >
                                         <Grid.Column width={2}>
                                             <Input
@@ -74,7 +85,7 @@ class HoursAddComponent extends Component {
 
                                     <Grid.Row>
                                         <Grid.Column width={2}>
-                                            <p className='data-field-header'>Ilość godzin</p>
+                                            Ilość godzin
                                         </Grid.Column >
                                         <Grid.Column width={2}>
                                             <Input
@@ -85,22 +96,30 @@ class HoursAddComponent extends Component {
                                             {errors.quantity && touched.quantity ? <div><CustomLabel text={errors.quantity}></CustomLabel></div> : null}
                                         </Grid.Column>
                                     </Grid.Row>
+
+                                    <Grid.Row>
+                                        <Grid.Column width={2}>
+                                            <p className='data-field-header'>Ostatnia modyfikacja</p>
+                                        </Grid.Column >
+                                        <Grid.Column width={4}>
+                                            <p className='data-field'>{timestampDate} &nbsp;&nbsp; [ {timestampTime} ]</p>
+                                        </Grid.Column>
+                                    </Grid.Row>
                                 </Grid>
 
                                 <Button
                                     type='submit'
                                     className='saveButton'
                                     color='teal'>
-                                    {/*onClick={this.props.onButtonClick}>*/}
-                                    Dodaj rekord
-                                </Button>
+                                    Zapisz
+                                        </Button>
                             </Form>
                         )}
                 </Formik>
-            </Segment >
+            </Segment>
 
         )
     }
 }
 
-export default HoursAddComponent;
+export default HoursDetailsComponent;

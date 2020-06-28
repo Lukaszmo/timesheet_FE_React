@@ -39,6 +39,12 @@ export const menuItems = [
                 image: {}
             },
             {
+                id: 'TIMESHEET_LIST',
+                name: "Lista godzin",
+                redirect: "czas-pracy-lista",
+                image: {}
+            },
+            {
                 id: 'WORK_TIME_SCHEDULE',
                 name: "Grafik",
                 redirect: "grafik",

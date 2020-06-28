@@ -6,6 +6,8 @@ import MainContainer from "./common/Main/MainContainer";
 import HomeContainer from "./common/Home/HomeContainer";
 import LoginContainer from "./features/Login/LoginContainer";
 import HoursContainer from './features/Hours/HoursContainer';
+import HoursListContainer from './features/HoursList/HoursListContainer';
+import HoursDetailsContainer from './features/Hours/HoursDetailsContainer';
 import VacationContainer from './features/Vacation/VacationContainer';
 import VacationListContainer from './features/VacationList/VacationListContainer';
 
@@ -22,6 +24,12 @@ function App() {
 
                 <Route exact path='/czas-pracy-rejestracja'
                     component={(props) => <MainContainer content={<HoursContainer {...props} />} menuId={"TIMESHEET"} />} />
+
+                <Route exact path='/czas-pracy-lista'
+                    component={(props) => <MainContainer content={<HoursListContainer {...props} />} menuId={"TIMESHEET"} />} />
+
+                <Route exact path='/czas-pracy-edycja'
+                    component={(props) => <MainContainer content={<HoursDetailsContainer {...props} />} menuId={"TIMESHEET"} />} />
 
                 <Route exact path='/grafik'
                     component={(props) => <MainContainer content={"GRAFIK IN PROGRESS..."} menuId={"TIMESHEET"} />} />
