@@ -176,7 +176,7 @@ export default (state = initialState, action) => {
         }
 
         case ADD_RECORD: {
-            return { ...state, records: [...state.records, action.payload] }
+            return { ...state, records: state.records ? [...state.records, action.payload] : [action.payload] }
         }
 
         case DELETE_RECORD: {

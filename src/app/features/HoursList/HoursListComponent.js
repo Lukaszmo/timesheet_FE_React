@@ -58,11 +58,10 @@ class HoursListComponent extends Component {
                 <Segment color="teal">
                     <Header size='medium'>Lista godzin</Header>
 
-                    <TableComponent headers={this.headers} data={this.props.data} onTableChange={this.props.onTableChange} rowsPerPage={15} />
+                    <TableComponent headers={this.headers} data={this.props.data} onTableChange={this.props.onTableChange} rowsPerPage={10} />
 
                 </Segment>
             </Container>
-
         )
     }
 }
