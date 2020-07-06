@@ -29,6 +29,16 @@ i.icon.tableIcon{
     padding: 20px;
 }
 
+.ui.label.positive{
+    background-color: #33cc33;
+    color: #ffffff;
+}
+
+.ui.label.negative{
+    background-color: #ff3300;
+    color: #ffffff;
+}
+
 .width5{
     width: 5%;
     vertical-align: middle !important;

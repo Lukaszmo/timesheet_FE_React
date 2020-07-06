@@ -18,10 +18,16 @@ class HoursListComponent extends Component {
         {
             id: "2",
             columnName: "Rodzaj",
-            className: "width20",
+            className: "width15",
             dataField: 'type',
             subField: 'description',
-            type: "data"
+            type: "data",
+            label: {
+                conditionPositive: "(rowObject.type.id == 2)&&(rowObject.overtacceptance == 1)",
+                conditionNegative: "(rowObject.type.id == 2)&&(rowObject.overtacceptance != 1)",
+                msgPositive: "Zaakceptowane",
+                msgNegative: "Niezaakceptowane"
+            }
         },
         {
             id: "3",

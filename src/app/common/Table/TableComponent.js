@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Icon, Table, Pagination, Button, ButtonContent, Confirm } from 'semantic-ui-react';
+import { Icon, Table, Pagination, Button, ButtonContent, Confirm, Label } from 'semantic-ui-react';
 import './Table.css';
 
 
@@ -221,7 +221,26 @@ const Cell = ({ header, value, action, rowAction, rowObject, tableState, handleB
     let displayValue = subType === 'DATE' ? value.substr(0, 10) : value;
 
     if (type === 'DATA') {
-        return <Table.Cell className={header.className}>{displayValue}</Table.Cell>;
+
+        let label = header.label ? header.label : null;
+        let label1 = null; //nazwa zm do zmiany
+
+        if (label) {
+
+            if (eval(label.conditionPositive)) {
+
+                label1 = <Label className="positive">{label.msgPositive}</Label>
+
+            }
+            if (eval(label.conditionNegative)) {
+
+                //  label1 = <Label color="red">{label.msgNegative}</Label>
+                label1 = <Label className="negative">{label.msgNegative}</Label>
+            }
+
+        }
+
+        return <Table.Cell className={header.className}>{displayValue}&nbsp;&nbsp;{label1}</Table.Cell>;
     }
 
     if (type === 'BUTTON') {
