@@ -39,6 +39,11 @@ i.icon.tableIcon{
     color: #ffffff;
 }
 
+.ui.label.waiting{
+    background-color: #ffd11a;
+    color: #ffffff;
+}
+
 .width5{
     width: 5%;
     vertical-align: middle !important;

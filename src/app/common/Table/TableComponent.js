@@ -223,24 +223,25 @@ const Cell = ({ header, value, action, rowAction, rowObject, tableState, handleB
     if (type === 'DATA') {
 
         let label = header.label ? header.label : null;
-        let label1 = null; //nazwa zm do zmiany
+        let cellLabel = null; //nazwa zm do zmiany
 
         if (label) {
 
-            if (eval(label.conditionPositive)) {
+            if (eval(label.condition1)) {
 
-                label1 = <Label className="positive">{label.msgPositive}</Label>
-
+                cellLabel = <Label className={label.class1}>{label.msg1}</Label>
             }
-            if (eval(label.conditionNegative)) {
+            if (eval(label.condition2)) {
 
-                //  label1 = <Label color="red">{label.msgNegative}</Label>
-                label1 = <Label className="negative">{label.msgNegative}</Label>
+                cellLabel = <Label className={label.class2}>{label.msg2}</Label>
             }
+            if (eval(label.condition3)) {
 
+                cellLabel = <Label className={label.class3}>{label.msg3}</Label>
+            }
         }
 
-        return <Table.Cell className={header.className}>{displayValue}&nbsp;&nbsp;{label1}</Table.Cell>;
+        return <Table.Cell className={header.className}>{displayValue}&nbsp;&nbsp;{cellLabel}</Table.Cell>;
     }
 
     if (type === 'BUTTON') {
