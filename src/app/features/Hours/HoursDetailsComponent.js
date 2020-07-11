@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 import { Formik } from 'formik';
-import { Segment, Header, Button, Dropdown, Grid, Input, Form } from 'semantic-ui-react';
+import { Segment, Header, Button, Dropdown, Grid, Input, Form, GridRow, Label } from 'semantic-ui-react';
 import CustomLabel from '../../common/CustomLabel/CustomLabel';
 import './HoursComponent.css';
 
@@ -20,18 +20,38 @@ class HoursDetailsComponent extends Component {
         setFieldValue(data.name, data.value);
     }
 
-
     render() {
         console.log(this.props.recordDetails);
+        console.log(this.props);
         let type = this.props.recordDetails[0].type.id;
         let quantity = this.props.recordDetails[0].quantity;
         let date = this.props.recordDetails[0].date.substr(0, 10);  //extract only date from datetime
         let timestamp = this.props.recordDetails[0].timestamp;
         let timestampDate = timestamp.substr(0, 10);
         let timestampTime = timestamp.substr(11, 8);
+        let overtAcceptance = this.props.recordDetails[0].overtacceptance;
+
+
+        let status = null;
+        if (type == 2) {
+
+            let className = overtAcceptance == 1 ? 'positive' : 'waiting';
+            let msg = overtAcceptance == 1 ? 'Zaakceptowane' : 'Czeka na akceptację';
+
+            let label = <Label className={className} id="waiting-left">{msg}</Label>
+            status = <Grid.Row>
+                <Grid.Column width={2}>
+                    Status</Grid.Column >
+                <Grid.Column width={2}>
+                    {label}
+                </Grid.Column>
+            </Grid.Row>
+        }
+
+
 
         return (
-            <Segment color="teal">
+            <Segment color="teal" >
                 <Header size='medium'>Edycja godzin</Header>
 
                 <Formik
@@ -96,6 +116,8 @@ class HoursDetailsComponent extends Component {
                                             {errors.quantity && touched.quantity ? <div><CustomLabel text={errors.quantity}></CustomLabel></div> : null}
                                         </Grid.Column>
                                     </Grid.Row>
+
+                                    {status}
 
                                     <Grid.Row>
                                         <Grid.Column width={2}>

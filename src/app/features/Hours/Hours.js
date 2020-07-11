@@ -115,6 +115,8 @@ export const addRecord = (object, userid) => {
 
     return function (dispatch) {
 
+        if (object.type === 2) object = { ...object, overtacceptance: 0 };
+
         let newrecord = { ...object, userid };
 
         axios.post(HOURS, newrecord)

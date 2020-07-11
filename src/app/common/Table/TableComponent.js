@@ -223,7 +223,7 @@ const Cell = ({ header, value, action, rowAction, rowObject, tableState, handleB
     if (type === 'DATA') {
 
         let label = header.label ? header.label : null;
-        let cellLabel = null; //nazwa zm do zmiany
+        let cellLabel = null;
 
         if (label) {
 
@@ -241,7 +241,7 @@ const Cell = ({ header, value, action, rowAction, rowObject, tableState, handleB
             }
         }
 
-        return <Table.Cell className={header.className}>{displayValue}&nbsp;&nbsp;{cellLabel}</Table.Cell>;
+        return <Table.Cell className={header.className}>{displayValue}{cellLabel}</Table.Cell>;
     }
 
     if (type === 'BUTTON') {

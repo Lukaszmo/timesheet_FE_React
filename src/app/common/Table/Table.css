@@ -32,16 +32,21 @@ i.icon.tableIcon{
 .ui.label.positive{
     background-color: #33cc33;
     color: #ffffff;
+    text-align: center;
+    margin-left:2em; 
 }
 
 .ui.label.negative{
     background-color: #ff3300;
     color: #ffffff;
+    text-align: center;
 }
 
 .ui.label.waiting{
     background-color: #ffd11a;
     color: #ffffff;
+    text-align: center; 
+    margin-left:2em; 
 }
 
 .width5{
@@ -60,6 +65,8 @@ i.icon.tableIcon{
     width: 15%;
     vertical-align: middle !important;
     font-size: small;
+    text-align: left !important;
+    padding-left: 20px !important;
 }
 
 .width20{

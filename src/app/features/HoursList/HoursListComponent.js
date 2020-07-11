@@ -25,13 +25,10 @@ class HoursListComponent extends Component {
             label: {
                 condition1: "(rowObject.type.id == 2)&&(rowObject.overtacceptance == 0)",
                 condition2: "(rowObject.type.id == 2)&&(rowObject.overtacceptance == 1)",
-                condition3: "(rowObject.type.id == 2)&&(rowObject.overtacceptance == 2)",
                 msg1: "Czeka na akceptację",
                 msg2: "Zaakceptowane",
-                msg3: "Niezaakceptowane",
                 class1: "waiting",
-                class2: "positive",
-                class3: "negative"
+                class2: "positive"
             }
         },
         {

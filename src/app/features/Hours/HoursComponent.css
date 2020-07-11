@@ -43,3 +43,8 @@
     width: max-content;
 }
 
+#waiting-left{ 
+    margin-left: 0em !important;
+    width: 140px !important;
+}
+
