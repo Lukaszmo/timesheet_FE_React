@@ -8,7 +8,10 @@ import './HoursComponent.css';
 
 class HoursDetailsComponent extends Component {
 
+
     onSubmit(values) {
+
+        alert(this.props.mode);
 
         let recordId = this.props.recordDetails[0].id
 
@@ -21,7 +24,6 @@ class HoursDetailsComponent extends Component {
     }
 
     render() {
-        console.log(this.props.recordDetails);
         console.log(this.props);
         let type = this.props.recordDetails[0].type.id;
         let quantity = this.props.recordDetails[0].quantity;
@@ -33,10 +35,20 @@ class HoursDetailsComponent extends Component {
 
 
         let status = null;
+        let buttonDisabled = this.props.disabled;
+        let text = 'Zapisz';
+
         if (type == 2) {
 
             let className = overtAcceptance == 1 ? 'positive' : 'waiting';
             let msg = overtAcceptance == 1 ? 'Zaakceptowane' : 'Czeka na akceptację';
+            let mode = this.props.mode;
+
+            if (mode == 'acceptance') {
+
+                text = (overtAcceptance == 0) ? 'Zaakceptuj' : text;
+                buttonDisabled = (overtAcceptance == 0) ? false : true;
+            }
 
             let label = <Label className={className} id="waiting-left">{msg}</Label>
             status = <Grid.Row>
@@ -48,6 +60,12 @@ class HoursDetailsComponent extends Component {
             </Grid.Row>
         }
 
+        let button = <Button disabled={buttonDisabled}
+            type='submit'
+            className='saveButton'
+            color='teal'>
+            {text}
+        </Button>
 
 
         return (
@@ -79,7 +97,7 @@ class HoursDetailsComponent extends Component {
                                             Typ
                                         </Grid.Column >
                                         <Grid.Column width={2}>
-                                            <Dropdown fluid selection
+                                            <Dropdown fluid selection disabled={this.props.disabled}
                                                 name='type'
                                                 className='dropdown-hour-types'
                                                 value={values.type}
@@ -94,7 +112,7 @@ class HoursDetailsComponent extends Component {
                                             Data
                                         </Grid.Column >
                                         <Grid.Column width={2}>
-                                            <Input
+                                            <Input disabled={this.props.disabled}
                                                 type='date'
                                                 name='date'
                                                 value={values.date}
@@ -108,7 +126,7 @@ class HoursDetailsComponent extends Component {
                                             Ilość godzin
                                         </Grid.Column >
                                         <Grid.Column width={2}>
-                                            <Input
+                                            <Input disabled={this.props.disabled}
                                                 type='number'
                                                 name='quantity'
                                                 value={values.quantity}
@@ -129,12 +147,7 @@ class HoursDetailsComponent extends Component {
                                     </Grid.Row>
                                 </Grid>
 
-                                <Button
-                                    type='submit'
-                                    className='saveButton'
-                                    color='teal'>
-                                    Zapisz
-                                        </Button>
+                                {button}
                             </Form>
                         )}
                 </Formik>
