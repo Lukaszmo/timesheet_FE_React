@@ -34,15 +34,15 @@ class HoursDetailsContainer extends Component {
         }
     }
 
-    onEditFormSubmit = (id, values, mode) => {
+    onEditFormSubmit = (id, values, msg) => {
 
-        this.props.updateRecord(id, values, mode)
+        this.props.updateRecord(id, values, msg)
 
     }
 
     isRecordOwner(recordOwnerId) {
 
-        //  recordOwnerId = 2; //dla testów
+        recordOwnerId = 2; //dla testów
 
         console.log('isRecordOwner');
 
@@ -83,7 +83,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    updateRecord: (id, values) => dispatch(updateRecord(id, values))
+    updateRecord: (id, values, msg) => dispatch(updateRecord(id, values, msg))
 })
 
 export default connect(

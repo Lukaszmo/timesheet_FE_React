@@ -139,7 +139,7 @@ export const removeRecord = (rowId) => {
     }
 }
 
-export const updateRecord = (id, values, mode) => {
+export const updateRecord = (id, values, msg) => {
 
     // do wyniesienia do konfiguracji
     const headers = {
@@ -151,7 +151,6 @@ export const updateRecord = (id, values, mode) => {
             headers: headers
         })
             .then((response) => {
-                let msg = (mode === 'EDIT') ? 'Rekord został zmodyfikowany' : 'Nadgodziny zostały zaakceptowane';
                 toastr.success(msg);
                 dispatch(updateRecords(response.data));
                 history.push('/czas-pracy-lista');

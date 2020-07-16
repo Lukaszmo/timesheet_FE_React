@@ -12,15 +12,35 @@ class HoursDetailsComponent extends Component {
     onSubmit(values) {
 
         const mode = this.props.mode;
+        const type = this.props.recordDetails[0].type.id; //typ rekordu który zmieniamy
+        let overtacceptance = null;
+        let acceptorid = null;
+        let msg = null;
+
+        if (mode === 'EDIT') {
+
+            msg = 'Rekord został zmodyfikowany';
+            if (values.type === 2) { overtacceptance = 0; }
+            if ((type === 2) && (type !== values.type)) {   //jeśli użytkownik zmienia z nadgodzin na inny typ
+
+                overtacceptance = null;
+                acceptorid = null;
+            }
+        }
+
 
         if (mode === 'ACCEPTANCE') {
 
-            values = { ...values, overtacceptance: 1, acceptorid: this.props.acceptorid };
+            overtacceptance = (this.props.recordDetails[0].overtacceptance === 0) ? 1 : 0; //akceptacja lub anulowanie
+            acceptorid = (overtacceptance === 1) ? this.props.acceptorid : null;
+            msg = (overtacceptance === 1) ? 'Nadgodziny zostały zaakceptowane' : 'Nadgodziny zostały anulowane';
         }
 
-        let recordId = this.props.recordDetails[0].id
+        values = { ...values, overtacceptance: overtacceptance, acceptorid: acceptorid };
 
-        this.props.onEditFormSubmit(recordId, values, mode);
+        const recordId = this.props.recordDetails[0].id
+
+        this.props.onEditFormSubmit(recordId, values, msg);
     }
 
     dropdownHandleChange(e, data, setFieldValue) {
@@ -40,22 +60,27 @@ class HoursDetailsComponent extends Component {
 
         let status = null;
         let acceptor = null;
+        let buttonColor = 'teal'
         let buttonDisabled = this.props.disabled;
         let text = 'Zapisz';
 
+        //Nadgodziny 
         if (type == 2) {
 
-            let className = overtAcceptance === 1 ? 'positive' : 'waiting';
+            let labelClass = overtAcceptance === 1 ? 'positive' : 'waiting';
             let msg = overtAcceptance === 1 ? 'Zaakceptowane' : 'Czeka na akceptację';
             let mode = this.props.mode;
 
+            //ustawiamy to co widzi kierownik akceptujący nadgodziny
             if (mode === 'ACCEPTANCE') {
 
-                if (overtAcceptance === 0) text = 'Zaakceptuj';
-                buttonDisabled = (overtAcceptance === 0) ? false : true;
+                text = (overtAcceptance === 0) ? 'Zaakceptuj' : 'Anuluj akceptację';
+                buttonColor = (overtAcceptance === 0) ? 'teal' : 'youtube';
+                buttonDisabled = false;
             }
 
-            let label = <Label className={className} id="waiting-left">{msg}</Label>
+            //Ststus nadgodzin
+            let label = <Label className={labelClass} id="waiting-left">{msg}</Label>
             status = <Grid.Row>
                 <Grid.Column width={2}>
                     Status</Grid.Column >
@@ -64,6 +89,7 @@ class HoursDetailsComponent extends Component {
                 </Grid.Column>
             </Grid.Row>
 
+            //Zaakceptowane 
             if (overtAcceptance === 1) {
 
                 const acceptorName = this.props.acceptor ? this.props.acceptor.firstname + ' ' + this.props.acceptor.lastname : null;
@@ -82,7 +108,8 @@ class HoursDetailsComponent extends Component {
         let button = <Button disabled={buttonDisabled}
             type='submit'
             className='saveButton'
-            color='teal'>
+
+            color={buttonColor}>
             {text}
         </Button>
 
