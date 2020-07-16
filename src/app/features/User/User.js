@@ -12,7 +12,7 @@ export function setUserAction(user) {
 }
 
 //operations
-export const getUserDetails = (id) => {
+export const getLoggedUser = (id) => {
 
     const token = localStorage.getItem('token');
 
@@ -26,6 +26,15 @@ export const getUserDetails = (id) => {
                 console.log(error);
             });
     }
+}
+
+export async function getUserDetails(id) {
+
+    const token = localStorage.getItem('token');
+
+    const resp = axios.get(USERS + '/' + id, { headers: { "Authorization": `Bearer ${token}` } })
+
+    return await resp;
 }
 
 const initialState = {

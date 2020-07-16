@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Container } from 'semantic-ui-react';
 import HoursDetailsComponent from "./HoursDetailsComponent";
 import { updateRecord, HourValidationSchema } from "../Hours/Hours";
-
+import { getUserDetails } from "../User/User";
 
 class HoursDetailsContainer extends Component {
 
@@ -14,7 +14,9 @@ class HoursDetailsContainer extends Component {
         this.state = {
             recordDetails: this.props.location.state.recordDetails,
             disabled: false,
-            mode: 'edit'
+            mode: 'EDIT',
+            acceptor: null,     //dane kierownika który zaakceptował nadgodziny
+            acceptorid: null    //id zalogowanego kierownika akceptującego nadgodziny
         }
 
     }
@@ -22,33 +24,55 @@ class HoursDetailsContainer extends Component {
     componentDidMount() {
 
         const recordOwnerId = this.state.recordDetails[0].userid.id;
+        const overtAcceptance = this.state.recordDetails[0].overtacceptance;
+
         this.isRecordOwner(recordOwnerId);
+
+        if (overtAcceptance === 1) {
+            const acceptorId = this.state.recordDetails[0].acceptorid;
+            getUserDetails(acceptorId).then(resp => this.setState({ acceptor: resp.data }));
+        }
     }
 
-    onEditFormSubmit = (id, values) => {
+    onEditFormSubmit = (id, values, mode) => {
 
-        this.props.updateRecord(id, values)
+        this.props.updateRecord(id, values, mode)
 
     }
 
     isRecordOwner(recordOwnerId) {
 
-        recordOwnerId = 2; //dla testów
+        //  recordOwnerId = 2; //dla testów
+
+        console.log('isRecordOwner');
+
+
         if (this.props.user.id !== recordOwnerId) {
-            this.setState({ disabled: true, mode: 'acceptance' })
+
+            this.setState({
+                disabled: true,
+                mode: 'ACCEPTANCE',
+                acceptorid: this.props.user.id,
+            })
         }
     }
 
 
     render() {
-
+        console.log(this.state);
         return (
             <Container className="hours">
-                <HoursDetailsComponent types={this.props.hourTypes} validationSchema={HourValidationSchema} recordDetails={this.state.recordDetails} onEditFormSubmit={this.onEditFormSubmit} disabled={this.state.disabled} mode={this.state.mode} />
+                <HoursDetailsComponent
+                    types={this.props.hourTypes}
+                    validationSchema={HourValidationSchema}
+                    recordDetails={this.state.recordDetails}
+                    onEditFormSubmit={this.onEditFormSubmit}
+                    disabled={this.state.disabled}
+                    mode={this.state.mode}
+                    acceptor={this.state.acceptor}
+                    acceptorid={this.state.acceptorid} />
             </Container>
         );
-
-
     }
 }
 

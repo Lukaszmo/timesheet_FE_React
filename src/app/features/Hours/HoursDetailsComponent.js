@@ -11,11 +11,16 @@ class HoursDetailsComponent extends Component {
 
     onSubmit(values) {
 
-        alert(this.props.mode);
+        const mode = this.props.mode;
+
+        if (mode === 'ACCEPTANCE') {
+
+            values = { ...values, overtacceptance: 1, acceptorid: this.props.acceptorid };
+        }
 
         let recordId = this.props.recordDetails[0].id
 
-        this.props.onEditFormSubmit(recordId, values);
+        this.props.onEditFormSubmit(recordId, values, mode);
     }
 
     dropdownHandleChange(e, data, setFieldValue) {
@@ -25,29 +30,29 @@ class HoursDetailsComponent extends Component {
 
     render() {
         console.log(this.props);
-        let type = this.props.recordDetails[0].type.id;
-        let quantity = this.props.recordDetails[0].quantity;
-        let date = this.props.recordDetails[0].date.substr(0, 10);  //extract only date from datetime
-        let timestamp = this.props.recordDetails[0].timestamp;
-        let timestampDate = timestamp.substr(0, 10);
-        let timestampTime = timestamp.substr(11, 8);
-        let overtAcceptance = this.props.recordDetails[0].overtacceptance;
-
+        const type = this.props.recordDetails[0].type.id;
+        const quantity = this.props.recordDetails[0].quantity;
+        const date = this.props.recordDetails[0].date.substr(0, 10);  //extract only date from datetime
+        const timestamp = this.props.recordDetails[0].timestamp;
+        const timestampDate = timestamp.substr(0, 10);
+        const timestampTime = timestamp.substr(11, 8);
+        const overtAcceptance = this.props.recordDetails[0].overtacceptance;
 
         let status = null;
+        let acceptor = null;
         let buttonDisabled = this.props.disabled;
         let text = 'Zapisz';
 
         if (type == 2) {
 
-            let className = overtAcceptance == 1 ? 'positive' : 'waiting';
-            let msg = overtAcceptance == 1 ? 'Zaakceptowane' : 'Czeka na akceptację';
+            let className = overtAcceptance === 1 ? 'positive' : 'waiting';
+            let msg = overtAcceptance === 1 ? 'Zaakceptowane' : 'Czeka na akceptację';
             let mode = this.props.mode;
 
-            if (mode == 'acceptance') {
+            if (mode === 'ACCEPTANCE') {
 
-                text = (overtAcceptance == 0) ? 'Zaakceptuj' : text;
-                buttonDisabled = (overtAcceptance == 0) ? false : true;
+                if (overtAcceptance === 0) text = 'Zaakceptuj';
+                buttonDisabled = (overtAcceptance === 0) ? false : true;
             }
 
             let label = <Label className={className} id="waiting-left">{msg}</Label>
@@ -58,6 +63,20 @@ class HoursDetailsComponent extends Component {
                     {label}
                 </Grid.Column>
             </Grid.Row>
+
+            if (overtAcceptance === 1) {
+
+                const acceptorName = this.props.acceptor ? this.props.acceptor.firstname + ' ' + this.props.acceptor.lastname : null;
+                const acceptorRegnum = this.props.acceptor ? this.props.acceptor.regnum : null;
+
+                acceptor = <Grid.Row>
+                    <Grid.Column width={2}>
+                        Akceptujący</Grid.Column >
+                    <Grid.Column width={2}>
+                        <p className='data-field'> {acceptorName} &nbsp;&nbsp; [ {acceptorRegnum} ] </p>
+                    </Grid.Column>
+                </Grid.Row>
+            }
         }
 
         let button = <Button disabled={buttonDisabled}
@@ -136,6 +155,7 @@ class HoursDetailsComponent extends Component {
                                     </Grid.Row>
 
                                     {status}
+                                    {acceptor}
 
                                     <Grid.Row>
                                         <Grid.Column width={2}>

@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
 
-import { getUserDetails } from "../../features/User/User";
+import { getLoggedUser } from "../../features/User/User";
 import HomeComponent from "./HomeComponent";
 
 class HomeContainer extends Component {
 
     componentDidMount() {
 
-        this.props.getUserDetails(this.props.login.userId);
+        this.props.getLoggedUser(this.props.login.userId);
     }
 
     render() {
@@ -28,7 +28,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    getUserDetails: (id) => dispatch(getUserDetails(id))
+    getLoggedUser: (id) => dispatch(getLoggedUser(id))
 })
 
 export default connect(
