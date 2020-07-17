@@ -33,7 +33,7 @@ class HoursDetailsComponent extends Component {
 
             overtacceptance = (this.props.recordDetails[0].overtacceptance === 0) ? 1 : 0; //akceptacja lub anulowanie
             acceptorid = (overtacceptance === 1) ? this.props.acceptorid : null;
-            msg = (overtacceptance === 1) ? 'Nadgodziny zostały zaakceptowane' : 'Nadgodziny zostały anulowane';
+            msg = (overtacceptance === 1) ? 'Nadgodziny zostały zaakceptowane' : 'Akceptacja została anulowana';
         }
 
         values = { ...values, overtacceptance: overtacceptance, acceptorid: acceptorid };
@@ -60,7 +60,7 @@ class HoursDetailsComponent extends Component {
 
         let status = null;
         let acceptor = null;
-        let buttonColor = 'teal'
+        let buttonClass = 'saveButton'
         let buttonDisabled = this.props.disabled;
         let text = 'Zapisz';
 
@@ -75,7 +75,7 @@ class HoursDetailsComponent extends Component {
             if (mode === 'ACCEPTANCE') {
 
                 text = (overtAcceptance === 0) ? 'Zaakceptuj' : 'Anuluj akceptację';
-                buttonColor = (overtAcceptance === 0) ? 'teal' : 'youtube';
+                buttonClass = (overtAcceptance === 0) ? 'saveButton' : 'cancelButton';
                 buttonDisabled = false;
             }
 
@@ -107,9 +107,8 @@ class HoursDetailsComponent extends Component {
 
         let button = <Button disabled={buttonDisabled}
             type='submit'
-            className='saveButton'
-
-            color={buttonColor}>
+            //className='saveButton'
+            className={buttonClass}>
             {text}
         </Button>
 

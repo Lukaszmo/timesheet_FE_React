@@ -189,7 +189,7 @@ class VacApplComponent extends Component {
 
                                 <Button
                                     type='submit'
-                                    className='addButton'
+                                    className='saveButton'
                                     color='teal'>
                                     {/*onClick={this.props.onButtonClick}>*/}
                                     Utwórz wniosek

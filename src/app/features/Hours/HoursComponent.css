@@ -9,8 +9,15 @@
 }
 
 .ui.button.saveButton{
-    margin-left: 120px;
+    color: #fff;
+    background-color: #00b5ad;
+    margin-left: 140px;
     margin-top: 40px ;
+}
+
+.ui.button.saveButton:hover{
+    color: #fff;
+    background-color:#009c95;
 }
 
 /*.edit-form-buttons-container{
@@ -30,13 +37,15 @@
 } */
 
 .ui.button.cancelButton{
-    color: rgba(0,0,0,.8);
-    background-color:#e0e1e2;
+    color: #fff;
+    background-color:#ff3333;
+    margin-left: 140px;
+    margin-top: 40px;
 }
 
 .ui.button.cancelButton:hover{
-    color: rgba(0,0,0,.8);
-    background-color:#cacbcd;
+    color: #fff;
+    background-color:#ff0000;
 }
 
 .ui.dropdown.dropdown-hour-types{
