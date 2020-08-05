@@ -57,6 +57,7 @@ class HoursDetailsComponent extends Component {
         const timestampDate = timestamp.substr(0, 10);
         const timestampTime = timestamp.substr(11, 8);
         const overtAcceptance = this.props.recordDetails[0].overtacceptance;
+        const employeeName = this.props.recordDetails[0].userid.firstname + ' ' + this.props.recordDetails[0].userid.lastname;
 
         let status = null;
         let acceptor = null;
@@ -137,6 +138,13 @@ class HoursDetailsComponent extends Component {
                     }) => (
                             <Form onSubmit={handleSubmit}>
                                 <Grid columns={2} textAlign="right" verticalAlign="middle" >
+                                    <Grid.Row>
+                                        <Grid.Column width={2}>
+                                            Użytkownik</Grid.Column >
+                                        <Grid.Column width={2}>
+                                            <p className='data-field'> {employeeName} </p>
+                                        </Grid.Column>
+                                    </Grid.Row>
                                     <Grid.Row>
                                         <Grid.Column width={2}>
                                             Typ

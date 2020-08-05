@@ -100,10 +100,13 @@ export const fetchAllTypes = () => {
 
 }
 
-export const fetchAllRecords = (userId) => {
+export const fetchAllRecords = (userId, filters) => {
+
+    const datefrom = filters.dateFrom;
+    const dateto = filters.dateTo
 
     return (dispatch) => {
-        axios.get(HOURS + '?userid=' + userId).then(response => {
+        axios.get(HOURS + '?userid=' + userId + '&date[after]=' + datefrom + '&date[before]=' + dateto).then(response => {
 
             dispatch(setRecords(response.data['hydra:member']));
         })

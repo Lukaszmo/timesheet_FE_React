@@ -1,10 +1,48 @@
 import React, { Component } from "react";
 
-import { Header, Container, Segment } from 'semantic-ui-react';
+import { Header, Container, Segment, Grid, Input, Dropdown, GridRow, Form, Button } from 'semantic-ui-react';
+import { Formik } from 'formik';
 import TableComponent from '../../common/Table/TableComponent.js';
+import { getFirstDayOfMonth, getLastDayOfMonth } from '../../utils/Utils.js';
+import './HoursListComponent.css';
 
 
 class HoursListComponent extends Component {
+
+    constructor(props) {
+        super(props);
+
+        const currentDate = new Date();
+        const dateFrom = getFirstDayOfMonth(currentDate);
+        const dateTo = getLastDayOfMonth(currentDate);
+
+        this.state = {
+            dateFrom: dateFrom,
+            dateTo: dateTo
+        }
+    }
+
+    onSubmit(values) {
+
+        console.log(values);
+
+        const filters = {
+            dateFrom: values.datefrom,
+            dateTo: values.dateto
+        }
+
+        this.props.onFilterSubmit(values.user, filters);
+    }
+
+    dropdownHandleChange(e, data, setFieldValue) {
+
+        setFieldValue(data.name, data.value);
+    }
+
+    dateHandleChange(e, data, setFieldValue) {
+
+        setFieldValue(data.name, data.value);
+    }
 
     headers = [
         {
@@ -61,15 +99,82 @@ class HoursListComponent extends Component {
 
     render() {
 
+        console.log(this.props);
+
+
+
         return (
             <Container >
-                <Segment color="teal">
+                <Segment color="teal" className="test">
                     <Header size='medium'>Lista godzin</Header>
+                    <Header className='filter-header'>Filtry</Header>
+                    <Formik
+                        initialValues={{ user: this.props.loggedUser.id, datefrom: this.state.dateFrom, dateto: this.state.dateTo }}
+
+                        onSubmit={(values, { setSubmitting }) => {
+                            this.onSubmit(values);
+                            setSubmitting(false);
+                        }}>
+
+                        {({
+                            values,
+                            handleSubmit,
+                            handleChange,
+                            setFieldValue,
+                            errors,
+                            touched
+                        }) => (
+                                <Form onSubmit={handleSubmit}>
+
+                                    <Grid columns={2} textAlign="right" verticalAlign="middle" >
+                                        <GridRow>
+
+                                            <Grid.Column width={3}>
+                                                <Input
+                                                    type='date'
+                                                    name='datefrom'
+                                                    value={values.datefrom}
+                                                    onChange={(e, data) => this.dateHandleChange(e, data, setFieldValue)}
+
+                                                />
+                                            </Grid.Column>
+                                            <Grid.Column width={3}>
+                                                <Input
+                                                    type='date'
+                                                    name='dateto'
+                                                    value={values.dateto}
+                                                    onChange={(e, data) => this.dateHandleChange(e, data, setFieldValue)}
+                                                />
+                                            </Grid.Column>
+                                            <Grid.Column width={2}>
+                                                <Dropdown fluid selection disabled={this.props.disabled}
+                                                    name='user'
+                                                    className='dropdown-hour-types'
+                                                    value={values.user}
+                                                    options={this.props.userList}
+                                                    onChange={(e, data) => this.dropdownHandleChange(e, data, setFieldValue)}
+                                                ></Dropdown>
+                                            </Grid.Column>
+                                            <Grid.Column width={2}>
+                                                <Button
+                                                    type='submit'
+                                                    className='filterButton'>Filtruj
+                                                </Button>
+                                            </Grid.Column>
+                                        </GridRow>
+
+
+                                    </Grid >
+                                </Form>
+                            )}
+                    </Formik>
+                </Segment >
+                <Segment>
 
                     <TableComponent headers={this.headers} data={this.props.data} onTableChange={this.props.onTableChange} rowsPerPage={10} />
 
                 </Segment>
-            </Container>
+            </Container >
         )
     }
 }

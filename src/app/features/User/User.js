@@ -2,12 +2,22 @@ import axios from 'axios';
 import { USERS } from '../../../routes';
 
 const SET_USER = 'SET_USER';
+const SET_INFERIORS = 'SET_INFERIORS';
 
 //actions
 export function setUserAction(user) {
     return {
         type: SET_USER,
         payload: user
+    }
+}
+
+export function setInferiors(inferiors) {
+    return {
+        type: SET_INFERIORS,
+        payload: {
+            inferiors: inferiors
+        }
     }
 }
 
@@ -37,6 +47,35 @@ export async function getUserDetails(id) {
     return await resp;
 }
 
+export const fetchInferiors = (managerId) => {
+
+    return (dispatch) => {
+        return axios.get(USERS + '?managerid=' + managerId).then(response => {
+
+            dispatch(setInferiors(response.data['hydra:member']));
+        });
+
+    }
+}
+
+export const generateUserListForDropdown = (listOfInferiors, loggedUser) => {
+
+    const listOfUsers = listOfInferiors.map((object) => {
+        return {
+            key: object.id,
+            value: object.id,
+            text: object.firstname + ' ' + object.lastname
+        };
+    });
+
+    const userName = loggedUser.firstname + ' ' + loggedUser.lastname;
+    const loggedUserId = loggedUser.id;
+
+    listOfUsers.push({ key: loggedUserId, text: userName, value: loggedUserId });
+
+    return listOfUsers;
+};
+
 const initialState = {
     id: "",
     userclass: "",
@@ -53,6 +92,11 @@ export default (state = initialState, action) => {
 
         case SET_USER: {
             return { ...state, ...action.payload };
+        }
+
+        case SET_INFERIORS: {
+            return { ...state, ...action.payload };
+
         }
 
         default:

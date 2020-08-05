@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import { Link } from 'react-router-dom';
+import { Icon } from 'semantic-ui-react';
+
+import history from '../../../history';
 
 import './Header.css';
 
@@ -7,6 +9,7 @@ class Header extends Component {
 
     logoutOperation = () => {
         localStorage.clear();
+        history.push('/login');
     }
 
     render() {
@@ -14,8 +17,11 @@ class Header extends Component {
             <div className="header-container">
                 Header
 
-                <div className="logout">
-                    <Link to="/login" onClick={this.logoutOperation} id="logout-link">Logout</Link>
+                <div className="logout" onClick={this.logoutOperation}>
+
+                    <Icon name='power off'></Icon><br></br>
+                    <p>Wyloguj</p>
+
                 </div>
 
             </div>

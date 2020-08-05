@@ -4,22 +4,32 @@
     background-color: #FAFAFA;
     height: 60px;
     text-align: center;
-    padding: 25px; 
+    
+    /*padding: 25px; */
    
 }
 
 .logout{
+    width: 100px;
+    height: 60px;
     float: right;
-   
+    color: #009999;
+    padding: 10px;
 }
 
-#logout-link{
+.logout:hover{
+    background-color:#e3e3e3;
+    cursor: pointer;
+}
+
+/*#logout-link{
+    vertical-align: middle;
     color:#009999;
 }
 
 .logout:hover #logout-link{
     color: #008080;
-}
+} */
 
 
 

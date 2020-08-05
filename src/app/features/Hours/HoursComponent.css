@@ -48,6 +48,16 @@
     background-color:#ff0000;
 }
 
+.ui.button.filterButton{
+    color: #fff;
+    background-color:#00b5ad;
+}
+
+.ui.button.filterButton:hover{
+    color: #fff;
+    background-color:#009c95;
+}
+
 .ui.dropdown.dropdown-hour-types{
     width: max-content;
 }
