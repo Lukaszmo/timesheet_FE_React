@@ -1,65 +1,60 @@
 import React, { Component } from "react";
 
-import { Header, Grid, Container, Segment } from 'semantic-ui-react';
+import { Header, Grid, Container, Button, GridRow, Segment, Icon } from 'semantic-ui-react';
+import history from '../../../history';
 import './HomeComponent.css';
 import '../../../index.css';
 
 
 class HomeComponent extends Component {
 
+    onTimesheetButtonClick() {
+
+        history.push('/czas-pracy-rejestracja');
+    }
+
+    onVacationButtonClick() {
+
+        history.push('/urlopy-dodaj-wniosek');
+    }
+
+    onTaskTableButtonClick() {
+
+        alert("TABLE TASK IN PROGRESS...");
+    }
+
     render() {
         return (
 
-            <Container className="userDetails">
-                <Segment color="teal">
-                    <Header size='medium'>Dane użytkownika</Header>
-                    <Grid columns={2} textAlign="right" verticalAlign="middle" >
-                        <Grid.Row>
-                            <Grid.Column width={2}>
-                                <p className='data-field-header'>Numer ewidencyjny</p>
-                            </Grid.Column >
-                            <Grid.Column width={2}>
-                                <p className='data-field'>{this.props.user.regnum}</p>
-                            </Grid.Column>
-                        </Grid.Row>
+            <Container className="mainPageContainer">
 
-                        <Grid.Row>
-                            <Grid.Column width={2}>
-                                <p className='data-field-header'>Imię i nazwisko</p>
-                            </Grid.Column >
-                            <Grid.Column width={2}>
-                                <p className='data-field'>{this.props.user.firstname} {this.props.user.lastname} </p>
-                            </Grid.Column>
-                        </Grid.Row>
+                <Segment color="teal" className="mainPageSegment">
+                    <GridRow></GridRow>
 
-                        <Grid.Row>
-                            <Grid.Column width={2}>
-                                <p className='data-field-header'>Stanowisko/Dział</p>
-                            </Grid.Column >
-                            <Grid.Column width={2}>
-                                <p className='data-field'>{this.props.user.position} </p>
-                            </Grid.Column>
-                        </Grid.Row>
+                    <GridRow>
 
-                        <Grid.Row>
-                            <Grid.Column width={2} >
-                                <p className='data-field-header'>Email</p>
-                            </Grid.Column>
-                            <Grid.Column width={2}>
-                                <p className='data-field'>{this.props.user.email} </p>
-                            </Grid.Column>
-                        </Grid.Row>
+                        <Button
+                            className="bigBoxButton"
+                            onClick={this.onTimesheetButtonClick}>
+                            CZAS PRACY
+                        </Button>
 
-                        <Grid.Row>
-                            <Grid.Column width={2} >
-                                <p className='data-field-header'>Klasa użytkownika</p>
-                            </Grid.Column>
-                            <Grid.Column width={2}>
-                                <p className='data-field'>{this.props.user.userclass} </p>
-                            </Grid.Column>
-                        </Grid.Row>
-                    </Grid>
+                        <Button
+                            className="bigBoxButton"
+                            onClick={this.onVacationButtonClick}>
+                            URLOPY
+                        </Button>
+
+                        <Button
+                            className="bigBoxButton"
+                            onClick={this.onTaskTableButtonClick}>
+                            TABLICA ZADAŃ
+                        </Button>
+
+                    </GridRow>
+
                 </Segment>
+
             </Container>
         )
     }

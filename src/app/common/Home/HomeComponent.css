@@ -1,4 +1,4 @@
-.userDetails{
+.mainPageContainer{
     padding: 15px 15px 15px;
     float: left;
     
@@ -7,6 +7,10 @@
     background-color: #ffffff; 
     margin: auto; */
    
+}
+
+.mainPageSegment{
+    height: 700px;
 }
 
 .data-field{
@@ -18,4 +22,24 @@
 }
 
 /*.data-field-header{} */
+
+
+.ui.button.bigBoxButton{
+    height: 200px;
+    width: 294px;
+    margin-left: 50px;
+    margin-top: 50px;
+    border-radius: 10px;
+    color: #ffffff;
+    font-size: 30px;
+    font-weight: 400;
+    background-color: #00b5ad;
+    box-shadow: 7px 5px #a8a7a7;
+}
+
+.ui.button.bigBoxButton:hover{
+    background-color:#009c95;
+
+}
+
 

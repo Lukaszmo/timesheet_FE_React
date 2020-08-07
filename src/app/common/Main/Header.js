@@ -15,8 +15,7 @@ class Header extends Component {
     render() {
         return (
             <div className="header-container">
-                Header
-
+                iProject
                 <div className="logout" onClick={this.logoutOperation}>
 
                     <Icon name='power off'></Icon><br></br>
