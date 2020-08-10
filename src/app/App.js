@@ -46,6 +46,9 @@ function App() {
                 <Route exact path='/urlopy-planowanie'
                     component={(props) => <MainContainer content={"PLANOWANIE IN PROGRESS..."} menuId={"VACATION"} />} />
 
+                <Route exact path='/tablica-zadan'
+                    component={(props) => <MainContainer content={"TABLICA ZADAŃ IN PROGRESS..."} menuId={"TASK_TABLE"} />} />
+
                 <Route exact path='/raporty'
                     component={(props) => <MainContainer content={"RAPORTY IN PROGRESS..."} menuId={"REPORTS"} />} />
 

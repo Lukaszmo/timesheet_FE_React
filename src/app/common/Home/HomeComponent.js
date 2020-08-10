@@ -5,16 +5,21 @@ import history from '../../../history';
 import './HomeComponent.css';
 import '../../../index.css';
 
+import { connect } from 'react-redux';
+import { setActiveMenuItemId } from "../Menu/Menu";
+
 
 class HomeComponent extends Component {
 
-    onTimesheetButtonClick() {
+    onTimesheetButtonClick = () => {
 
+        this.props.setActiveMenuItemId('TIMESHEET');
         history.push('/czas-pracy-rejestracja');
     }
 
-    onVacationButtonClick() {
+    onVacationButtonClick = () => {
 
+        this.props.setActiveMenuItemId('VACATION');
         history.push('/urlopy-dodaj-wniosek');
     }
 
@@ -60,4 +65,17 @@ class HomeComponent extends Component {
     }
 }
 // <Content content={this.props.content} /> content przekazywany w App.js*
-export default HomeComponent;
+//export default HomeComponent;
+
+const mapStateToProps = state => ({
+    menu: state.menu
+})
+
+const mapDispatchToProps = dispatch => ({
+    setActiveMenuItemId: (id) => dispatch(setActiveMenuItemId(id))
+})
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(HomeComponent);

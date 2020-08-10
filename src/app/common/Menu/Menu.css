@@ -38,16 +38,22 @@
 .menu-item{
     /*padding-left: 15px;
     padding-top: 10px; */
-    padding: 10px 10px 10px 30px; 
+    padding: 15px 10px 10px 15px; 
     display: flex;
     cursor: pointer;
     color: #c5c5c9;
     
 }
 
+
 .menu-item:hover {
     background-color: #3d4166;
-    color: #00b5ad;
+    color: #ffffff;
+}
+
+.active.menu-item {
+    background-color: #00b5ad;
+    color: #ffffff;
 }
 
 .submenu-item:hover {

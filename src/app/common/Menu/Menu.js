@@ -1,28 +1,49 @@
+
+const SET_ACTIVE_MENU_ITEM = 'SET_ACTIVE_MENU_ITEM';
+
+//actions
+export function setActiveMenuItem(id) {
+    return {
+        type: SET_ACTIVE_MENU_ITEM,
+        payload: {
+            activeMenuItem: id
+        }
+    }
+}
+
+export const setActiveMenuItemId = (menuItemId) => {
+
+    return (dispatch) => {
+        dispatch(setActiveMenuItem(menuItemId));
+    };
+
+}
+
 //przeniesc do konfiguracji
 export const menuItems = [
     {
         id: "HOME",
         name: "Strona główna",
         redirect: "/home",
-        image: {},
+        icon: 'home',
         subMenu: [
             {
                 id: 'HOME_SUB1',
                 name: "sub1",
                 redirect: "home_sub1",
-                image: {}
+                icon: ''
             },
             {
                 id: 'HOME_SUB2',
                 name: "sub2",
                 redirect: "home_sub2",
-                image: {}
+                icon: ''
             },
             {
                 id: 'HOME_SUB3',
                 name: "sub3",
                 redirect: "home_sub3",
-                image: {}
+                icon: ''
             }
         ]
     },
@@ -30,31 +51,31 @@ export const menuItems = [
         id: "TIMESHEET",
         name: "Czas pracy",
         redirect: "/czas-pracy-rejestracja",
-        image: {},
+        icon: 'clock',
         subMenu: [
             {
                 id: 'TIMESHEET_SUB',
                 name: "Rejestracja czasu",
                 redirect: "czas-pracy-rejestracja",
-                image: {}
+                icon: ''
             },
             {
                 id: 'TIMESHEET_LIST',
                 name: "Lista godzin",
                 redirect: "czas-pracy-lista",
-                image: {}
+                icon: ''
             },
             {
                 id: 'WORK_TIME_SCHEDULE',
                 name: "Grafik",
                 redirect: "grafik",
-                image: {}
+                icon: ''
             },
             {
                 id: 'SUMMARY',
                 name: "Podsumowanie",
                 redirect: "podsumowanie",
-                image: {}
+                icon: ''
             }
         ]
     },
@@ -62,33 +83,40 @@ export const menuItems = [
         id: "VACATION",
         name: "Urlopy",
         redirect: "/urlopy-dodaj-wniosek",
-        image: {},
+        icon: 'travel',
         subMenu: [
             {
                 id: 'VACATION_ADD',
                 name: "Dodaj wniosek",
                 redirect: "/urlopy-dodaj-wniosek",
-                image: {}
+                icon: ''
             },
             {
                 id: 'REQUEST_LIST',
                 name: "Lista wniosków",
                 redirect: "/urlopy-lista-wnioskow",
-                image: {}
+                icon: ''
             },
             {
                 id: 'VACATION_PLAN',
                 name: "Planowanie",
                 redirect: "/urlopy-planowanie",
-                image: {}
+                icon: ''
             }
         ]
+    },
+    {
+        id: "TASK_TABLE",
+        name: "Tablica zadań",
+        redirect: "/tablica-zadan",
+        icon: 'table',
+        subMenu: []
     },
     {
         id: "REPORTS",
         name: "Raporty",
         redirect: "/raporty",
-        image: {},
+        icon: 'chart bar',
         subMenu: []
     }
 ]
@@ -106,5 +134,23 @@ export const setSubMenu = (menuId) => {
         if (menuItems[i].id === menuId) {
             return menuItems[i];
         }
+    }
+}
+
+const initialState = {
+    activeMenuItem: 'HOME'
+};
+
+//reducers
+export default (state = initialState, action) => {
+    switch (action.type) {
+
+        case SET_ACTIVE_MENU_ITEM: {
+            return { ...state, ...action.payload };
+        }
+
+
+        default:
+            return state;
     }
 }
