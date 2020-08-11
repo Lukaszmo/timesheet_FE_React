@@ -1,22 +1,52 @@
 import React, { Component } from "react";
+import { connect } from 'react-redux';
 
 import SubMenuComponent from "./SubMenuComponent";
-import { setSubMenu } from "../Menu/Menu";
+import { setSubMenu, setActiveSubMenuItemId } from "../Menu/Menu";
 
 
 class SubMenuContainer extends Component {
 
-    subMenu = setSubMenu(this.props.data.menuId);
+    componentDidMount() {
+
+        /*  const menu = setSubMenu(this.props.data.menuId);
+          const subMenuItemId = menu.subMenu[0].id;
+          this.props.setActiveSubMenuItemId(subMenuItemId); */
+
+    }
+
+
+    handleSubMenuItemClick = (subMenuItemId) => {
+
+        this.props.setActiveSubMenuItemId(subMenuItemId);
+
+    }
+
+    menu = setSubMenu(this.props.data.menuId);
 
     render() {
 
         return (
             <SubMenuComponent
-                menu={this.subMenu}
+                submenu={this.menu}
+                handleSubMenuItemClick={this.handleSubMenuItemClick}
+                activeSubMenuItem={this.props.submenuId}
 
-            />
+            >
+            </SubMenuComponent>
         )
     }
 }
 
-export default SubMenuContainer;
+const mapStateToProps = state => ({
+    menu: state.menu
+})
+
+const mapDispatchToProps = dispatch => ({
+    setActiveSubMenuItemId: (id) => dispatch(setActiveSubMenuItemId(id))
+})
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(SubMenuContainer); 

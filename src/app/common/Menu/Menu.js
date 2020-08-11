@@ -1,20 +1,21 @@
 
-const SET_ACTIVE_MENU_ITEM = 'SET_ACTIVE_MENU_ITEM';
+const SET_ACTIVE_SUBMENU_ITEM = 'SET_ACTIVE_SUBMENU_ITEM';
 
 //actions
-export function setActiveMenuItem(id) {
+
+export function setActiveSubMenuItem(id) {
     return {
-        type: SET_ACTIVE_MENU_ITEM,
+        type: SET_ACTIVE_SUBMENU_ITEM,
         payload: {
-            activeMenuItem: id
+            activeSubMenuItem: id
         }
     }
 }
 
-export const setActiveMenuItemId = (menuItemId) => {
+export const setActiveSubMenuItemId = (menuItemId) => {
 
     return (dispatch) => {
-        dispatch(setActiveMenuItem(menuItemId));
+        dispatch(setActiveSubMenuItem(menuItemId));
     };
 
 }
@@ -54,7 +55,7 @@ export const menuItems = [
         icon: 'clock',
         subMenu: [
             {
-                id: 'TIMESHEET_SUB',
+                id: 'TIMESHEET_REGISTER',
                 name: "Rejestracja czasu",
                 redirect: "czas-pracy-rejestracja",
                 icon: ''
@@ -121,6 +122,8 @@ export const menuItems = [
     }
 ]
 
+
+
 //zwraca Menu Główne aplikacji
 export const setMenu = () => {
 
@@ -138,17 +141,16 @@ export const setSubMenu = (menuId) => {
 }
 
 const initialState = {
-    activeMenuItem: 'HOME'
+    activeSubMenuItem: ''
 };
 
 //reducers
 export default (state = initialState, action) => {
     switch (action.type) {
 
-        case SET_ACTIVE_MENU_ITEM: {
+        case SET_ACTIVE_SUBMENU_ITEM: {
             return { ...state, ...action.payload };
         }
-
 
         default:
             return state;

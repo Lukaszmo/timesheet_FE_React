@@ -9,15 +9,20 @@ import Header from "./Header";
 
 class MainComponent extends Component {
 
+
     render() {
+
 
         return (
             <div className="main-container">
-                <MenuContainer />
+                <MenuContainer menuId={this.props.menuId} />
+
+
 
                 <Header />
                 {/* <Content content={this.props.content} /> content przekazywany w App.js*/}
-                <SubMenuContainer data={this.props}></SubMenuContainer>
+
+                <SubMenuContainer data={this.props} submenuId={this.props.submenuId}></SubMenuContainer>
                 {this.props.content}
 
                 {/*<Footer /> */}

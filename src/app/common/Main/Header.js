@@ -1,15 +1,16 @@
 import React, { Component } from "react";
 import { Icon } from 'semantic-ui-react';
 
-import history from '../../../history';
+import { connect } from 'react-redux';
+import { userLogoutOperation } from '../../features/Login/Login';
 
 import './Header.css';
 
 class Header extends Component {
 
     logoutOperation = () => {
-        localStorage.clear();
-        history.push('/login');
+
+        this.props.userLogoutOperation(); // teraz to jest w Login.js być może trzeba przenieść do Logout?
     }
 
     render() {
@@ -28,6 +29,19 @@ class Header extends Component {
     }
 }
 
-export default Header;
+
+const mapStateToProps = state => ({
+    // userLogoutOperation: state.login.userLogoutOperation
+})
+
+//mapuje akcje na propsy, podajemy nazwy funkcji, które komponent bedzie mógł wywoływać, aby zlecić zmianę danych w store
+const mapDispatchToProps = dispatch => ({
+    userLogoutOperation: () => dispatch(userLogoutOperation())
+})
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Header);
 
 

@@ -20,31 +20,31 @@ function App() {
                 <Route exact path='/login' component={LoginContainer} />
                 <Route exact path='/' component={LoginContainer} />
                 <Route exact path='/home'
-                    component={(props) => <MainContainer content={<HomeContainer {...props} />} menuId={"HOME"} />} />
+                    component={(props) => <MainContainer content={<HomeContainer {...props} />} menuId={"HOME"} submenuId='HOME_SUB1' />} />
 
                 <Route exact path='/czas-pracy-rejestracja'
-                    component={(props) => <MainContainer content={<HoursContainer {...props} />} menuId={"TIMESHEET"} />} />
+                    component={(props) => <MainContainer content={<HoursContainer {...props} />} menuId={"TIMESHEET"} submenuId='TIMESHEET_REGISTER' />} />
 
                 <Route exact path='/czas-pracy-lista'
-                    component={(props) => <MainContainer content={<HoursListContainer {...props} />} menuId={"TIMESHEET"} />} />
+                    component={(props) => <MainContainer content={<HoursListContainer {...props} />} menuId={"TIMESHEET"} submenuId='TIMESHEET_LIST' />} />
 
                 <Route exact path='/czas-pracy-edycja'
-                    component={(props) => <MainContainer content={<HoursDetailsContainer {...props} />} menuId={"TIMESHEET"} />} />
+                    component={(props) => <MainContainer content={<HoursDetailsContainer {...props} />} menuId={"TIMESHEET"} submenuId='TIMESHEET_LIST' />} />
 
                 <Route exact path='/grafik'
-                    component={(props) => <MainContainer content={"GRAFIK IN PROGRESS..."} menuId={"TIMESHEET"} />} />
+                    component={(props) => <MainContainer content={"GRAFIK IN PROGRESS..."} menuId={"TIMESHEET"} submenuId='WORK_TIME_SCHEDULE' />} />
 
                 <Route exact path='/podsumowanie'
-                    component={(props) => <MainContainer content={"PODSUMOWANIE IN PROGRESS..."} menuId={"TIMESHEET"} />} />
+                    component={(props) => <MainContainer content={"PODSUMOWANIE IN PROGRESS..."} menuId={"TIMESHEET"} submenuId='SUMMARY' />} />
 
                 <Route exact path='/urlopy-dodaj-wniosek'
-                    component={(props) => <MainContainer content={<VacationContainer {...props} />} menuId={"VACATION"} />} />
+                    component={(props) => <MainContainer content={<VacationContainer {...props} />} menuId={"VACATION"} submenuId='VACATION_ADD' />} />
 
                 <Route exact path='/urlopy-lista-wnioskow'
-                    component={(props) => <MainContainer content={<VacationListContainer {...props} />} menuId={"VACATION"} />} />
+                    component={(props) => <MainContainer content={<VacationListContainer {...props} />} menuId={"VACATION"} submenuId='REQUEST_LIST' />} />
 
                 <Route exact path='/urlopy-planowanie'
-                    component={(props) => <MainContainer content={"PLANOWANIE IN PROGRESS..."} menuId={"VACATION"} />} />
+                    component={(props) => <MainContainer content={"PLANOWANIE IN PROGRESS..."} menuId={"VACATION"} submenuId='VACATION_PLAN' />} />
 
                 <Route exact path='/tablica-zadan'
                     component={(props) => <MainContainer content={"TABLICA ZADAŃ IN PROGRESS..."} menuId={"TASK_TABLE"} />} />

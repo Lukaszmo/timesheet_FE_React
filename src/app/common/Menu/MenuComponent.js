@@ -7,11 +7,6 @@ import './Menu.css';
 
 export default class MenuComponent extends Component {
 
-    handleItemClick = (e, { name }) => {
-
-        this.props.handleMenuItemClick(name);
-    }
-
     render() {
 
         const menu = this.props.menu;
@@ -25,11 +20,8 @@ export default class MenuComponent extends Component {
 
                     {menu.map((element, index) => {
 
-                        const id = element.id;
-                        const activeItem = this.props.activeMenuItem;
                         let active = false;
-
-                        if (id === activeItem) { active = true; }
+                        if (element.id === this.props.activeMenuItem) { active = true; }
 
                         return (
                             <Menu.Item
@@ -38,8 +30,7 @@ export default class MenuComponent extends Component {
                                 name={element.id}
                                 key={index}
                                 className="menu-item"
-                                active={active}
-                                onClick={this.handleItemClick}>
+                                active={active}>
                                 <Icon name={element.icon}></Icon>
                                 &nbsp;&nbsp; {element.name}
                             </Menu.Item>

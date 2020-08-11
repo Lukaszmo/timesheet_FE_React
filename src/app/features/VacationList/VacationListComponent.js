@@ -76,7 +76,7 @@ class VacationListComponent extends Component {
 
 
     render() {
-        console.log(this.props.data);
+
         return (
             <Container >
                 <Segment color="teal">

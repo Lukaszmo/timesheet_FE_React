@@ -60,3 +60,8 @@
     background-color: #c9c7c7;
     color: #00b5ad;
 }
+
+.active.submenu-item {
+    background-color: #25d1c8;
+    color: #ffffff;
+}
