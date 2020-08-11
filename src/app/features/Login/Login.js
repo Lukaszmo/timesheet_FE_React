@@ -6,6 +6,7 @@ import { GENERATE } from '../../../routes';
 //action types
 const LOGIN_FAIL = 'LOGIN_FAIL'
 const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
+const LOGOUT = 'LOGOUT'
 
 //actions
 function loginSuccess(userId) {
@@ -20,6 +21,12 @@ function loginSuccess(userId) {
 function loginFail() {
     return {
         type: LOGIN_FAIL,
+    }
+}
+
+function logoutOperation() {
+    return {
+        type: LOGOUT,
     }
 }
 
@@ -49,6 +56,18 @@ export function userLoginOperation(user) {
     }
 }
 
+export function userLogoutOperation() {
+
+    return function (dispatch) {
+
+        dispatch(logoutOperation());
+        history.push('/login');
+        toastr.success("Poprawne wylogowanie");
+    }
+
+}
+
+
 const initialState = {
     loginFailureCounter: 0
 }
@@ -69,6 +88,12 @@ export default (state = initialState, action) => {
                 loginFailureCounter: 0
             };
         }
+        case LOGOUT: {
+            return {
+                ...state
+            };
+        }
+
         //jeśli nie było żadnej akcji zwraca stan bez zmiany
         default: return state;
     }

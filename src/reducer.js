@@ -8,7 +8,17 @@ import hour from './app/features/Hours/Hours';
 import vacation from './app/features/Vacation/Vacation';
 import menu from './app/common/Menu/Menu';
 
-export default combineReducers({
+/*export default combineReducers({
+    toastr: toastrReducer,
+    login: login,
+    user: user,
+    hour: hour,
+    loader: loader,
+    vacation: vacation,
+    menu: menu
+}) */
+
+const appReducer = combineReducers({
     toastr: toastrReducer,
     login: login,
     user: user,
@@ -17,3 +27,16 @@ export default combineReducers({
     vacation: vacation,
     menu: menu
 })
+
+const rootReducer = (state, action) => {
+    if (action.type === 'LOGOUT') {
+
+        // clear local storage and state after logout
+        localStorage.clear();
+        state = undefined
+    }
+
+    return appReducer(state, action)
+}
+
+export default rootReducer;
