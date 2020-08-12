@@ -14,9 +14,20 @@ class Header extends Component {
     }
 
     render() {
+
+        let logo2 = <div className="logo2">iProject</div>
+
+        if (this.props.menuId === 'HOME') {
+            logo2 = null;
+        }
+
         return (
             <div className="header-container">
-                iProject
+                <div className="logo">Logo</div>
+
+                {logo2}
+
+                HEADER
                 <div className="logout" onClick={this.logoutOperation}>
 
                     <Icon name='power off'></Icon><br></br>

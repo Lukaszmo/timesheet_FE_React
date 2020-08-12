@@ -1,67 +1,46 @@
-.main-menu{
-    float: left;
-    display: block;
-    height: 860px;
-    width: 10%;
+.ui.menu.main-menu{
+    top: 60px;
     background-color: #323658;
     
-}
+}  
 
-.submenu{
-    float: left;
-    display: block;
-    height: 800px;
-    width: 10%;
+.ui.menu.submenu{
+    display: block; 
+    top: 60px;
+    left: 150px;
+    width: 130px;  
     background-color: #e3e3e3;
-}
-
-
-.logo{
-    height: 60px;
-    text-align: center;
-    padding: 25px;
-    background-color: #ffffff;
-    
 }
 
 /*.menu-list{
     
-} */
+} 
 
-.submenu-item{
-    padding: 10px 10px 10px 30px;
-    display: flex;
-    cursor: pointer;
-    color: #000000;
-}
+.item.submenu-item{
 
-.menu-item{
-    /*padding-left: 15px;
-    padding-top: 10px; */
-    padding: 15px 10px 10px 15px; 
-    display: flex;
-    cursor: pointer;
-    color: #c5c5c9;
-    
-}
+}  */
+
+.ui.menu .item.menu-item{      
+    color: #c5c5c9 ;
+}  
 
 
-.menu-item:hover {
+.ui.menu .item.menu-item:hover {
     background-color: #3d4166;
     color: #ffffff;
 }
 
-.active.menu-item {
+.ui.menu .item.active.menu-item {
     background-color: #00b5ad;
     color: #ffffff;
 }
 
-.submenu-item:hover {
+.ui.menu .item.submenu-item:hover {
     background-color: #c9c7c7;
     color: #00b5ad;
 }
 
-.active.submenu-item {
+.ui.menu .item.active.submenu-item {
     background-color: #25d1c8;
     color: #ffffff;
 }

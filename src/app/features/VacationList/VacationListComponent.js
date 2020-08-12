@@ -78,16 +78,14 @@ class VacationListComponent extends Component {
     render() {
 
         return (
-            <Container >
+            <div>
                 <Segment color="teal">
                     <Header size='medium'>Lista wniosków</Header>
 
                     <TableComponent headers={this.headers} data={this.props.data} rowsPerPage={15} />
 
                 </Segment>
-
-
-            </Container>
+            </div>
 
         )
     }

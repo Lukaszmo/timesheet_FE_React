@@ -12,17 +12,23 @@ class MainComponent extends Component {
 
     render() {
 
+        const menuId = this.props.menuId;
+
+        let subMenu = <SubMenuContainer data={this.props} submenuId={this.props.submenuId}></SubMenuContainer>
+
+        if (menuId === 'HOME') {
+
+            subMenu = null;
+        }
 
         return (
             <div className="main-container">
+                <Header menuId={menuId} />
                 <MenuContainer menuId={this.props.menuId} />
 
-
-
-                <Header />
                 {/* <Content content={this.props.content} /> content przekazywany w App.js*/}
 
-                <SubMenuContainer data={this.props} submenuId={this.props.submenuId}></SubMenuContainer>
+                {subMenu}
                 {this.props.content}
 
                 {/*<Footer /> */}

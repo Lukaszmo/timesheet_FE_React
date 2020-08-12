@@ -36,6 +36,25 @@
     color: #008080;
 } */
 
+.logo{
+    float: left;
+    position: fixed;
+    height: 60px;
+    width: 150px;
+    text-align: center;
+    padding: 25px;
+    background-color: #ffffff;
+}
 
+.logo2{
+    float: left;
+    position: fixed;
+    height: 60px;
+    left: 150px;
+    width: 130px;
+    text-align: center;
+    padding: 25px;
+    background-color: #ffffff;
+}
 
 

@@ -1,7 +1,6 @@
-.hours{
-    padding: 15px 15px 15px;
-    float: left;
-   
+.ui.container.hours{
+    padding: 0px 15px 15px;
+    margin-left: 300px !important;
 }
 
 .tableHeader{

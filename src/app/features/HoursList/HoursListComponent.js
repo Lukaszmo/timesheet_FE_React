@@ -104,7 +104,7 @@ class HoursListComponent extends Component {
 
 
         return (
-            <Container >
+            <div >
                 <Segment color="teal" className="test">
                     <Header size='medium'>Lista godzin</Header>
                     <Header className='filter-header'>Filtry</Header>
@@ -174,7 +174,7 @@ class HoursListComponent extends Component {
                     <TableComponent headers={this.headers} data={this.props.data} onTableChange={this.props.onTableChange} rowsPerPage={10} />
 
                 </Segment>
-            </Container >
+            </div >
         )
     }
 }
