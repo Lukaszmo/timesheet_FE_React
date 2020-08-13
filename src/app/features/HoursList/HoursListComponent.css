@@ -8,3 +8,7 @@
 .ui.segment.test{
     background-color: #f9fafb;
 }
+
+.ui.dropdown.dropdown-userlist{
+    width: max-content;
+}

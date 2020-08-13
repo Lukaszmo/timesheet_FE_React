@@ -17,13 +17,26 @@ class HoursAddComponent extends Component {
         setFieldValue(data.name, data.value);
     }
 
+    //do zrobienia Api
+    projectList = [
+        { key: 1, text: "Project A", value: "A" },
+        { key: 2, text: "Project B", value: "B" },
+        { key: 3, text: "Project C", value: "C" }
+    ]
+
+    taskList = [
+        { key: 1, text: "Task A", value: "A" },
+        { key: 2, text: "Task B", value: "B" },
+        { key: 3, text: "Task C", value: "C" }
+    ]
+
     render() {
 
         return (
             <Segment color="teal">
                 <Header size='medium'>Rejestracja czasu</Header>
                 <Formik
-                    initialValues={{ date: '', quantity: '', type: 1 }}
+                    initialValues={{ date: '', quantity: '', type: 1, projectCode: '', taskCode: '' }}
 
                     validationSchema={this.props.validationSchema}
 
@@ -46,7 +59,7 @@ class HoursAddComponent extends Component {
                                         <Grid.Column width={2}>
                                             <p className='data-field-header'>Typ</p>
                                         </Grid.Column >
-                                        <Grid.Column width={2}>
+                                        <Grid.Column width={3}>
                                             <Dropdown fluid selection
                                                 name='type'
                                                 className='dropdown-hour-types'
@@ -56,13 +69,28 @@ class HoursAddComponent extends Component {
                                                 options={this.props.types} />
                                             {errors.type && touched.type ? <div><CustomLabel text={errors.type}></CustomLabel></div> : null}
                                         </Grid.Column>
+
+                                        <Grid.Column width={2}>
+                                            <p className='data-field-header'>Projekt</p>
+                                        </Grid.Column >
+                                        <Grid.Column width={3}>
+                                            <Dropdown fluid selection
+                                                name='projectCode'
+                                                className='dropdown-hour-project'
+                                                placeholder="Wybierz.."
+                                                value={values.projectCode}
+                                                onChange={(e, data) => this.dropdownHandleChange(e, data, setFieldValue)}
+                                                options={this.projectList} />
+                                            {errors.type && touched.type ? <div><CustomLabel text={errors.type}></CustomLabel></div> : null}
+                                        </Grid.Column>
+
                                     </Grid.Row>
 
                                     <Grid.Row>
                                         <Grid.Column width={2}>
                                             <p className='data-field-header'>Data</p>
                                         </Grid.Column >
-                                        <Grid.Column width={2}>
+                                        <Grid.Column width={3}>
                                             <Input
                                                 type='date'
                                                 name='date'
@@ -70,16 +98,32 @@ class HoursAddComponent extends Component {
                                                 onChange={handleChange} />
                                             {errors.date && touched.date ? <div><CustomLabel text={errors.date}></CustomLabel></div> : null}
                                         </Grid.Column>
+
+                                        <Grid.Column width={2}>
+                                            <p className='data-field-header'>Zadanie</p>
+                                        </Grid.Column >
+                                        <Grid.Column width={3}>
+                                            <Dropdown fluid selection
+                                                name='taskCode'
+                                                className='dropdown-hour-project'
+                                                placeholder="Wybierz.."
+                                                value={values.taskCode}
+                                                onChange={(e, data) => this.dropdownHandleChange(e, data, setFieldValue)}
+                                                options={this.taskList} />
+                                            {errors.type && touched.type ? <div><CustomLabel text={errors.type}></CustomLabel></div> : null}
+                                        </Grid.Column>
+
                                     </Grid.Row>
 
                                     <Grid.Row>
                                         <Grid.Column width={2}>
                                             <p className='data-field-header'>Ilość godzin</p>
                                         </Grid.Column >
-                                        <Grid.Column width={2}>
+                                        <Grid.Column width={3}>
                                             <Input
                                                 type='number'
                                                 name='quantity'
+                                                className='hours-quantity'
                                                 value={values.quantity}
                                                 onChange={handleChange} />
                                             {errors.quantity && touched.quantity ? <div><CustomLabel text={errors.quantity}></CustomLabel></div> : null}

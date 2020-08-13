@@ -149,7 +149,7 @@ class HoursListComponent extends Component {
                                             <Grid.Column width={2}>
                                                 <Dropdown fluid selection disabled={this.props.disabled}
                                                     name='user'
-                                                    className='dropdown-hour-types'
+                                                    className='dropdown-userlist'
                                                     value={values.user}
                                                     options={this.props.userList}
                                                     onChange={(e, data) => this.dropdownHandleChange(e, data, setFieldValue)}

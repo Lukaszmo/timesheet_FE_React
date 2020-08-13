@@ -66,3 +66,8 @@
     width: 140px !important;
 }
 
+.ui.input.hours-quantity{
+    width: 100px;
+    display: grid;
+}
+

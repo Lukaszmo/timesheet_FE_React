@@ -20,10 +20,8 @@ class HoursListContainer extends Component {
             dateTo: getLastDayOfMonth(currentDate)
         }
 
-        this.props.fetchAllRecords(this.props.user.id, filters);
         this.props.fetchInferiors(this.props.user.id);
-
-
+        this.props.fetchAllRecords(this.props.user.id, filters);
     }
 
     onTableChange = (rowAction, rowId) => {
