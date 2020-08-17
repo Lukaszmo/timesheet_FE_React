@@ -2,7 +2,7 @@ import axios from 'axios';
 import { toastr } from 'react-redux-toastr';
 import history from '../../../history';
 
-import { HOUR_TYPES, HOURS } from '../../../routes';
+import { HOUR_TYPES, HOURS, USERS } from '../../../routes';
 import * as Yup from 'yup';
 
 export const HourValidationSchema = Yup.object().shape({
@@ -106,7 +106,8 @@ export const fetchAllRecords = (userId, filters) => {
     const dateto = filters.dateTo
 
     return (dispatch) => {
-        axios.get(HOURS + '?userid=' + userId + '&date[after]=' + datefrom + '&date[before]=' + dateto).then(response => {
+
+        axios.get(USERS + '/' + userId + '/' + 'hours' + '?date[after]=' + datefrom + '&date[before]=' + dateto).then(response => {
 
             dispatch(setRecords(response.data['hydra:member']));
         })
