@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 import { Formik } from 'formik';
-import { Segment, Header, Button, Dropdown, Grid, Input, Form, GridRow, Label } from 'semantic-ui-react';
+import { Segment, Header, Button, Dropdown, Grid, Input, Form, GridRow, Label, TextArea } from 'semantic-ui-react';
 import CustomLabel from '../../common/CustomLabel/CustomLabel';
 import './HoursComponent.css';
 
@@ -52,6 +52,7 @@ class HoursDetailsComponent extends Component {
         console.log(this.props);
         const type = this.props.recordDetails[0].type.id;
         const quantity = this.props.recordDetails[0].quantity;
+        const comment = this.props.recordDetails[0].comment;
         const date = this.props.recordDetails[0].date.substr(0, 10);  //extract only date from datetime
         const timestamp = this.props.recordDetails[0].timestamp;
         const timestampDate = timestamp.substr(0, 10);
@@ -119,7 +120,7 @@ class HoursDetailsComponent extends Component {
                 <Header size='medium'>Edycja godzin</Header>
 
                 <Formik
-                    initialValues={{ date: date, quantity: quantity, type: type }}
+                    initialValues={{ date: date, quantity: quantity, type: type, comment: comment }}
 
                     validationSchema={this.props.validationSchema}
 
@@ -185,6 +186,18 @@ class HoursDetailsComponent extends Component {
                                                 value={values.quantity}
                                                 onChange={handleChange} />
                                             {errors.quantity && touched.quantity ? <div><CustomLabel text={errors.quantity}></CustomLabel></div> : null}
+                                        </Grid.Column>
+                                    </Grid.Row>
+
+                                    <Grid.Row>
+                                        <Grid.Column width={2}>
+                                            Komentarz
+                                        </Grid.Column >
+                                        <Grid.Column width={2}>
+                                            <TextArea disabled={this.props.disabled}
+                                                className='hours-comment'
+                                                value={values.comment}
+                                                onChange={handleChange} />
                                         </Grid.Column>
                                     </Grid.Row>
 

@@ -71,3 +71,11 @@
     display: grid;
 }
 
+.hours-comment{
+    width: 200px;
+}
+.hours-comment:disabled{
+    opacity: .45;
+    width: 200px !important; 
+}
+
