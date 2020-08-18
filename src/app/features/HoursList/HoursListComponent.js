@@ -48,7 +48,7 @@ class HoursListComponent extends Component {
         {
             id: "1",
             columnName: "Data",
-            className: "width10",
+            className: "width5",
             dataField: 'date',
             type: "data",
             subType: "date",
@@ -71,13 +71,27 @@ class HoursListComponent extends Component {
         },
         {
             id: "3",
+            columnName: "Projekt",
+            className: "width10",
+            dataField: 'projectCode',
+            type: "data"
+        },
+        {
+            id: "4",
+            columnName: "Zadanie",
+            className: "width10",
+            dataField: 'taskCode',
+            type: "data"
+        },
+        {
+            id: "5",
             columnName: "Ilość godzin",
             className: "width5",
             dataField: 'quantity',
             type: "data"
         },
         {
-            id: "4",
+            id: "6",
             columnName: "",
             className: "width5",
             dataField: 'name2',
@@ -86,7 +100,7 @@ class HoursListComponent extends Component {
             iconName: "edit outline"
         },
         {
-            id: "5",
+            id: "7",
             columnName: "",
             className: "width5",
             dataField: 'name2',
