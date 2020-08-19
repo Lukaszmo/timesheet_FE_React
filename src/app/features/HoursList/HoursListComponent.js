@@ -73,14 +73,16 @@ class HoursListComponent extends Component {
             id: "3",
             columnName: "Projekt",
             className: "width10",
-            dataField: 'projectCode',
+            dataField: 'project',
+            subField: 'description',
             type: "data"
         },
         {
             id: "4",
             columnName: "Zadanie",
             className: "width10",
-            dataField: 'taskCode',
+            dataField: 'task',
+            subField: 'description',
             type: "data"
         },
         {

@@ -1,8 +1,9 @@
 import axios from 'axios';
-import { USERS } from '../../../routes';
+import { USERS, USER_PROJECTS } from '../../../routes';
 
 const SET_USER = 'SET_USER';
 const SET_INFERIORS = 'SET_INFERIORS';
+const SET_USER_PROJECTS = 'SET_USER_PROJECTS';
 
 //actions
 export function setUserAction(user) {
@@ -17,6 +18,15 @@ export function setInferiors(inferiors) {
         type: SET_INFERIORS,
         payload: {
             inferiors: inferiors
+        }
+    }
+}
+
+export function setUserProjects(projectList) {
+    return {
+        type: SET_USER_PROJECTS,
+        payload: {
+            projectList: projectList
         }
     }
 }
@@ -58,20 +68,46 @@ export const fetchInferiors = (managerId) => {
     }
 }
 
+export const getUserProjects = (userId) => {
+
+    return (dispatch) => {
+        axios.get(USER_PROJECTS + '/' + userId).then(response => {
+
+            const projectList = response.data.map(function (object) {
+                return ({
+                    'key': object.id,
+                    'text': object.description,
+                    'value': object.id
+                })
+            })
+
+            dispatch(setUserProjects(projectList));
+        })
+    }
+}
+
+
 export const generateUserListForDropdown = (listOfInferiors, loggedUser) => {
 
-    const listOfUsers = listOfInferiors.map((object) => {
-        return {
-            key: object.id,
-            value: object.id,
-            text: object.firstname + ' ' + object.lastname
-        };
-    });
+    let listOfUsers = null;
 
-    const userName = loggedUser.firstname + ' ' + loggedUser.lastname;
-    const loggedUserId = loggedUser.id;
+    if (typeof listOfInferiors != "undefined") {
 
-    listOfUsers.push({ key: loggedUserId, text: userName, value: loggedUserId });
+        listOfUsers = listOfInferiors.map((object) => {
+            return {
+                key: object.id,
+                value: object.id,
+                text: object.firstname + ' ' + object.lastname
+            };
+        });
+
+        const userName = loggedUser.firstname + ' ' + loggedUser.lastname;
+        const loggedUserId = loggedUser.id;
+
+        listOfUsers.push({ key: loggedUserId, text: userName, value: loggedUserId });
+    }
+
+
 
     return listOfUsers;
 };
@@ -95,6 +131,11 @@ export default (state = initialState, action) => {
         }
 
         case SET_INFERIORS: {
+            return { ...state, ...action.payload };
+
+        }
+
+        case SET_USER_PROJECTS: {
             return { ...state, ...action.payload };
 
         }

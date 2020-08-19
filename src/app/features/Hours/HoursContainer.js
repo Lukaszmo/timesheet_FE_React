@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import HoursAddComponent from "./HoursAddComponent";
 import { fetchAllTypes, addRecord, HourValidationSchema } from "./Hours";
+import { getUserProjects } from "./../User/User";
 import { Container } from 'semantic-ui-react';
 
 class HoursContainer extends Component {
@@ -10,6 +11,7 @@ class HoursContainer extends Component {
     componentDidMount() {
 
         this.props.fetchAllTypes();
+        this.props.getUserProjects(this.props.user.id);
     }
 
     onSubmit = (object) => {
@@ -17,11 +19,12 @@ class HoursContainer extends Component {
         this.props.addRecord(object, this.props.user.id);
     }
 
+
     render() {
 
         return (
             <Container className="hours">
-                <HoursAddComponent types={this.props.hourTypes} onSubmit={this.onSubmit} validationSchema={HourValidationSchema} />
+                <HoursAddComponent types={this.props.hourTypes} onSubmit={this.onSubmit} validationSchema={HourValidationSchema} projectList={this.props.user.projectList} />
             </Container>
         );
     }
@@ -35,7 +38,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     fetchAllTypes: () => dispatch(fetchAllTypes()),
-    addRecord: (object, id) => dispatch(addRecord(object, id))
+    addRecord: (object, id) => dispatch(addRecord(object, id)),
+    getUserProjects: (id) => dispatch(getUserProjects(id))
 })
 
 export default connect(

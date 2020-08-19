@@ -8,3 +8,4 @@ export const VACREQUEST = API_ROOT + 'vacation_requests';
 export const VACREQ_TYPES = API_ROOT + 'vacreq_types';
 
 export const MAIL = ROOT + 'mail';
+export const USER_PROJECTS = ROOT + 'user_projects'

@@ -18,25 +18,22 @@ class HoursAddComponent extends Component {
     }
 
     //do zrobienia Api
-    projectList = [
-        { key: 1, text: "Project A", value: "A" },
-        { key: 2, text: "Project B", value: "B" },
-        { key: 3, text: "Project C", value: "C" }
-    ]
 
     taskList = [
-        { key: 1, text: "Task A", value: "A" },
-        { key: 2, text: "Task B", value: "B" },
-        { key: 3, text: "Task C", value: "C" }
+        { key: 1, text: "Task A", value: "1" },
+        { key: 2, text: "Task B", value: "2" },
+        { key: 3, text: "Task C", value: "3" }
     ]
 
     render() {
+
+        console.log(this.props);
 
         return (
             <Segment color="teal">
                 <Header size='medium'>Rejestracja czasu</Header>
                 <Formik
-                    initialValues={{ date: '', quantity: '', type: 1, projectCode: '', taskCode: '', comment: '' }}
+                    initialValues={{ date: '', quantity: '', type: 1, project: '', task: '', comment: '' }}
 
                     validationSchema={this.props.validationSchema}
 
@@ -75,12 +72,12 @@ class HoursAddComponent extends Component {
                                         </Grid.Column >
                                         <Grid.Column width={3}>
                                             <Dropdown fluid selection
-                                                name='projectCode'
+                                                name='project'
                                                 className='dropdown-hour-project'
                                                 placeholder="Wybierz.."
-                                                value={values.projectCode}
+                                                value={values.project}
                                                 onChange={(e, data) => this.dropdownHandleChange(e, data, setFieldValue)}
-                                                options={this.projectList} />
+                                                options={this.props.projectList} />
                                         </Grid.Column>
 
                                     </Grid.Row>
@@ -103,10 +100,10 @@ class HoursAddComponent extends Component {
                                         </Grid.Column >
                                         <Grid.Column width={3}>
                                             <Dropdown fluid selection
-                                                name='taskCode'
+                                                name='task'
                                                 className='dropdown-hour-task'
                                                 placeholder="Wybierz.."
-                                                value={values.taskCode}
+                                                value={values.task}
                                                 onChange={(e, data) => this.dropdownHandleChange(e, data, setFieldValue)}
                                                 options={this.taskList} />
                                         </Grid.Column>
