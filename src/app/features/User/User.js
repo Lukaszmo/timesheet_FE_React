@@ -34,10 +34,8 @@ export function setUserProjects(projectList) {
 //operations
 export const getLoggedUser = (id) => {
 
-    const token = localStorage.getItem('token');
-
     return (dispatch) => {
-        return axios.get(USERS + '/' + id, { headers: { "Authorization": `Bearer ${token}` } })
+        return axios.get(USERS + '/' + id)
             .then((response) => {
                 dispatch(setUserAction(response.data));
                 //console.log(response.data);
@@ -50,9 +48,7 @@ export const getLoggedUser = (id) => {
 
 export async function getUserDetails(id) {
 
-    const token = localStorage.getItem('token');
-
-    const resp = axios.get(USERS + '/' + id, { headers: { "Authorization": `Bearer ${token}` } })
+    const resp = axios.get(USERS + '/' + id)
 
     return await resp;
 }
