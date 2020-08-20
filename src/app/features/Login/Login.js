@@ -62,7 +62,6 @@ export function userLogoutOperation() {
 
         dispatch(logoutOperation());
         history.push('/login');
-        toastr.success("Poprawne wylogowanie");
     }
 
 }
