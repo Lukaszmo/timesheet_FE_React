@@ -69,13 +69,17 @@ export const getUserProjects = (userId) => {
     return (dispatch) => {
         axios.get(USER_PROJECTS + '/' + userId).then(response => {
 
-            const projectList = response.data.map(function (object) {
-                return ({
-                    'key': object.id,
-                    'text': object.description,
-                    'value': object.id
+            let projectList = null;
+
+            if (response.data.length > 0) {
+                projectList = response.data.map(function (object) {
+                    return ({
+                        'key': object.id,
+                        'text': object.description,
+                        'value': object.id
+                    })
                 })
-            })
+            }
 
             dispatch(setUserProjects(projectList));
         })
