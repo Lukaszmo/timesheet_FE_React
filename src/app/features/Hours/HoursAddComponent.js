@@ -7,6 +7,15 @@ import CustomLabel from '../../common/CustomLabel/CustomLabel';
 
 class HoursAddComponent extends Component {
 
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            taskDropdownDisabled: 1
+        }
+    }
+
+
     onSubmit(values) {
 
         this.props.onSubmit(values);
@@ -14,20 +23,17 @@ class HoursAddComponent extends Component {
 
     dropdownHandleChange(e, data, setFieldValue) {
 
+        if (data.name === 'project') {
+
+            this.props.onProjectDropdownChange(data.value);
+            this.setState({ taskDropdownDisabled: 0 })
+        }
+
         setFieldValue(data.name, data.value);
     }
 
-    //do zrobienia Api
-
-    taskList = [
-        { key: 1, text: "Task A", value: "1" },
-        { key: 2, text: "Task B", value: "2" },
-        { key: 3, text: "Task C", value: "3" }
-    ]
 
     render() {
-
-        console.log(this.props);
 
         return (
             <Segment color="teal">
@@ -100,12 +106,13 @@ class HoursAddComponent extends Component {
                                         </Grid.Column >
                                         <Grid.Column width={3}>
                                             <Dropdown fluid selection
+                                                disabled={this.state.taskDropdownDisabled}
                                                 name='task'
                                                 className='dropdown-hour-task'
                                                 placeholder="Wybierz.."
                                                 value={values.task}
                                                 onChange={(e, data) => this.dropdownHandleChange(e, data, setFieldValue)}
-                                                options={this.taskList} />
+                                                options={this.props.tasks} />
                                         </Grid.Column>
 
                                     </Grid.Row>
