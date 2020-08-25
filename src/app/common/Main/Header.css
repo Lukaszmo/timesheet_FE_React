@@ -57,4 +57,15 @@
     background-color: #ffffff;
 }
 
+.logged-in-username{ 
+    float: right;
+    width: 100px;
+    height: 60px;
+    padding: 10px;
+    color: #838282;
+    border: 1px;
+    border-right-style: solid;
+    border-right-color: #e6e6e6;
+}
+
 

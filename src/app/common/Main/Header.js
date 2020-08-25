@@ -28,11 +28,18 @@ class Header extends Component {
                 {logo2}
 
                 HEADER
+
+
                 <div className="logout" onClick={this.logoutOperation}>
+
 
                     <Icon name='power off'></Icon><br></br>
                     <p>Wyloguj</p>
 
+                </div>
+                <div className="logged-in-username">
+                    <Icon name='user'></Icon><br></br>
+                    {this.props.user.username}
                 </div>
 
             </div>
@@ -42,6 +49,7 @@ class Header extends Component {
 
 
 const mapStateToProps = state => ({
+    user: state.user
     // userLogoutOperation: state.login.userLogoutOperation
 })
 
