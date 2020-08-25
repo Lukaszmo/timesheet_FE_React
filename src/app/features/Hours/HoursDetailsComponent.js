@@ -45,6 +45,11 @@ class HoursDetailsComponent extends Component {
 
     dropdownHandleChange(e, data, setFieldValue) {
 
+        if (data.name === 'project') {
+
+            this.props.onProjectDropdownChange(data.value);
+        }
+
         setFieldValue(data.name, data.value);
     }
 

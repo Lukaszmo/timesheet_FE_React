@@ -44,9 +44,15 @@ class HoursDetailsContainer extends Component {
 
     }
 
+    onProjectDropdownChange = (projectId) => {
+
+        fetchProjectTasks(projectId).then(resp => this.setState({ tasks: generateTasksForDropdown(resp.data) }));
+
+    }
+
     isRecordOwner(recordOwnerId) {
 
-        recordOwnerId = 2; //dla testów
+        //recordOwnerId = 2; //dla testów
 
         console.log('isRecordOwner');
 
@@ -76,7 +82,8 @@ class HoursDetailsContainer extends Component {
                     acceptor={this.state.acceptor}
                     acceptorid={this.state.acceptorid}
                     projects={this.props.user.projectList}
-                    tasks={this.state.tasks} />
+                    tasks={this.state.tasks}
+                    onProjectDropdownChange={this.onProjectDropdownChange} />
             </Container>
         );
     }
