@@ -54,6 +54,8 @@ class HoursDetailsComponent extends Component {
         const quantity = this.props.recordDetails[0].quantity;
         const comment = this.props.recordDetails[0].comment;
         const date = this.props.recordDetails[0].date.substr(0, 10);  //extract only date from datetime
+        const project = this.props.recordDetails[0].project.id;
+        const task = this.props.recordDetails[0].task.id;
         const timestamp = this.props.recordDetails[0].timestamp;
         const timestampDate = timestamp.substr(0, 10);
         const timestampTime = timestamp.substr(11, 8);
@@ -120,7 +122,7 @@ class HoursDetailsComponent extends Component {
                 <Header size='medium'>Edycja godzin</Header>
 
                 <Formik
-                    initialValues={{ date: date, quantity: quantity, type: type, comment: comment }}
+                    initialValues={{ date: date, quantity: quantity, type: type, comment: comment, project: project, task: task }}
 
                     validationSchema={this.props.validationSchema}
 
@@ -142,7 +144,7 @@ class HoursDetailsComponent extends Component {
                                     <Grid.Row>
                                         <Grid.Column width={2}>
                                             Użytkownik</Grid.Column >
-                                        <Grid.Column width={2}>
+                                        <Grid.Column width={3}>
                                             <p className='data-field'> {employeeName} </p>
                                         </Grid.Column>
                                     </Grid.Row>
@@ -150,7 +152,7 @@ class HoursDetailsComponent extends Component {
                                         <Grid.Column width={2}>
                                             Typ
                                         </Grid.Column >
-                                        <Grid.Column width={2}>
+                                        <Grid.Column width={3}>
                                             <Dropdown fluid selection disabled={this.props.disabled}
                                                 name='type'
                                                 className='dropdown-hour-types'
@@ -159,13 +161,26 @@ class HoursDetailsComponent extends Component {
                                                 options={this.props.types} />
                                             {errors.type && touched.type ? <div><CustomLabel text={errors.type}></CustomLabel></div> : null}
                                         </Grid.Column>
+
+                                        <Grid.Column width={2}>
+                                            Projekt
+                                        </Grid.Column >
+                                        <Grid.Column width={3}>
+                                            <Dropdown fluid selection disabled={this.props.disabled}
+                                                name='project'
+                                                className='dropdown-hour-project'
+                                                value={values.project}
+                                                onChange={(e, data) => this.dropdownHandleChange(e, data, setFieldValue)}
+                                                options={this.props.projects} />
+                                            {errors.project && touched.project ? <div><CustomLabel text={errors.project}></CustomLabel></div> : null}
+                                        </Grid.Column>
                                     </Grid.Row>
 
                                     <Grid.Row>
                                         <Grid.Column width={2}>
                                             Data
                                         </Grid.Column >
-                                        <Grid.Column width={2}>
+                                        <Grid.Column width={3}>
                                             <Input disabled={this.props.disabled}
                                                 type='date'
                                                 name='date'
@@ -173,13 +188,27 @@ class HoursDetailsComponent extends Component {
                                                 onChange={handleChange} />
                                             {errors.date && touched.date ? <div><CustomLabel text={errors.date}></CustomLabel></div> : null}
                                         </Grid.Column>
+
+                                        <Grid.Column width={2}>
+                                            Zadanie
+                                        </Grid.Column >
+                                        <Grid.Column width={3}>
+                                            <Dropdown fluid selection disabled={this.props.disabled}
+                                                name='task'
+                                                className='dropdown-hour-task'
+                                                value={values.task}
+                                                onChange={(e, data) => this.dropdownHandleChange(e, data, setFieldValue)}
+                                                options={this.props.tasks} />
+                                            {errors.task && touched.task ? <div><CustomLabel text={errors.task}></CustomLabel></div> : null}
+                                        </Grid.Column>
+
                                     </Grid.Row>
 
                                     <Grid.Row>
                                         <Grid.Column width={2}>
                                             Ilość godzin
                                         </Grid.Column >
-                                        <Grid.Column width={2}>
+                                        <Grid.Column width={3}>
                                             <Input disabled={this.props.disabled}
                                                 type='number'
                                                 name='quantity'
@@ -193,7 +222,7 @@ class HoursDetailsComponent extends Component {
                                         <Grid.Column width={2}>
                                             Komentarz
                                         </Grid.Column >
-                                        <Grid.Column width={2}>
+                                        <Grid.Column width={3}>
                                             <TextArea disabled={this.props.disabled}
                                                 className='hours-comment'
                                                 value={values.comment}
