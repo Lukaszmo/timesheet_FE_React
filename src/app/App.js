@@ -52,6 +52,9 @@ function App() {
                 <Route exact path='/raporty'
                     component={(props) => <MainContainer content={"RAPORTY IN PROGRESS..."} menuId={"REPORTS"} />} />
 
+                <Route exact path='/ustawienia-zmiana-hasla'
+                    component={(props) => <MainContainer content={"USTAWIENIA IN PROGRESS..."} menuId={"SETTINGS"} submenuId='PASSWORD_CHANGE' />} />
+
                 <Route exact path='/home_sub1'
                     component={(props) => <MainContainer content={"HOME_SUB1"} menuId={"HOME"} />} />
                 <Route exact path='/home_sub2'

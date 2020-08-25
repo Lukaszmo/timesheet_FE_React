@@ -21,6 +21,7 @@ export const setActiveSubMenuItemId = (menuItemId) => {
 }
 
 //przeniesc do konfiguracji
+
 export const menuItems = [
     {
         id: "HOME",
@@ -119,8 +120,24 @@ export const menuItems = [
         redirect: "/raporty",
         icon: 'chart bar',
         subMenu: []
+    },
+    {
+        id: "SETTINGS",
+        name: "Ustawienia",
+        redirect: "/ustawienia-zmiana-hasla",
+        icon: 'cogs',
+        subMenu: [
+            {
+                id: 'PASSWORD_CHANGE',
+                name: "Zmiana hasła",
+                redirect: "ustawienia-zmiana-hasla",
+                icon: ''
+            }
+        ]
     }
 ]
+
+
 
 
 
