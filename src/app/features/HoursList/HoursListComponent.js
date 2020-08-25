@@ -121,7 +121,7 @@ class HoursListComponent extends Component {
 
         return (
             <div >
-                <Segment color="teal" className="test">
+                <Segment color="teal" className="hour-list-segment">
                     <Header size='medium'>Lista godzin</Header>
                     <Header className='filter-header'>Filtry</Header>
                     <Formik
