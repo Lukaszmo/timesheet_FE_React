@@ -28,26 +28,7 @@ export const menuItems = [
         name: "Strona główna",
         redirect: "/home",
         icon: 'home',
-        subMenu: [
-            {
-                id: 'HOME_SUB1',
-                name: "sub1",
-                redirect: "home_sub1",
-                icon: ''
-            },
-            {
-                id: 'HOME_SUB2',
-                name: "sub2",
-                redirect: "home_sub2",
-                icon: ''
-            },
-            {
-                id: 'HOME_SUB3',
-                name: "sub3",
-                redirect: "home_sub3",
-                icon: ''
-            }
-        ]
+        subMenu: []
     },
     {
         id: "TIMESHEET",

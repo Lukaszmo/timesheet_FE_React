@@ -19,6 +19,7 @@ function App() {
 
                 <Route exact path='/login' component={LoginContainer} />
                 <Route exact path='/' component={LoginContainer} />
+
                 <Route exact path='/home'
                     component={(props) => <MainContainer content={<HomeContainer {...props} />} menuId={"HOME"} submenuId='HOME_SUB1' />} />
 
@@ -55,12 +56,6 @@ function App() {
                 <Route exact path='/ustawienia-zmiana-hasla'
                     component={(props) => <MainContainer content={"USTAWIENIA IN PROGRESS..."} menuId={"SETTINGS"} submenuId='PASSWORD_CHANGE' />} />
 
-                <Route exact path='/home_sub1'
-                    component={(props) => <MainContainer content={"HOME_SUB1"} menuId={"HOME"} />} />
-                <Route exact path='/home_sub2'
-                    component={(props) => <MainContainer content={"HOME_SUB2"} menuId={"HOME"} />} />
-                <Route exact path='/home_sub3'
-                    component={(props) => <MainContainer content={"HOME_SUB3"} menuId={"HOME"} />} />
                 {/* z PrivateRoute nie działa
                 <PrivateRoute exact path='/home' />
                 component={(props) => <MainContainer {...props} content={"HELLO"} />} /> */}
