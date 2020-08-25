@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 
 import LoginComponent from "./LoginComponent";
 import { userLoginOperation } from './Login';
+import * as AuthService from '../../utils/AuthService';
+import { Redirect } from "react-router-dom";
 
 
 class LoginContainer extends Component {
@@ -17,10 +19,11 @@ class LoginContainer extends Component {
     }
 
     render() {
-        //if isAuthenticated redirect to home
-
+        //jeśli użytkownik jest zalogowany przekieruj do strony głównej
+        if (AuthService.isAuthenticated()) {
+            return <Redirect push to="/home" />
+        }
         return (
-
             <LoginComponent login={this.loginOperation} />
         );
     }
