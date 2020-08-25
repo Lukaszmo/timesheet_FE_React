@@ -144,6 +144,7 @@ class HoursAddComponent extends Component {
                                                 className='hours-comment'
                                                 value={values.comment}
                                                 onChange={handleChange} />
+                                            {errors.comment && touched.comment ? <div><CustomLabel text={errors.comment}></CustomLabel></div> : null}
                                         </Grid.Column>
                                     </Grid.Row>
                                 </Grid>

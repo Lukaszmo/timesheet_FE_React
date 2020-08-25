@@ -224,9 +224,11 @@ class HoursDetailsComponent extends Component {
                                         </Grid.Column >
                                         <Grid.Column width={3}>
                                             <TextArea disabled={this.props.disabled}
+                                                name='comment'
                                                 className='hours-comment'
                                                 value={values.comment}
                                                 onChange={handleChange} />
+                                            {errors.comment && touched.comment ? <div><CustomLabel text={errors.comment}></CustomLabel></div> : null}
                                         </Grid.Column>
                                     </Grid.Row>
 

@@ -16,7 +16,9 @@ export const HourValidationSchema = Yup.object().shape({
     project: Yup.string()
         .required('Pole wymagane'),
     task: Yup.string()
-        .required('Pole wymagane')
+        .required('Pole wymagane'),
+    comment: Yup.string()
+        .max(50, 'Zbyt długi komentarz')
 });
 
 //action types
