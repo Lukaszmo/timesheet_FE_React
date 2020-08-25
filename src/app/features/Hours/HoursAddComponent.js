@@ -84,6 +84,7 @@ class HoursAddComponent extends Component {
                                                 value={values.project}
                                                 onChange={(e, data) => this.dropdownHandleChange(e, data, setFieldValue)}
                                                 options={this.props.projectList} />
+                                            {errors.project && touched.project ? <div><CustomLabel text={errors.project}></CustomLabel></div> : null}
                                         </Grid.Column>
 
                                     </Grid.Row>
@@ -113,6 +114,7 @@ class HoursAddComponent extends Component {
                                                 value={values.task}
                                                 onChange={(e, data) => this.dropdownHandleChange(e, data, setFieldValue)}
                                                 options={this.props.tasks} />
+                                            {errors.task && touched.task ? <div><CustomLabel text={errors.task}></CustomLabel></div> : null}
                                         </Grid.Column>
 
                                     </Grid.Row>
