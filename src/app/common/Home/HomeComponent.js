@@ -49,7 +49,7 @@ class HomeComponent extends Component {
                         <Button
                             className="bigBoxButton"
                             onClick={this.onTaskTableButtonClick}>
-                            <p id="bigButtontext">TABLICA ZADAŃ</p>
+                            <p id="bigButtontext">TABLICA</p>
                         </Button>
 
                     </GridRow>
