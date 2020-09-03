@@ -162,7 +162,7 @@ class HoursListComponent extends Component {
                                                     onChange={(e, data) => this.dateHandleChange(e, data, setFieldValue)}
                                                 />
                                             </Grid.Column>
-                                            <Grid.Column width={2}>
+                                            <Grid.Column width={3}>
                                                 <Dropdown fluid selection disabled={this.props.disabled}
                                                     name='user'
                                                     className='dropdown-userlist'
