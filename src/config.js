@@ -1,6 +1,14 @@
-var protocol = 'http://';
-var PhpRoot = 'timesheet.symfony.local/';
-var PhpApiRoot = 'timesheet.symfony.local/api/';
+var env = 'development';
 
-export const ROOT = protocol + PhpRoot;
-export const API_ROOT = protocol + PhpApiRoot;
+
+if (env === 'development') {
+    var PhpRoot = 'timesheet.symfony.local/';
+    var PhpApiRoot = 'timesheet.symfony.local/api/';
+}
+else {
+    var PhpRoot = 'timeinfo.com.pl/';
+    var PhpApiRoot = 'timeinfo.com.pl/api/';
+}
+
+export const ROOT = window.location.protocol + "//" + PhpRoot;
+export const API_ROOT = window.location.protocol + "//" + PhpApiRoot;
