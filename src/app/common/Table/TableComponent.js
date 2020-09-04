@@ -72,12 +72,14 @@ class TableComponent extends Component {
         super(props);
 
         const rowsPerPage = this.props.rowsPerPage ? this.props.rowsPerPage : 5;
+        const pagination = this.props.pagination ? this.props.pagination : false;
 
         this.state = {
             activePage: 1,
             open: false,
             selectedId: null,
-            rowsPerPage: rowsPerPage
+            rowsPerPage: rowsPerPage,
+            pagination: pagination
         }
 
     }
@@ -131,7 +133,7 @@ class TableComponent extends Component {
                 <Table.Footer>
                     <Table.Row textAlign="center">
                         <Table.HeaderCell colSpan={this.props.headers.length}>
-                            {this.props.data ? <Pagination size="small" className="pagina" onPageChange={(e, data) => this.onPageChange(e, data)} defaultActivePage={this.state.activePage} totalPages={Math.ceil(this.props.data.length / this.state.rowsPerPage)} /> : null}
+                            {this.props.data && this.state.pagination ? <Pagination size="small" className="pagina" onPageChange={(e, data) => this.onPageChange(e, data)} defaultActivePage={this.state.activePage} totalPages={Math.ceil(this.props.data.length / this.state.rowsPerPage)} /> : null}
                         </Table.HeaderCell>
                     </Table.Row>
                 </Table.Footer>

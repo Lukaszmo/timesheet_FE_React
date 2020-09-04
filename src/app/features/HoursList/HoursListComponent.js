@@ -187,7 +187,12 @@ class HoursListComponent extends Component {
                 </Segment >
                 <Segment>
 
-                    <TableComponent headers={this.headers} data={this.props.data} onTableChange={this.props.onTableChange} rowsPerPage={10} />
+                    <TableComponent
+                        headers={this.headers}
+                        data={this.props.data}
+                        onTableChange={this.props.onTableChange}
+                        rowsPerPage={10}
+                        pagination={true} />
 
                 </Segment>
             </div >
