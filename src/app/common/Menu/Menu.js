@@ -49,15 +49,15 @@ export const menuItems = [
                 icon: ''
             },
             {
-                id: 'WORK_TIME_SCHEDULE',
-                name: "Grafik",
-                redirect: "grafik",
-                icon: ''
-            },
-            {
                 id: 'SUMMARY',
                 name: "Podsumowanie",
                 redirect: "podsumowanie",
+                icon: ''
+            },
+            {
+                id: 'WORK_TIME_SCHEDULE',
+                name: "Grafik",
+                redirect: "grafik",
                 icon: ''
             }
         ]
