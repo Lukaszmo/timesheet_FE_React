@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Icon, Table, Pagination, Button, ButtonContent, Confirm, Label } from 'semantic-ui-react';
+import { Icon, Table, Pagination, Button, ButtonContent, Confirm, Label, Message } from 'semantic-ui-react';
 import './Table.css';
 
 
@@ -115,6 +115,9 @@ class TableComponent extends Component {
     }
 
     render() {
+
+        //no results were found
+        if ((!this.props.data) || (this.props.data.length === 0)) { return (<Message color='olive'>Brak wyników</Message>) }
 
         return (
             <Table celled >
