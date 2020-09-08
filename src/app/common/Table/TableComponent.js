@@ -117,7 +117,7 @@ class TableComponent extends Component {
     render() {
 
         //no results were found
-        if ((!this.props.data) || (this.props.data.length === 0)) { return (<Message color='olive'>Brak wyników</Message>) }
+        if ((!this.props.data) || (this.props.data.length === 0)) { return (<Message info content='Brak wyników'></Message>) }
 
         return (
             <Table celled >
