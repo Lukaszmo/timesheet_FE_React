@@ -155,7 +155,7 @@ class HoursDetailsComponent extends Component {
                                     </Grid.Row>
                                     <Grid.Row>
                                         <Grid.Column width={2}>
-                                            Typ
+                                            Rodzaj
                                         </Grid.Column >
                                         <Grid.Column width={3}>
                                             <Dropdown fluid selection disabled={this.props.disabled}
