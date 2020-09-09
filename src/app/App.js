@@ -8,6 +8,7 @@ import LoginContainer from "./features/Login/LoginContainer";
 import HoursContainer from './features/Hours/HoursContainer';
 import HoursListContainer from './features/HoursList/HoursListContainer';
 import HoursDetailsContainer from './features/Hours/HoursDetailsContainer';
+import HoursSummaryContainer from './features/HoursSummary/HoursSummaryContainer';
 import VacationContainer from './features/Vacation/VacationContainer';
 import VacationListContainer from './features/VacationList/VacationListContainer';
 
@@ -36,7 +37,7 @@ function App() {
                     component={(props) => <MainContainer content={"GRAFIK IN PROGRESS..."} menuId={"TIMESHEET"} submenuId='WORK_TIME_SCHEDULE' />} />
 
                 <Route exact path='/podsumowanie'
-                    component={(props) => <MainContainer content={"PODSUMOWANIE IN PROGRESS..."} menuId={"TIMESHEET"} submenuId='SUMMARY' />} />
+                    component={(props) => <MainContainer content={<HoursSummaryContainer {...props} />} menuId={"TIMESHEET"} submenuId='SUMMARY' />} />
 
                 <Route exact path='/urlopy-dodaj-wniosek'
                     component={(props) => <MainContainer content={<VacationContainer {...props} />} menuId={"VACATION"} submenuId='VACATION_ADD' />} />

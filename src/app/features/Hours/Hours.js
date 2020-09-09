@@ -2,7 +2,7 @@ import axios from 'axios';
 import { toastr } from 'react-redux-toastr';
 import history from '../../../history';
 
-import { HOUR_TYPES, HOURS, USERS } from '../../../routes';
+import { HOUR_TYPES, HOURS, USERS, HOURS_BY_TYPE, HOURS_BY_PROJECT, HOURS_BY_TASK } from '../../../routes';
 import * as Yup from 'yup';
 
 export const HourValidationSchema = Yup.object().shape({
@@ -27,6 +27,9 @@ const SET_RECORDS = 'SET_RECORDS';
 const ADD_RECORD = 'ADD_RECORD';
 const DELETE_RECORD = 'DELETE_RECORD';
 const UPDATE_RECORDS = 'UPDATE_RECORDS';
+const SET_RECORDS_BY_TYPE = 'SET_RECORDS_BY_TYPE';
+const SET_RECORDS_BY_PROJECT = 'SET_RECORDS_BY_PROJECT';
+const SET_RECORDS_BY_TASK = 'SET_RECORDS_BY_TASK';
 
 //actions
 export function setHourTypes(types) {
@@ -69,6 +72,33 @@ export function updateRecords(record) {
         type: UPDATE_RECORDS,
         payload: {
             updatedRecord: record
+        }
+    }
+}
+
+export function setRecordsByType(records) {
+    return {
+        type: SET_RECORDS_BY_TYPE,
+        payload: {
+            recordsByType: records
+        }
+    }
+}
+
+export function setRecordsByProject(records) {
+    return {
+        type: SET_RECORDS_BY_PROJECT,
+        payload: {
+            recordsByProject: records
+        }
+    }
+}
+
+export function setRecordsByTask(records) {
+    return {
+        type: SET_RECORDS_BY_TASK,
+        payload: {
+            recordsByTask: records
         }
     }
 }
@@ -168,6 +198,34 @@ export const updateRecord = (id, values, msg) => {
     }
 }
 
+export const fetchHoursByType = (userId, filters) => {
+
+    return (dispatch) => {
+        const resp = axios.get(HOURS_BY_TYPE + '/' + userId, { params: filters }).then(response => {
+            dispatch(setRecordsByType(response.data));
+        });
+    }
+}
+
+export const fetchHoursByProject = (userId, filters) => {
+
+    return (dispatch) => {
+        const resp = axios.get(HOURS_BY_PROJECT + '/' + userId, { params: filters }).then(response => {
+            dispatch(setRecordsByProject(response.data));
+        });
+    }
+}
+
+export const fetchHoursByTask = (userId, filters) => {
+
+    return (dispatch) => {
+        const resp = axios.get(HOURS_BY_TASK + '/' + userId, { params: filters }).then(response => {
+            dispatch(setRecordsByTask(response.data));
+        });
+    }
+}
+
+
 const initialState = {
     types: [],
     records: []
@@ -184,6 +242,18 @@ export default (state = initialState, action) => {
         }
 
         case SET_RECORDS: {
+            return { ...state, ...action.payload };
+        }
+
+        case SET_RECORDS_BY_TYPE: {
+            return { ...state, ...action.payload };
+        }
+
+        case SET_RECORDS_BY_PROJECT: {
+            return { ...state, ...action.payload };
+        }
+
+        case SET_RECORDS_BY_TASK: {
             return { ...state, ...action.payload };
         }
 
