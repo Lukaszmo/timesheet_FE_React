@@ -9,19 +9,6 @@ import './HoursListComponent.css';
 
 class HoursListComponent extends Component {
 
-    constructor(props) {
-        super(props);
-
-        const currentDate = new Date();
-        const dateFrom = getFirstDayOfMonth(currentDate);
-        const dateTo = getLastDayOfMonth(currentDate);
-
-        this.state = {
-            dateFrom: dateFrom,
-            dateTo: dateTo
-        }
-    }
-
     onSubmit(values) {
 
         const filters = {
@@ -123,7 +110,7 @@ class HoursListComponent extends Component {
                     <Header size='medium'>Lista godzin</Header>
                     <Header className='filter-header'>Filtry</Header>
                     <Formik
-                        initialValues={{ user: this.props.loggedUser.id, datefrom: this.state.dateFrom, dateto: this.state.dateTo }}
+                        initialValues={{ user: this.props.loggedUser.id, datefrom: this.props.dateFrom, dateto: this.props.dateTo }}
 
                         onSubmit={(values, { setSubmitting }) => {
                             this.onSubmit(values);

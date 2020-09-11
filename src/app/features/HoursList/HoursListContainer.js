@@ -11,13 +11,16 @@ import { getFirstDayOfMonth, getLastDayOfMonth } from '../../utils/Utils.js';
 
 class HoursListContainer extends Component {
 
+    state = {
+        dateFrom: getFirstDayOfMonth(new Date()),
+        dateTo: getLastDayOfMonth(new Date())
+    };
+
     componentDidMount() {
 
-        const currentDate = new Date();
-
         const filters = {
-            dateFrom: getFirstDayOfMonth(currentDate),
-            dateTo: getLastDayOfMonth(currentDate)
+            dateFrom: this.state.dateFrom,
+            dateTo: this.state.dateTo
         }
 
         this.props.fetchInferiors(this.props.user.id);
@@ -54,7 +57,10 @@ class HoursListContainer extends Component {
                         onTableChange={this.onTableChange}
                         userList={generateUserListForDropdown(this.props.inferiors, this.props.user)}
                         loggedUser={this.props.user}
-                        onFilterSubmit={this.onFilterSubmit} />
+                        onFilterSubmit={this.onFilterSubmit}
+                        dateFrom={this.state.dateFrom}
+                        dateTo={this.state.dateTo}
+                    />
                 </Container>
             );
         }
