@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { toastr } from 'react-redux-toastr';
 import * as Yup from 'yup';
-import { MAIL, VACREQUEST, VACREQ_TYPES, USERS } from '../../../routes';
+import { VACATION_REQUEST_MAIL, VACREQUEST, VACREQ_TYPES, USERS } from '../../../routes';
 import history from '../../../history';
 
 export const validationSchema = Yup.object().shape({
@@ -53,7 +53,7 @@ export const addHolidayRequest = (object) => {
 
 function sendMail(object, recordId) {
 
-    axios.post(MAIL, object)
+    axios.post(VACATION_REQUEST_MAIL, object)
         .then(function (response) {
             setVacRequestState(recordId);
             toastr.success('Wniosek został wysłany');

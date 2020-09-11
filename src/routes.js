@@ -9,7 +9,7 @@ export const VACREQUEST = API_ROOT + 'vacation_requests';
 export const VACREQ_TYPES = API_ROOT + 'vacreq_types';
 
 //Services
-export const MAIL = ROOT + 'mail';
+export const VACATION_REQUEST_MAIL = ROOT + 'vacation_requests/mail';
 export const USER_PROJECTS = ROOT + 'user_projects';
 export const PROJECT_TASKS = ROOT + 'project_tasks';
 export const HOURS_BY_TYPE = ROOT + 'hours/by_type';
