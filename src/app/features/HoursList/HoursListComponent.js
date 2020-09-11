@@ -24,8 +24,6 @@ class HoursListComponent extends Component {
 
     onSubmit(values) {
 
-        console.log(values);
-
         const filters = {
             dateFrom: values.datefrom,
             dateTo: values.dateto

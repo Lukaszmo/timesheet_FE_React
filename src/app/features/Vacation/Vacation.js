@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { toastr } from 'react-redux-toastr';
 import * as Yup from 'yup';
-import { MAIL, VACREQUEST, VACREQ_TYPES } from '../../../routes';
+import { MAIL, VACREQUEST, VACREQ_TYPES, USERS } from '../../../routes';
 import history from '../../../history';
 
 export const validationSchema = Yup.object().shape({
@@ -96,10 +96,14 @@ export const fetchVacRequestTypes = () => {
     }
 }
 
-export const fetchAllRecords = (userId) => {
+export const fetchAllRecords = (userId, filters) => {
+
+    const datefrom = filters.dateFrom;
+    const dateto = filters.dateTo
 
     return (dispatch) => {
-        axios.get(VACREQUEST + '?userid=' + userId).then(response => {
+        axios.get(USERS + '/' + userId + '/' + 'vacation_requests' + '?datefrom[after]=' + datefrom + '&datefrom[before]=' + dateto).then(response => {
+
 
             dispatch(setVacRequests(response.data['hydra:member']));
         })
