@@ -13,7 +13,7 @@ class HoursDetailsContainer extends Component {
         super(props);
 
         this.state = {
-            recordDetails: this.props.location.state.recordDetails,
+            recordDetails: this.props.location.state.recordDetails[0],
             disabled: false,
             mode: 'EDIT',
             acceptor: null,     //dane kierownika który zaakceptował nadgodziny
@@ -24,14 +24,14 @@ class HoursDetailsContainer extends Component {
 
     componentDidMount() {
 
-        const recordOwnerId = this.state.recordDetails[0].userid.id;
-        const overtAcceptance = this.state.recordDetails[0].overtacceptance;
-        const projectId = this.state.recordDetails[0].project.id;
+        const recordOwnerId = this.state.recordDetails.userid.id;
+        const overtAcceptance = this.state.recordDetails.overtacceptance;
+        const projectId = this.state.recordDetails.project.id;
 
         this.isRecordOwner(recordOwnerId);
 
         if (overtAcceptance === 1) {
-            const acceptorId = this.state.recordDetails[0].acceptorid;
+            const acceptorId = this.state.recordDetails.acceptorid;
             getUserDetails(acceptorId).then(resp => this.setState({ acceptor: resp.data }));
         }
 
@@ -53,9 +53,6 @@ class HoursDetailsContainer extends Component {
     isRecordOwner(recordOwnerId) {
 
         //recordOwnerId = 2; //dla testów
-
-        console.log('isRecordOwner');
-
 
         if (this.props.user.id !== recordOwnerId) {
 

@@ -12,7 +12,7 @@ class HoursDetailsComponent extends Component {
     onSubmit(values) {
 
         const mode = this.props.mode;
-        const type = this.props.recordDetails[0].type.id; //typ rekordu który zmieniamy
+        const type = this.props.recordDetails.type.id; //typ rekordu który zmieniamy
         let overtacceptance = null;
         let acceptorid = null;
         let msg = null;
@@ -31,14 +31,14 @@ class HoursDetailsComponent extends Component {
 
         if (mode === 'ACCEPTANCE') {
 
-            overtacceptance = (this.props.recordDetails[0].overtacceptance === 0) ? 1 : 0; //akceptacja lub anulowanie
+            overtacceptance = (this.props.recordDetails.overtacceptance === 0) ? 1 : 0; //akceptacja lub anulowanie
             acceptorid = (overtacceptance === 1) ? this.props.acceptorid : null;
             msg = (overtacceptance === 1) ? 'Nadgodziny zostały zaakceptowane' : 'Akceptacja została anulowana';
         }
 
         values = { ...values, overtacceptance: overtacceptance, acceptorid: acceptorid };
 
-        const recordId = this.props.recordDetails[0].id
+        const recordId = this.props.recordDetails.id;
 
         this.props.onEditFormSubmit(recordId, values, msg);
     }
@@ -55,17 +55,17 @@ class HoursDetailsComponent extends Component {
 
     render() {
         console.log(this.props);
-        const type = this.props.recordDetails[0].type.id;
-        const quantity = this.props.recordDetails[0].quantity;
-        const comment = this.props.recordDetails[0].comment;
-        const date = this.props.recordDetails[0].date.substr(0, 10);  //extract only date from datetime
-        const project = this.props.recordDetails[0].project.id;
-        const task = this.props.recordDetails[0].task.id;
-        const timestamp = this.props.recordDetails[0].timestamp;
+        const type = this.props.recordDetails.type.id;
+        const quantity = this.props.recordDetails.quantity;
+        const comment = this.props.recordDetails.comment;
+        const date = this.props.recordDetails.date.substr(0, 10);  //extract only date from datetime
+        const project = this.props.recordDetails.project.id;
+        const task = this.props.recordDetails.task.id;
+        const timestamp = this.props.recordDetails.timestamp;
         const timestampDate = timestamp.substr(0, 10);
         const timestampTime = timestamp.substr(11, 8);
-        const overtAcceptance = this.props.recordDetails[0].overtacceptance;
-        const employeeName = this.props.recordDetails[0].userid.firstname + ' ' + this.props.recordDetails[0].userid.lastname;
+        const overtAcceptance = this.props.recordDetails.overtacceptance;
+        const employeeName = this.props.recordDetails.userid.firstname + ' ' + this.props.recordDetails.userid.lastname;
 
         let status = null;
         let acceptor = null;
@@ -88,7 +88,7 @@ class HoursDetailsComponent extends Component {
                 buttonDisabled = false;
             }
 
-            //Ststus nadgodzin
+            //Status nadgodzin
             let label = <Label className={labelClass} id="waiting-left">{msg}</Label>
             status = <Grid.Row>
                 <Grid.Column width={2}>
