@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { Icon, Table, Pagination, Button, ButtonContent, Confirm, Label, Message } from 'semantic-ui-react';
+import { Icon, Table, Pagination, Button, ButtonContent, Confirm, Label } from 'semantic-ui-react';
+import CustomMessage from '../CustomMessage/CustomMessage';
 import './Table.css';
 
 
@@ -117,7 +118,16 @@ class TableComponent extends Component {
     render() {
 
         //no results were found
-        if ((!this.props.data) || (this.props.data.length === 0)) { return (<Message info content='Brak wyników'></Message>) }
+        if ((!this.props.data) || (this.props.data.length === 0)) {
+            return (
+
+                <CustomMessage
+                    type='info'
+                    text='Brak wyników'
+                    icon={true}
+                />
+            )
+        }
 
         return (
             <Table celled >
