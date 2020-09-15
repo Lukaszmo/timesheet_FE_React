@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { Header, Container, Segment, Grid, Input, Dropdown, GridRow, Form, Button } from 'semantic-ui-react';
+import { Header, Container, Segment, Grid, Input, Dropdown, GridRow, Form, Button, Divider } from 'semantic-ui-react';
 import { Formik } from 'formik';
 import TableComponent from '../../common/Table/TableComponent.js';
 import { getFirstDayOfMonth, getLastDayOfMonth } from '../../utils/Utils.js';
@@ -108,6 +108,7 @@ class HoursListComponent extends Component {
             <div >
                 <Segment color="teal" className="hour-list-segment">
                     <Header size='medium'>Lista godzin</Header>
+                    <Divider></Divider>
                     <Header className='filter-header'>Filtry</Header>
                     <Formik
                         initialValues={{ user: this.props.loggedUser.id, datefrom: this.props.dateFrom, dateto: this.props.dateTo }}

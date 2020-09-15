@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 import { Formik } from 'formik';
-import { Segment, Header, Button, Dropdown, Grid, Input, Form, GridRow, Label, TextArea } from 'semantic-ui-react';
+import { Segment, Header, Button, Dropdown, Grid, Input, Form, GridRow, Label, TextArea, Divider } from 'semantic-ui-react';
 import CustomLabel from '../../common/CustomLabel/CustomLabel';
 import './HoursComponent.css';
 
@@ -125,6 +125,7 @@ class HoursDetailsComponent extends Component {
         return (
             <Segment color="teal" >
                 <Header size='medium'>Edycja godzin</Header>
+                <Divider></Divider>
 
                 <Formik
                     initialValues={{ date: date, quantity: quantity, type: type, comment: comment, project: project, task: task }}
