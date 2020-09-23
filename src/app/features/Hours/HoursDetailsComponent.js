@@ -1,9 +1,10 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 
 import { Formik } from 'formik';
 import { Segment, Header, Button, Dropdown, Grid, Input, Form, GridRow, Label, TextArea, Divider } from 'semantic-ui-react';
 import CustomLabel from '../../common/CustomLabel/CustomLabel';
 import './HoursComponent.css';
+import Media from 'react-media';
 
 
 class HoursDetailsComponent extends Component {
@@ -116,7 +117,6 @@ class HoursDetailsComponent extends Component {
 
         let button = <Button disabled={buttonDisabled}
             type='submit'
-            //className='saveButton'
             className={buttonClass}>
             {text}
         </Button>
@@ -146,112 +146,243 @@ class HoursDetailsComponent extends Component {
                         touched
                     }) => (
                             <Form onSubmit={handleSubmit}>
-                                <Grid columns={2} textAlign="right" verticalAlign="middle" >
-                                    <Grid.Row>
-                                        <Grid.Column width={2}>
-                                            Użytkownik</Grid.Column >
-                                        <Grid.Column width={3}>
-                                            <p className='data-field'> {employeeName} </p>
-                                        </Grid.Column>
-                                    </Grid.Row>
-                                    <Grid.Row>
-                                        <Grid.Column width={2}>
-                                            Rodzaj
-                                        </Grid.Column >
-                                        <Grid.Column width={3}>
-                                            <Dropdown fluid selection disabled={this.props.disabled}
-                                                name='type'
-                                                className='dropdown-hour-types'
-                                                value={values.type}
-                                                onChange={(e, data) => this.dropdownHandleChange(e, data, setFieldValue)}
-                                                options={this.props.types} />
-                                            {errors.type && touched.type ? <div><CustomLabel text={errors.type}></CustomLabel></div> : null}
-                                        </Grid.Column>
+                                <Media queries={{
+                                    small: "(max-width: 599px)",                            //mobile 
+                                    medium: "(min-width: 600px) and (max-width: 1199px)",   //tablet
+                                    large: "(min-width: 1200px)"                            //laptop
+                                }}>
+                                    {matches => (
 
-                                        <Grid.Column width={2}>
-                                            Projekt
-                                        </Grid.Column >
-                                        <Grid.Column width={3}>
-                                            <Dropdown fluid selection disabled={this.props.disabled}
-                                                name='project'
-                                                className='dropdown-hour-project'
-                                                value={values.project}
-                                                onChange={(e, data) => this.dropdownHandleChange(e, data, setFieldValue)}
-                                                options={this.props.projects} />
-                                            {errors.project && touched.project ? <div><CustomLabel text={errors.project}></CustomLabel></div> : null}
-                                        </Grid.Column>
-                                    </Grid.Row>
+                                        <Fragment>
+                                            {/*laptop*/}
+                                            {matches.large &&
+                                                <Grid columns={2} textAlign="right" verticalAlign="middle" >
+                                                    <Grid.Row>
+                                                        <Grid.Column width={2}>
+                                                            Użytkownik</Grid.Column >
+                                                        <Grid.Column width={3}>
+                                                            <p className='data-field'> {employeeName} </p>
+                                                        </Grid.Column>
+                                                    </Grid.Row>
+                                                    <Grid.Row>
+                                                        <Grid.Column width={2}>
+                                                            Rodzaj
+                                                        </Grid.Column >
+                                                        <Grid.Column width={3}>
+                                                            <Dropdown fluid selection disabled={this.props.disabled}
+                                                                name='type'
+                                                                className='dropdown-hour-types'
+                                                                value={values.type}
+                                                                onChange={(e, data) => this.dropdownHandleChange(e, data, setFieldValue)}
+                                                                options={this.props.types} />
+                                                            {errors.type && touched.type ? <div><CustomLabel text={errors.type}></CustomLabel></div> : null}
+                                                        </Grid.Column>
 
-                                    <Grid.Row>
-                                        <Grid.Column width={2}>
-                                            Data
-                                        </Grid.Column >
-                                        <Grid.Column width={3}>
-                                            <Input disabled={this.props.disabled}
-                                                type='date'
-                                                name='date'
-                                                value={values.date}
-                                                onChange={handleChange} />
-                                            {errors.date && touched.date ? <div><CustomLabel text={errors.date}></CustomLabel></div> : null}
-                                        </Grid.Column>
+                                                        <Grid.Column width={2}>
+                                                            Projekt
+                                                        </Grid.Column >
+                                                        <Grid.Column width={3}>
+                                                            <Dropdown fluid selection disabled={this.props.disabled}
+                                                                name='project'
+                                                                className='dropdown-hour-project'
+                                                                value={values.project}
+                                                                onChange={(e, data) => this.dropdownHandleChange(e, data, setFieldValue)}
+                                                                options={this.props.projects} />
+                                                            {errors.project && touched.project ? <div><CustomLabel text={errors.project}></CustomLabel></div> : null}
+                                                        </Grid.Column>
+                                                    </Grid.Row>
 
-                                        <Grid.Column width={2}>
-                                            Zadanie
-                                        </Grid.Column >
-                                        <Grid.Column width={3}>
-                                            <Dropdown fluid selection disabled={this.props.disabled}
-                                                name='task'
-                                                className='dropdown-hour-task'
-                                                value={values.task}
-                                                onChange={(e, data) => this.dropdownHandleChange(e, data, setFieldValue)}
-                                                options={this.props.tasks} />
-                                            {errors.task && touched.task ? <div><CustomLabel text={errors.task}></CustomLabel></div> : null}
-                                        </Grid.Column>
+                                                    <Grid.Row>
+                                                        <Grid.Column width={2}>
+                                                            Data
+                                                        </Grid.Column >
+                                                        <Grid.Column width={3}>
+                                                            <Input disabled={this.props.disabled}
+                                                                type='date'
+                                                                name='date'
+                                                                className='input-date'
+                                                                value={values.date}
+                                                                onChange={handleChange} />
+                                                            {errors.date && touched.date ? <div><CustomLabel text={errors.date}></CustomLabel></div> : null}
+                                                        </Grid.Column>
 
-                                    </Grid.Row>
+                                                        <Grid.Column width={2}>
+                                                            Zadanie
+                                                        </Grid.Column >
+                                                        <Grid.Column width={3}>
+                                                            <Dropdown fluid selection disabled={this.props.disabled}
+                                                                name='task'
+                                                                className='dropdown-hour-task'
+                                                                value={values.task}
+                                                                onChange={(e, data) => this.dropdownHandleChange(e, data, setFieldValue)}
+                                                                options={this.props.tasks} />
+                                                            {errors.task && touched.task ? <div><CustomLabel text={errors.task}></CustomLabel></div> : null}
+                                                        </Grid.Column>
 
-                                    <Grid.Row>
-                                        <Grid.Column width={2}>
-                                            Ilość godzin
-                                        </Grid.Column >
-                                        <Grid.Column width={3}>
-                                            <Input disabled={this.props.disabled}
-                                                type='number'
-                                                name='quantity'
-                                                value={values.quantity}
-                                                onChange={handleChange} />
-                                            {errors.quantity && touched.quantity ? <div><CustomLabel text={errors.quantity}></CustomLabel></div> : null}
-                                        </Grid.Column>
-                                    </Grid.Row>
+                                                    </Grid.Row>
 
-                                    <Grid.Row>
-                                        <Grid.Column width={2}>
-                                            Komentarz
-                                        </Grid.Column >
-                                        <Grid.Column width={3}>
-                                            <TextArea disabled={this.props.disabled}
-                                                name='comment'
-                                                className='hours-comment'
-                                                value={values.comment}
-                                                onChange={handleChange} />
-                                            {errors.comment && touched.comment ? <div><CustomLabel text={errors.comment}></CustomLabel></div> : null}
-                                        </Grid.Column>
-                                    </Grid.Row>
+                                                    <Grid.Row>
+                                                        <Grid.Column width={2}>
+                                                            Ilość godzin
+                                                        </Grid.Column >
+                                                        <Grid.Column width={3}>
+                                                            <Input disabled={this.props.disabled}
+                                                                type='number'
+                                                                name='quantity'
+                                                                className='hours-quantity'
+                                                                value={values.quantity}
+                                                                onChange={handleChange} />
+                                                            {errors.quantity && touched.quantity ? <div><CustomLabel text={errors.quantity}></CustomLabel></div> : null}
+                                                        </Grid.Column>
+                                                    </Grid.Row>
 
-                                    {status}
-                                    {acceptor}
+                                                    <Grid.Row>
+                                                        <Grid.Column width={2}>
+                                                            Komentarz
+                                                        </Grid.Column >
+                                                        <Grid.Column width={3}>
+                                                            <TextArea disabled={this.props.disabled}
+                                                                name='comment'
+                                                                className='hours-comment'
+                                                                value={values.comment}
+                                                                onChange={handleChange} />
+                                                            {errors.comment && touched.comment ? <div><CustomLabel text={errors.comment}></CustomLabel></div> : null}
+                                                        </Grid.Column>
+                                                    </Grid.Row>
 
-                                    <Grid.Row>
-                                        <Grid.Column width={2}>
-                                            <p className='data-field-header'>Ostatnia modyfikacja</p>
-                                        </Grid.Column >
-                                        <Grid.Column width={4}>
-                                            <p className='data-field'>{timestampDate} &nbsp;&nbsp; [ {timestampTime} ]</p>
-                                        </Grid.Column>
-                                    </Grid.Row>
-                                </Grid>
+                                                    {status}
+                                                    {acceptor}
 
-                                {button}
+                                                    <Grid.Row>
+                                                        <Grid.Column width={2}>
+                                                            <p className='data-field-header'>Ostatnia modyfikacja</p>
+                                                        </Grid.Column >
+                                                        <Grid.Column width={4}>
+                                                            <p className='data-field'>{timestampDate} &nbsp;&nbsp; [ {timestampTime} ]</p>
+                                                        </Grid.Column>
+                                                    </Grid.Row>
+                                                </Grid>
+                                            }
+
+                                            {/*urządzenia mobline lub tablet*/}
+                                            {(matches.small || matches.medium) &&
+                                                <Grid textAlign="left" verticalAlign="middle" >
+                                                    <Grid.Row>
+                                                        <Grid.Column>
+                                                            Użytkownik
+                                                        </Grid.Column>
+
+                                                        <Grid.Column>
+                                                            <p className='data-field'> {employeeName} </p>
+                                                        </Grid.Column>
+                                                    </Grid.Row>
+                                                    <Grid.Row>
+                                                        <Grid.Column>
+                                                            Rodzaj
+                                                        </Grid.Column>
+                                                        <Grid.Column>
+                                                            <Dropdown fluid selection disabled={this.props.disabled}
+                                                                name='type'
+                                                                className='dropdown-hour-types'
+                                                                value={values.type}
+                                                                onChange={(e, data) => this.dropdownHandleChange(e, data, setFieldValue)}
+                                                                options={this.props.types} />
+                                                            {errors.type && touched.type ? <div><CustomLabel text={errors.type}></CustomLabel></div> : null}
+                                                        </Grid.Column>
+                                                    </Grid.Row>
+
+                                                    <Grid.Row>
+                                                        <Grid.Column>
+                                                            Data
+                                                        </Grid.Column>
+                                                        <Grid.Column>
+                                                            <Input disabled={this.props.disabled}
+                                                                type='date'
+                                                                name='date'
+                                                                className='input-date'
+                                                                value={values.date}
+                                                                onChange={handleChange} />
+                                                            {errors.date && touched.date ? <div><CustomLabel text={errors.date}></CustomLabel></div> : null}
+                                                        </Grid.Column>
+                                                    </Grid.Row>
+
+                                                    <Grid.Row>
+                                                        <Grid.Column >
+                                                            Projekt
+                                                        </Grid.Column >
+                                                        <Grid.Column >
+                                                            <Dropdown fluid selection disabled={this.props.disabled}
+                                                                name='project'
+                                                                className='dropdown-hour-project'
+                                                                value={values.project}
+                                                                onChange={(e, data) => this.dropdownHandleChange(e, data, setFieldValue)}
+                                                                options={this.props.projects} />
+                                                            {errors.project && touched.project ? <div><CustomLabel text={errors.project}></CustomLabel></div> : null}
+                                                        </Grid.Column>
+                                                    </Grid.Row>
+
+                                                    <Grid.Row>
+                                                        <Grid.Column>
+                                                            Zadanie
+                                                        </Grid.Column>
+                                                        <Grid.Column>
+                                                            <Dropdown fluid selection disabled={this.props.disabled}
+                                                                name='task'
+                                                                className='dropdown-hour-task'
+                                                                value={values.task}
+                                                                onChange={(e, data) => this.dropdownHandleChange(e, data, setFieldValue)}
+                                                                options={this.props.tasks} />
+                                                            {errors.task && touched.task ? <div><CustomLabel text={errors.task}></CustomLabel></div> : null}
+                                                        </Grid.Column>
+                                                    </Grid.Row>
+
+                                                    <Grid.Row>
+                                                        <Grid.Column>
+                                                            Ilość godzin
+                                                        </Grid.Column >
+                                                        <Grid.Column>
+                                                            <Input disabled={this.props.disabled}
+                                                                type='number'
+                                                                name='quantity'
+                                                                className='hours-quantity'
+                                                                value={values.quantity}
+                                                                onChange={handleChange} />
+                                                            {errors.quantity && touched.quantity ? <div><CustomLabel text={errors.quantity}></CustomLabel></div> : null}
+                                                        </Grid.Column>
+                                                    </Grid.Row>
+
+                                                    <Grid.Row>
+                                                        <Grid.Column>
+                                                            Komentarz
+                                                        </Grid.Column >
+                                                        <Grid.Column>
+                                                            <TextArea disabled={this.props.disabled}
+                                                                name='comment'
+                                                                className='hours-comment'
+                                                                value={values.comment}
+                                                                onChange={handleChange} />
+                                                            {errors.comment && touched.comment ? <div><CustomLabel text={errors.comment}></CustomLabel></div> : null}
+                                                        </Grid.Column>
+                                                    </Grid.Row>
+
+                                                    {status}
+                                                    {acceptor}
+
+                                                    <Grid.Row>
+                                                        <Grid.Column>
+                                                            <p className='data-field-header'>Ostatnia modyfikacja</p>
+                                                        </Grid.Column>
+                                                        <Grid.Column>
+                                                            <p className='data-field'>{timestampDate} &nbsp;&nbsp; [ {timestampTime} ]</p>
+                                                        </Grid.Column>
+                                                    </Grid.Row>
+                                                </Grid>
+                                            }
+                                        </Fragment>
+                                    )}
+                                </Media>
+
+                                <div className='button-row'>{button}</div>
                             </Form>
                         )}
                 </Formik>

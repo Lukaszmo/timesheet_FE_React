@@ -1,6 +1,5 @@
 .ui.container.hours{
     padding: 0px 15px 15px;
-    margin-left: 300px !important;
 }
 
 .ui.segment.segment-type{
@@ -18,4 +17,23 @@
     width: 38%;
     clear: left;
     float: left;
+}
+
+@media (max-width: 599px){
+
+    .ui.segment.segment-type{
+        width: 100%;
+        float: center;
+    }
+    
+    .ui.segment.segment-tasks{
+        width: 100%;
+        float: center;
+    }
+    
+    .ui.segment.segment-projects{
+        width: 100%;
+        float: center;
+    }
+
 }

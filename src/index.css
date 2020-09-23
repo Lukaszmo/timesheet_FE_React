@@ -7,3 +7,44 @@
 body{
     background-color: #3333;
 }
+
+.ui.container{
+    margin-left: 300px !important;
+}
+
+.ui.segment{
+    margin-top: 10px !important;
+}
+
+@media (min-width: 600px) and (max-width: 1199px){
+
+    .ui.container{
+        width: 100%;
+    }
+
+    .ui.grid .row{
+        display: grid;
+    }
+}
+
+
+@media (max-width: 599px){
+
+    .ui.container{
+        width: 100%;
+        margin-top: 310px;
+        margin-left: 10px !important;
+        margin-right: 10px !important;
+    }
+
+    .ui.segment{
+        width: 100% !important;
+    }
+
+    .ui.grid .row{
+        display: grid;
+        white-space: nowrap;
+    }
+
+    
+}

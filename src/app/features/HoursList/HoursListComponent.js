@@ -1,10 +1,11 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 
 import { Header, Container, Segment, Grid, Input, Dropdown, GridRow, Form, Button, Divider } from 'semantic-ui-react';
 import { Formik } from 'formik';
 import TableComponent from '../../common/Table/TableComponent.js';
 import { getFirstDayOfMonth, getLastDayOfMonth } from '../../utils/Utils.js';
 import './HoursListComponent.css';
+import Media from 'react-media';
 
 
 class HoursListComponent extends Component {
@@ -127,46 +128,101 @@ class HoursListComponent extends Component {
                             touched
                         }) => (
                                 <Form onSubmit={handleSubmit}>
+                                    <Media queries={{
+                                        small: "(max-width: 599px)",                            //mobile 
+                                        medium: "(min-width: 600px) and (max-width: 1199px)",   //tablet
+                                        large: "(min-width: 1200px)"                            //laptop
+                                    }}>
+                                        {matches => (
 
-                                    <Grid columns={2} textAlign="right" verticalAlign="middle" >
-                                        <GridRow>
+                                            <Fragment>
 
-                                            <Grid.Column width={3}>
-                                                <Input
-                                                    type='date'
-                                                    name='datefrom'
-                                                    value={values.datefrom}
-                                                    onChange={(e, data) => this.dateHandleChange(e, data, setFieldValue)}
+                                                {(matches.large) &&
+                                                    <Grid columns={2} textAlign="right" verticalAlign="middle" >
+                                                        <Grid.Row>
+                                                            <Grid.Column width={3}>
+                                                                <Input
+                                                                    type='date'
+                                                                    name='datefrom'
+                                                                    value={values.datefrom}
+                                                                    onChange={(e, data) => this.dateHandleChange(e, data, setFieldValue)}
+                                                                />
+                                                            </Grid.Column>
+                                                            <Grid.Column width={3}>
+                                                                <Input
+                                                                    type='date'
+                                                                    name='dateto'
+                                                                    value={values.dateto}
+                                                                    onChange={(e, data) => this.dateHandleChange(e, data, setFieldValue)}
+                                                                />
+                                                            </Grid.Column>
+                                                            <Grid.Column width={3}>
+                                                                <Dropdown fluid selection disabled={this.props.disabled}
+                                                                    name='user'
+                                                                    className='dropdown-userlist'
+                                                                    value={values.user}
+                                                                    options={this.props.userList}
+                                                                    onChange={(e, data) => this.dropdownHandleChange(e, data, setFieldValue)}
+                                                                ></Dropdown>
+                                                            </Grid.Column>
+                                                            <Grid.Column width={2}>
+                                                                <Button
+                                                                    type='submit'
+                                                                    className='filterButton'>Filtruj
+                                                                </Button>
+                                                            </Grid.Column>
+                                                        </Grid.Row>
 
-                                                />
-                                            </Grid.Column>
-                                            <Grid.Column width={3}>
-                                                <Input
-                                                    type='date'
-                                                    name='dateto'
-                                                    value={values.dateto}
-                                                    onChange={(e, data) => this.dateHandleChange(e, data, setFieldValue)}
-                                                />
-                                            </Grid.Column>
-                                            <Grid.Column width={3}>
-                                                <Dropdown fluid selection disabled={this.props.disabled}
-                                                    name='user'
-                                                    className='dropdown-userlist'
-                                                    value={values.user}
-                                                    options={this.props.userList}
-                                                    onChange={(e, data) => this.dropdownHandleChange(e, data, setFieldValue)}
-                                                ></Dropdown>
-                                            </Grid.Column>
-                                            <Grid.Column width={2}>
-                                                <Button
-                                                    type='submit'
-                                                    className='filterButton'>Filtruj
-                                                </Button>
-                                            </Grid.Column>
-                                        </GridRow>
+                                                    </Grid >}
 
 
-                                    </Grid >
+                                                {(matches.small || matches.medium) &&
+                                                    <Grid textAlign="center" verticalAlign="middle" >
+                                                        <Grid.Row>
+                                                            <Grid.Column>
+                                                                <Input
+                                                                    type='date'
+                                                                    name='datefrom'
+                                                                    value={values.datefrom}
+                                                                    onChange={(e, data) => this.dateHandleChange(e, data, setFieldValue)}
+                                                                />
+                                                            </Grid.Column>
+                                                        </Grid.Row>
+
+                                                        <Grid.Row>
+                                                            <Grid.Column>
+                                                                <Input
+                                                                    type='date'
+                                                                    name='dateto'
+                                                                    value={values.dateto}
+                                                                    onChange={(e, data) => this.dateHandleChange(e, data, setFieldValue)}
+                                                                />
+                                                            </Grid.Column>
+                                                        </Grid.Row>
+
+                                                        <Grid.Row>
+                                                            <Grid.Column>
+                                                                <Dropdown fluid selection disabled={this.props.disabled}
+                                                                    name='user'
+                                                                    className='dropdown-userlist'
+                                                                    value={values.user}
+                                                                    options={this.props.userList}
+                                                                    onChange={(e, data) => this.dropdownHandleChange(e, data, setFieldValue)}
+                                                                ></Dropdown>
+                                                            </Grid.Column>
+                                                        </Grid.Row>
+
+                                                        <Button
+                                                            type='submit'
+                                                            className='filterButton'>Filtruj
+                                                        </Button>
+
+                                                    </Grid >}
+
+
+                                            </Fragment>
+                                        )}
+                                    </Media>
                                 </Form>
                             )}
                     </Formik>

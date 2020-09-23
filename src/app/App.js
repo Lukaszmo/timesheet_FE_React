@@ -11,6 +11,7 @@ import HoursDetailsContainer from './features/Hours/HoursDetailsContainer';
 import HoursSummaryContainer from './features/HoursSummary/HoursSummaryContainer';
 import VacationContainer from './features/Vacation/VacationContainer';
 import VacationListContainer from './features/VacationList/VacationListContainer';
+import VacationDetailsContainer from './features/Vacation/VacationDetailsContainer';
 
 function App() {
     return (
@@ -44,6 +45,9 @@ function App() {
 
                 <Route exact path='/urlopy-lista-wnioskow'
                     component={(props) => <MainContainer content={<VacationListContainer {...props} />} menuId={"VACATION"} submenuId='REQUEST_LIST' />} />
+
+                <Route exact path='/urlopy-szczegoly-wniosku'
+                    component={(props) => <MainContainer content={<VacationDetailsContainer {...props} />} menuId={"VACATION"} submenuId='REQUEST_LIST' />} />
 
                 <Route exact path='/urlopy-planowanie'
                     component={(props) => <MainContainer content={"PLANOWANIE IN PROGRESS..."} menuId={"VACATION"} submenuId='VACATION_PLAN' />} />

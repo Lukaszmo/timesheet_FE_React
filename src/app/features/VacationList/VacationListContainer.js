@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import history from '../../../history';
 
 import { Container } from 'semantic-ui-react';
 import VacationListComponent from "./VacationListComponent";
@@ -43,6 +43,13 @@ class VacationListContainer extends Component {
         this.props.fetchAllRecords(userid, filters);
     }
 
+    onTableChange = (rowAction, rowId) => {
+
+        let record = this.props.requests.filter(item => item.id === rowId);
+        history.push({ pathname: '/urlopy-szczegoly-wniosku', state: { recordDetails: record } });
+    }
+
+
     render() {
 
         if (this.props.requests) {
@@ -50,6 +57,7 @@ class VacationListContainer extends Component {
                 <Container className="vacation">
                     <VacationListComponent
                         data={this.filterData(this.props.requests)}
+                        onTableChange={this.onTableChange}
                         loggedUser={this.props.user}
                         userList={generateUserListForDropdown(this.props.inferiors, this.props.user)}
                         onFilterSubmit={this.onFilterSubmit}

@@ -14,35 +14,35 @@ export default class MenuComponent extends Component {
         return (
 
 
-            <Grid>
-                <Grid.Column width={2}>
-                    < Menu fixed="left" className="main-menu" >
-                        <div className="menu-list">
 
-                            {menu.map((element, index) => {
 
-                                let active = false;
-                                if (element.id === this.props.activeMenuItem) { active = true; }
+            < Menu fixed="left" className="main-menu" >
+                <div className="menu-list">
 
-                                return (
-                                    <Menu.Item
-                                        as={Link}
-                                        to={element.redirect}
-                                        name={element.id}
-                                        key={index}
-                                        className="menu-item"
-                                        active={active}>
-                                        <Icon name={element.icon}></Icon>
+                    {menu.map((element, index) => {
+
+                        let active = false;
+                        if (element.id === this.props.activeMenuItem) { active = true; }
+
+                        return (
+                            <Menu.Item
+                                as={Link}
+                                to={element.redirect}
+                                name={element.id}
+                                key={index}
+                                className="menu-item"
+                                active={active}>
+                                <Icon name={element.icon}></Icon>
                                 &nbsp;&nbsp; {element.name}
-                                    </Menu.Item>
+                            </Menu.Item>
 
-                                )
-                            })}
+                        )
+                    })}
 
-                        </div>
-                    </Menu >
-                </Grid.Column>
-            </Grid>
+                </div>
+            </Menu >
+
+
 
 
         )

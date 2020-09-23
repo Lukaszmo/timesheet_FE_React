@@ -1,6 +1,5 @@
 .ui.container.hours{
     padding: 0px 15px 15px;
-    margin-left: 300px !important;
 }
 
 .tableHeader{
@@ -10,8 +9,6 @@
 .ui.button.saveButton{
     color: #fff;
     background-color: #00b5ad;
-    margin-left: 140px;
-    margin-top: 40px ;
 }
 
 .ui.button.saveButton:hover{
@@ -38,8 +35,6 @@
 .ui.button.cancelButton{
     color: #fff;
     background-color:#ff3333;
-    margin-left: 140px;
-    margin-top: 40px;
 }
 
 .ui.button.cancelButton:hover{
@@ -58,7 +53,19 @@
 }
 
 .ui.dropdown.dropdown-hour-types{
-    width: 195px;
+    width: 200px;
+}
+
+.ui.dropdown.dropdown-hour-project{
+    width: 200px;
+}
+
+.ui.dropdown.dropdown-hour-task{
+    width: 200px;
+}
+
+.ui.input.input-date{
+    width: 200px;
 }
 
 #waiting-left{ 
@@ -67,15 +74,59 @@
 }
 
 .ui.input.hours-quantity{
-    width: 100px;
+    width: 80px;
     display: grid;
 }
 
+
 .hours-comment{
-    width: 200px;
+    width: 200px !important;
 }
 .hours-comment:disabled{
     opacity: .45;
     width: 200px !important; 
 }
 
+.button-row{
+    margin-left: 140px;
+    margin-top: 40px;
+}
+
+@media (min-width: 600px) and (max-width: 1199px){
+
+    .ui.container.hours{
+        width: 100%;
+    }
+
+    .data-field-header{
+        float: left;
+        margin-left: 0em;
+    }
+
+    
+
+    
+}
+
+@media (max-width: 599px){
+
+    .ui.container.hours{
+        clear: both;
+        float: left;
+    }
+
+    .ui.header{
+        width: 100%;
+        text-align: center;
+        display: inline-table;
+    }
+
+    .ui.button.filterButton{
+        width: 100%;
+        margin-bottom: 10px;
+        margin-left: 21px;
+        margin-right: 21px;
+    }
+
+    
+}

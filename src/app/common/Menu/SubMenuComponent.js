@@ -19,32 +19,32 @@ export default class SubMenuComponent extends Component {
 
         return (
 
-            <Grid>
-                <Grid.Column width={2}>
-                    < Menu fixed="left" className="submenu" >
-                        <div className="submenu-list">
-                            {menu.subMenu.map((element, index) => {
 
-                                let active = false;
-                                if (element.id === this.props.activeSubMenuItem) { active = true; }
 
-                                return (
-                                    < Menu.Item
-                                        as={Link}
-                                        to={element.redirect}
-                                        name={element.id}
-                                        key={index}
-                                        className="submenu-item"
-                                        active={active}
-                                        onClick={this.handleItemClick}>
-                                        {element.name}
-                                    </Menu.Item>
-                                )
-                            })}
-                        </div>
-                    </Menu>
-                </Grid.Column>
-            </Grid>
+            < Menu fixed="left" className="submenu" >
+                <div className="submenu-list">
+                    {menu.subMenu.map((element, index) => {
+
+                        let active = false;
+                        if (element.id === this.props.activeSubMenuItem) { active = true; }
+
+                        return (
+                            < Menu.Item
+                                as={Link}
+                                to={element.redirect}
+                                name={element.id}
+                                key={index}
+                                className="submenu-item"
+                                active={active}
+                                onClick={this.handleItemClick}>
+                                {element.name}
+                            </Menu.Item>
+                        )
+                    })}
+                </div>
+            </Menu>
+
+
         )
     }
 }

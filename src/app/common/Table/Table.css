@@ -74,3 +74,20 @@ i.icon.tableIcon{
     vertical-align: middle !important;
     font-size: small;
 }
+
+@media (max-width: 599px){
+
+    .width15{
+        text-align: center !important;
+    }
+
+    .ui.label{
+        display: block;
+        margin-left: 10% !important;
+        margin-right: 10% !important;
+    }
+
+    .ui.modal.del-confirm{
+        width: 80%;
+    }
+}

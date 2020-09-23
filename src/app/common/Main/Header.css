@@ -68,4 +68,16 @@
     border-right-color: #e6e6e6;
 }
 
+@media (max-width: 599px){
+
+    .logo2{
+        display: none;
+    }
+
+    .logo{
+        width: 40%;
+        position: absolute;
+    }
+}
+
 

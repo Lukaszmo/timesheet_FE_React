@@ -28,19 +28,55 @@
 .ui.menu .item.menu-item:hover {
     background-color: #3d4166;
     color: #ffffff;
+    border-radius: 5px !important;
 }
 
 .ui.menu .item.active.menu-item {
     background-color: #00b5ad;
     color: #ffffff;
+    border-radius: 5px !important;
+    width: 100%;
 }
 
 .ui.menu .item.submenu-item:hover {
     background-color: #c9c7c7;
     color: #00b5ad;
+    border-radius: 5px !important;
 }
 
 .ui.menu .item.active.submenu-item {
     background-color: #25d1c8;
     color: #ffffff;
+    border-radius: 5px !important;
+}
+
+@media (max-width: 599px){
+
+    .ui.menu.main-menu{
+        width: 50%;
+        height: 300px; 
+        position: absolute;
+    }
+
+   .menu-list{
+       width: 100%; 
+   }
+
+   .submenu-list{
+        width: 100%; 
+    }
+
+   .ui.menu.submenu{
+      /* width: 100%; */
+       width: 50%;
+       height: 300px;
+       position: absolute;
+       left: 50%;
+   }
+
+   .ui.segment.mainPageSegment{
+       display:none; 
+   }
+   
+
 }

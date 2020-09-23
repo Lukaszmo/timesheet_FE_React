@@ -111,6 +111,20 @@ export const fetchAllRecords = (userId, filters) => {
     }
 }
 
+export const updateRecord = (id, newStatus, msg) => {
+
+    const params = { state: newStatus };
+
+    // return (dispatch) => {
+    return axios.put(VACREQUEST + '/' + id, params)
+        .then((response) => {
+            toastr.success(msg);
+            //  dispatch(updateRecord(response.data));
+            history.push('/urlopy-lista-wnioskow');
+        });
+    // }
+}
+
 const initialState = {
     types: []
 };
