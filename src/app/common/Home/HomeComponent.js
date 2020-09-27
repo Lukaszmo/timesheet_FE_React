@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { Container, Button, GridRow, Segment } from 'semantic-ui-react';
+import { Container, Button, GridRow, Icon } from 'semantic-ui-react';
 import history from '../../../history';
 import './HomeComponent.css';
 import '../../../index.css';
@@ -8,19 +8,15 @@ import '../../../index.css';
 
 class HomeComponent extends Component {
 
-    onTimesheetButtonClick = () => {
+    handleButtonClick = (e, data) => {
 
-        history.push('/czas-pracy-rejestracja');
-    }
+        const buttonName = data.name.toUpperCase();
 
-    onVacationButtonClick = () => {
+        if (buttonName === 'TIMESHEET') { history.push('/czas-pracy-rejestracja') };
+        if (buttonName === 'VACATION') { history.push('/urlopy-dodaj-wniosek'); };
+        if (buttonName === 'TASK_TABLE') { alert("TABLE TASK IN PROGRESS..."); };
+        if (buttonName === 'REPORTS') { alert("REPORTS IN PROGRESS..."); };
 
-        history.push('/urlopy-dodaj-wniosek');
-    }
-
-    onTaskTableButtonClick() {
-
-        alert("TABLE TASK IN PROGRESS...");
     }
 
     render() {
@@ -29,32 +25,44 @@ class HomeComponent extends Component {
 
             <Container className="mainPageContainer">
 
-                <Segment color="teal" className="mainPageSegment">
-                    <GridRow></GridRow>
+                <GridRow></GridRow>
 
-                    <GridRow>
+                <GridRow>
+                    <Button
+                        className="bigBoxButton"
+                        name="timesheet"
+                        onClick={(e, data) => this.handleButtonClick(e, data)}>
+                        <Icon name='clock' className='button-icon'></Icon>
+                        <p>CZAS PRACY</p>
+                    </Button>
 
-                        <Button
-                            className="bigBoxButton"
-                            onClick={this.onTimesheetButtonClick}>
-                            CZAS PRACY
-                        </Button>
+                    <Button
+                        className="bigBoxButton"
+                        name="vacation"
+                        onClick={(e, data) => this.handleButtonClick(e, data)}>
+                        <Icon name='travel' className='button-icon'></Icon>
+                        <p>URLOPY</p>
+                    </Button>
 
-                        <Button
-                            className="bigBoxButton"
-                            onClick={this.onVacationButtonClick}>
-                            URLOPY
-                        </Button>
+                    <Button
+                        className="bigBoxButton"
+                        name="task_table"
+                        onClick={(e, data) => this.handleButtonClick(e, data)}>
+                        <Icon name='table' className='button-icon'></Icon>
+                        <p>TABLICA</p>
+                    </Button>
 
-                        <Button
-                            className="bigBoxButton"
-                            onClick={this.onTaskTableButtonClick}>
-                            <p id="bigButtontext">TABLICA</p>
-                        </Button>
+                    <Button
+                        className="bigBoxButton"
+                        name='reports'
+                        onClick={(e, data) => this.handleButtonClick(e, data)}>
+                        <Icon name='chart bar' className='button-icon'></Icon>
+                        <p>RAPORTY</p>
+                    </Button>
 
-                    </GridRow>
+                </GridRow>
 
-                </Segment>
+
 
             </Container>
         )
