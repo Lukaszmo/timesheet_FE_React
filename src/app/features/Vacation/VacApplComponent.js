@@ -244,7 +244,8 @@ class VacApplComponent extends Component {
                                                                     onChange={(e, data) => this.dateHandleChange(e, data, setFieldValue)} />
                                                                 {errors.datefrom && touched.datefrom ? <div><CustomLabel text={errors.datefrom}></CustomLabel></div> : null}
                                                             </Grid.Column>
-
+                                                        </Grid.Row>
+                                                        <Grid.Row>
                                                             <Grid.Column >
                                                                 <Input
                                                                     type='date'
