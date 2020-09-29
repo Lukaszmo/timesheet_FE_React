@@ -46,6 +46,12 @@
         margin-left: 0px !important;
         width: 100%;
     } 
+
+    .ui.button.bigBoxButton{
+        width: 100%;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
 }
 
 
