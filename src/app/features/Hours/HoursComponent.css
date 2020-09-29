@@ -96,6 +96,7 @@
 
     .ui.container.hours{
         width: 100%;
+        margin-left: 40% !important;
     }
 
     .data-field-header{

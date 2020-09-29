@@ -4,62 +4,43 @@
     background-color: #FAFAFA;
     height: 60px;
     text-align: center;
-    
-    /*padding: 25px; */
-   
 }
 
-
-.logout{
-    width: 100px;
-    height: 60px;
-    float: right;
-    color: #009999;
-    padding: 10px;
-    
-
+.burger{
+    display: none;
 }
 
-.logout:hover{
-    background-color:#e3e3e3;
-    cursor: pointer;
-}
-
-
-
-/*#logout-link{
-    vertical-align: middle;
-    color:#009999;
-}
-
-.logout:hover #logout-link{
-    color: #008080;
-} */
-
-.logo{
+.logo-left{
     float: left;
     position: fixed;
+    width: 10%; 
     height: 60px;
-    width: 150px;
     text-align: center;
-    padding: 25px;
+    background-color: #ffffff;
+    padding: 15px;
+}
+
+.logo-right{
+    float: left;
+    position: fixed;
+    width: 10%; 
+    margin-left: 10%;
+    height: 60px;
+    text-align: center;
     background-color: #ffffff;
 }
 
-.logo2{
+.header-center{
     float: left;
-    position: fixed;
+    width: 66%; 
+    margin-left: 20%;
     height: 60px;
-    left: 150px;
-    width: 130px;
     text-align: center;
-    padding: 25px;
-    background-color: #ffffff;
 }
 
 .logged-in-username{ 
-    float: right;
-    width: 100px;
+    display: inline-block;
+    width: 7%;
     height: 60px;
     padding: 10px;
     color: #838282;
@@ -68,16 +49,81 @@
     border-right-color: #e6e6e6;
 }
 
+.logout{
+    display: inline-block;
+    width: 7%;
+    height: 60px;
+    color: #009999;
+    padding: 10px;
+}
+
+.logout:hover{
+    background-color:#e3e3e3;
+    cursor: pointer;
+}
+
+@media (min-width: 600px) and (max-width: 1199px){
+
+    .logo-left{
+        width: 20%;
+    }
+
+    .logo-right{
+        margin-left: 20%;
+        width: 20%;
+    }
+
+    .header-center{
+        margin-left: 40%;
+        width: 20%;
+    }
+
+    .logged-in-username{ 
+        width: 20%;
+    }
+
+    .logout{ 
+        width: 20%;
+    }
+}
+
 @media (max-width: 599px){
 
-    .logo2{
+    .logo-left{
         display: none;
     }
 
-    .logo{
-        width: 40%;
-        position: absolute;
+    .logo-right{
+        display: none;
     }
+
+    .burger{
+        display: initial;
+        float: left;
+        height: 60px;
+        width: 20%;
+        text-align: center;
+        padding-top: 15px;
+        color: #838282;
+        border: 1px;
+        border-right-style: solid;
+        border-right-color: #e6e6e6;
+    }
+
+    .header-center{
+        margin-left: 0%;
+        width: 30%;
+    }
+
+    .logged-in-username{ 
+        width: 25%;
+    }
+
+    .logout{ 
+        width: 25%;
+    }
+
+
 }
 
 

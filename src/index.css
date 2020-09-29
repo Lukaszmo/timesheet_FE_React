@@ -22,6 +22,10 @@ body{
         width: 100%;
     }
 
+    .ui.segment{
+        width: 100% !important;
+    }
+
     .ui.grid .row{
         display: grid;
     }

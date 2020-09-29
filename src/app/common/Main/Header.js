@@ -15,31 +15,33 @@ class Header extends Component {
 
     render() {
 
-        let logo2 = <div className="logo2">iProject</div>
+        let logoRight = <div className="logo-right"></div>;
 
         if (this.props.menuId === 'HOME') {
-            logo2 = null;
+            logoRight = null;
         }
 
         return (
             <div className="header-container">
-                <div className="logo">Logo</div>
 
-                {logo2}
-
-                HEADER
-
-
-                <div className="logout" onClick={this.logoutOperation}>
-
-
-                    <Icon name='power off'></Icon><br></br>
-                    <p>Wyloguj</p>
-
+                <div className="burger">
+                    <Icon name='bars' size='big'></Icon>
                 </div>
+
+                <div className="logo-left">Logo</div>
+
+                {logoRight}
+
+                <div className="header-center"></div>
+
                 <div className="logged-in-username">
                     <Icon name='user'></Icon><br></br>
                     {this.props.user.username}
+                </div>
+
+                <div className="logout" onClick={this.logoutOperation}>
+                    <Icon name='power off'></Icon><br></br>
+                    <p>Wyloguj</p>
                 </div>
 
             </div>
