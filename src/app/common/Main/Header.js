@@ -3,6 +3,7 @@ import { Icon } from 'semantic-ui-react';
 
 import { connect } from 'react-redux';
 import { userLogoutOperation } from '../../features/Login/Login';
+import Burger from '../Burger/Burger';
 
 import './Header.css';
 
@@ -12,6 +13,7 @@ class Header extends Component {
 
         this.props.userLogoutOperation(); // teraz to jest w Login.js być może trzeba przenieść do Logout?
     }
+
 
     render() {
 
@@ -24,9 +26,7 @@ class Header extends Component {
         return (
             <div className="header-container">
 
-                <div className="burger">
-                    <Icon name='bars' size='big'></Icon>
-                </div>
+                <Burger open={this.props.open} setOpen={this.props.setOpen}></Burger>
 
                 <div className="logo-left">Logo</div>
 

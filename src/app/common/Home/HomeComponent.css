@@ -40,12 +40,12 @@
     margin-right: 0px !important;
 }
 
-
 @media (max-width: 599px){
 
     .ui.container.mainPageContainer{
-        display: none; 
-    }
+        margin-left: 0px !important;
+        width: 100%;
+    } 
 }
 
 

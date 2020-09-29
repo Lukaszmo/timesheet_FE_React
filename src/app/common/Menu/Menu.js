@@ -1,5 +1,6 @@
 
 const SET_ACTIVE_SUBMENU_ITEM = 'SET_ACTIVE_SUBMENU_ITEM';
+const SET_MENU_OPEN = 'SET_MENU_OPEN';
 
 //actions
 
@@ -12,10 +13,27 @@ export function setActiveSubMenuItem(id) {
     }
 }
 
+export function setMenuOpen(isOpen) {
+    return {
+        type: SET_MENU_OPEN,
+        payload: {
+            open: isOpen
+        }
+    }
+}
+
 export const setActiveSubMenuItemId = (menuItemId) => {
 
     return (dispatch) => {
         dispatch(setActiveSubMenuItem(menuItemId));
+    };
+
+}
+
+export const setMenuOpenFlag = (isOpen) => {
+
+    return (dispatch) => {
+        dispatch(setMenuOpen(isOpen));
     };
 
 }
@@ -139,7 +157,8 @@ export const setSubMenu = (menuId) => {
 }
 
 const initialState = {
-    activeSubMenuItem: ''
+    activeSubMenuItem: '',
+    open: false
 };
 
 //reducers
@@ -147,6 +166,10 @@ export default (state = initialState, action) => {
     switch (action.type) {
 
         case SET_ACTIVE_SUBMENU_ITEM: {
+            return { ...state, ...action.payload };
+        }
+
+        case SET_MENU_OPEN: {
             return { ...state, ...action.payload };
         }
 

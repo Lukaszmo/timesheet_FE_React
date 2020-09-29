@@ -14,17 +14,19 @@ class MainComponent extends Component {
 
         const menuId = this.props.menuId;
 
+        let mainMenu = <MenuContainer menuId={this.props.menuId} open={this.props.open} />
         let subMenu = <SubMenuContainer data={this.props} submenuId={this.props.submenuId}></SubMenuContainer>
 
-        if (menuId === 'HOME') {
+        if ((menuId === 'HOME') || (this.props.open === false)) {
 
             subMenu = null;
         }
 
         return (
             <div className="main-container">
-                <Header menuId={menuId} />
-                <MenuContainer menuId={this.props.menuId} />
+                <Header menuId={menuId} open={this.props.open} setOpen={this.props.setOpen} />
+                {mainMenu}
+
 
                 {/* <Content content={this.props.content} /> content przekazywany w App.js*/}
 

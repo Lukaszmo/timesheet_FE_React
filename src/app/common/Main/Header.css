@@ -6,10 +6,6 @@
     text-align: center;
 }
 
-.burger{
-    display: none;
-}
-
 .logo-left{
     float: left;
     position: fixed;
@@ -97,19 +93,6 @@
         display: none;
     }
 
-    .burger{
-        display: initial;
-        float: left;
-        height: 60px;
-        width: 20%;
-        text-align: center;
-        padding-top: 15px;
-        color: #838282;
-        border: 1px;
-        border-right-style: solid;
-        border-right-color: #e6e6e6;
-    }
-
     .header-center{
         margin-left: 0%;
         width: 30%;
@@ -122,8 +105,6 @@
     .logout{ 
         width: 25%;
     }
-
-
 }
 
 

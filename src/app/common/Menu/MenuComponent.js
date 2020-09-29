@@ -13,9 +13,6 @@ export default class MenuComponent extends Component {
 
         return (
 
-
-
-
             < Menu fixed="left" className="main-menu" >
                 <div className="menu-list">
 
@@ -42,10 +39,8 @@ export default class MenuComponent extends Component {
                 </div>
             </Menu >
 
-
-
-
         )
+
     }
 }
 
