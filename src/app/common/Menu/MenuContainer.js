@@ -1,13 +1,22 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
+import { connect } from 'react-redux';
 
 import MenuComponent from "./MenuComponent";
 import { setMenu } from "../Menu/Menu";
 import * as AuthService from '../../utils/AuthService';
 import { Redirect } from "react-router-dom";
+import { setMenuOpenFlag } from "../Menu/Menu";
 
 class MenuContainer extends Component {
 
     menu = setMenu();
+
+    handleMenuItemClick = (menuItemId) => {
+
+        if (menuItemId === 'HOME') {
+            this.props.setMenuOpenFlag(false);
+        }
+    }
 
     render() {
         if (!AuthService.isAuthenticated()) {
@@ -18,10 +27,22 @@ class MenuContainer extends Component {
             <MenuComponent
                 menu={this.menu}
                 activeMenuItem={this.props.menuId}
+                handleMenuItemClick={this.handleMenuItemClick}
             />
 
         )
     }
 }
 
-export default MenuContainer;
+const mapStateToProps = state => ({
+    menu: state.menu
+})
+
+const mapDispatchToProps = dispatch => ({
+    setMenuOpenFlag: (isOpen) => dispatch(setMenuOpenFlag(isOpen))
+})
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(MenuContainer); 

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import SubMenuComponent from "./SubMenuComponent";
 import { setSubMenu, setActiveSubMenuItemId } from "../Menu/Menu";
+import { setMenuOpenFlag } from "../Menu/Menu";
 
 
 class SubMenuContainer extends Component {
@@ -19,7 +20,7 @@ class SubMenuContainer extends Component {
     handleSubMenuItemClick = (subMenuItemId) => {
 
         this.props.setActiveSubMenuItemId(subMenuItemId);
-
+        this.props.setMenuOpenFlag(false);
     }
 
     menu = setSubMenu(this.props.data.menuId);
@@ -43,7 +44,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    setActiveSubMenuItemId: (id) => dispatch(setActiveSubMenuItemId(id))
+    setActiveSubMenuItemId: (id) => dispatch(setActiveSubMenuItemId(id)),
+    setMenuOpenFlag: (isOpen) => dispatch(setMenuOpenFlag(isOpen))
 })
 
 export default connect(

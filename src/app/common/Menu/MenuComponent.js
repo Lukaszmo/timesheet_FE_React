@@ -7,6 +7,12 @@ import './Menu.css';
 
 export default class MenuComponent extends Component {
 
+
+    handleItemClick = (e, { name }) => {
+
+        this.props.handleMenuItemClick(name);
+    }
+
     render() {
 
         const menu = this.props.menu;
@@ -28,7 +34,8 @@ export default class MenuComponent extends Component {
                                 name={element.id}
                                 key={index}
                                 className="menu-item"
-                                active={active}>
+                                active={active}
+                                onClick={this.handleItemClick}>
                                 <Icon name={element.icon}></Icon>
                                 &nbsp;&nbsp; {element.name}
                             </Menu.Item>
