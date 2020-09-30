@@ -39,3 +39,19 @@
 .ui.button.login-form-submit{
     margin-top: 35px;
 }
+
+@media (max-width: 599px){
+
+    .inputs-login-form-field {
+        width: 90%;
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+
+    .ui.button.login-form-submit{
+        width: 90%;
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+
+}
