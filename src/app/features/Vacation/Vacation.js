@@ -17,6 +17,7 @@ export const validationSchema = Yup.object().shape({
 //action types
 const SET_VACREQ_TYPES = 'SET_VACREQ_TYPES';
 const SET_VACREQUESTS = 'SET_VACREQUESTS';
+const UPDATE_RECORDS = 'UPDATE_RECORDS';
 
 
 //actions
@@ -34,6 +35,15 @@ export function setVacRequests(records) {
         type: SET_VACREQUESTS,
         payload: {
             records: records
+        }
+    }
+}
+
+export function updateRecords(record) {
+    return {
+        type: UPDATE_RECORDS,
+        payload: {
+            updatedRecord: record
         }
     }
 }
@@ -115,14 +125,14 @@ export const updateRecord = (id, newStatus, msg) => {
 
     const params = { state: newStatus };
 
-    // return (dispatch) => {
-    return axios.put(VACREQUEST + '/' + id, params)
-        .then((response) => {
-            toastr.success(msg);
-            //  dispatch(updateRecord(response.data));
-            history.push('/urlopy-lista-wnioskow');
-        });
-    // }
+    return (dispatch) => {
+        return axios.put(VACREQUEST + '/' + id, params)
+            .then((response) => {
+                toastr.success(msg);
+                dispatch(updateRecords(response.data));
+                //history.push('/urlopy-lista-wnioskow');
+            });
+    }
 }
 
 const initialState = {
@@ -138,6 +148,10 @@ export default (state = initialState, action) => {
         }
 
         case SET_VACREQUESTS: {
+            return { ...state, ...action.payload };
+        }
+
+        case UPDATE_RECORDS: {
             return { ...state, ...action.payload };
         }
 

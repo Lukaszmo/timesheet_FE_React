@@ -11,12 +11,9 @@ class VacationDetailsComponent extends Component {
 
         let val = 'Anuluj wniosek';
 
-        if ((requestState == 4) && (mode !== 'ACCEPTANCE')) { val = 'Wyślij prośbę o anulowanie wniosku' }
-
         if (mode === 'ACCEPTANCE') {
             val = 'Odrzuć';
             if (requestState == 4) val = 'Anuluj akceptację';
-
         }
 
         return val;
@@ -37,9 +34,8 @@ class VacationDetailsComponent extends Component {
         let msg = 'Wniosek urlopowy został anulowany';
         let newState;
 
-        //Akcje podwaładnego
-        if ((oldState == 1) || (oldState == 2)) { newState = 7; }   // Anulowanie wniosku
-        if (oldState == 4) { newState = 6; }   // Prośba o anulowanie zaakceptowanego wniosku
+        //Akcje podwładnego
+        if ((oldState == 1) || (oldState == 2)) { newState = 6; }   // Anulowanie wniosku
 
         //Akcje przełożonego
         if (mode === 'ACCEPTANCE') {
@@ -79,7 +75,11 @@ class VacationDetailsComponent extends Component {
         </Button>
 
         //nie pokazuj przycisku anulowania gdy wniosek został już anulowany lub odrzucony
-        leftButton = ((requestState == 5) || (requestState == 7)) || ((mode === 'ACCEPTANCE') && (requestState == 3)) ? null : leftButton;
+        if ((requestState == 5) || (requestState == 6)) leftButton = null;
+        //nie pokazuj przycisku anulowania gdy wniosek jest w statusie do poprawienia
+        if ((requestState == 3) && (mode === 'ACCEPTANCE')) leftButton = null;
+        //nie pokazuj przycisku anulowania gdy wniosek został już zaakceptowany przez kierownika
+        if ((requestState == 4) && (mode !== 'ACCEPTANCE')) leftButton = null;
 
         let rightButton = <Button
             type='submit'
@@ -91,15 +91,15 @@ class VacationDetailsComponent extends Component {
         //przycisk akceptacji wyświetlaj tylko dla statusu Czeka na akceptację w trybie akceptacji
         rightButton = (mode === 'ACCEPTANCE') && (requestState == 2) ? rightButton : null;
 
-        let acceptorRow = <Grid.Row>
+        {/*let acceptorRow = <Grid.Row>
             <Grid.Column width={3}>
                 Akceptujący</Grid.Column >
             <Grid.Column width={2}>
                 <p className='data-field'>  </p>
             </Grid.Column>
-        </Grid.Row>
+        </Grid.Row> */}
 
-        acceptorRow = (requestState == 4) ? acceptorRow : null;
+        let acceptorRow = (requestState == 4) ? acceptorRow : null;
 
 
         return (

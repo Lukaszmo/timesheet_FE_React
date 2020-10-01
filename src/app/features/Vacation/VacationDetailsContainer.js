@@ -46,8 +46,7 @@ class VacationDetailsContainer extends Component {
         else if (requestState == 3) labelClass = 'neutral';     // Wniosek do poprawienia
         else if (requestState == 4) labelClass = 'positive';    // Zaakceptowany
         else if (requestState == 5) labelClass = 'negative';    // Odrzucony
-        else if (requestState == 6) labelClass = 'neutral';     // Prośba o anulowanie akceptacji
-        else if (requestState == 7) labelClass = 'negative';    // Anulowany
+        else if (requestState == 6) labelClass = 'negative';    // Anulowany
 
         this.setState({ labelClass: labelClass });
 
@@ -55,7 +54,8 @@ class VacationDetailsContainer extends Component {
 
     changeStatus = (id, newState, msg) => {
 
-        updateRecord(id, newState, msg);
+        this.props.updateRecord(id, newState, msg).then(() => this.setState({ recordDetails: this.props.updatedRecord }));
+        this.setLabelClass(newState);
     }
 
 
@@ -78,9 +78,15 @@ class VacationDetailsContainer extends Component {
 }
 
 const mapStateToProps = state => ({
-    user: state.user
+    user: state.user,
+    updatedRecord: state.vacation.updatedRecord
+})
+
+const mapDispatchToProps = dispatch => ({
+    updateRecord: (id, newStatus, msg) => dispatch(updateRecord(id, newStatus, msg))
 })
 
 export default connect(
-    mapStateToProps
+    mapStateToProps,
+    mapDispatchToProps
 )(VacationDetailsContainer);
