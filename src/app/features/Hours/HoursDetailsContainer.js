@@ -19,7 +19,6 @@ class HoursDetailsContainer extends Component {
             acceptor: null,     //dane kierownika który zaakceptował nadgodziny
             acceptorid: null    //id zalogowanego kierownika akceptującego nadgodziny
         }
-
     }
 
     componentDidMount() {
@@ -32,7 +31,7 @@ class HoursDetailsContainer extends Component {
 
         if (overtAcceptance === 1) {
             const acceptorId = this.state.recordDetails.acceptorid;
-            getUserDetails(acceptorId).then(resp => this.setState({ acceptor: resp.data }));
+            this.setAcceptor(acceptorId);
         }
 
         fetchProjectTasks(projectId).then(resp => this.setState({ tasks: generateTasksForDropdown(resp.data) }));
@@ -40,8 +39,19 @@ class HoursDetailsContainer extends Component {
 
     onEditFormSubmit = (id, values, msg) => {
 
-        this.props.updateRecord(id, values, msg)
+        this.props.updateRecord(id, values, msg).then(() => this.setState({ recordDetails: this.props.updatedRecord }));
 
+        const overtAcceptance = values.overtacceptance;
+
+        if (overtAcceptance === 1) {
+            const acceptorId = values.acceptorid;
+            this.setAcceptor(acceptorId);
+        }
+    }
+
+    setAcceptor(acceptorId) {
+
+        getUserDetails(acceptorId).then(resp => this.setState({ acceptor: resp.data }));
     }
 
     onProjectDropdownChange = (projectId) => {
@@ -88,8 +98,8 @@ class HoursDetailsContainer extends Component {
 
 const mapStateToProps = state => ({
     hourTypes: state.hour.types,
-    data: state.hour.records,
     user: state.user,
+    updatedRecord: state.hour.updatedRecord
 })
 
 const mapDispatchToProps = dispatch => ({

@@ -193,7 +193,7 @@ export const updateRecord = (id, values, msg) => {
             .then((response) => {
                 toastr.success(msg);
                 dispatch(updateRecords(response.data));
-                history.push('/czas-pracy-lista');
+                // history.push('/czas-pracy-lista');
             });
     }
 }
@@ -278,7 +278,8 @@ export default (state = initialState, action) => {
                     ...state.records.slice(0, index),      // wycina to co przed indexem
                     action.payload.updatedRecord,          // wrzuca rekord
                     ...state.records.slice(1 + index)      // dodaje to co pozostało
-                ]
+                ],
+                updatedRecord: action.payload.updatedRecord
             }
         }
 
