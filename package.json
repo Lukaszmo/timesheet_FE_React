@@ -11,6 +11,8 @@
         "axios": "^0.19.1",
         "formik": "^2.1.2",
         "history": "4.9.0",
+        "html2pdf.js": "^0.9.2",
+        "jspdf": "^2.1.1",
         "marked": "^0.8.0",
         "prop-types": "^15.5.10",
         "react": "16.9.0",
