@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import { Container } from 'semantic-ui-react';
 import VacationDetailsComponent from './VacationDetailsComponent';
-import { updateRecord } from './Vacation';
+import { updateRecord, generatePDF } from './Vacation';
 import { getUserDetails } from "../User/User";
 
 class VacationDetailsContainer extends Component {
@@ -58,6 +58,11 @@ class VacationDetailsContainer extends Component {
         this.setLabelClass(newState);
     }
 
+    onPrintIconClick = () => {
+
+        generatePDF(this.state.recordDetails);
+    }
+
 
     render() {
 
@@ -70,6 +75,7 @@ class VacationDetailsContainer extends Component {
                     labelClass={this.state.labelClass}
                     leftButtonClass={this.state.leftButtonClass}
                     changeStatus={this.changeStatus}
+                    onPrintIconClick={this.onPrintIconClick}
                 />
             </Container>
 

@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 
 import { Formik } from 'formik';
-import { Segment, Header, Button, Dropdown, Grid, Input, Form, GridRow, Label, TextArea, Divider } from 'semantic-ui-react';
-
-
+import { Segment, Header, Button, Dropdown, Grid, Input, Form, GridRow, Label, TextArea, Divider, Icon } from 'semantic-ui-react';
 
 class VacationDetailsComponent extends Component {
 
@@ -47,6 +45,12 @@ class VacationDetailsComponent extends Component {
         this.props.changeStatus(this.props.recordDetails.id, newState, msg);
     }
 
+    handlePrintIconClick = () => {
+
+        this.props.onPrintIconClick();
+
+    }
+
 
     render() {
 
@@ -81,6 +85,18 @@ class VacationDetailsComponent extends Component {
         //nie pokazuj przycisku anulowania gdy wniosek został już zaakceptowany przez kierownika
         if ((requestState == 4) && (mode !== 'ACCEPTANCE')) leftButton = null;
 
+        const printBar = (requestState == 4) ? <div className='print-bar'>
+            <div className='print-icon' onClick={this.handlePrintIconClick}>
+                <Icon name='file pdf'></Icon>
+                <span>PDF</span>
+            </div>
+            {/*} <div className='print-icon' id='printer' >
+                <Icon name='print' ></Icon>
+                <span>Drukuj</span>
+    </div> */}
+        </div> : null;
+
+
         let rightButton = <Button
             type='submit'
             className='saveButton'
@@ -101,11 +117,15 @@ class VacationDetailsComponent extends Component {
 
         let acceptorRow = (requestState == 4) ? acceptorRow : null;
 
-
         return (
             <Segment color="teal" >
-                <Header size='medium'>Szczegóły wniosku </Header>
-                <Divider></Divider>
+
+                <Header size='medium' className='custom-header'>Szczegóły wniosku </Header>
+
+                {printBar}
+
+
+                <Divider className='custom-divider'></Divider>
 
                 <Formik
                     initialValues={{}}
@@ -201,13 +221,15 @@ class VacationDetailsComponent extends Component {
                                         </Grid.Column>
                                     </Grid.Row>
 
+
+
                                 </Grid>
                                 <div className='vacation-button-row'> {leftButton}{rightButton} </div>
 
                             </Form>
                         )}
                 </Formik>
-            </Segment>
+            </Segment >
 
         )
     }

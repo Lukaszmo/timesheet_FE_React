@@ -4,6 +4,10 @@ import * as Yup from 'yup';
 import { VACATION_REQUEST_MAIL, VACREQUEST, VACREQ_TYPES, USERS } from '../../../routes';
 import history from '../../../history';
 
+import jsPDF from "jspdf";
+import html2pdf from "html2pdf.js";
+import FontsBase24 from '../../fonts/fontsPDF.js';
+
 export const validationSchema = Yup.object().shape({
     type: Yup.string()
         .required('Pole wymagane'),
@@ -69,6 +73,65 @@ function sendMail(object, recordId) {
             toastr.success('Wniosek został wysłany');
         });
 }
+
+export const generatePDF = (data) => {
+
+    generateVacationRequestPDF(data);
+
+}
+
+function generateVacationRequestPDF(data) {
+
+    const employeeName = data.user.firstname + ' ' + data.user.lastname;
+    const datefrom = data.datefrom.substr(0, 10);
+    const dateto = data.dateto.substr(0, 10);
+    const timestampDate = data.timestamp.substr(0, 10);
+    const timestampTime = data.timestamp.substr(11, 8);
+
+    const doc = new jsPDF({ orientation: "p", lineHeight: 1.8 });
+
+    //ustawienia
+    const customFont = FontsBase24.lato;
+    doc.addFileToVFS('Lato-Regular.ttf', customFont);
+    doc.addFont('Lato-Regular.ttf', "custom", "normal");
+    doc.setFont("custom");
+    doc.setFontSize(12);
+    const pageWidth = doc.internal.pageSize.width;
+
+    //dane do pdf
+    doc.text('Nazwa firmy', 30, 20);
+    doc.text('Wniosek urlopowy nr: ' + data.id, pageWidth / 2, 40, 'center');
+    doc.text('Imię i nazwisko:', 30, 60);
+    doc.text(employeeName, 80, 60);
+    doc.text('Stanowisko/Dział:', 30, 70);
+    doc.text(data.user.position, 80, 70);
+    doc.text('Rodzaj wniosku:', 30, 80);
+    doc.text(data.type.description, 80, 80);
+    doc.text('Zakres urlopu:', 30, 90);
+    doc.text(datefrom + ' do ' + dateto, 80, 90);
+    doc.text('Liczba dni:', 30, 100);
+    doc.text(data.quantity.toString(), 80, 100);
+    doc.text('Komentarz:', 30, 110);
+    doc.text(data.comment, 80, 110);
+    doc.text('Data Akceptacji:', 30, 120);
+    doc.text(timestampDate + ' ' + timestampTime, 80, 120);
+
+    doc.output('dataurlnewwindow');
+}
+
+/*function generateFromHTML(data) {
+ 
+    const opt = {
+        margin: 1,
+        filename: 'wniosek_urlopowy.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 7 },
+        jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+    };
+ 
+    html2pdf(data, opt);
+} */
+
 
 function setVacRequestState(id) {
 
