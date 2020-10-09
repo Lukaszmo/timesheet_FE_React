@@ -182,6 +182,7 @@ class HoursListComponent extends Component {
                                                             <Grid.Column>
                                                                 <Input
                                                                     type='date'
+                                                                    className='filter-date'
                                                                     name='datefrom'
                                                                     value={values.datefrom}
                                                                     onChange={(e, data) => this.dateHandleChange(e, data, setFieldValue)}
@@ -194,6 +195,7 @@ class HoursListComponent extends Component {
                                                                 <Input
                                                                     type='date'
                                                                     name='dateto'
+                                                                    className='filter-date'
                                                                     value={values.dateto}
                                                                     onChange={(e, data) => this.dateHandleChange(e, data, setFieldValue)}
                                                                 />

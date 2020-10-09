@@ -172,6 +172,7 @@ class VacationListComponent extends Component {
                                                             <Grid.Column>
                                                                 <Input
                                                                     type='date'
+                                                                    className='filter-date'
                                                                     name='datefrom'
                                                                     value={values.datefrom}
                                                                     onChange={(e, data) => this.dateHandleChange(e, data, setFieldValue)}
@@ -182,6 +183,7 @@ class VacationListComponent extends Component {
                                                             <Grid.Column>
                                                                 <Input
                                                                     type='date'
+                                                                    className='filter-date'
                                                                     name='dateto'
                                                                     value={values.dateto}
                                                                     onChange={(e, data) => this.dateHandleChange(e, data, setFieldValue)}

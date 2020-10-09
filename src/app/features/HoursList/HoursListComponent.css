@@ -12,3 +12,17 @@
 .ui.dropdown.dropdown-userlist{
     width: 170px;
 }
+
+@media (max-width: 599px){
+
+    .ui.input.filter-date{
+        width: 200px;
+    }
+
+    .ui.dropdown.dropdown-userlist{
+        width: 200px;
+    }
+
+    
+
+}
