@@ -103,8 +103,6 @@ class HoursListComponent extends Component {
 
         console.log(this.props);
 
-
-
         return (
             <div >
                 <Segment color="teal" className="hour-list-segment">
@@ -236,8 +234,8 @@ class HoursListComponent extends Component {
                         data={this.props.data}
                         onTableChange={this.props.onTableChange}
                         rowsPerPage={10}
-                        pagination={true} />
-
+                        pagination={true}
+                        deleteDisabled={this.props.deleteDisabled} />
                 </Segment>
             </div >
         )

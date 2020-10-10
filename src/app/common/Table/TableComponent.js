@@ -117,6 +117,7 @@ class TableComponent extends Component {
 
     render() {
 
+
         //no results were found
         if ((!this.props.data) || (this.props.data.length === 0)) {
             return (
@@ -142,6 +143,7 @@ class TableComponent extends Component {
                     handleButtonClick={this.handleButtonClick}
                     handleCancel={this.handleCancel}
                     handleConfirm={this.handleConfirm}
+                    deleteDisabled={this.props.deleteDisabled ? this.props.deleteDisabled : false}
                 />
                 <Table.Footer>
                     <Table.Row textAlign="center">
@@ -166,7 +168,7 @@ const Headers = ({ headers }) => {
 };
 
 //Body tabeli
-const TableBody = ({ headers, data, activePage, rowsPerPage, rowAction, tableState, handleButtonClick, handleCancel, handleConfirm }) => {
+const TableBody = ({ headers, data, activePage, rowsPerPage, rowAction, tableState, handleButtonClick, handleCancel, handleConfirm, deleteDisabled }) => {
 
     let tableData = data;
 
@@ -186,6 +188,7 @@ const TableBody = ({ headers, data, activePage, rowsPerPage, rowAction, tableSta
                 handleButtonClick={handleButtonClick}
                 handleCancel={handleCancel}
                 handleConfirm={handleConfirm}
+                deleteDisabled={deleteDisabled}
             />
         }
     })
@@ -196,7 +199,7 @@ const TableBody = ({ headers, data, activePage, rowsPerPage, rowAction, tableSta
 };
 
 //Wiersz
-const Row = ({ headers, singleRow, rowNumber, rowAction, tableState, handleButtonClick, handleCancel, handleConfirm }) => {
+const Row = ({ headers, singleRow, rowNumber, rowAction, tableState, handleButtonClick, handleCancel, handleConfirm, deleteDisabled }) => {
     const row = headers.map(header => {
 
         //Jeśli header.dataField nie ma wartości ustaw value na null
@@ -216,6 +219,7 @@ const Row = ({ headers, singleRow, rowNumber, rowAction, tableState, handleButto
             handleButtonClick={handleButtonClick}
             handleCancel={handleCancel}
             handleConfirm={handleConfirm}
+            deleteDisabled={deleteDisabled}
         />
     });
 
@@ -225,7 +229,7 @@ const Row = ({ headers, singleRow, rowNumber, rowAction, tableState, handleButto
 };
 
 //Komórki
-const Cell = ({ header, value, action, rowAction, rowObject, tableState, handleButtonClick, handleCancel, handleConfirm }) => {
+const Cell = ({ header, value, action, rowAction, rowObject, tableState, handleButtonClick, handleCancel, handleConfirm, deleteDisabled }) => {
 
     let type = header.type.toUpperCase();
     let subType = header.subType ? header.subType.toUpperCase() : null;
@@ -234,6 +238,7 @@ const Cell = ({ header, value, action, rowAction, rowObject, tableState, handleB
 
     //konwersja dla pola typu data ponieważ api zwraca format datetime "2020-03-13T00:00:00+01:00"
     let displayValue = subType === 'DATE' ? value.substr(0, 10) : value;
+
 
     if (type === 'DATA') {
 
@@ -259,11 +264,17 @@ const Cell = ({ header, value, action, rowAction, rowObject, tableState, handleB
         return <Table.Cell className={header.className}>{displayValue}{cellLabel}</Table.Cell>;
     }
 
+
+
     if (type === 'BUTTON') {
 
         return <Table.Cell className={header.className}>
 
-            <Button size="small" className="tableButton" title={header.action} onClick={() => handleButtonClick(actionType, rowObject.id)}>
+            <Button size="small"
+                className="tableButton"
+                title={header.action}
+                onClick={() => handleButtonClick(actionType, rowObject.id)}
+                disabled={actionType === 'DELETE' ? deleteDisabled : false}>
                 <ButtonContent>
                     <Icon className="tableIcon" name={iconName} size="large" ></Icon>
                 </ButtonContent>

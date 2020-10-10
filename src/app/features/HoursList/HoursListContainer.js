@@ -13,7 +13,8 @@ class HoursListContainer extends Component {
 
     state = {
         dateFrom: getFirstDayOfMonth(new Date()),
-        dateTo: getLastDayOfMonth(new Date())
+        dateTo: getLastDayOfMonth(new Date()),
+        deleteDisabled: false
     };
 
     componentDidMount() {
@@ -45,6 +46,11 @@ class HoursListContainer extends Component {
     onFilterSubmit = (userid, filters) => {
 
         this.props.fetchAllRecords(userid, filters);
+
+        if (userid !== this.props.user.id) {
+            this.setState({ deleteDisabled: true });
+        }
+        else { this.setState({ deleteDisabled: false }); }
     }
 
     render() {
@@ -60,6 +66,7 @@ class HoursListContainer extends Component {
                         onFilterSubmit={this.onFilterSubmit}
                         dateFrom={this.state.dateFrom}
                         dateTo={this.state.dateTo}
+                        deleteDisabled={this.state.deleteDisabled}
                     />
                 </Container>
             );
