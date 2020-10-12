@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 
 import { Formik } from 'formik';
-import { Segment, Header, Button, Dropdown, Grid, Input, Form, GridRow, Label, TextArea, Divider } from 'semantic-ui-react';
+import { Segment, Header, Button, Dropdown, Grid, Input, Form, GridRow, Label, TextArea, Divider, Confirm } from 'semantic-ui-react';
 import CustomLabel from '../../common/CustomLabel/CustomLabel';
 import './HoursComponent.css';
 import Media from 'react-media';
@@ -9,39 +9,69 @@ import Media from 'react-media';
 
 class HoursDetailsComponent extends Component {
 
+    state = {
+        open: false
+    }
+
 
     onSubmit(values) {
 
+        // Typy godzin
+        // 1 - Regularne godziny pracy
+        // 2 - Nadgodziny
+        // 3 - Nieobecność
+
         const mode = this.props.mode;
-        const type = this.props.recordDetails.type.id; //typ rekordu który zmieniamy
-        let overtacceptance = null;
+        const oldType = this.props.recordDetails.type.id; //typ rekordu który zmieniamy
+        const newType = values.type;
+        const oldOvertacceptance = this.props.recordDetails.overtacceptance;
+        let newOvertacceptance = null;
         let acceptorid = null;
         let msg = null;
 
         if (mode === 'EDIT') {
 
             msg = 'Rekord został zmodyfikowany';
-            if (values.type === 2) { overtacceptance = 0; }
-            if ((type === 2) && (type !== values.type)) {   //jeśli użytkownik zmienia z nadgodzin na inny typ
+            if (newType == 2) { newOvertacceptance = 0; }
+            if ((oldType == 2) && (oldType !== newType)) {   //jeśli użytkownik zmienia z nadgodzin na inny typ
 
-                overtacceptance = null;
+                newOvertacceptance = null;
                 acceptorid = null;
             }
         }
 
-
         if (mode === 'ACCEPTANCE') {
 
-            overtacceptance = (this.props.recordDetails.overtacceptance === 0) ? 1 : 0; //akceptacja lub anulowanie
-            acceptorid = (overtacceptance === 1) ? this.props.acceptorid : null;
-            msg = (overtacceptance === 1) ? 'Nadgodziny zostały zaakceptowane' : 'Akceptacja została anulowana';
+            newOvertacceptance = 1;
+            acceptorid = this.props.acceptorid;
+            msg = 'Nadgodziny zostały zaakceptowane';
         }
 
-        values = { ...values, overtacceptance: overtacceptance, acceptorid: acceptorid };
+        values = { ...values, overtacceptance: newOvertacceptance, acceptorid: acceptorid };
 
         const recordId = this.props.recordDetails.id;
 
-        this.props.onEditFormSubmit(recordId, values, msg);
+        //wyświetl modal potwierdzenia jeśli anulowanie akceptacji nadgodzin
+        if ((mode === 'ACCEPTANCE') && (oldOvertacceptance === 1)) {
+            this.setState({ open: true });
+        }
+        else
+            this.props.onEditFormSubmit(recordId, values, msg);
+    }
+
+    handleCancel = () => {
+
+        this.setState({ open: false });
+    }
+
+    //potwierdzenie anulowania akceptacji nadgodzin
+    handleConfirm = () => {
+
+        const values = { overtacceptance: 0, acceptorid: null };
+        const msg = 'Akceptacja została anulowana';
+
+        this.setState({ open: false });
+        this.props.onEditFormSubmit(this.props.recordDetails.id, values, msg);
     }
 
     dropdownHandleChange(e, data, setFieldValue) {
@@ -383,6 +413,16 @@ class HoursDetailsComponent extends Component {
                                 </Media>
 
                                 <div className='button-row'>{button}</div>
+                                <Confirm
+                                    className="del-confirm"
+                                    header="Anulowanie akceptacji"
+                                    content="Czy na pewno chcesz anulować akceptację nadgodzin?"
+                                    open={this.state.open}
+                                    onCancel={this.handleCancel}
+                                    onConfirm={this.handleConfirm}
+                                    cancelButton='Nie'
+                                    confirmButton='Tak'
+                                />
                             </Form>
                         )}
                 </Formik>
