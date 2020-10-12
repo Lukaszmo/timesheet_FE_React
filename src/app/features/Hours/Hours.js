@@ -12,7 +12,8 @@ export const HourValidationSchema = Yup.object().shape({
         .required('Pole wymagane'),
     quantity: Yup.number()
         .required('Pole wymagane')
-        .positive('Tylko wartości dodatnie'),
+        .positive('Tylko wartości dodatnie')
+        .test('test-quantity', 'Niepoprawna wartość', value => value % 0.25 == 0),
     project: Yup.string()
         .required('Pole wymagane'),
     task: Yup.string()

@@ -141,6 +141,7 @@ class HoursAddComponent extends Component {
                                                                 type='number'
                                                                 name='quantity'
                                                                 className='hours-quantity'
+                                                                step='0.25'
                                                                 value={values.quantity}
                                                                 onChange={handleChange} />
                                                             {errors.quantity && touched.quantity ? <div><CustomLabel text={errors.quantity}></CustomLabel></div> : null}
