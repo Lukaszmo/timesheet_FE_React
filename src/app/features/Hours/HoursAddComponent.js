@@ -1,10 +1,14 @@
 import React, { Component, Fragment } from "react";
 
 import { Formik } from 'formik';
-import { Grid, Segment, Header, Input, Dropdown, Button, Form, TextArea, Divider } from 'semantic-ui-react';
+import { Grid, Segment, Header, Input, Dropdown, Button, Form, TextArea, Divider, Icon } from 'semantic-ui-react';
 import './HoursComponent.css';
 import CustomLabel from '../../common/CustomLabel/CustomLabel';
+import { timeToNumber } from '../../utils/Utils';
 import Media from 'react-media';
+import TimePicker from 'rc-time-picker';
+import 'rc-time-picker/assets/index.css';
+import moment from 'moment';
 
 
 class HoursAddComponent extends Component {
@@ -13,12 +17,15 @@ class HoursAddComponent extends Component {
         super(props);
 
         this.state = {
-            taskDropdownDisabled: 1
+            taskDropdownDisabled: 1,
+            time: moment('08:00', 'HH:mm')  //docelowo będzie brane z konfiguracji pracownika
         }
     }
 
 
     onSubmit(values) {
+
+        values = { ...values, quantity: timeToNumber(this.state.time.format('HH:mm')), time: this.state.time.format('HH:mm') }
 
         this.props.onSubmit(values);
     }
@@ -34,15 +41,22 @@ class HoursAddComponent extends Component {
         setFieldValue(data.name, data.value);
     }
 
+    handleTimeInputChange = time => {
+
+        this.setState({ time: moment(time, 'HH:mm') });
+
+    };
 
     render() {
+
+        const clockIcon = <Icon name='clock' className='clock-icon'></Icon>
 
         return (
             <Segment color="teal">
                 <Header size='medium'>Rejestracja czasu</Header>
                 <Divider></Divider>
                 <Formik
-                    initialValues={{ date: '', quantity: '', type: 1, project: '', task: '', comment: '' }}
+                    initialValues={{ date: '', type: 1, project: '', task: '', comment: '' }}
 
                     validationSchema={this.props.validationSchema}
 
@@ -137,15 +151,29 @@ class HoursAddComponent extends Component {
                                                             <p className='data-field-header'>Ilość godzin</p>
                                                         </Grid.Column >
                                                         <Grid.Column width={3}>
-                                                            <Input
-                                                                type='number'
+
+                                                            <TimePicker
+                                                                className='hours-quantity'
+                                                                name='quantity'
+                                                                value={this.state.time}
+                                                                onChange={this.handleTimeInputChange}
+                                                                showSecond={false}
+                                                                minuteStep={15}
+                                                                inputIcon={clockIcon}
+                                                            />
+
+                                                            {/*}   <Input
+                                                                type='time'
+                                                                step="900"
                                                                 name='quantity'
                                                                 className='hours-quantity'
-                                                                step='0.25'
                                                                 value={values.quantity}
-                                                                onChange={handleChange} />
+                                                                onChange={handleChange}
+                                                            />
                                                             {errors.quantity && touched.quantity ? <div><CustomLabel text={errors.quantity}></CustomLabel></div> : null}
+                                            */}
                                                         </Grid.Column>
+
                                                     </Grid.Row>
 
                                                     <Grid.Row>
@@ -236,13 +264,15 @@ class HoursAddComponent extends Component {
                                                             <p className='data-field-header'>Ilość godzin</p>
                                                         </Grid.Column >
                                                         <Grid.Column >
-                                                            <Input
-                                                                type='number'
-                                                                name='quantity'
+                                                            <TimePicker
                                                                 className='hours-quantity'
-                                                                value={values.quantity}
-                                                                onChange={handleChange} />
-                                                            {errors.quantity && touched.quantity ? <div><CustomLabel text={errors.quantity}></CustomLabel></div> : null}
+                                                                name='quantity'
+                                                                value={this.state.time}
+                                                                onChange={this.handleTimeInputChange}
+                                                                showSecond={false}
+                                                                minuteStep={15}
+                                                                inputIcon={clockIcon}
+                                                            />
                                                         </Grid.Column>
                                                     </Grid.Row>
 

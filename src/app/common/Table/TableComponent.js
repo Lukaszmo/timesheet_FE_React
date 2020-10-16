@@ -232,13 +232,8 @@ const Row = ({ headers, singleRow, rowNumber, rowAction, tableState, handleButto
 const Cell = ({ header, value, action, rowAction, rowObject, tableState, handleButtonClick, handleCancel, handleConfirm, deleteDisabled }) => {
 
     let type = header.type.toUpperCase();
-    let subType = header.subType ? header.subType.toUpperCase() : null;
     let actionType = action ? action.toUpperCase() : null;
     let iconName = header.iconName;
-
-    //konwersja dla pola typu data ponieważ api zwraca format datetime "2020-03-13T00:00:00+01:00"
-    let displayValue = subType === 'DATE' ? value.substr(0, 10) : value;
-
 
     if (type === 'DATA') {
 
@@ -261,7 +256,7 @@ const Cell = ({ header, value, action, rowAction, rowObject, tableState, handleB
             }
         }
 
-        return <Table.Cell className={header.className}>{displayValue}{cellLabel}</Table.Cell>;
+        return <Table.Cell className={header.className}>{value}{cellLabel}</Table.Cell>;
     }
 
 

@@ -1,16 +1,21 @@
 import React, { Component, Fragment } from "react";
 
 import { Formik } from 'formik';
-import { Segment, Header, Button, Dropdown, Grid, Input, Form, GridRow, Label, TextArea, Divider, Confirm } from 'semantic-ui-react';
+import { Segment, Header, Button, Dropdown, Grid, Input, Form, GridRow, Label, TextArea, Divider, Confirm, Icon } from 'semantic-ui-react';
 import CustomLabel from '../../common/CustomLabel/CustomLabel';
 import './HoursComponent.css';
 import Media from 'react-media';
+import TimePicker from 'rc-time-picker';
+import 'rc-time-picker/assets/index.css';
+import moment from 'moment';
+import { timeToNumber } from '../../utils/Utils';
 
 
 class HoursDetailsComponent extends Component {
 
     state = {
-        open: false
+        open: false,
+        time: moment(this.props.recordDetails.time, 'HH:mm')
     }
 
 
@@ -47,7 +52,13 @@ class HoursDetailsComponent extends Component {
             msg = 'Nadgodziny zostały zaakceptowane';
         }
 
-        values = { ...values, overtacceptance: newOvertacceptance, acceptorid: acceptorid };
+        values = {
+            ...values,
+            overtacceptance: newOvertacceptance,
+            acceptorid: acceptorid,
+            quantity: timeToNumber(this.state.time.format('HH:mm')),
+            time: this.state.time.format('HH:mm')
+        };
 
         const recordId = this.props.recordDetails.id;
 
@@ -84,10 +95,17 @@ class HoursDetailsComponent extends Component {
         setFieldValue(data.name, data.value);
     }
 
+    handleTimeInputChange = time => {
+
+        this.setState({ time: moment(time, 'HH:mm') });
+    };
+
     render() {
-        console.log(this.props);
+        console.log(this.state);
+        const clockIcon = <Icon name='clock' className='clock-icon' disabled={this.props.disabled}></Icon>
+
         const type = this.props.recordDetails.type.id;
-        const quantity = this.props.recordDetails.quantity;
+        //  const quantity = numberToTime(this.props.recordDetails.quantity);
         const comment = this.props.recordDetails.comment;
         const date = this.props.recordDetails.date.substr(0, 10);  //extract only date from datetime
         const project = this.props.recordDetails.project.id;
@@ -158,7 +176,7 @@ class HoursDetailsComponent extends Component {
                 <Divider></Divider>
 
                 <Formik
-                    initialValues={{ date: date, quantity: quantity, type: type, comment: comment, project: project, task: task }}
+                    initialValues={{ date: date, type: type, comment: comment, project: project, task: task }}
 
                     validationSchema={this.props.validationSchema}
 
@@ -256,13 +274,15 @@ class HoursDetailsComponent extends Component {
                                                             Ilość godzin
                                                         </Grid.Column >
                                                         <Grid.Column width={3}>
-                                                            <Input disabled={this.props.disabled}
-                                                                type='number'
-                                                                name='quantity'
+                                                            <TimePicker disabled={this.props.disabled}
                                                                 className='hours-quantity'
-                                                                value={values.quantity}
-                                                                onChange={handleChange} />
-                                                            {errors.quantity && touched.quantity ? <div><CustomLabel text={errors.quantity}></CustomLabel></div> : null}
+                                                                name='quantity'
+                                                                value={this.state.time}
+                                                                onChange={this.handleTimeInputChange}
+                                                                showSecond={false}
+                                                                minuteStep={15}
+                                                                inputIcon={clockIcon}
+                                                            />
                                                         </Grid.Column>
                                                     </Grid.Row>
 
@@ -371,13 +391,15 @@ class HoursDetailsComponent extends Component {
                                                             Ilość godzin
                                                         </Grid.Column >
                                                         <Grid.Column>
-                                                            <Input disabled={this.props.disabled}
-                                                                type='number'
-                                                                name='quantity'
+                                                            <TimePicker disabled={this.props.disabled}
                                                                 className='hours-quantity'
-                                                                value={values.quantity}
-                                                                onChange={handleChange} />
-                                                            {errors.quantity && touched.quantity ? <div><CustomLabel text={errors.quantity}></CustomLabel></div> : null}
+                                                                name='quantity'
+                                                                value={this.state.time}
+                                                                onChange={this.handleTimeInputChange}
+                                                                showSecond={false}
+                                                                minuteStep={15}
+                                                                inputIcon={clockIcon}
+                                                            />
                                                         </Grid.Column>
                                                     </Grid.Row>
 

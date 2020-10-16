@@ -36,8 +36,7 @@ class HoursListComponent extends Component {
             columnName: "Data",
             className: "width5",
             dataField: 'date',
-            type: "data",
-            subType: "date",
+            type: "data"
         },
         {
             id: "2",
@@ -75,7 +74,7 @@ class HoursListComponent extends Component {
             id: "5",
             columnName: "Ilość godzin",
             className: "width5",
-            dataField: 'quantity',
+            dataField: 'time',
             type: "data"
         },
         {

@@ -4,16 +4,15 @@ import history from '../../../history';
 
 import { HOUR_TYPES, HOURS, USERS, HOURS_BY_TYPE, HOURS_BY_PROJECT, HOURS_BY_TASK } from '../../../routes';
 import * as Yup from 'yup';
+import { numberToTime } from '../../utils/Utils';
 
 export const HourValidationSchema = Yup.object().shape({
     type: Yup.string()
         .required('Pole wymagane'),
     date: Yup.date()
         .required('Pole wymagane'),
-    quantity: Yup.number()
-        .required('Pole wymagane')
-        .positive('Tylko wartości dodatnie')
-        .test('test-quantity', 'Niepoprawna wartość', value => value % 0.25 == 0),
+    // quantity: Yup.string()
+    //     .required('Pole wymagane'),
     project: Yup.string()
         .required('Pole wymagane'),
     task: Yup.string()
@@ -146,7 +145,15 @@ export const fetchAllRecords = (userId, filters) => {
 
         axios.get(USERS + '/' + userId + '/' + 'hours' + '?date[after]=' + datefrom + '&date[before]=' + dateto).then(response => {
 
-            dispatch(setRecords(response.data['hydra:member']));
+            const records = response.data['hydra:member'].map(function (object) {
+                return ({
+                    ...object,
+                    //ekstrakt daty i czasu z formatu DateTime
+                    'date': object.date.substr(0, 10),
+                    'time': object.time.substr(11, 5)
+                })
+            })
+            dispatch(setRecords(records));
         })
 
     }
@@ -193,7 +200,9 @@ export const updateRecord = (id, values, msg) => {
         })
             .then((response) => {
                 toastr.success(msg);
-                dispatch(updateRecords(response.data));
+
+                const updatedRecord = { ...response.data, time: response.data.time.substr(11, 5) }
+                dispatch(updateRecords(updatedRecord));
                 // history.push('/czas-pracy-lista');
             });
     }
@@ -203,7 +212,14 @@ export const fetchHoursByType = (userId, filters) => {
 
     return (dispatch) => {
         const resp = axios.get(HOURS_BY_TYPE + '/' + userId, { params: filters }).then(response => {
-            dispatch(setRecordsByType(response.data));
+
+            const data = response.data.map(function (object) {
+                return ({
+                    ...object,
+                    'summary': numberToTime(object.summary)
+                })
+            })
+            dispatch(setRecordsByType(data));
         });
     }
 }
@@ -212,7 +228,14 @@ export const fetchHoursByProject = (userId, filters) => {
 
     return (dispatch) => {
         const resp = axios.get(HOURS_BY_PROJECT + '/' + userId, { params: filters }).then(response => {
-            dispatch(setRecordsByProject(response.data));
+
+            const data = response.data.map(function (object) {
+                return ({
+                    ...object,
+                    'summary': numberToTime(object.summary)
+                })
+            })
+            dispatch(setRecordsByProject(data));
         });
     }
 }
@@ -221,7 +244,13 @@ export const fetchHoursByTask = (userId, filters) => {
 
     return (dispatch) => {
         const resp = axios.get(HOURS_BY_TASK + '/' + userId, { params: filters }).then(response => {
-            dispatch(setRecordsByTask(response.data));
+            const data = response.data.map(function (object) {
+                return ({
+                    ...object,
+                    'summary': numberToTime(object.summary)
+                })
+            })
+            dispatch(setRecordsByTask(data));
         });
     }
 }
