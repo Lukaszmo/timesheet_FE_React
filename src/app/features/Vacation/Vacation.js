@@ -145,7 +145,7 @@ function setVacRequestState(id) {
     axios.put(VACREQUEST + '/' + id, { state: state }, {
         headers: headers
     }).then((response) => {
-        history.push('/urlopy-lista-wnioskow');
+        //history.push('/urlopy-lista-wnioskow');
     });
 
 
@@ -177,8 +177,16 @@ export const fetchAllRecords = (userId, filters) => {
     return (dispatch) => {
         axios.get(USERS + '/' + userId + '/' + 'vacation_requests' + '?datefrom[after]=' + datefrom + '&datefrom[before]=' + dateto).then(response => {
 
+            const records = response.data['hydra:member'].map(function (object) {
+                return ({
+                    ...object,
+                    //ekstrakt daty ponieważ API zwraca format DateTime
+                    'datefrom': object.datefrom.substr(0, 10),
+                    'dateto': object.dateto.substr(0, 10)
 
-            dispatch(setVacRequests(response.data['hydra:member']));
+                })
+            })
+            dispatch(setVacRequests(records));
         })
 
     }

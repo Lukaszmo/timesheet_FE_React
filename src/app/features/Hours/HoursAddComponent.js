@@ -16,16 +16,18 @@ class HoursAddComponent extends Component {
     constructor(props) {
         super(props);
 
+        this.defaultDate = new Date().toISOString().slice(0, 10);
+        this.defaultTime = moment('08:00', 'HH:mm') //docelowo będzie brane z konfiguracji pracownika
+
         this.state = {
-            taskDropdownDisabled: 1,
-            time: moment('08:00', 'HH:mm')  //docelowo będzie brane z konfiguracji pracownika
+            taskDropdownDisabled: 1
         }
     }
 
 
     onSubmit(values) {
 
-        values = { ...values, quantity: timeToNumber(this.state.time.format('HH:mm')), time: this.state.time.format('HH:mm') }
+        values = { ...values, quantity: timeToNumber(values.time.format('HH:mm')), time: values.time.format('HH:mm') }
 
         this.props.onSubmit(values);
     }
@@ -41,10 +43,9 @@ class HoursAddComponent extends Component {
         setFieldValue(data.name, data.value);
     }
 
-    handleTimeInputChange = time => {
+    handleTimeInputChange(data, setFieldValue) {
 
-        this.setState({ time: moment(time, 'HH:mm') });
-
+        setFieldValue('time', data);
     };
 
     render() {
@@ -56,7 +57,7 @@ class HoursAddComponent extends Component {
                 <Header size='medium'>Rejestracja czasu</Header>
                 <Divider></Divider>
                 <Formik
-                    initialValues={{ date: '', type: 1, project: '', task: '', comment: '' }}
+                    initialValues={{ date: this.defaultDate, type: 1, project: '', task: '', comment: '', time: this.defaultTime }}
 
                     validationSchema={this.props.validationSchema}
 
@@ -154,13 +155,14 @@ class HoursAddComponent extends Component {
 
                                                             <TimePicker
                                                                 className='hours-quantity'
-                                                                name='quantity'
-                                                                value={this.state.time}
-                                                                onChange={this.handleTimeInputChange}
+                                                                name='time'
+                                                                value={values.time}
+                                                                onChange={(data) => this.handleTimeInputChange(data, setFieldValue)}
                                                                 showSecond={false}
                                                                 minuteStep={15}
                                                                 inputIcon={clockIcon}
                                                             />
+                                                            {errors.time && touched.time ? <div><CustomLabel text={errors.time}></CustomLabel></div> : null}
 
                                                             {/*}   <Input
                                                                 type='time'
@@ -266,13 +268,14 @@ class HoursAddComponent extends Component {
                                                         <Grid.Column >
                                                             <TimePicker
                                                                 className='hours-quantity'
-                                                                name='quantity'
-                                                                value={this.state.time}
-                                                                onChange={this.handleTimeInputChange}
+                                                                name='time'
+                                                                value={values.time}
+                                                                onChange={(data) => this.handleTimeInputChange(data, setFieldValue)}
                                                                 showSecond={false}
                                                                 minuteStep={15}
                                                                 inputIcon={clockIcon}
                                                             />
+                                                            {errors.time && touched.time ? <div><CustomLabel text={errors.time}></CustomLabel></div> : null}
                                                         </Grid.Column>
                                                     </Grid.Row>
 

@@ -11,8 +11,11 @@ export const HourValidationSchema = Yup.object().shape({
         .required('Pole wymagane'),
     date: Yup.date()
         .required('Pole wymagane'),
-    // quantity: Yup.string()
-    //     .required('Pole wymagane'),
+    time: Yup.string()
+        .test("check-time", "Nieprawidłowa wartość", function (value) {
+            if (value.substr(16, 5) === '00:00') { return false; }
+            return true;
+        }),
     project: Yup.string()
         .required('Pole wymagane'),
     task: Yup.string()
@@ -148,9 +151,9 @@ export const fetchAllRecords = (userId, filters) => {
             const records = response.data['hydra:member'].map(function (object) {
                 return ({
                     ...object,
-                    //ekstrakt daty i czasu z formatu DateTime
-                    'date': object.date.substr(0, 10),
-                    'time': object.time.substr(11, 5)
+                    //ekstrakt daty i czasu ponieważ API zwraca format DateTime
+                    date: object.date.substr(0, 10),
+                    time: object.time.substr(11, 5)
                 })
             })
             dispatch(setRecords(records));
@@ -170,8 +173,14 @@ export const addRecord = (object, userid) => {
         axios.post(HOURS, newrecord)
             .then(function (response) {
                 toastr.success('Rekord został zapisany');
-                dispatch(addNewRecord(response.data));
-                history.push('/czas-pracy-lista');
+                //ekstrakt daty i czasu ponieważ API zwraca format DateTime
+                const newRecord = {
+                    ...response.data,
+                    date: response.data.date.substr(0, 10),
+                    time: response.data.time.substr(11, 5)
+                }
+                dispatch(addNewRecord(newRecord));
+                //history.push('/czas-pracy-lista');
             });
     }
 }
@@ -200,8 +209,12 @@ export const updateRecord = (id, values, msg) => {
         })
             .then((response) => {
                 toastr.success(msg);
-
-                const updatedRecord = { ...response.data, time: response.data.time.substr(11, 5) }
+                //ekstrakt daty i czasu ponieważ API zwraca format DateTime
+                const updatedRecord = {
+                    ...response.data,
+                    date: response.data.date.substr(0, 10),
+                    time: response.data.time.substr(11, 5)
+                }
                 dispatch(updateRecords(updatedRecord));
                 // history.push('/czas-pracy-lista');
             });
@@ -216,7 +229,7 @@ export const fetchHoursByType = (userId, filters) => {
             const data = response.data.map(function (object) {
                 return ({
                     ...object,
-                    'summary': numberToTime(object.summary)
+                    summary: numberToTime(object.summary)
                 })
             })
             dispatch(setRecordsByType(data));
@@ -232,7 +245,7 @@ export const fetchHoursByProject = (userId, filters) => {
             const data = response.data.map(function (object) {
                 return ({
                     ...object,
-                    'summary': numberToTime(object.summary)
+                    summary: numberToTime(object.summary)
                 })
             })
             dispatch(setRecordsByProject(data));
@@ -247,7 +260,7 @@ export const fetchHoursByTask = (userId, filters) => {
             const data = response.data.map(function (object) {
                 return ({
                     ...object,
-                    'summary': numberToTime(object.summary)
+                    summary: numberToTime(object.summary)
                 })
             })
             dispatch(setRecordsByTask(data));
