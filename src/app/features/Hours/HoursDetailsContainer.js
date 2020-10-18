@@ -30,6 +30,8 @@ class HoursDetailsContainer extends Component {
         this.isRecordOwner(recordOwnerId);
 
         if (overtAcceptance === 1) {
+            //użytkownik nie może edytować zaakceptowanych nadgodzin
+            if (this.state.mode === 'EDIT') { this.setState({ disabled: true }); }
             const acceptorId = this.state.recordDetails.acceptorid;
             this.setAcceptor(acceptorId);
         }
