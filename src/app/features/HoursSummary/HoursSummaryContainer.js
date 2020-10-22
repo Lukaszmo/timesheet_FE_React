@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Container } from 'semantic-ui-react';
 import HoursSummaryComponent from './HoursSummaryComponent';
 import { fetchInferiors, generateUserListForDropdown } from "../User/User";
-import { fetchAllRecords, fetchHoursByType, fetchHoursByProject, fetchHoursByTask } from "../Hours/Hours";
+import { fetchHoursByType, fetchHoursByProject, fetchHoursByTask } from "../Hours/Hours";
 import { getFirstDayOfMonth, getLastDayOfMonth } from '../../utils/Utils.js';
 
 
@@ -59,7 +59,6 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    fetchAllRecords: (userid, filters) => dispatch(fetchAllRecords(userid, filters)),
     fetchInferiors: (managerid) => dispatch(fetchInferiors(managerid)),
     fetchHoursByType: (userid, filters) => dispatch(fetchHoursByType(userid, filters)),
     fetchHoursByProject: (userid, filters) => dispatch(fetchHoursByProject(userid, filters)),
