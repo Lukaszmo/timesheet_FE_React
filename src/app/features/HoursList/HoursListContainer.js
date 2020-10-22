@@ -4,7 +4,7 @@ import history from '../../../history';
 
 import { Container } from 'semantic-ui-react';
 import HoursListComponent from "./HoursListComponent";
-import { fetchAllRecords, removeRecord } from "../Hours/Hours";
+import { fetchHourRecords, removeRecord } from "../Hours/Hours";
 import { fetchInferiors, generateUserListForDropdown } from "../User/User";
 import { getFirstDayOfMonth, getLastDayOfMonth } from '../../utils/Utils.js';
 
@@ -25,7 +25,7 @@ class HoursListContainer extends Component {
         }
 
         this.props.fetchInferiors(this.props.user.id);
-        this.props.fetchAllRecords(this.props.user.id, filters);
+        this.props.fetchHourRecords(this.props.user.id, filters);
     }
 
     onTableChange = (rowAction, rowId) => {
@@ -45,7 +45,7 @@ class HoursListContainer extends Component {
 
     onFilterSubmit = (userid, filters) => {
 
-        this.props.fetchAllRecords(userid, filters);
+        this.props.fetchHourRecords(userid, filters);
 
         if (userid !== this.props.user.id) {
             this.setState({ deleteDisabled: true });
@@ -82,7 +82,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    fetchAllRecords: (userid, filters) => dispatch(fetchAllRecords(userid, filters)),
+    fetchHourRecords: (userid, filters) => dispatch(fetchHourRecords(userid, filters)),
     fetchInferiors: (managerid) => dispatch(fetchInferiors(managerid)),
     removeRecord: (id) => dispatch(removeRecord(id)),
 })

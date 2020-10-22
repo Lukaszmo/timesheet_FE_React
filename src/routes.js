@@ -15,3 +15,4 @@ export const PROJECT_TASKS = ROOT + 'project_tasks';
 export const HOURS_BY_TYPE = ROOT + 'hours/by_type';
 export const HOURS_BY_PROJECT = ROOT + 'hours/by_project';
 export const HOURS_BY_TASK = ROOT + 'hours/by_task';
+export const HOURS_RANGE = ROOT + 'hours/range';
