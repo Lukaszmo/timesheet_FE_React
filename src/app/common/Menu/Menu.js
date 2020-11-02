@@ -116,9 +116,16 @@ export const menuItems = [
     {
         id: "REPORTS",
         name: "Raporty",
-        redirect: "/raporty",
+        redirect: "/raporty-miesieczny",
         icon: 'chart bar',
-        subMenu: []
+        subMenu: [
+            {
+                id: 'MONTHLY_REPORT',
+                name: "Raport miesięczny",
+                redirect: "/raporty-miesieczny",
+                icon: ''
+            }
+        ]
     },
     {
         id: "SETTINGS",

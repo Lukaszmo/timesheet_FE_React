@@ -9,7 +9,8 @@ body{
 }
 
 .ui.container{
-    margin-left: 300px !important;
+    margin-left: 20% !important;
+    width: 80%; 
 }
 
 .ui.segment{

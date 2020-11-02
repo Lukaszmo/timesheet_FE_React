@@ -32,6 +32,10 @@
     
 } */
 
+.ui.button.filterButton{
+    width: max-content;
+}
+
 .ui.button.cancelButton{
     color: #fff;
     background-color:#ff3333;

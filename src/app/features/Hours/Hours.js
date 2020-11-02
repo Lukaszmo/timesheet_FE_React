@@ -2,7 +2,7 @@ import axios from 'axios';
 import { toastr } from 'react-redux-toastr';
 import history from '../../../history';
 
-import { HOUR_TYPES, HOURS, USERS, HOURS_BY_TYPE, HOURS_BY_PROJECT, HOURS_BY_TASK, HOURS_RANGE } from '../../../routes';
+import { HOUR_TYPES, HOURS, USERS, HOURS_BY_TYPE, HOURS_BY_PROJECT, HOURS_BY_TASK, HOURS_RANGE, HOURS_MONTHLY_REPORT } from '../../../routes';
 import * as Yup from 'yup';
 import { numberToTime } from '../../utils/Utils';
 
@@ -270,7 +270,14 @@ export const fetchHoursByTask = (userId, filters) => {
 
 export async function getHoursRange() {
 
-    const resp = axios.get(HOURS_RANGE)
+    const resp = axios.get(HOURS_RANGE);
+
+    return await resp;
+}
+
+export async function getHoursForMonthlyreport(userid, filters) {
+
+    const resp = axios.get(HOURS_MONTHLY_REPORT + '/' + userid, { params: filters });
 
     return await resp;
 }

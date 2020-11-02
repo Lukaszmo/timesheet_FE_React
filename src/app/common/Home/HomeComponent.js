@@ -12,10 +12,10 @@ class HomeComponent extends Component {
 
         const buttonName = data.name.toUpperCase();
 
-        if (buttonName === 'TIMESHEET') { history.push('/czas-pracy-rejestracja') };
-        if (buttonName === 'VACATION') { history.push('/urlopy-dodaj-wniosek'); };
-        if (buttonName === 'TASK_TABLE') { alert("TABLE TASK IN PROGRESS..."); };
-        if (buttonName === 'REPORTS') { alert("REPORTS IN PROGRESS..."); };
+        if (buttonName === 'TIMESHEET') { history.push('/czas-pracy-rejestracja'); }
+        if (buttonName === 'VACATION') { history.push('/urlopy-dodaj-wniosek'); }
+        if (buttonName === 'TASK_TABLE') { alert("TABLE TASK IN PROGRESS..."); }
+        if (buttonName === 'REPORTS') { history.push('/raporty-miesieczny'); }
 
     }
 

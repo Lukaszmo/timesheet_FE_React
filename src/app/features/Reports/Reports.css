@@ -1,0 +1,26 @@
+.ui.container.reports{
+    padding: 0px 15px 15px;
+}
+
+.ui.segment.report-segment{
+    background-color: #f9fafb;
+}
+
+.report-table{
+    overflow-x: auto;
+    overflow-y: auto; 
+}
+
+.cell-day-off{
+    background-color: #faeded;
+    font-size: 12px;
+}
+
+.cell{
+    font-size: 12px;
+}
+
+.ui.table.monthly-report{
+    width: 1700px;
+    font-size: 12px;
+}

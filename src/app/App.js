@@ -12,6 +12,7 @@ import HoursSummaryContainer from './features/HoursSummary/HoursSummaryContainer
 import VacationContainer from './features/Vacation/VacationContainer';
 import VacationListContainer from './features/VacationList/VacationListContainer';
 import VacationDetailsContainer from './features/Vacation/VacationDetailsContainer';
+import MonthlyReportContainer from './features/Reports/MonthlyReportContainer';
 
 function App() {
     return (
@@ -55,8 +56,8 @@ function App() {
                 <Route exact path='/tablica-zadan'
                     component={(props) => <MainContainer content={"TABLICA ZADAŃ IN PROGRESS..."} menuId={"TASK_TABLE"} />} />
 
-                <Route exact path='/raporty'
-                    component={(props) => <MainContainer content={"RAPORTY IN PROGRESS..."} menuId={"REPORTS"} />} />
+                <Route exact path='/raporty-miesieczny'
+                    component={(props) => <MainContainer content={<MonthlyReportContainer {...props} />} menuId={"REPORTS"} submenuId='MONTHLY_REPORT' />} />
 
                 <Route exact path='/ustawienia-zmiana-hasla'
                     component={(props) => <MainContainer content={"USTAWIENIA IN PROGRESS..."} menuId={"SETTINGS"} submenuId='PASSWORD_CHANGE' />} />
