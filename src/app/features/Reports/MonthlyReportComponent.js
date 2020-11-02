@@ -1,9 +1,10 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { Segment, Header, Divider } from 'semantic-ui-react';
 import { Formik } from 'formik';
 import { Form, Grid, GridRow, Dropdown, Button, Table, Label } from 'semantic-ui-react';
 
 import './Reports.css';
+import Media from 'react-media';
 import { numberToTime } from '../../utils/Utils';
 
 
@@ -174,47 +175,99 @@ class MonthlyReportComponent extends Component {
                             touched
                         }) => (
                                 <Form onSubmit={handleSubmit}>
+                                    <Media queries={{
+                                        small: "(max-width: 599px)",                            //mobile 
+                                        medium: "(min-width: 600px) and (max-width: 1199px)",   //tablet
+                                        large: "(min-width: 1200px)"                            //laptop
+                                    }}>
+                                        {matches => (
 
-                                    <Grid columns={2} textAlign="right" verticalAlign="middle" >
-                                        <GridRow>
-                                            <Grid.Column width={3}>
-                                                <Dropdown fluid selection
-                                                    name='year'
-                                                    className='dropdown-year'
-                                                    value={values.year}
-                                                    options={this.props.years}
-                                                    onChange={(e, data) => this.dropdownHandleChange(e, data, setFieldValue)}
-                                                ></Dropdown>
-                                            </Grid.Column>
+                                            <Fragment>
+                                                {(matches.large) &&
+                                                    <Grid columns={2} textAlign="right" verticalAlign="middle" >
+                                                        <GridRow>
+                                                            <Grid.Column width={3}>
+                                                                <Dropdown fluid selection
+                                                                    name='year'
+                                                                    className='dropdown-year'
+                                                                    value={values.year}
+                                                                    options={this.props.years}
+                                                                    onChange={(e, data) => this.dropdownHandleChange(e, data, setFieldValue)}
+                                                                ></Dropdown>
+                                                            </Grid.Column>
 
-                                            <Grid.Column width={3}>
-                                                <Dropdown fluid selection
-                                                    name='month'
-                                                    className='dropdown-month'
-                                                    value={values.month}
-                                                    options={this.props.months}
-                                                    onChange={(e, data) => this.dropdownHandleChange(e, data, setFieldValue)}
-                                                ></Dropdown>
-                                            </Grid.Column>
+                                                            <Grid.Column width={3}>
+                                                                <Dropdown fluid selection
+                                                                    name='month'
+                                                                    className='dropdown-month'
+                                                                    value={values.month}
+                                                                    options={this.props.months}
+                                                                    onChange={(e, data) => this.dropdownHandleChange(e, data, setFieldValue)}
+                                                                ></Dropdown>
+                                                            </Grid.Column>
 
-                                            <Grid.Column width={3}>
-                                                <Dropdown fluid selection
-                                                    name='user'
-                                                    className='dropdown-userlist'
-                                                    value={values.user}
-                                                    options={this.props.userList}
-                                                    onChange={(e, data) => this.dropdownHandleChange(e, data, setFieldValue)}
-                                                ></Dropdown>
-                                            </Grid.Column>
+                                                            <Grid.Column width={3}>
+                                                                <Dropdown fluid selection
+                                                                    name='user'
+                                                                    className='dropdown-userlist'
+                                                                    value={values.user}
+                                                                    options={this.props.userList}
+                                                                    onChange={(e, data) => this.dropdownHandleChange(e, data, setFieldValue)}
+                                                                ></Dropdown>
+                                                            </Grid.Column>
 
-                                            <Grid.Column width={2}>
-                                                <Button
-                                                    type='submit'
-                                                    className='filterButton'>Generuj Raport
-                                                </Button>
-                                            </Grid.Column>
-                                        </GridRow>
-                                    </Grid >
+                                                            <Grid.Column width={2}>
+                                                                <Button
+                                                                    type='submit'
+                                                                    className='filterButton'>Generuj Raport
+                                                            </Button>
+                                                            </Grid.Column>
+                                                        </GridRow>
+                                                    </Grid >}
+
+                                                {(matches.small || matches.medium) &&
+                                                    <Grid columns={2} textAlign="center" verticalAlign="middle" >
+                                                        <GridRow>
+                                                            <Grid.Column width={3}>
+                                                                <Dropdown fluid selection
+                                                                    name='year'
+                                                                    className='dropdown-year'
+                                                                    value={values.year}
+                                                                    options={this.props.years}
+                                                                    onChange={(e, data) => this.dropdownHandleChange(e, data, setFieldValue)}
+                                                                ></Dropdown>
+                                                            </Grid.Column>
+                                                        </GridRow>
+                                                        <GridRow>
+                                                            <Grid.Column width={3}>
+                                                                <Dropdown fluid selection
+                                                                    name='month'
+                                                                    className='dropdown-month'
+                                                                    value={values.month}
+                                                                    options={this.props.months}
+                                                                    onChange={(e, data) => this.dropdownHandleChange(e, data, setFieldValue)}
+                                                                ></Dropdown>
+                                                            </Grid.Column>
+                                                        </GridRow>
+                                                        <GridRow>
+                                                            <Grid.Column width={3}>
+                                                                <Dropdown fluid selection
+                                                                    name='user'
+                                                                    className='dropdown-userlist'
+                                                                    value={values.user}
+                                                                    options={this.props.userList}
+                                                                    onChange={(e, data) => this.dropdownHandleChange(e, data, setFieldValue)}
+                                                                ></Dropdown>
+                                                            </Grid.Column>
+                                                        </GridRow>
+                                                        <Button
+                                                            type='submit'
+                                                            className='filterButton'>Generuj Raport
+                                                        </Button>
+                                                    </Grid >}
+                                            </Fragment>
+                                        )}
+                                    </Media>
                                 </Form >
                             )
                         }
