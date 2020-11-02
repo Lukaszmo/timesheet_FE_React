@@ -24,3 +24,23 @@
     width: 1700px;
     font-size: 12px;
 }
+
+.ui.dropdown.dropdown-year{
+    width: 200px;
+}
+
+.ui.dropdown.dropdown-month{
+    width: 200px;
+}
+
+.ui.dropdown.dropdown-userlist{
+    width: 200px;
+}
+
+@media (min-width: 600px) and (max-width: 1199px){
+
+    .ui.container.reports{
+        width: 60%;
+        margin-left: 40% !important;
+    } 
+}

@@ -30,6 +30,11 @@ body{
     .ui.grid .row{
         display: grid;
     }
+
+    .button-row{
+        width: 100%;
+        margin-left: 0px !important;
+    }
 }
 
 

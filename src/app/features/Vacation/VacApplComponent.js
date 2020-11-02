@@ -201,15 +201,19 @@ class VacApplComponent extends Component {
                                                 {(matches.small || matches.medium) &&
                                                     <Grid verticalAlign="middle" >
                                                         <Grid.Row>
-                                                            <Grid.Column >
+                                                            <Grid.Column width={5}>
                                                                 <p className='data-field-header'>Imię i nazwisko</p>
+                                                            </Grid.Column>
+                                                            <Grid.Column width={5}>
                                                                 <p className='data-field'>{this.props.user.firstname} {this.props.user.lastname}</p>
                                                             </Grid.Column>
                                                         </Grid.Row>
 
                                                         <Grid.Row>
-                                                            <Grid.Column >
+                                                            <Grid.Column width={5}>
                                                                 <p className='data-field-header'>Stanowisko/Dział</p>
+                                                            </Grid.Column>
+                                                            <Grid.Column width={5}>
                                                                 <p className='data-field'>{this.props.user.position}</p>
                                                             </Grid.Column>
                                                         </Grid.Row>
@@ -258,9 +262,10 @@ class VacApplComponent extends Component {
                                                         </Grid.Row>
 
                                                         <Grid.Row>
-                                                            <Grid.Column >
+                                                            <Grid.Column width={5}>
                                                                 <p className='data-field-header'>Liczba dni urlopu</p>
-
+                                                            </Grid.Column>
+                                                            <Grid.Column width={3}>
                                                                 <Input disabled
                                                                     type='number'
                                                                     name='quantity'

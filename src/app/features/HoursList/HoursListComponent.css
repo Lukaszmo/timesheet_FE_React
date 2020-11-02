@@ -13,6 +13,12 @@
     width: 170px;
 }
 
+@media (min-width: 600px) and (max-width: 1199px){
+    .ui.input.filter-date{
+        width: 200px;
+    }
+}
+
 @media (max-width: 599px){
 
     .ui.input.filter-date{
