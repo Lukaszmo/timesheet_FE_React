@@ -33,9 +33,10 @@ export default class MenuComponent extends Component {
                                 to={element.redirect}
                                 name={element.id}
                                 key={index}
-                                className="menu-item"
+                                className={element.className}
                                 active={active}
-                                onClick={this.handleItemClick}>
+                                onClick={this.handleItemClick}
+                                id={element.id}>
                                 <Icon name={element.icon}></Icon>
                                 &nbsp;&nbsp; {element.name}
                             </Menu.Item>

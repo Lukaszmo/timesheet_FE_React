@@ -13,6 +13,8 @@ import VacationContainer from './features/Vacation/VacationContainer';
 import VacationListContainer from './features/VacationList/VacationListContainer';
 import VacationDetailsContainer from './features/Vacation/VacationDetailsContainer';
 import MonthlyReportContainer from './features/Reports/MonthlyReportContainer';
+import ProjectReportContainer from './features/Reports/ProjectReportContainer';
+import UsersContainer from './features/Admin/Users/UsersContainer';
 
 function App() {
     return (
@@ -59,8 +61,14 @@ function App() {
                 <Route exact path='/raporty-miesieczny'
                     component={(props) => <MainContainer content={<MonthlyReportContainer {...props} />} menuId={"REPORTS"} submenuId='MONTHLY_REPORT' />} />
 
+                <Route exact path='/raporty-projekt'
+                    component={(props) => <MainContainer content={<ProjectReportContainer {...props} />} menuId={"REPORTS"} submenuId='PROJECT_REPORT' />} />
+
                 <Route exact path='/ustawienia-zmiana-hasla'
                     component={(props) => <MainContainer content={"USTAWIENIA IN PROGRESS..."} menuId={"SETTINGS"} submenuId='PASSWORD_CHANGE' />} />
+
+                <Route exact path='/panel-admina-uzytkownicy'
+                    component={(props) => <MainContainer content={<UsersContainer {...props} />} menuId={"ADMIN"} submenuId='USERS' />} />
 
                 {/* z PrivateRoute nie działa
                 <PrivateRoute exact path='/home' />

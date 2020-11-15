@@ -6,6 +6,22 @@
     background-color: #f9fafb;
 }
 
+.ui.segment.chart-segment{
+    display: inline-block;
+    width: 100%;
+}
+
+.ui.segment.chart-inner-segment{
+    float: left;
+    width: 40%;
+}
+
+.ui.segment.project-report-table-segment{
+    float: right;
+    width: 59%;
+    margin-left: 1%;
+}
+
 .report-table{
     overflow-x: auto;
     overflow-y: auto; 
@@ -37,10 +53,20 @@
     width: 200px;
 }
 
+.ui.dropdown.dropdown-project{
+    width: 200px;
+}
+
 @media (min-width: 600px) and (max-width: 1199px){
 
     .ui.container.reports{
         width: 60%;
         margin-left: 40% !important;
     } 
+}
+
+@media (max-width: 599px){
+    .ui.segment.chart-segment{
+      display: grid;
+    }
 }

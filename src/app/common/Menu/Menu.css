@@ -50,6 +50,13 @@
     border-radius: 5px !important;
 }
 
+#ADMIN{
+    padding-left: 0px;
+    border-top: 1px solid #43476b;
+    margin-top: 20px;
+}
+
+
 @media (min-width: 600px) and (max-width: 1199px){
 
     .ui.menu.main-menu{
@@ -93,6 +100,10 @@
        margin-right: 2%;
        border-radius: 5px !important;
    }
+
+   #ADMIN{
+    display: none;
+}
    
 
 }

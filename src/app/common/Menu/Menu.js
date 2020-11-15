@@ -45,6 +45,7 @@ export const menuItems = [
         id: "HOME",
         name: "Strona główna",
         redirect: "/home",
+        className: "menu-item",
         icon: 'home',
         subMenu: []
     },
@@ -52,6 +53,7 @@ export const menuItems = [
         id: "TIMESHEET",
         name: "Czas pracy",
         redirect: "/czas-pracy-rejestracja",
+        className: "menu-item",
         icon: 'clock',
         subMenu: [
             {
@@ -84,6 +86,7 @@ export const menuItems = [
         id: "VACATION",
         name: "Urlopy",
         redirect: "/urlopy-dodaj-wniosek",
+        className: "menu-item",
         icon: 'travel',
         subMenu: [
             {
@@ -110,6 +113,7 @@ export const menuItems = [
         id: "TASK_TABLE",
         name: "Tablica zadań",
         redirect: "/tablica-zadan",
+        className: "menu-item",
         icon: 'table',
         subMenu: []
     },
@@ -117,12 +121,19 @@ export const menuItems = [
         id: "REPORTS",
         name: "Raporty",
         redirect: "/raporty-miesieczny",
+        className: "menu-item",
         icon: 'chart bar',
         subMenu: [
             {
                 id: 'MONTHLY_REPORT',
                 name: "Raport miesięczny",
                 redirect: "/raporty-miesieczny",
+                icon: ''
+            },
+            {
+                id: 'PROJECT_REPORT',
+                name: "Raport projekt",
+                redirect: "/raporty-projekt",
                 icon: ''
             }
         ]
@@ -131,6 +142,7 @@ export const menuItems = [
         id: "SETTINGS",
         name: "Ustawienia",
         redirect: "/ustawienia-zmiana-hasla",
+        className: "menu-item",
         icon: 'cogs',
         subMenu: [
             {
@@ -139,6 +151,28 @@ export const menuItems = [
                 redirect: "ustawienia-zmiana-hasla",
                 icon: ''
             }
+        ]
+    },
+    {
+        id: "ADMIN",
+        name: "Panel Admina",
+        redirect: "/panel-admina-uzytkownicy",
+        className: "menu-item",
+        icon: '',
+        subMenu: [
+            {
+                id: 'USERS',
+                name: "Użytkownicy",
+                redirect: "/panel-admina-uzytkownicy",
+                icon: ''
+            },
+            {
+                id: 'CLIENTS',
+                name: "Klienci",
+                redirect: "/panel-admina-klienci",
+                icon: ''
+            }
+
         ]
     }
 ]
