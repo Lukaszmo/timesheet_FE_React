@@ -156,20 +156,20 @@ export const menuItems = [
     {
         id: "ADMIN",
         name: "Panel Admina",
-        redirect: "/panel-admina-uzytkownicy",
+        redirect: "/panel-admina/dodaj-uzytkownika",
         className: "menu-item",
         icon: '',
         subMenu: [
             {
                 id: 'USERS',
-                name: "Użytkownicy",
-                redirect: "/panel-admina-uzytkownicy",
+                name: "Dodaj użytkownika",
+                redirect: "/panel-admina/dodaj-uzytkownika",
                 icon: ''
             },
             {
-                id: 'CLIENTS',
-                name: "Klienci",
-                redirect: "/panel-admina-klienci",
+                id: 'USER_LIST',
+                name: "Lista użytkowników",
+                redirect: "/panel-admina/uzytkownicy-lista",
                 icon: ''
             }
 

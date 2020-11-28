@@ -1,31 +1,31 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Container } from 'semantic-ui-react';
-import UserCreateComponent from './UserCreateComponent';
-
-import { addUser, getAllUsersWithFilters, generateUserListForDropdown, UserValidationSchema } from '../../Admin/Users/User';
+import UserDetailsComponent from '../Users/UserDetailsComponent';
+import { updateRecord, getAllUsersWithFilters, generateUserListForDropdown } from '../Users/User';
 import { getAllRoles } from '../Roles/Role';
 
 
-class UsersContainer extends Component {
+class UserDetailsContainer extends Component {
 
     state = {
-        userList: null
+        recordDetails: this.props.location.state.recordDetails[0],
     }
 
 
     componentDidMount() {
 
-        // getAllUsers().then(resp => this.setState({ userList: resp }));
         getAllUsersWithFilters().then(resp => this.setState({ userList: generateUserListForDropdown(resp) }));
         getAllRoles().then(resp => this.setState({ roleList: resp }));
 
     }
 
-    addUser(values) {
+    onSubmit = (values) => {
 
-        addUser(values);
+        updateRecord(values);
     }
+
+
 
 
     render() {
@@ -34,18 +34,19 @@ class UsersContainer extends Component {
 
         return (
             <Container className=''>
-                <UserCreateComponent
+                <UserDetailsComponent
+                    record={this.state.recordDetails}
                     roles={this.state.roleList}
                     users={this.state.userList}
-                    validationSchema={UserValidationSchema}
-                    onSubmit={this.addUser}
+                    onSubmit={this.onSubmit}
                 />
+
             </Container>
         );
     }
 }
 
-export default UsersContainer;
+export default UserDetailsContainer;
 
 
 

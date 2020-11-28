@@ -114,7 +114,6 @@ export const generateUserListForDropdown = (listOfInferiors, loggedUser) => {
 
 const initialState = {
     id: "",
-    userclass: "",
     regnum: "",
     firstname: "",
     lastname: "",

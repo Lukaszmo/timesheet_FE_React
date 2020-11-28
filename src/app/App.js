@@ -15,6 +15,8 @@ import VacationDetailsContainer from './features/Vacation/VacationDetailsContain
 import MonthlyReportContainer from './features/Reports/MonthlyReportContainer';
 import ProjectReportContainer from './features/Reports/ProjectReportContainer';
 import UsersContainer from './features/Admin/Users/UsersContainer';
+import UserListContainer from './features/Admin/UserList/UserListContainer';
+import UserDetailsContainer from './features/Admin/Users/UserDetailsContainer';
 
 function App() {
     return (
@@ -67,8 +69,14 @@ function App() {
                 <Route exact path='/ustawienia-zmiana-hasla'
                     component={(props) => <MainContainer content={"USTAWIENIA IN PROGRESS..."} menuId={"SETTINGS"} submenuId='PASSWORD_CHANGE' />} />
 
-                <Route exact path='/panel-admina-uzytkownicy'
+                <Route exact path='/panel-admina/dodaj-uzytkownika'
                     component={(props) => <MainContainer content={<UsersContainer {...props} />} menuId={"ADMIN"} submenuId='USERS' />} />
+
+                <Route exact path='/panel-admina/uzytkownicy-lista'
+                    component={(props) => <MainContainer content={<UserListContainer {...props} />} menuId={"ADMIN"} submenuId='USER_LIST' />} />
+
+                <Route exact path='/panel-admina/uzytkownicy-edycja'
+                    component={(props) => <MainContainer content={<UserDetailsContainer {...props} />} menuId={"ADMIN"} submenuId='USER_LIST' />} />
 
                 {/* z PrivateRoute nie działa
                 <PrivateRoute exact path='/home' />
