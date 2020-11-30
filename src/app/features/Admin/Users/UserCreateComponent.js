@@ -19,7 +19,7 @@ class UserCreateComponent extends Component {
         let managerid = values.manager;
         let roles = [];
         roles.push(values.roles);
-        values = { ...values, regnum: regnum, roles: roles, managerid: managerid };
+        values = { ...values, regnum: regnum, roles: roles, managerid: managerid, active: true };
 
         this.props.onSubmit(values);
     }
