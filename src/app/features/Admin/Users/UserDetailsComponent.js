@@ -22,7 +22,8 @@ class UserDetailsComponent extends Component {
             id: this.props.record.id,
             regnum: parseInt(values.regnum),
             managerid: values.manager,
-            roles: roles
+            roles: roles,
+            active: Boolean(values.active)
         }
 
         this.props.onSubmit(values);
