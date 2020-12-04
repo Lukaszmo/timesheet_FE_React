@@ -1,7 +1,7 @@
-var env = 'development';
+var env = 'DEV';
 
 
-if (env === 'development') {
+if (env === 'DEV') {
     var PhpRoot = 'timesheet.symfony.local/';
     var PhpApiRoot = 'timesheet.symfony.local/api/';
 }
