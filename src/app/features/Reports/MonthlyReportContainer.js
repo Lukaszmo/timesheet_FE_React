@@ -45,8 +45,7 @@ class MonthlyReportContainer extends Component {
     onSubmit = (values) => {
 
         const year = values.year.toString();
-        const month = '0' + (values.month + 1).toString();
-
+        const month = values.month.toString();
         const date = new Date(year + '-' + month + '-' + '01');
 
         let filters = {

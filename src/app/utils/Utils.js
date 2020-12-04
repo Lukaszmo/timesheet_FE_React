@@ -8,11 +8,11 @@ export function getFirstDayOfMonth(date) {
     * - firstDate: data - pierwszy dzień miesiąca w formacie ('YYYY-MM-DD')
     * */
 
-    const year = date.toISOString().slice(0, 4);
-    const month = date.toISOString().slice(5, 7);
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
     const firstDay = '01';
 
-    const firstDate = year + '-' + month + '-' + firstDay;
+    const firstDate = year + '-' + month.pad(2) + '-' + firstDay;
 
     return firstDate;
 }
@@ -27,11 +27,11 @@ export function getLastDayOfMonth(date) {
     * - lastDate: data - ostatni dzień miesiąca w formacie ('YYYY-MM-DD')
     * */
 
-    const year = date.toISOString().slice(0, 4);
-    const month = date.toISOString().slice(5, 7);
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
     const lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0).toString().slice(8, 10);
 
-    const lastDate = year + '-' + month + '-' + lastDay;
+    const lastDate = year + '-' + month.pad(2) + '-' + lastDay;
 
     return lastDate;
 }
@@ -73,6 +73,12 @@ export function numberToTime(numberFormat) {
     const timeFormat = hours + ':' + minutes;
 
     return timeFormat;
+}
+
+Number.prototype.pad = function (size) {
+    var s = String(this);
+    while (s.length < (size || 2)) { s = "0" + s; }
+    return s;
 }
 
 

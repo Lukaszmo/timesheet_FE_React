@@ -5,7 +5,7 @@ import { Form, Grid, GridRow, Dropdown, Button, Table, Label } from 'semantic-ui
 
 import './Reports.css';
 import Media from 'react-media';
-import { numberToTime } from '../../utils/Utils';
+import { numberToTime, pad } from '../../utils/Utils';
 
 
 class MonthlyReportComponent extends Component {
@@ -23,7 +23,7 @@ class MonthlyReportComponent extends Component {
 
         this.setState({
             year: values.year,
-            month: values.month
+            month: values.month.pad(2)
         })
     }
 
@@ -68,7 +68,7 @@ class MonthlyReportComponent extends Component {
 
             const hours = []
             for (var i = 1; i <= 31; i++) {
-                let date = this.state.year + '-' + this.state.month + '-' + i;
+                let date = this.state.year + '-' + this.state.month + '-' + i.pad(2);
                 const h = this.props.reportHours[date] ? numberToTime(this.props.reportHours[date].summary) : null;
                 let className = null;
                 if (((dayOfWeek[i] === 6) || (dayOfWeek[i] === 0))) { className = 'cell-day-off'; }
