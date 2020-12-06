@@ -50,8 +50,7 @@ export function userLoginOperation(user) {
                 history.push('/home');
             })
             .catch(function (error) {
-                console.log(error);
-                toastr.error("Nieprawidłowy login lub hasło");
+                console.log(error.response.data);
                 dispatch(loginFail());
             });
     }
