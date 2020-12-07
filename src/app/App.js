@@ -70,7 +70,7 @@ function App() {
                     component={(props) => <MainContainer content={"USTAWIENIA IN PROGRESS..."} menuId={"SETTINGS"} submenuId='PASSWORD_CHANGE' />} />
 
                 <Route exact path='/panel-admina/dodaj-uzytkownika'
-                    component={(props) => <MainContainer content={<UsersContainer {...props} />} menuId={"ADMIN"} submenuId='USERS' />} />
+                    component={(props) => <MainContainer content={<UsersContainer {...props} />} menuId={"ADMIN"} submenuId='USER_ADD' />} />
 
                 <Route exact path='/panel-admina/uzytkownicy-lista'
                     component={(props) => <MainContainer content={<UserListContainer {...props} />} menuId={"ADMIN"} submenuId='USER_LIST' />} />

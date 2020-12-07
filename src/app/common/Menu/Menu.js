@@ -161,7 +161,7 @@ export const menuItems = [
         icon: '',
         subMenu: [
             {
-                id: 'USERS',
+                id: 'USER_ADD',
                 name: "Dodaj użytkownika",
                 redirect: "/panel-admina/dodaj-uzytkownika",
                 icon: ''
@@ -172,7 +172,6 @@ export const menuItems = [
                 redirect: "/panel-admina/uzytkownicy-lista",
                 icon: ''
             }
-
         ]
     }
 ]
