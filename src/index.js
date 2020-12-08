@@ -20,7 +20,9 @@ ReactDOM.render(
         <PersistGate persistor={persistor} >
             <Router history={history}>
                 <LoaderContainer />
-                <ReduxToastr position='top-center' />
+                <ReduxToastr
+                    position='top-center'
+                    preventDuplicates />
                 <App />
             </Router>
         </PersistGate>
