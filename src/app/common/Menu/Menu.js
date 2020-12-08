@@ -59,24 +59,28 @@ export const menuItems = [
             {
                 id: 'TIMESHEET_REGISTER',
                 name: "Rejestracja czasu",
+                type: "MENU_ITEM",
                 redirect: "czas-pracy-rejestracja",
                 icon: ''
             },
             {
                 id: 'TIMESHEET_LIST',
                 name: "Lista godzin",
+                type: "MENU_ITEM",
                 redirect: "czas-pracy-lista",
                 icon: ''
             },
             {
                 id: 'SUMMARY',
                 name: "Podsumowanie",
+                type: "MENU_ITEM",
                 redirect: "podsumowanie",
                 icon: ''
             },
             {
                 id: 'WORK_TIME_SCHEDULE',
                 name: "Grafik",
+                type: "MENU_ITEM",
                 redirect: "grafik",
                 icon: ''
             }
@@ -92,18 +96,21 @@ export const menuItems = [
             {
                 id: 'VACATION_ADD',
                 name: "Dodaj wniosek",
+                type: "MENU_ITEM",
                 redirect: "/urlopy-dodaj-wniosek",
                 icon: ''
             },
             {
                 id: 'REQUEST_LIST',
                 name: "Lista wniosków",
+                type: "MENU_ITEM",
                 redirect: "/urlopy-lista-wnioskow",
                 icon: ''
             },
             {
                 id: 'VACATION_PLAN',
                 name: "Planowanie",
+                type: "MENU_ITEM",
                 redirect: "/urlopy-planowanie",
                 icon: ''
             }
@@ -127,12 +134,14 @@ export const menuItems = [
             {
                 id: 'MONTHLY_REPORT',
                 name: "Raport miesięczny",
+                type: "MENU_ITEM",
                 redirect: "/raporty-miesieczny",
                 icon: ''
             },
             {
                 id: 'PROJECT_REPORT',
                 name: "Raport projekt",
+                type: "MENU_ITEM",
                 redirect: "/raporty-projekt",
                 icon: ''
             }
@@ -148,6 +157,7 @@ export const menuItems = [
             {
                 id: 'PASSWORD_CHANGE',
                 name: "Zmiana hasła",
+                type: "MENU_ITEM",
                 redirect: "ustawienia-zmiana-hasla",
                 icon: ''
             }
@@ -161,17 +171,31 @@ export const menuItems = [
         icon: '',
         subMenu: [
             {
-                id: 'USER_ADD',
-                name: "Dodaj użytkownika",
-                redirect: "/panel-admina/dodaj-uzytkownika",
-                icon: ''
+                id: 'USERS',
+                name: "Użytkownicy",
+                type: "DROPDOWN",
+                icon: '',
+                dropdownItems: [
+                    {
+                        id: 'USER_ADD',
+                        name: 'Dodaj nowego użytkownika',
+                        redirect: "/panel-admina/dodaj-uzytkownika"
+                    },
+                    {
+                        id: 'USER_LIST',
+                        name: 'Lista użytkowników',
+                        redirect: "/panel-admina/uzytkownicy-lista"
+                    }
+                ]
             },
-            {
-                id: 'USER_LIST',
-                name: "Lista użytkowników",
-                redirect: "/panel-admina/uzytkownicy-lista",
-                icon: ''
-            }
+            /*  {
+                  id: 'CLIENTS',
+                  name: "Klienci",
+                  type: "MENU_ITEM",
+                  redirect: "/panel-admina/dodaj-klienta",
+                  icon: ''
+              } */
+
         ]
     }
 ]

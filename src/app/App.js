@@ -70,13 +70,13 @@ function App() {
                     component={(props) => <MainContainer content={"USTAWIENIA IN PROGRESS..."} menuId={"SETTINGS"} submenuId='PASSWORD_CHANGE' />} />
 
                 <Route exact path='/panel-admina/dodaj-uzytkownika'
-                    component={(props) => <MainContainer content={<UsersContainer {...props} />} menuId={"ADMIN"} submenuId='USER_ADD' />} />
+                    component={(props) => <MainContainer content={<UsersContainer {...props} />} menuId={"ADMIN"} submenuId='USERS' />} />
 
                 <Route exact path='/panel-admina/uzytkownicy-lista'
-                    component={(props) => <MainContainer content={<UserListContainer {...props} />} menuId={"ADMIN"} submenuId='USER_LIST' />} />
+                    component={(props) => <MainContainer content={<UserListContainer {...props} />} menuId={"ADMIN"} submenuId='USERS' />} />
 
                 <Route exact path='/panel-admina/uzytkownicy-edycja'
-                    component={(props) => <MainContainer content={<UserDetailsContainer {...props} />} menuId={"ADMIN"} submenuId='USER_LIST' />} />
+                    component={(props) => <MainContainer content={<UserDetailsContainer {...props} />} menuId={"ADMIN"} submenuId='USERS' />} />
 
                 {/* z PrivateRoute nie działa
                 <PrivateRoute exact path='/home' />

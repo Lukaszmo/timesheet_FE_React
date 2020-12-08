@@ -38,13 +38,13 @@
     width: 100%;
 }
 
-.ui.menu .item.submenu-item:hover {
+.ui.vertical.menu .item.submenu-item:hover {
     background-color: #c9c7c7;
     color: #00b5ad;
     border-radius: 5px !important;
 }
 
-.ui.menu .item.active.submenu-item {
+.ui.vertical.menu .item.active.submenu-item {
     background-color: #25d1c8;
     color: #ffffff;
     border-radius: 5px !important;
