@@ -33,7 +33,7 @@ class UserDetailsContainer extends Component {
         console.log(this.props);
 
         return (
-            <Container className=''>
+            <Container className='users'>
                 <UserDetailsComponent
                     record={this.state.recordDetails}
                     roles={this.state.roleList}

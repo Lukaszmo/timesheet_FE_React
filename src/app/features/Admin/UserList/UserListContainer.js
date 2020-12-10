@@ -31,7 +31,7 @@ class UserListContainer extends Component {
         console.log(this.props);
 
         return (
-            <Container className=''>
+            <Container className='users'>
                 <UserListComponent
                     data={this.state.userList}
                     onTableChange={this.onTableChange}
