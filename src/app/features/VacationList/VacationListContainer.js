@@ -46,7 +46,7 @@ class VacationListContainer extends Component {
     onTableChange = (rowAction, rowId) => {
 
         let record = this.props.requests.filter(item => item.id === rowId);
-        history.push({ pathname: '/urlopy-szczegoly-wniosku', state: { recordDetails: record } });
+        history.push({ pathname: '/urlopy/szczegoly-wniosku', state: { recordDetails: record } });
     }
 
 

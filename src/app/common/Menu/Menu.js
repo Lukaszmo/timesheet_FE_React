@@ -52,7 +52,7 @@ export const menuItems = [
     {
         id: "TIMESHEET",
         name: "Czas pracy",
-        redirect: "/czas-pracy-rejestracja",
+        redirect: "/czas-pracy/rejestracja",
         className: "menu-item",
         icon: 'clock',
         subMenu: [
@@ -60,28 +60,28 @@ export const menuItems = [
                 id: 'TIMESHEET_REGISTER',
                 name: "Rejestracja czasu",
                 type: "MENU_ITEM",
-                redirect: "czas-pracy-rejestracja",
+                redirect: "/czas-pracy/rejestracja",
                 icon: ''
             },
             {
                 id: 'TIMESHEET_LIST',
                 name: "Lista godzin",
                 type: "MENU_ITEM",
-                redirect: "czas-pracy-lista",
+                redirect: "/czas-pracy/lista",
                 icon: ''
             },
             {
                 id: 'SUMMARY',
                 name: "Podsumowanie",
                 type: "MENU_ITEM",
-                redirect: "podsumowanie",
+                redirect: "/czas-pracy/podsumowanie",
                 icon: ''
             },
             {
                 id: 'WORK_TIME_SCHEDULE',
                 name: "Grafik",
                 type: "MENU_ITEM",
-                redirect: "grafik",
+                redirect: "/czas-pracy/grafik",
                 icon: ''
             }
         ]
@@ -89,7 +89,7 @@ export const menuItems = [
     {
         id: "VACATION",
         name: "Urlopy",
-        redirect: "/urlopy-dodaj-wniosek",
+        redirect: "/urlopy/dodaj-wniosek",
         className: "menu-item",
         icon: 'travel',
         subMenu: [
@@ -97,21 +97,21 @@ export const menuItems = [
                 id: 'VACATION_ADD',
                 name: "Dodaj wniosek",
                 type: "MENU_ITEM",
-                redirect: "/urlopy-dodaj-wniosek",
+                redirect: "/urlopy/dodaj-wniosek",
                 icon: ''
             },
             {
                 id: 'REQUEST_LIST',
                 name: "Lista wniosków",
                 type: "MENU_ITEM",
-                redirect: "/urlopy-lista-wnioskow",
+                redirect: "/urlopy/lista-wnioskow",
                 icon: ''
             },
             {
                 id: 'VACATION_PLAN',
                 name: "Planowanie",
                 type: "MENU_ITEM",
-                redirect: "/urlopy-planowanie",
+                redirect: "/urlopy/planowanie",
                 icon: ''
             }
         ]
@@ -127,7 +127,7 @@ export const menuItems = [
     {
         id: "REPORTS",
         name: "Raporty",
-        redirect: "/raporty-miesieczny",
+        redirect: "/raporty/raport-miesieczny",
         className: "menu-item",
         icon: 'chart bar',
         subMenu: [
@@ -135,14 +135,14 @@ export const menuItems = [
                 id: 'MONTHLY_REPORT',
                 name: "Raport miesięczny",
                 type: "MENU_ITEM",
-                redirect: "/raporty-miesieczny",
+                redirect: "/raporty/raport-miesieczny",
                 icon: ''
             },
             {
                 id: 'PROJECT_REPORT',
                 name: "Raport projekt",
                 type: "MENU_ITEM",
-                redirect: "/raporty-projekt",
+                redirect: "/raporty/raport-projekt",
                 icon: ''
             }
         ]
@@ -150,7 +150,7 @@ export const menuItems = [
     {
         id: "SETTINGS",
         name: "Ustawienia",
-        redirect: "/ustawienia-zmiana-hasla",
+        redirect: "/ustawienia/zmiana-hasla",
         className: "menu-item",
         icon: 'cogs',
         subMenu: [
@@ -158,7 +158,7 @@ export const menuItems = [
                 id: 'PASSWORD_CHANGE',
                 name: "Zmiana hasła",
                 type: "MENU_ITEM",
-                redirect: "ustawienia-zmiana-hasla",
+                redirect: "ustawienia/zmiana-hasla",
                 icon: ''
             }
         ]

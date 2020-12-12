@@ -33,7 +33,7 @@ class HoursListContainer extends Component {
         if (rowAction === 'EDIT') {
 
             let record = this.props.data.filter(item => item.id === rowId);
-            history.push({ pathname: '/czas-pracy-edycja', state: { recordDetails: record } });
+            history.push({ pathname: '/czas-pracy/edycja', state: { recordDetails: record } });
         }
 
         if (rowAction === 'DELETE') {
