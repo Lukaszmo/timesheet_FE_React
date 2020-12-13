@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Container } from 'semantic-ui-react';
 import UserCreateComponent from './UserCreateComponent';
 
-import { addUser, getAllUsersWithFilters, generateUserListForDropdown, UserValidationSchema } from '../../Admin/Users/User';
+import { addUser, getAllUsersWithFilters, generateUserListForDropdown, UserValidationSchema } from '../Users/User';
 import { getAllRoles } from '../Roles/Role';
 
 
