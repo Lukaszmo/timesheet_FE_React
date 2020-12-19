@@ -42,15 +42,12 @@ export function userLoginOperation(user) {
 
         axios.post(GENERATE, userToAuthenticate)
             .then(function (response) {
-                //console.log(response);
                 dispatch(loginSuccess(response.data.userId));
                 toastr.info("Pamiętaj o regularnej rejestracji czasu pracy");
-                //toastr.success("Login successfully", null);
                 localStorage.setItem("token", response.data.token);
                 history.push('/home');
             })
             .catch(function (error) {
-                console.log(error.response.data);
                 dispatch(loginFail());
             });
     }

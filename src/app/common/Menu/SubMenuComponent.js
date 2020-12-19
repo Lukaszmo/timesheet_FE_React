@@ -28,12 +28,13 @@ export default class SubMenuComponent extends Component {
                         if (element.type === 'DROPDOWN') {
 
                             return (
-                                <Dropdown as={Menu.Item}
+                                <Dropdown
+                                    as={Menu.Item}
                                     text={element.name}
                                     name={element.id}
                                     pointing="left"
                                     className="submenu-item"
-                                    active={true}
+                                    active={active}
                                     onClick={this.handleItemClick}>
                                     <Dropdown.Menu >
                                         {element.dropdownItems.map((element, index) => {
@@ -68,7 +69,7 @@ export default class SubMenuComponent extends Component {
                     })}
                 </div>
 
-            </Menu>
+            </Menu >
         )
     }
 }

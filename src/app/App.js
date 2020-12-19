@@ -17,6 +17,9 @@ import ProjectReportContainer from './features/Reports/ProjectReportContainer';
 import UsersContainer from './features/Admin/Users/UsersContainer';
 import UserListContainer from './features/Admin/UserList/UserListContainer';
 import UserDetailsContainer from './features/Admin/Users/UserDetailsContainer';
+import ClientsContainer from './features/Admin/Clients/ClientsContainer';
+import ClientListContainer from './features/Admin/ClientList/ClientListContainer';
+import ClientDetailsContainer from './features/Admin/Clients/ClientDetailsContainer';
 
 function App() {
     return (
@@ -77,6 +80,15 @@ function App() {
 
                 <Route exact path='/panel-admina/uzytkownicy-edycja'
                     component={(props) => <MainContainer content={<UserDetailsContainer {...props} />} menuId={"ADMIN"} submenuId='USERS' />} />
+
+                <Route exact path='/panel-admina/dodaj-klienta'
+                    component={(props) => <MainContainer content={<ClientsContainer {...props} />} menuId={"ADMIN"} submenuId='CLIENTS' />} />
+
+                <Route exact path='/panel-admina/klienci-lista'
+                    component={(props) => <MainContainer content={<ClientListContainer {...props} />} menuId={"ADMIN"} submenuId='CLIENTS' />} />
+
+                <Route exact path='/panel-admina/klienci-edycja'
+                    component={(props) => <MainContainer content={<ClientDetailsContainer {...props} />} menuId={"ADMIN"} submenuId='CLIENTS' />} />
 
                 {/* z PrivateRoute nie działa
                 <PrivateRoute exact path='/home' />

@@ -188,13 +188,26 @@ export const menuItems = [
                     }
                 ]
             },
-            /*  {
-                  id: 'CLIENTS',
-                  name: "Klienci",
-                  type: "MENU_ITEM",
-                  redirect: "/panel-admina/dodaj-klienta",
-                  icon: ''
-              } */
+            {
+                id: 'CLIENTS',
+                name: "Klienci",
+                type: "DROPDOWN",
+                redirect: "/panel-admina/dodaj-klienta",
+                icon: '',
+                dropdownItems: [
+                    {
+                        id: 'CLIENT_ADD',
+                        name: 'Dodaj nowego klienta',
+                        redirect: "/panel-admina/dodaj-klienta"
+                    },
+                    {
+                        id: 'CLIENT_LIST',
+                        name: 'Lista klientów',
+                        redirect: "/panel-admina/klienci-lista"
+                    }
+                ]
+
+            }
 
         ]
     }

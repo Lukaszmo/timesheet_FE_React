@@ -28,19 +28,19 @@ class UserListContainer extends Component {
 
     render() {
 
-        console.log(this.props);
 
-        return (
-            <Container className='users'>
-                <UserListComponent
-                    data={this.state.userList}
-                    onTableChange={this.onTableChange}
-
-                >
-                </UserListComponent>
-
-            </Container>
-        );
+        if (this.state.userList) {
+            return (
+                <Container className='users'>
+                    <UserListComponent
+                        data={this.state.userList}
+                        onTableChange={this.onTableChange}
+                    >
+                    </UserListComponent>
+                </Container>
+            )
+        }
+        else return null;
     }
 }
 

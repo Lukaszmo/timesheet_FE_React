@@ -36,12 +36,6 @@ export function addUser(object) {
     axios.post(USERS, object)
         .then(function (response) {
             toastr.success('Użytkownik został utworzony');
-
-            /*const newUser = {
-                ...response.data
-            }
-            dispatch(addNewRecord(newRecord)); */
-            //history.push('/czas-pracy-lista');
         })
         .catch(function (error) {
             console.log(error);
@@ -67,12 +61,7 @@ export async function getAllUsersWithFilters(filters) {
 
     let active = filters ? filters.active : true;
 
-    const resp = axios.get(USERS + '?active=' + active).then(response => response.data['hydra:member'])//.map(function (object) {
-    /*   return ({
-           ...object,
-           active: object.active == 1 ? 'tak' : 'nie'
-       })
-   })); */
+    const resp = axios.get(USERS + '?active=' + active).then(response => response.data['hydra:member']);
 
     return await resp;
 }
@@ -97,17 +86,10 @@ export const generateUserListForDropdown = (userList) => {
 
 export const updateRecord = (values) => {
 
-    // do wyniesienia do konfiguracji
-    /* const headers = {
-         'Content-Type': 'application/json'
-     } */
-    console.log(values);
-
     return axios.put(USERS + '/' + values.id, values).then((response) => {
         toastr.success('Dane zostały zmodyfikowane');
     })
         .catch(function (error) {
-            console.log(error);
             toastr.error(error.response.data['hydra:description']);
         });
 }

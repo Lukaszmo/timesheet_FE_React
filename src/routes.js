@@ -9,6 +9,7 @@ export const HOURS = API_ROOT + 'hours';
 export const VACREQUEST = API_ROOT + 'vacation_requests';
 export const VACREQ_TYPES = API_ROOT + 'vacreq_types';
 export const ROLES = API_ROOT + 'roles';
+export const CLIENTS = API_ROOT + 'clients';
 
 //Services
 export const VACATION_REQUEST_MAIL = ROOT + 'vacation_requests/mail';
