@@ -1,7 +1,7 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 
 import { Formik } from 'formik';
-import { Segment, Header, Button, Dropdown, Grid, Input, Form, Checkbox, Label, TextArea, Divider, Confirm, Icon } from 'semantic-ui-react';
+import { Segment, Header, Button, Grid, Input, Form, Divider } from 'semantic-ui-react';
 import CustomLabel from '../../../common/CustomLabel/CustomLabel';
 
 

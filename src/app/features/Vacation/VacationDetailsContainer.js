@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { Container } from 'semantic-ui-react';
 import VacationDetailsComponent from './VacationDetailsComponent';
 import { updateRecord, generatePDF } from './Vacation';
-import { getUserDetails } from "../User/User";
 
 class VacationDetailsContainer extends Component {
 
