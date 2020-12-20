@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Segment, Header, Divider } from 'semantic-ui-react';
 import TableComponent from '../../../common/Table/TableComponent';
+import '../Clients/Client.css';
 
 
 

@@ -3,6 +3,8 @@ import { Segment, Header, Divider } from 'semantic-ui-react';
 import { Form, Grid, Input, Button, Dropdown } from 'semantic-ui-react';
 import { Formik } from 'formik';
 import CustomLabel from '../../../common/CustomLabel/CustomLabel';
+import './Client.css';
+
 
 
 
