@@ -3,15 +3,15 @@ import { CLIENTS } from '../../../../routes';
 import { toastr } from 'react-redux-toastr';
 
 //action types
-const SET_RECORDS = 'SET_RECORDS';
-const ADD_RECORD = 'ADD_RECORD';
-const UPDATE_RECORDS = 'UPDATE_RECORDS';
-const DELETE_RECORD = 'DELETE_RECORD';
+const SET_CLIENTS = 'SET_CLIENTS';
+const ADD_CLIENT = 'ADD_CLIENT';
+const UPDATE_CLIENT = 'UPDATE_CLIENT';
+const DELETE_CLIENT = 'DELETE_CLIENT';
 
 //actions
 export function setRecords(records) {
     return {
-        type: SET_RECORDS,
+        type: SET_CLIENTS,
         payload: {
             records: records
         }
@@ -20,14 +20,14 @@ export function setRecords(records) {
 
 export function addNewRecord(object) {
     return {
-        type: ADD_RECORD,
+        type: ADD_CLIENT,
         payload: object
     }
 }
 
 export function updateRecords(record) {
     return {
-        type: UPDATE_RECORDS,
+        type: UPDATE_CLIENT,
         payload: {
             updatedRecord: record
         }
@@ -36,7 +36,7 @@ export function updateRecords(record) {
 
 export function deleteRecord(id) {
     return {
-        type: DELETE_RECORD,
+        type: DELETE_CLIENT,
         payload: {
             deletedRecordId: id
         }
@@ -96,6 +96,24 @@ export const removeRecord = (rowId) => {
     }
 }
 
+export const generateClientListForDropdown = (clientList) => {
+
+    let dropdownList = null
+
+    if (clientList.length > 0) {
+
+        dropdownList = clientList.map((object) => {
+            return {
+                'key': object.id,
+                'text': object.description,
+                'value': object.id
+            };
+        });
+    }
+
+    return dropdownList;
+}
+
 const initialState = {
     records: []
 };
@@ -105,22 +123,22 @@ export default (state = initialState, action) => {
 
     switch (action.type) {
 
-        case SET_RECORDS: {
+        case SET_CLIENTS: {
             return { ...state, ...action.payload };
         }
 
-        case ADD_RECORD: {
+        case ADD_CLIENT: {
             return { ...state, records: state.records ? [...state.records, action.payload] : [action.payload] }
         }
 
-        case DELETE_RECORD: {
+        case DELETE_CLIENT: {
 
             let filteredArray = state.records.filter(item => item.id !== action.payload.deletedRecordId)
 
             return { ...state, records: filteredArray }
         }
 
-        case UPDATE_RECORDS: {
+        case UPDATE_CLIENT: {
 
             let index = state.records.findIndex(item => item.id === action.payload.updatedRecord.id);
 

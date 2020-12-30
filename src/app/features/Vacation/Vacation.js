@@ -21,7 +21,7 @@ export const validationSchema = Yup.object().shape({
 //action types
 const SET_VACREQ_TYPES = 'SET_VACREQ_TYPES';
 const SET_VACREQUESTS = 'SET_VACREQUESTS';
-const UPDATE_RECORDS = 'UPDATE_RECORDS';
+const UPDATE_VACREQUEST = 'UPDATE_VACREQUEST';
 
 
 //actions
@@ -45,7 +45,7 @@ export function setVacRequests(records) {
 
 export function updateRecords(record) {
     return {
-        type: UPDATE_RECORDS,
+        type: UPDATE_VACREQUEST,
         payload: {
             updatedRecord: record
         }
@@ -222,7 +222,7 @@ export default (state = initialState, action) => {
             return { ...state, ...action.payload };
         }
 
-        case UPDATE_RECORDS: {
+        case UPDATE_VACREQUEST: {
             return { ...state, ...action.payload };
         }
 
