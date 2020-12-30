@@ -26,13 +26,13 @@ export const HourValidationSchema = Yup.object().shape({
 
 //action types
 const SET_HOUR_TYPES = 'SET_HOUR_TYPES';
-const SET_RECORDS = 'SET_RECORDS';
-const ADD_RECORD = 'ADD_RECORD';
-const DELETE_RECORD = 'DELETE_RECORD';
-const UPDATE_RECORDS = 'UPDATE_RECORDS';
-const SET_RECORDS_BY_TYPE = 'SET_RECORDS_BY_TYPE';
-const SET_RECORDS_BY_PROJECT = 'SET_RECORDS_BY_PROJECT';
-const SET_RECORDS_BY_TASK = 'SET_RECORDS_BY_TASK';
+const SET_HOURS = 'SET_HOURS';
+const ADD_HOURS = 'ADD_HOURS';
+const DELETE_HOURS = 'DELETE_HOURS';
+const UPDATE_HOURS = 'UPDATE_HOURS';
+const SET_HOURS_BY_TYPE = 'SET_HOURS_BY_TYPE';
+const SET_HOURS_BY_PROJECT = 'SET_HOURS_BY_PROJECT';
+const SET_HOURS_BY_TASK = 'SET_HOURS_BY_TASK';
 
 //actions
 export function setHourTypes(types) {
@@ -46,7 +46,7 @@ export function setHourTypes(types) {
 
 export function setRecords(records) {
     return {
-        type: SET_RECORDS,
+        type: SET_HOURS,
         payload: {
             records: records
         }
@@ -55,7 +55,7 @@ export function setRecords(records) {
 
 export function addNewRecord(object) {
     return {
-        type: ADD_RECORD,
+        type: ADD_HOURS,
         payload: object
 
     }
@@ -63,7 +63,7 @@ export function addNewRecord(object) {
 
 export function deleteRecord(id) {
     return {
-        type: DELETE_RECORD,
+        type: DELETE_HOURS,
         payload: {
             deletedRecordId: id
         }
@@ -72,7 +72,7 @@ export function deleteRecord(id) {
 
 export function updateRecords(record) {
     return {
-        type: UPDATE_RECORDS,
+        type: UPDATE_HOURS,
         payload: {
             updatedRecord: record
         }
@@ -81,7 +81,7 @@ export function updateRecords(record) {
 
 export function setRecordsByType(records) {
     return {
-        type: SET_RECORDS_BY_TYPE,
+        type: SET_HOURS_BY_TYPE,
         payload: {
             recordsByType: records
         }
@@ -90,7 +90,7 @@ export function setRecordsByType(records) {
 
 export function setRecordsByProject(records) {
     return {
-        type: SET_RECORDS_BY_PROJECT,
+        type: SET_HOURS_BY_PROJECT,
         payload: {
             recordsByProject: records
         }
@@ -99,7 +99,7 @@ export function setRecordsByProject(records) {
 
 export function setRecordsByTask(records) {
     return {
-        type: SET_RECORDS_BY_TASK,
+        type: SET_HOURS_BY_TASK,
         payload: {
             recordsByTask: records
         }
@@ -310,34 +310,34 @@ export default (state = initialState, action) => {
 
         }
 
-        case SET_RECORDS: {
+        case SET_HOURS: {
             return { ...state, ...action.payload };
         }
 
-        case SET_RECORDS_BY_TYPE: {
+        case SET_HOURS_BY_TYPE: {
             return { ...state, ...action.payload };
         }
 
-        case SET_RECORDS_BY_PROJECT: {
+        case SET_HOURS_BY_PROJECT: {
             return { ...state, ...action.payload };
         }
 
-        case SET_RECORDS_BY_TASK: {
+        case SET_HOURS_BY_TASK: {
             return { ...state, ...action.payload };
         }
 
-        case ADD_RECORD: {
+        case ADD_HOURS: {
             return { ...state, records: state.records ? [...state.records, action.payload] : [action.payload] }
         }
 
-        case DELETE_RECORD: {
+        case DELETE_HOURS: {
 
             let filteredArray = state.records.filter(item => item.id !== action.payload.deletedRecordId)
 
             return { ...state, records: filteredArray }
         }
 
-        case UPDATE_RECORDS: {
+        case UPDATE_HOURS: {
 
             let index = state.records.findIndex(item => item.id === action.payload.updatedRecord.id);
 
