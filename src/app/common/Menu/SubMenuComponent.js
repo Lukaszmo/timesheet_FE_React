@@ -32,6 +32,7 @@ export default class SubMenuComponent extends Component {
                                     as={Menu.Item}
                                     text={element.name}
                                     name={element.id}
+                                    key={element.id}
                                     pointing="left"
                                     className="submenu-item"
                                     active={active}
