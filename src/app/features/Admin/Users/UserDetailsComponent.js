@@ -62,7 +62,7 @@ class UserDetailsComponent extends Component {
                         position: this.props.record.position,
                         manager: this.props.record.managerid,
                         roles: this.props.record.roles[0],
-                        active: + this.props.record.active
+                        active: this.props.record.active === 1 ? true : false
                     }}
 
                     validationSchema={this.props.validationSchema}

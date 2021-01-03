@@ -50,7 +50,7 @@ export async function getAllUsers() {
         return ({
             ...object,
             active: + object.active,
-            activeString: object.active === 1 ? 'tak' : 'nie'
+            activeString: object.active === true ? 'tak' : 'nie'
         })
     }));
 
