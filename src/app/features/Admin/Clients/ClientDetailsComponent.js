@@ -97,7 +97,7 @@ class ClientDetailsComponent extends Component {
                                             name='description'
                                             value={values.description}
                                             onChange={(e, data) => this.handleChange(e, data, setFieldValue)} />
-                                        {errors.code && touched.description ? <div><CustomLabel text={errors.description}></CustomLabel></div> : null}
+                                        {errors.description && touched.description ? <div><CustomLabel text={errors.description}></CustomLabel></div> : null}
                                     </Grid.Column>
                                 </Grid.Row>
 

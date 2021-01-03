@@ -1,6 +1,16 @@
 import axios from 'axios';
 import { CLIENTS } from '../../../../routes';
 import { toastr } from 'react-redux-toastr';
+import * as Yup from 'yup';
+
+export const ClientValidationSchema = Yup.object().shape({
+    code: Yup.string()
+        .required('Pole wymagane')
+        .max(10, 'Maksymalna ilość znaków: 10'),
+    description: Yup.string()
+        .required('Pole wymagane')
+        .max(50, 'Maksymalna ilość znaków: 50'),
+});
 
 //action types
 const SET_CLIENTS = 'SET_CLIENTS';

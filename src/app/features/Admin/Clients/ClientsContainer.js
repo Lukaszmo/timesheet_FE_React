@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Container } from 'semantic-ui-react';
 import ClientCreateComponent from './ClientCreateComponent';
-import { addRecord } from '../Clients/Client';
+import { addRecord, ClientValidationSchema } from '../Clients/Client';
 
 class ClientsContainer extends Component {
 
@@ -16,6 +16,7 @@ class ClientsContainer extends Component {
         return (
             <Container className='clients'>
                 <ClientCreateComponent
+                    validationSchema={ClientValidationSchema}
                     onSubmit={this.addClient}
                 />
             </Container>

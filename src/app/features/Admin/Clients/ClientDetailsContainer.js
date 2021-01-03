@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Container, Segment } from 'semantic-ui-react';
 import ClientDetailsComponent from './ClientDetailsComponent';
-import { updateRecord } from './Client';
+import { updateRecord, ClientValidationSchema } from './Client';
 
 
 class ClientDetailsContainer extends Component {
@@ -22,6 +22,7 @@ class ClientDetailsContainer extends Component {
             <Container className='clients'>
                 <ClientDetailsComponent
                     record={this.state.recordDetails}
+                    validationSchema={ClientValidationSchema}
                     onSubmit={this.onSubmit}
                 />
             </Container>
