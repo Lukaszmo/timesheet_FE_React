@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Container } from 'semantic-ui-react';
 import UserDetailsComponent from '../Users/UserDetailsComponent';
-import { updateRecord, getAllUsersWithFilters, generateUserListForDropdown } from '../Users/User';
+import { updateRecord, getAllUsersWithFilters, generateUserListForDropdown, UserValidationSchema } from '../Users/User';
 import { getAllRoles } from '../Roles/Role';
 
 
@@ -25,12 +25,10 @@ class UserDetailsContainer extends Component {
         updateRecord(values);
     }
 
-
-
-
     render() {
 
         console.log(this.props);
+        delete UserValidationSchema.fields.password;
 
         return (
             <Container className='users'>
@@ -39,6 +37,7 @@ class UserDetailsContainer extends Component {
                     roles={this.state.roleList}
                     users={this.state.userList}
                     onSubmit={this.onSubmit}
+                    validationSchema={UserValidationSchema}
                 />
 
             </Container>
