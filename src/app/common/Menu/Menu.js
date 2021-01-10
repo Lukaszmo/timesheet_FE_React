@@ -206,6 +206,31 @@ export const menuItems = [
                         redirect: "/panel-admina/klienci-lista"
                     }
                 ]
+            },
+            {
+                id: 'PROJECTS',
+                name: "Projekty",
+                type: "DROPDOWN",
+                redirect: "/panel-admina/dodaj-projekt",
+                icon: '',
+                dropdownItems: [
+                    {
+                        id: 'PROJECT_ADD',
+                        name: 'Dodaj nowy projekt',
+                        redirect: "/panel-admina/dodaj-projekt"
+                    },
+                    {
+                        id: 'PROJECT_LIST',
+                        name: 'Lista projektów',
+                        redirect: "/panel-admina/projekty-lista"
+                    },
+                    /* {
+                         id: 'PROJECT_EMPLOYEE_ADD',
+                         name: 'Dodaj pracownika do projektu',
+                         redirect: "/panel-admina/dodaj-pracownika-do-projektu"
+                     } */
+
+                ]
 
             }
 

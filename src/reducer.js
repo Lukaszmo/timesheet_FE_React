@@ -8,6 +8,7 @@ import hour from './app/features/Hours/Hours';
 import vacation from './app/features/Vacation/Vacation';
 import menu from './app/common/Menu/Menu';
 import client from './app/features/Admin/Clients/Client';
+import project from './app/features/Admin/Projects/Project';
 
 /*export default combineReducers({
     toastr: toastrReducer,
@@ -27,7 +28,8 @@ const appReducer = combineReducers({
     loader: loader,
     vacation: vacation,
     menu: menu,
-    client: client
+    client: client,
+    project: project
 })
 
 const rootReducer = (state, action) => {

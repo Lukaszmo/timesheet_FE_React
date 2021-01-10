@@ -22,8 +22,7 @@ class UserDetailsComponent extends Component {
             id: this.props.record.id,
             regnum: parseInt(values.regnum),
             managerid: values.manager,
-            roles: roles,
-            active: Boolean(values.active)
+            roles: roles
         }
 
         this.props.onSubmit(values);
@@ -54,6 +53,7 @@ class UserDetailsComponent extends Component {
 
                 <Formik
                     initialValues={{
+                        id: this.props.record.id,
                         username: this.props.record.username,
                         firstname: this.props.record.firstname,
                         lastname: this.props.record.lastname,
@@ -83,12 +83,16 @@ class UserDetailsComponent extends Component {
                         <Form onSubmit={handleSubmit}>
 
                             <Grid columns={2} textAlign="right" verticalAlign="middle" >
+
                                 <Grid.Row>
                                     <Grid.Column width={2}>
-                                        Id użytkownika
-                                        </Grid.Column >
+                                        <p className='data-field-header'>Id użytkownika</p>
+                                    </Grid.Column >
                                     <Grid.Column width={3}>
-                                        <p className='data-field'> {this.props.record.id} </p>
+                                        <Input disabled
+                                            type="text"
+                                            name='id'
+                                            value={values.id} />
                                     </Grid.Column>
                                 </Grid.Row>
                                 <Grid.Row>
@@ -213,9 +217,6 @@ class UserDetailsComponent extends Component {
                                         />
                                     </Grid.Column>
                                 </Grid.Row>
-
-
-
 
                             </Grid>
                             <div className='button-row'>

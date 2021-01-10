@@ -6,7 +6,7 @@ import ProjectReportComponent from './ProjectReportComponent';
 import { getHoursRange, fetchHoursByTaskType } from '../Hours/Hours';
 import { getFirstDayOfMonth, getLastDayOfMonth } from '../../utils/Utils.js';
 import { getMonths } from './ReportsUtility';
-import { fetchAllProjects } from '../Admin/Projects/Projects';
+import { fetchAllProjects } from '../Admin/Projects/Project';
 
 
 class ProjectReportContainer extends Component {
