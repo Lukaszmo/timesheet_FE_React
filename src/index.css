@@ -10,7 +10,8 @@ body{
 
 .ui.container{
     margin-left: 20% !important;
-    width: 80%; 
+    width: 80%;
+    padding: 0px 15px 15px !important;
 }
 
 .ui.segment{
