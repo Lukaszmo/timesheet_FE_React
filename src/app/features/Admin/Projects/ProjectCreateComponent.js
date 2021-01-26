@@ -15,7 +15,7 @@ class ProjectCreateComponent extends Component {
 
     onSubmit(values) {
 
-        values = { ...values, active: false };
+        values = { ...values, active: true };
 
         this.props.onSubmit(values);
     }

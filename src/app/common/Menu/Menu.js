@@ -224,11 +224,16 @@ export const menuItems = [
                         name: 'Lista projektów',
                         redirect: "/panel-admina/projekty-lista"
                     },
-                    /* {
-                         id: 'PROJECT_EMPLOYEE_ADD',
-                         name: 'Dodaj pracownika do projektu',
-                         redirect: "/panel-admina/dodaj-pracownika-do-projektu"
-                     } */
+                    {
+                        id: 'PROJECT_EMPLOYEE_ADD',
+                        name: 'Dodaj pracownika do projektu',
+                        redirect: "/panel-admina/dodaj-pracownika-do-projektu"
+                    },
+                    {
+                        id: 'PROJECT_EMPLOYEE_LIST',
+                        name: 'Lista pracowników w projektach',
+                        redirect: "/panel-admina/pracownicy-w-projektach-lista"
+                    }
 
                 ]
 

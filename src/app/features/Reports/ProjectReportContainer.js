@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Container, Segment, Header, Divider, TransitionablePortal } from 'semantic-ui-react';
+import { Container } from 'semantic-ui-react';
 import './Reports.css';
 import ProjectReportComponent from './ProjectReportComponent';
-import { getHoursRange, fetchHoursByTaskType } from '../Hours/Hours';
+import { fetchHoursByTaskType } from '../Hours/Hours';
 import { getFirstDayOfMonth, getLastDayOfMonth } from '../../utils/Utils.js';
-import { getMonths } from './ReportsUtility';
-import { fetchAllProjects } from '../Admin/Projects/Project';
+import { getAllProjects, generateProjectListForDropdown } from '../Admin/Projects/Project';
 
 
 class ProjectReportContainer extends Component {
@@ -14,13 +13,12 @@ class ProjectReportContainer extends Component {
     state = {
         datefrom: getFirstDayOfMonth(new Date()),
         dateto: getLastDayOfMonth(new Date()),
-        projectList: null,
         showReport: false
     }
 
     componentDidMount() {
 
-        fetchAllProjects().then(resp => this.setState({ projectList: resp }));
+        this.props.getAllProjects();
     }
 
     onSubmit = (values) => {
@@ -42,7 +40,7 @@ class ProjectReportContainer extends Component {
                 <ProjectReportComponent
                     showReport={this.state.showReport}
                     onSubmit={this.onSubmit}
-                    projectList={this.state.projectList}
+                    projectList={generateProjectListForDropdown(this.props.projects)}
                     reportData={this.state.data}
                     datefrom={this.state.datefrom}
                     dateto={this.state.dateto}>
@@ -52,10 +50,16 @@ class ProjectReportContainer extends Component {
     }
 }
 
+const mapStateToProps = state => ({
+    projects: state.project.records
+})
 
+const mapDispatchToProps = dispatch => ({
+    getAllProjects: () => dispatch(getAllProjects())
+})
 
-
-export default ProjectReportContainer;
-
-
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(ProjectReportContainer);
 

@@ -1,0 +1,58 @@
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Container } from 'semantic-ui-react';
+
+import ProjectUserDetailsComponent from './ProjectUserDetailsComponent';
+import { getAllProjects, generateProjectListForDropdown } from '../Projects/Project';
+import { getAllUsersWithFilters, generateUserListForDropdown } from '../Users/User';
+import { updateRecord } from '../ProjectUsers/ProjectUsers';
+
+
+class ProjectUserDetailsContainer extends Component {
+
+    state = {
+        recordDetails: this.props.location.state.recordDetails[0],
+    }
+
+    componentDidMount() {
+
+        this.props.getAllProjects();
+        getAllUsersWithFilters().then(resp => this.setState({ userList: generateUserListForDropdown(resp) }));
+    }
+
+    onSubmit = (values) => {
+
+        this.props.updateRecord(values);
+    }
+
+    render() {
+
+        return (
+            <Container className='projects'>
+                <ProjectUserDetailsComponent
+                    record={this.state.recordDetails}
+                    projectList={generateProjectListForDropdown(this.props.projects)}
+                    userList={this.state.userList}
+                    onSubmit={this.onSubmit}
+                />
+            </Container>
+        );
+    }
+}
+
+const mapStateToProps = state => ({
+    projects: state.project.records
+})
+
+const mapDispatchToProps = dispatch => ({
+    getAllProjects: () => dispatch(getAllProjects()),
+    updateRecord: (object) => dispatch(updateRecord(object))
+})
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(ProjectUserDetailsContainer);
+
+
+

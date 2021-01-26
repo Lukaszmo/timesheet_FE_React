@@ -23,6 +23,9 @@ import ClientDetailsContainer from './features/Admin/Clients/ClientDetailsContai
 import ProjectsContainer from './features/Admin/Projects/ProjectsContainer';
 import ProjectListContainer from './features/Admin/ProjectList/ProjectListContainer';
 import ProjectDetailsContainer from './features/Admin/Projects/ProjectDetailsContainer';
+import ProjectUserAddContainer from './features/Admin/ProjectUsers/ProjectUserAddContainer';
+import ProjectUsersListContainer from './features/Admin/ProjectUsersList/ProjectUsersListContainer.js';
+import ProjectUserDetailsContainer from './features/Admin/ProjectUsers/ProjectUserDetailsContainer';
 
 function App() {
     return (
@@ -101,6 +104,15 @@ function App() {
 
                 <Route exact path='/panel-admina/projekty-edycja'
                     component={(props) => <MainContainer content={<ProjectDetailsContainer {...props} />} menuId={"ADMIN"} submenuId='PROJECTS' />} />
+
+                <Route exact path='/panel-admina/dodaj-pracownika-do-projektu'
+                    component={(props) => <MainContainer content={<ProjectUserAddContainer {...props} />} menuId={"ADMIN"} submenuId='PROJECTS' />} />
+
+                <Route exact path='/panel-admina/pracownicy-w-projektach-lista'
+                    component={(props) => <MainContainer content={<ProjectUsersListContainer {...props} />} menuId={"ADMIN"} submenuId='PROJECTS' />} />
+
+                <Route exact path='/panel-admina/lista-pracownikow-w-projektach-edycja'
+                    component={(props) => <MainContainer content={<ProjectUserDetailsContainer {...props} />} menuId={"ADMIN"} submenuId='PROJECTS' />} />
 
                 {/* z PrivateRoute nie działa
                 <PrivateRoute exact path='/home' />

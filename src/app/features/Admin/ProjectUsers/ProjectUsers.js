@@ -1,28 +1,24 @@
 import axios from 'axios';
 import { toastr } from 'react-redux-toastr';
-import { PROJECTS } from '../../../../routes';
+import { PROJECT_USERS } from '../../../../routes';
 import * as Yup from 'yup';
 
-export const ProjectValidationSchema = Yup.object().shape({
-    client: Yup.string()
+export const ProjectUsersValidationSchema = Yup.object().shape({
+    project: Yup.string()
         .required('Pole wymagane'),
-    code: Yup.string()
-        .required('Pole wymagane')
-        .max(10, 'Maksymalna ilość znaków: 10'),
-    description: Yup.string()
-        .required('Pole wymagane')
-        .max(50, 'Maksymalna ilość znaków: 50'),
+    user: Yup.string()
+        .required('Pole wymagane'),
 });
 
-const SET_PROJECTS = 'SET_PROJECTS';
-const ADD_PROJECT = 'ADD_PROJECT';
-const UPDATE_PROJECT = 'UPDATE_PROJECT';
-const DELETE_PROJECT = 'DELETE_PROJECT';
+const SET_USER_PROJECTS = 'SET_USER_PROJECTS';
+const ADD_USER_TO_PROJECT = 'ADD_USER_TO_PROJECT';
+const UPDATE_USER_PROJECTS = 'UPDATE_USER_PROJECTS';
+const DELETE_USER_FROM_PROJECT = 'DELETE_USER_FROM_PROJECT';
 
 //actions
 export function setRecords(records) {
     return {
-        type: SET_PROJECTS,
+        type: SET_USER_PROJECTS,
         payload: {
             records: records
         }
@@ -31,14 +27,14 @@ export function setRecords(records) {
 
 export function addNewRecord(object) {
     return {
-        type: ADD_PROJECT,
+        type: ADD_USER_TO_PROJECT,
         payload: object
     }
 }
 
 export function updateRecords(record) {
     return {
-        type: UPDATE_PROJECT,
+        type: UPDATE_USER_PROJECTS,
         payload: {
             updatedRecord: record
         }
@@ -47,23 +43,25 @@ export function updateRecords(record) {
 
 export function deleteRecord(id) {
     return {
-        type: DELETE_PROJECT,
+        type: DELETE_USER_FROM_PROJECT,
         payload: {
             deletedRecordId: id
         }
     }
 }
 
-export const getAllProjects = () => {
+
+export const getAllUsersAssignedToProjects = () => {
 
     return (dispatch) => {
-        axios.get(PROJECTS).then(response => {
+        axios.get(PROJECT_USERS).then(response => {
 
             const data = response.data['hydra:member'].map(function (object) {
                 return ({
                     ...object,
                     active: + object.active,
-                    activeString: object.active === true ? 'tak' : 'nie'
+                    activeString: object.active === true ? 'tak' : 'nie',
+                    fullname: object.user.firstname + ' ' + object.user.lastname
                 })
             })
             dispatch(setRecords(data));
@@ -71,12 +69,13 @@ export const getAllProjects = () => {
     }
 }
 
-export const addRecord = (object) => {
+
+export const addUserToProject = (object) => {
 
     return function (dispatch) {
-        axios.post(PROJECTS, object)
+        axios.post(PROJECT_USERS, object)
             .then(function (response) {
-                toastr.success('Projekt został utworzony');
+                toastr.success('Pracownik został dodany do projektu');
                 dispatch(addNewRecord(response.data));
             })
             .catch(function (error) {
@@ -89,7 +88,7 @@ export const addRecord = (object) => {
 export const updateRecord = (values) => {
 
     return function (dispatch) {
-        axios.put(PROJECTS + '/' + values.id, values).then((response) => {
+        axios.put(PROJECT_USERS + '/' + values.id, values).then((response) => {
             toastr.success('Dane zostały zmodyfikowane');
             dispatch(updateRecords(response.data));
         })
@@ -102,32 +101,14 @@ export const updateRecord = (values) => {
 export const removeRecord = (rowId) => {
 
     return function (dispatch) {
-        axios.delete(PROJECTS + '/' + rowId)
+        axios.delete(PROJECT_USERS + '/' + rowId)
             .then(function (response) {
-                toastr.success('Projekt został usunięty');
+                toastr.success('Pracownik został usunięty z projektu');
                 dispatch(deleteRecord(rowId));
             }).catch(function (error) {
                 toastr.error(error.response.data['hydra:description']);
             });
     }
-}
-
-export const generateProjectListForDropdown = (projectList) => {
-
-    let dropdownList = null
-
-    if (projectList.length > 0) {
-
-        dropdownList = projectList.map((object) => {
-            return {
-                'key': object.id,
-                'text': object.description,
-                'value': object.id
-            };
-        });
-    }
-
-    return dropdownList;
 }
 
 const initialState = {
@@ -139,22 +120,22 @@ export default (state = initialState, action) => {
 
     switch (action.type) {
 
-        case SET_PROJECTS: {
+        case SET_USER_PROJECTS: {
             return { ...state, ...action.payload };
         }
 
-        case ADD_PROJECT: {
+        case ADD_USER_TO_PROJECT: {
             return { ...state, records: state.records ? [...state.records, action.payload] : [action.payload] }
         }
 
-        case DELETE_PROJECT: {
+        case DELETE_USER_FROM_PROJECT: {
 
             let filteredArray = state.records.filter(item => item.id !== action.payload.deletedRecordId)
 
             return { ...state, records: filteredArray }
         }
 
-        case UPDATE_PROJECT: {
+        case UPDATE_USER_PROJECTS: {
 
             let index = state.records.findIndex(item => item.id === action.payload.updatedRecord.id);
 
