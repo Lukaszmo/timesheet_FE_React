@@ -15,7 +15,11 @@ class ProjectUserAddContainer extends Component {
 
     componentDidMount() {
 
-        this.props.getAllProjects();
+        let filters = {
+            active: true,
+        };
+
+        this.props.getAllProjects(filters);
         getAllUsersWithFilters().then(resp => this.setState({ userList: generateUserListForDropdown(resp) }));
     }
 
@@ -48,7 +52,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     addUserToProject: (object) => dispatch(addUserToProject(object)),
-    getAllProjects: () => dispatch(getAllProjects())
+    getAllProjects: (filters) => dispatch(getAllProjects(filters))
 })
 
 export default connect(

@@ -31,7 +31,7 @@ class ProjectUserDetailsComponent extends Component {
 
         return (
             <Segment color="teal" >
-                <Header size='medium'>Edycja pracowników w projektach</Header>
+                <Header size='medium'>Edycja pracownika w projekcie</Header>
                 <Divider></Divider>
 
                 <Formik

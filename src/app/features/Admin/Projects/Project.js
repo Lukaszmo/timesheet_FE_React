@@ -54,10 +54,12 @@ export function deleteRecord(id) {
     }
 }
 
-export const getAllProjects = () => {
+export const getAllProjects = (filters) => {
+
+    let active = filters ? filters.active : null;
 
     return (dispatch) => {
-        axios.get(PROJECTS).then(response => {
+        axios.get(PROJECTS + '?active=' + active).then(response => {
 
             const data = response.data['hydra:member'].map(function (object) {
                 return ({
