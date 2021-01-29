@@ -100,7 +100,7 @@ class HoursDetailsContainer extends Component {
 
 const mapStateToProps = state => ({
     hourTypes: state.hour.types,
-    user: state.user,
+    user: state.loggedUser,
     updatedRecord: state.hour.updatedRecord
 })
 

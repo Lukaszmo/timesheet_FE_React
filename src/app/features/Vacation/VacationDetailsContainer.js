@@ -83,7 +83,7 @@ class VacationDetailsContainer extends Component {
 }
 
 const mapStateToProps = state => ({
-    user: state.user,
+    user: state.loggedUser,
     updatedRecord: state.vacation.updatedRecord
 })
 

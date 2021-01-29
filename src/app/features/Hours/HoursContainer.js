@@ -57,7 +57,7 @@ class HoursContainer extends Component {
 //pobiera stan ze store i przekazuje do propsów komponentu
 const mapStateToProps = state => ({
     hourTypes: state.hour.types,
-    user: state.user,
+    user: state.loggedUser
 })
 
 const mapDispatchToProps = dispatch => ({

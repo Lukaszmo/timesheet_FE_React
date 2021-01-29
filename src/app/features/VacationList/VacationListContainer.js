@@ -72,9 +72,9 @@ class VacationListContainer extends Component {
 }
 
 const mapStateToProps = state => ({
-    user: state.user,
+    user: state.loggedUser,
     requests: state.vacation.records,
-    inferiors: state.user.inferiors
+    inferiors: state.loggedUser.inferiors
 })
 
 const mapDispatchToProps = dispatch => ({

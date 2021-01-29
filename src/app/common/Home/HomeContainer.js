@@ -23,7 +23,7 @@ class HomeContainer extends Component {
 
 //pobiera stan ze store i przekazuje do komponentu
 const mapStateToProps = state => ({
-    user: state.user,
+    user: state.loggedUser,
     login: state.login
 })
 

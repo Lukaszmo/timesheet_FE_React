@@ -3,7 +3,7 @@ import { reducer as toastrReducer } from 'react-redux-toastr'
 
 import loader from './app/common/Loader/Loader';
 import login from './app/features/Login/Login';
-import user from './app/features/User/User';
+import loggedUser from './app/features/User/User';
 import hour from './app/features/Hours/Hours';
 import vacation from './app/features/Vacation/Vacation';
 import menu from './app/common/Menu/Menu';
@@ -24,7 +24,7 @@ import projectUsers from './app/features/Admin/ProjectUsers/ProjectUsers';
 const appReducer = combineReducers({
     toastr: toastrReducer,
     login: login,
-    user: user,
+    loggedUser: loggedUser,
     hour: hour,
     loader: loader,
     vacation: vacation,

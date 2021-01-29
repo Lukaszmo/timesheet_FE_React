@@ -77,8 +77,8 @@ class HoursListContainer extends Component {
 
 const mapStateToProps = state => ({
     data: state.hour.records,
-    user: state.user,
-    inferiors: state.user.inferiors
+    user: state.loggedUser,
+    inferiors: state.loggedUser.inferiors
 })
 
 const mapDispatchToProps = dispatch => ({

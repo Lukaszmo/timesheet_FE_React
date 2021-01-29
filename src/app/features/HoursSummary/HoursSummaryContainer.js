@@ -54,8 +54,8 @@ class HoursSummaryContainer extends Component {
 
 const mapStateToProps = state => ({
     hours: state.hour,
-    user: state.user,
-    inferiors: state.user.inferiors
+    user: state.loggedUser,
+    inferiors: state.loggedUser.inferiors
 })
 
 const mapDispatchToProps = dispatch => ({

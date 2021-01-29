@@ -32,7 +32,7 @@ class VacationContainer extends Component {
 }
 
 const mapStateToProps = state => ({
-    user: state.user,
+    user: state.loggedUser,
     types: state.vacation.types,
 })
 

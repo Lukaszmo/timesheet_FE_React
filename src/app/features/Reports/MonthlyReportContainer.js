@@ -86,8 +86,8 @@ class MonthlyReportContainer extends Component {
 
 
 const mapStateToProps = state => ({
-    user: state.user,
-    inferiors: state.user.inferiors
+    user: state.loggedUser,
+    inferiors: state.loggedUser.inferiors
 })
 
 const mapDispatchToProps = dispatch => ({
