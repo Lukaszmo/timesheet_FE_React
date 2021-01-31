@@ -10,6 +10,7 @@ import menu from './app/common/Menu/Menu';
 import client from './app/features/Admin/Clients/Client';
 import project from './app/features/Admin/Projects/Project';
 import projectUsers from './app/features/Admin/ProjectUsers/ProjectUsers';
+import user from './app/features/Admin/Users/User';
 
 /*export default combineReducers({
     toastr: toastrReducer,
@@ -32,6 +33,7 @@ const appReducer = combineReducers({
     client: client,
     project: project,
     projectUsers: projectUsers,
+    user: user
 })
 
 const rootReducer = (state, action) => {

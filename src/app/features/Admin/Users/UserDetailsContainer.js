@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Container } from 'semantic-ui-react';
 import UserDetailsComponent from '../Users/UserDetailsComponent';
-import { updateRecord, getAllUsersWithFilters, generateUserListForDropdown, UserValidationSchema } from '../Users/User';
+import { updateRecord, getAllUsers, generateUserListForDropdown, UserValidationSchema } from '../Users/User';
 import { getAllRoles } from '../Roles/Role';
 
 
@@ -15,7 +15,9 @@ class UserDetailsContainer extends Component {
 
     componentDidMount() {
 
-        getAllUsersWithFilters().then(resp => this.setState({ userList: generateUserListForDropdown(resp) }));
+        let filters = { active: true };
+
+        this.props.getAllUsers(filters);
         getAllRoles().then(resp => this.setState({ roleList: resp }));
 
     }
@@ -35,7 +37,7 @@ class UserDetailsContainer extends Component {
                 <UserDetailsComponent
                     record={this.state.recordDetails}
                     roles={this.state.roleList}
-                    users={this.state.userList}
+                    users={generateUserListForDropdown(this.props.users)}
                     onSubmit={this.onSubmit}
                     validationSchema={UserValidationSchema}
                 />
@@ -45,7 +47,18 @@ class UserDetailsContainer extends Component {
     }
 }
 
-export default UserDetailsContainer;
+const mapStateToProps = state => ({
+    users: state.user.records
+})
+
+const mapDispatchToProps = dispatch => ({
+    getAllUsers: (filters) => dispatch(getAllUsers(filters))
+})
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(UserDetailsContainer);
 
 
 

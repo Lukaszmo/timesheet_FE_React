@@ -4,7 +4,7 @@ import { Container } from 'semantic-ui-react';
 
 import ProjectUserDetailsComponent from './ProjectUserDetailsComponent';
 import { getAllProjects, generateProjectListForDropdown } from '../Projects/Project';
-import { getAllUsersWithFilters, generateUserListForDropdown } from '../Users/User';
+import { getAllUsers, generateUserListForDropdown } from '../Users/User';
 import { updateRecord } from '../ProjectUsers/ProjectUsers';
 
 
@@ -16,12 +16,10 @@ class ProjectUserDetailsContainer extends Component {
 
     componentDidMount() {
 
-        let filters = {
-            active: true,
-        };
+        let projectFilters = { active: true };
 
-        this.props.getAllProjects(filters);
-        getAllUsersWithFilters().then(resp => this.setState({ userList: generateUserListForDropdown(resp) }));
+        this.props.getAllProjects(projectFilters);
+        this.props.getAllUsers();
     }
 
     onSubmit = (values) => {
@@ -36,7 +34,8 @@ class ProjectUserDetailsContainer extends Component {
                 <ProjectUserDetailsComponent
                     record={this.state.recordDetails}
                     projectList={generateProjectListForDropdown(this.props.projects)}
-                    userList={this.state.userList}
+                    //userList={this.state.userList}
+                    userList={generateUserListForDropdown(this.props.users)}
                     onSubmit={this.onSubmit}
                 />
             </Container>
@@ -45,12 +44,14 @@ class ProjectUserDetailsContainer extends Component {
 }
 
 const mapStateToProps = state => ({
-    projects: state.project.records
+    projects: state.project.records,
+    users: state.user.records
 })
 
 const mapDispatchToProps = dispatch => ({
     getAllProjects: (filters) => dispatch(getAllProjects(filters)),
-    updateRecord: (object) => dispatch(updateRecord(object))
+    updateRecord: (object) => dispatch(updateRecord(object)),
+    getAllUsers: (filters) => dispatch(getAllUsers(filters))
 })
 
 export default connect(

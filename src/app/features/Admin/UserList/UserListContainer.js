@@ -9,34 +9,30 @@ import { getAllUsers } from '../Users/User';
 
 class UserListContainer extends Component {
 
-    state = {
-
-    }
-
 
     componentDidMount() {
 
-        getAllUsers().then(resp => this.setState({ userList: resp }));
+        let filters = { active: true };
 
+        this.props.getAllUsers(filters);
     }
 
     onTableChange = (rowAction, rowId) => {
 
-        let record = this.state.userList.filter(item => item.id === rowId);
+        let record = this.props.users.filter(item => item.id === rowId);
         history.push({ pathname: '/panel-admina/uzytkownicy-edycja', state: { recordDetails: record } });
     }
 
     render() {
 
 
-        if (this.state.userList) {
+        if (this.props.users) {
             return (
                 <Container className='users'>
                     <UserListComponent
-                        data={this.state.userList}
+                        data={this.props.users}
                         onTableChange={this.onTableChange}
-                    >
-                    </UserListComponent>
+                    />
                 </Container>
             )
         }
@@ -44,7 +40,18 @@ class UserListContainer extends Component {
     }
 }
 
-export default UserListContainer;
+const mapStateToProps = state => ({
+    users: state.user.records
+})
+
+const mapDispatchToProps = dispatch => ({
+    getAllUsers: (filters) => dispatch(getAllUsers(filters))
+})
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(UserListContainer);
 
 
 
