@@ -24,7 +24,7 @@ class UserDetailsContainer extends Component {
 
     onSubmit = (values) => {
 
-        updateRecord(values);
+        this.props.updateRecord(values);
     }
 
     render() {
@@ -52,7 +52,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    getAllUsers: (filters) => dispatch(getAllUsers(filters))
+    getAllUsers: (filters) => dispatch(getAllUsers(filters)),
+    updateRecord: (object) => dispatch(updateRecord(object))
 })
 
 export default connect(

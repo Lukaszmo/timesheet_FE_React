@@ -10,7 +10,7 @@ import { getAllRoles } from '../Roles/Role';
 class UsersContainer extends Component {
 
     state = {
-        userList: null
+        roleList: null
     }
 
     componentDidMount() {
@@ -21,15 +21,13 @@ class UsersContainer extends Component {
         getAllRoles().then(resp => this.setState({ roleList: resp }));
     }
 
-    addUser(values) {
+    addUser = (values) => {
 
-        addUser(values);
+        this.props.addUser(values);
     }
 
 
     render() {
-
-        console.log(this.props);
 
         return (
             <Container className='users'>
@@ -49,7 +47,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    getAllUsers: (filters) => dispatch(getAllUsers(filters))
+    getAllUsers: (filters) => dispatch(getAllUsers(filters)),
+    addUser: (object) => dispatch(addUser(object))
 })
 
 export default connect(

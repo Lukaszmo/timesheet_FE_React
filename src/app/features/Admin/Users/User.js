@@ -30,6 +30,8 @@ export const UserValidationSchema = Yup.object().shape({
 });
 
 const SET_USERS = 'SET_USERS';
+const ADD_USER = 'ADD_USER';
+const UPDATE_USER = 'UPDATE_USER';
 
 //actions
 export function setRecords(records) {
@@ -41,18 +43,35 @@ export function setRecords(records) {
     }
 }
 
-export function addUser(object) {
+export function addUserRecord(object) {
+    return {
+        type: ADD_USER,
+        payload: object
+    }
+}
 
-    console.log(object);
+export function updateRecords(record) {
+    return {
+        type: UPDATE_USER,
+        payload: {
+            updatedRecord: record
+        }
+    }
+}
 
-    axios.post(USERS, object)
-        .then(function (response) {
-            toastr.success('Użytkownik został utworzony');
-        })
-        .catch(function (error) {
-            console.log(error);
-            toastr.error(error.response.data['hydra:description']);
-        });
+export const addUser = (object) => {
+
+    return (dispatch) => {
+        axios.post(USERS, object)
+            .then(function (response) {
+                toastr.success('Użytkownik został utworzony');
+                dispatch(addUserRecord(response.data));
+            })
+            .catch(function (error) {
+                console.log(error);
+                toastr.error(error.response.data['hydra:description']);
+            });
+    }
 }
 
 
@@ -95,12 +114,16 @@ export const generateUserListForDropdown = (userList) => {
 
 export const updateRecord = (values) => {
 
-    return axios.put(USERS + '/' + values.id, values).then((response) => {
-        toastr.success('Dane zostały zmodyfikowane');
-    })
-        .catch(function (error) {
-            toastr.error(error.response.data['hydra:description']);
-        });
+    return (dispatch) => {
+        axios.put(USERS + '/' + values.id, values).then((response) => {
+            toastr.success('Dane zostały zmodyfikowane');
+            dispatch(updateRecords(response.data));
+        })
+            .catch(function (error) {
+                toastr.error(error.response.data['hydra:description']);
+            });
+
+    }
 }
 
 const initialState = {
@@ -116,31 +139,33 @@ export default (state = initialState, action) => {
             return { ...state, ...action.payload };
         }
 
-        /* case ADD_USER: {
-             return { ...state, records: state.records ? [...state.records, action.payload] : [action.payload] }
-         }
+        case ADD_USER: {
+            return { ...state, records: state.records ? [...state.records, action.payload] : [action.payload] }
+        }
+
+        /*
  
-         case DELETE_USER: {
+        case DELETE_USER: {
  
-             let filteredArray = state.records.filter(item => item.id !== action.payload.deletedRecordId)
+            let filteredArray = state.records.filter(item => item.id !== action.payload.deletedRecordId)
  
-             return { ...state, records: filteredArray }
-         }
- 
-         case UPDATE_USER: {
- 
-             let index = state.records.findIndex(item => item.id === action.payload.updatedRecord.id);
- 
-             return {
-                 ...state,
-                 records: [
-                     ...state.records.slice(0, index),
-                     action.payload.updatedRecord,
-                     ...state.records.slice(1 + index)
-                 ],
-                 updatedRecord: action.payload.updatedRecord
-             }
-         } */
+            return { ...state, records: filteredArray }
+        }
+        */
+        case UPDATE_USER: {
+
+            let index = state.records.findIndex(item => item.id === action.payload.updatedRecord.id);
+
+            return {
+                ...state,
+                records: [
+                    ...state.records.slice(0, index),
+                    action.payload.updatedRecord,
+                    ...state.records.slice(1 + index)
+                ],
+                updatedRecord: action.payload.updatedRecord
+            }
+        }
 
         //jeśli nie było żadnej akcji zwraca stan bez zmiany
         default: return state;
