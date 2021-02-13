@@ -3,12 +3,14 @@ import { connect } from 'react-redux';
 import { Container } from 'semantic-ui-react';
 import TaskCreateComponent from './TaskCreateComponent';
 import { createTask, TaskValidationSchema } from './Tasks';
+import { getTaskTypes, generateTaskTypeListForDropdown } from '../TaskTypes/TaskType';
 
 class TasksContainer extends Component {
 
     componentDidMount() {
 
         // this.props.getAllTasks();
+        this.props.getTaskTypes();
     }
 
     addTask = (values) => {
@@ -23,6 +25,7 @@ class TasksContainer extends Component {
                 <TaskCreateComponent
                     validationSchema={TaskValidationSchema}
                     onSubmit={this.addTask}
+                    taskTypes={generateTaskTypeListForDropdown(this.props.taskTypes)}
                 />
             </Container>
         );
@@ -30,11 +33,12 @@ class TasksContainer extends Component {
 }
 
 const mapStateToProps = state => ({
-
+    taskTypes: state.taskTypes.records
 })
 
 const mapDispatchToProps = dispatch => ({
-    createTask: (object) => dispatch(createTask(object))
+    createTask: (object) => dispatch(createTask(object)),
+    getTaskTypes: () => dispatch(getTaskTypes())
 })
 
 export default connect(

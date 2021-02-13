@@ -107,7 +107,7 @@ class TaskCreateComponent extends Component {
                                             placeholder="Wybierz.."
                                             value={values.type}
                                             onChange={(e, data) => this.handleChange(e, data, setFieldValue)}
-                                            options={this.type} />
+                                            options={this.props.taskTypes} />
                                         {errors.type && touched.type ? <div><CustomLabel text={errors.type}></CustomLabel></div> : null}
                                     </Grid.Column>
                                 </Grid.Row>

@@ -6,6 +6,7 @@ export const USERS = API_ROOT + 'users';
 export const HOUR_TYPES = API_ROOT + 'hour_types';
 export const PROJECTS = API_ROOT + 'projects';
 export const TASKS = API_ROOT + 'tasks';
+export const TASK_TYPES = API_ROOT + 'task_types';
 export const HOURS = API_ROOT + 'hours';
 export const VACREQUEST = API_ROOT + 'vacation_requests';
 export const VACREQ_TYPES = API_ROOT + 'vacreq_types';
