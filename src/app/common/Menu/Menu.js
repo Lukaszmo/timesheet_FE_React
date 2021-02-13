@@ -234,10 +234,22 @@ export const menuItems = [
                         name: 'Lista pracowników w projektach',
                         redirect: "/panel-admina/pracownicy-w-projektach-lista"
                     }
-
                 ]
-
-            }
+            },
+            {
+                id: 'TASKS',
+                name: "Zadania",
+                type: "DROPDOWN",
+                redirect: "/panel-admina/dodaj-zadanie",
+                icon: '',
+                dropdownItems: [
+                    {
+                        id: 'TASK_ADD',
+                        name: 'Dodaj nowe zadanie',
+                        redirect: "/panel-admina/dodaj-zadanie"
+                    },
+                ]
+            },
 
         ]
     }

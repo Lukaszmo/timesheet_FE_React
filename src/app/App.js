@@ -26,6 +26,7 @@ import ProjectDetailsContainer from './features/Admin/Projects/ProjectDetailsCon
 import ProjectUserAddContainer from './features/Admin/ProjectUsers/ProjectUserAddContainer';
 import ProjectUsersListContainer from './features/Admin/ProjectUsersList/ProjectUsersListContainer.js';
 import ProjectUserDetailsContainer from './features/Admin/ProjectUsers/ProjectUserDetailsContainer';
+import TasksContainer from './features/Admin/Tasks/TasksContainer';
 
 function App() {
     return (
@@ -113,6 +114,9 @@ function App() {
 
                 <Route exact path='/panel-admina/lista-pracownikow-w-projektach-edycja'
                     component={(props) => <MainContainer content={<ProjectUserDetailsContainer {...props} />} menuId={"ADMIN"} submenuId='PROJECTS' />} />
+
+                <Route exact path='/panel-admina/dodaj-zadanie'
+                    component={(props) => <MainContainer content={<TasksContainer {...props} />} menuId={"ADMIN"} submenuId='TASKS' />} />
 
                 {/* z PrivateRoute nie działa
                 <PrivateRoute exact path='/home' />

@@ -11,6 +11,7 @@ import client from './app/features/Admin/Clients/Client';
 import project from './app/features/Admin/Projects/Project';
 import projectUsers from './app/features/Admin/ProjectUsers/ProjectUsers';
 import user from './app/features/Admin/Users/User';
+import task from './app/features/Admin/Tasks/Tasks';
 
 /*export default combineReducers({
     toastr: toastrReducer,
@@ -32,6 +33,7 @@ const appReducer = combineReducers({
     menu: menu,
     client: client,
     project: project,
+    task: task,
     projectUsers: projectUsers,
     user: user
 })
