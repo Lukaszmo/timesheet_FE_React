@@ -233,7 +233,17 @@ export const menuItems = [
                         id: 'PROJECT_EMPLOYEE_LIST',
                         name: 'Lista pracowników w projektach',
                         redirect: "/panel-admina/pracownicy-w-projektach-lista"
-                    }
+                    },
+                    {
+                        id: 'PROJECT_TASK_ADD',
+                        name: 'Dodaj zadania do projektu',
+                        redirect: "/panel-admina/dodaj-zadania-do-projektu"
+                    },
+                    {
+                        id: 'PROJECT_TASK_LIST',
+                        name: 'Lista zadań w projektach',
+                        redirect: "/panel-admina/zadania-w-projektach-lista"
+                    },
                 ]
             },
             {
@@ -247,6 +257,11 @@ export const menuItems = [
                         id: 'TASK_ADD',
                         name: 'Dodaj nowe zadanie',
                         redirect: "/panel-admina/dodaj-zadanie"
+                    },
+                    {
+                        id: 'TASK_LIST',
+                        name: 'Lista zadań',
+                        redirect: "/panel-admina/zadania-lista"
                     },
                 ]
             },

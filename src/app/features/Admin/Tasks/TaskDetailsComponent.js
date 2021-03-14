@@ -1,53 +1,47 @@
 import React, { Component } from "react";
-import { Segment, Header, Divider } from 'semantic-ui-react';
-import { Form, Grid, Input, Button, Dropdown } from 'semantic-ui-react';
+
 import { Formik } from 'formik';
+import { Segment, Header, Button, Grid, Input, Form, Divider, Dropdown, Checkbox } from 'semantic-ui-react';
 import CustomLabel from '../../../common/CustomLabel/CustomLabel';
-//import './Project.css';
 
 
-class TaskCreateComponent extends Component {
-
-    handleChange(e, data, setFieldValue) {
-
-        setFieldValue(data.name, data.value);
-    }
+class TaskDetailsComponent extends Component {
 
     onSubmit(values) {
 
-        values = { ...values, active: true };
-
         this.props.onSubmit(values);
+
     }
 
-    type = [
-        {
-            'key': 1,
-            'text': 'DEV',
-            'value': 1
-        },
-        {
-            'key': 2,
-            'text': 'TESTY',
-            'value': 2
-        },
-        {
-            'key': 3,
-            'text': 'ANALIZA',
-            'value': 3
-        },
-    ]
+    handleChange(e, data, setFieldValue) {
+
+        if (data.name === 'active') {
+            setFieldValue(data.name, data.checked);
+        }
+        else {
+            setFieldValue(data.name, data.value);
+        }
+
+    }
+
 
     render() {
 
-        return (
+        console.log(this.props);
 
-            <Segment color="teal" className='' >
-                <Header size='medium'>Nowe zadanie</Header>
+        return (
+            <Segment color="teal" >
+                <Header size='medium'>Edycja zadania</Header>
                 <Divider></Divider>
 
                 <Formik
-                    initialValues={{ code: '', description: '', type: '' }}
+                    initialValues={{
+                        id: this.props.record.id,
+                        code: this.props.record.code,
+                        description: this.props.record.description,
+                        type: this.props.record.type.id,
+                        active: this.props.record.active === 1 ? true : false
+                    }}
 
                     validationSchema={this.props.validationSchema}
 
@@ -67,6 +61,18 @@ class TaskCreateComponent extends Component {
                         <Form onSubmit={handleSubmit}>
 
                             <Grid columns={5} textAlign="right" verticalAlign="middle" >
+
+                                <Grid.Row>
+                                    <Grid.Column width={2}>
+                                        <p className='data-field-header'>Id zadania</p>
+                                    </Grid.Column >
+                                    <Grid.Column width={3}>
+                                        <Input disabled
+                                            type="text"
+                                            name='id'
+                                            value={values.id} />
+                                    </Grid.Column>
+                                </Grid.Row>
 
                                 <Grid.Row>
                                     <Grid.Column width={2}>
@@ -112,7 +118,19 @@ class TaskCreateComponent extends Component {
                                     </Grid.Column>
                                 </Grid.Row>
 
-
+                                <Grid.Row>
+                                    <Grid.Column width={2}>
+                                        <p className='data-field-header'>Aktywny</p>
+                                    </Grid.Column >
+                                    <Grid.Column width={3}>
+                                        <Checkbox
+                                            name='active'
+                                            className='checkbox-active'
+                                            checked={values.active}
+                                            onClick={(e, data) => this.handleChange(e, data, setFieldValue)}
+                                        />
+                                    </Grid.Column>
+                                </Grid.Row>
 
                             </Grid>
                             <div className='button-row'>
@@ -120,18 +138,16 @@ class TaskCreateComponent extends Component {
                                     type='submit'
                                     className='saveButton'
                                     color='teal'>
-                                    {/*onClick={this.props.onButtonClick}>*/}
-                                    Dodaj Zadanie
+                                    Zapisz
                                 </Button>
                             </div>
-                        </Form >
-                    )
-                    }
+                        </Form>
+                    )}
                 </Formik>
+            </Segment>
 
-            </Segment >
         )
     }
 }
 
-export default TaskCreateComponent;
+export default TaskDetailsComponent;

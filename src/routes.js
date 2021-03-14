@@ -12,12 +12,14 @@ export const VACREQUEST = API_ROOT + 'vacation_requests';
 export const VACREQ_TYPES = API_ROOT + 'vacreq_types';
 export const ROLES = API_ROOT + 'roles';
 export const CLIENTS = API_ROOT + 'clients';
-export const PROJECT_USERS = API_ROOT + 'project_user_rels'
+export const PROJECT_USERS = API_ROOT + 'project_user_rels';
+export const PROJECT_TASKS_API = API_ROOT + 'project_task_rels';
 
 //Services
 export const VACATION_REQUEST_MAIL = ROOT + 'vacation_requests/mail';
 export const USER_PROJECTS = ROOT + 'user_projects';
 export const PROJECT_TASKS = ROOT + 'project_tasks';
+export const PROJECT_TASKS_ADD = ROOT + 'project_task_add';
 export const HOURS_BY_TYPE = ROOT + 'hours/by_type';
 export const HOURS_BY_PROJECT = ROOT + 'hours/by_project';
 export const HOURS_BY_TASK = ROOT + 'hours/by_task';

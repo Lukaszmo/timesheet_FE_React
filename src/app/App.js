@@ -27,6 +27,11 @@ import ProjectUserAddContainer from './features/Admin/ProjectUsers/ProjectUserAd
 import ProjectUsersListContainer from './features/Admin/ProjectUsersList/ProjectUsersListContainer.js';
 import ProjectUserDetailsContainer from './features/Admin/ProjectUsers/ProjectUserDetailsContainer';
 import TasksContainer from './features/Admin/Tasks/TasksContainer';
+import TaskListContainer from './features/Admin/TaskList/TaskListContainer';
+import TaskDetailsContainer from './features/Admin/Tasks/TaskDetailsContainer';
+import ProjectTaskAddContainer from './features/Admin/ProjectTasks/ProjectTaskAddContainer';
+import ProjectTasksListContainer from './features/Admin/ProjectTasksList/ProjectTasksListContainer';
+import ProjectTaskDetailsContainer from './features/Admin/ProjectTasks/ProjectTaskDetailsContainer';
 
 function App() {
     return (
@@ -117,6 +122,21 @@ function App() {
 
                 <Route exact path='/panel-admina/dodaj-zadanie'
                     component={(props) => <MainContainer content={<TasksContainer {...props} />} menuId={"ADMIN"} submenuId='TASKS' />} />
+
+                <Route exact path='/panel-admina/zadania-lista'
+                    component={(props) => <MainContainer content={<TaskListContainer {...props} />} menuId={"ADMIN"} submenuId='TASKS' />} />
+
+                <Route exact path='/panel-admina/zadania-edycja'
+                    component={(props) => <MainContainer content={<TaskDetailsContainer {...props} />} menuId={"ADMIN"} submenuId='TASKS' />} />
+
+                <Route exact path='/panel-admina/dodaj-zadania-do-projektu'
+                    component={(props) => <MainContainer content={<ProjectTaskAddContainer {...props} />} menuId={"ADMIN"} submenuId='PROJECTS' />} />
+
+                <Route exact path='/panel-admina/zadania-w-projektach-lista'
+                    component={(props) => <MainContainer content={<ProjectTasksListContainer {...props} />} menuId={"ADMIN"} submenuId='PROJECTS' />} />
+
+                <Route exact path='/panel-admina/zadania-w-projektach-edycja'
+                    component={(props) => <MainContainer content={<ProjectTaskDetailsContainer {...props} />} menuId={"ADMIN"} submenuId='PROJECTS' />} />
 
                 {/* z PrivateRoute nie działa
                 <PrivateRoute exact path='/home' />

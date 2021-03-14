@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import HoursAddComponent from "./HoursAddComponent";
 import { fetchAllTypes, addRecord, HourValidationSchema } from "./Hours";
-import { fetchProjectTasks, generateTasksForDropdown } from "../Admin/Tasks/Tasks";
+import { fetchProjectTasks, generateTasksForDropdown } from "../Admin/ProjectTasks/ProjectTasks";
 import { getUserProjects } from "./../User/User";
 import { Container } from 'semantic-ui-react';
 

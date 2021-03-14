@@ -5,7 +5,7 @@ import { Container } from 'semantic-ui-react';
 import HoursDetailsComponent from "./HoursDetailsComponent";
 import { updateRecord, HourValidationSchema } from "../Hours/Hours";
 import { getUserDetails } from "../User/User";
-import { fetchProjectTasks, generateTasksForDropdown } from "../Admin/Tasks/Tasks";
+import { fetchProjectTasks, generateTasksForDropdown } from "../Admin/ProjectTasks/ProjectTasks";
 
 class HoursDetailsContainer extends Component {
 
