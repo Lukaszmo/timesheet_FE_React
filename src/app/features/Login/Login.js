@@ -43,7 +43,7 @@ export function userLoginOperation(user) {
         axios.post(GENERATE, userToAuthenticate)
             .then(function (response) {
                 dispatch(loginSuccess(response.data.userId));
-                toastr.info("Pamiętaj o regularnej rejestracji czasu pracy");
+                toastr.info("Witaj w wersji demo aplikacji");
                 localStorage.setItem("token", response.data.token);
                 history.push('/home');
             })
