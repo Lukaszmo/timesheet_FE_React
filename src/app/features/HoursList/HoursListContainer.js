@@ -66,14 +66,38 @@ class HoursListContainer extends Component {
             })
 
             let qnt = 0;
+            let hoursType = data[index].type.code;
 
             //dzienna ilość godzin regularnych
             for (let i = 0; i < result.length; i++) {
-                qnt = (result[i].type.code === 'REGULAR') ? qnt + result[i].quantity : qnt;
+                qnt = (hoursType === 'REGULAR') ? qnt + result[i].quantity : qnt;
             }
 
-            if (data[index].type.code === 'REGULAR') {
+            if (hoursType === 'REGULAR') {
                 if (qnt === dailyRegularTime) { data[index].class = 'row-positive'; }
+            }
+
+            if (hoursType === 'EXTRA') {
+
+                let msg, labelClass;
+
+                if (data[index].overtacceptance == 0) {
+
+                    msg = 'Czeka na akceptację';
+                    labelClass = 'waiting';
+
+                }
+                if (data[index].overtacceptance == 1) {
+
+                    msg = 'Zaakceptowane';
+                    labelClass = 'positive';
+                }
+
+                data[index].label = {
+                    dataField: 'type',  //kolumna dla której ma być wyświetlany label
+                    msg: msg,
+                    class: labelClass
+                }
             }
 
         }

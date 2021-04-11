@@ -44,15 +44,7 @@ class HoursListComponent extends Component {
             className: "width15",
             dataField: 'type',
             subField: 'description',
-            type: "data",
-            label: {
-                condition1: "(rowObject.type.id == 2)&&(rowObject.overtacceptance == 0)",
-                condition2: "(rowObject.type.id == 2)&&(rowObject.overtacceptance == 1)",
-                msg1: "Czeka na akceptację",
-                msg2: "Zaakceptowane",
-                class1: "waiting",
-                class2: "positive"
-            }
+            type: "data"
         },
         {
             id: "3",
@@ -124,106 +116,106 @@ class HoursListComponent extends Component {
                             errors,
                             touched
                         }) => (
-                                <Form onSubmit={handleSubmit}>
-                                    <Media queries={{
-                                        small: "(max-width: 599px)",                            //mobile 
-                                        medium: "(min-width: 600px) and (max-width: 1199px)",   //tablet
-                                        large: "(min-width: 1200px)"                            //laptop
-                                    }}>
-                                        {matches => (
+                            <Form onSubmit={handleSubmit}>
+                                <Media queries={{
+                                    small: "(max-width: 599px)",                            //mobile
+                                    medium: "(min-width: 600px) and (max-width: 1199px)",   //tablet
+                                    large: "(min-width: 1200px)"                            //laptop
+                                }}>
+                                    {matches => (
 
-                                            <Fragment>
+                                        <Fragment>
 
-                                                {(matches.large) &&
-                                                    <Grid columns={2} textAlign="right" verticalAlign="middle" >
-                                                        <Grid.Row>
-                                                            <Grid.Column width={3}>
-                                                                <Input
-                                                                    type='date'
-                                                                    name='datefrom'
-                                                                    value={values.datefrom}
-                                                                    onChange={(e, data) => this.dateHandleChange(e, data, setFieldValue)}
-                                                                />
-                                                            </Grid.Column>
-                                                            <Grid.Column width={3}>
-                                                                <Input
-                                                                    type='date'
-                                                                    name='dateto'
-                                                                    value={values.dateto}
-                                                                    onChange={(e, data) => this.dateHandleChange(e, data, setFieldValue)}
-                                                                />
-                                                            </Grid.Column>
-                                                            <Grid.Column width={3}>
-                                                                <Dropdown fluid selection disabled={this.props.disabled}
-                                                                    name='user'
-                                                                    className='dropdown-userlist'
-                                                                    value={values.user}
-                                                                    options={this.props.userList}
-                                                                    onChange={(e, data) => this.dropdownHandleChange(e, data, setFieldValue)}
-                                                                ></Dropdown>
-                                                            </Grid.Column>
-                                                            <Grid.Column width={2}>
-                                                                <Button
-                                                                    type='submit'
-                                                                    className='filterButton'>Filtruj
+                                            {(matches.large) &&
+                                                <Grid columns={2} textAlign="right" verticalAlign="middle" >
+                                                    <Grid.Row>
+                                                        <Grid.Column width={3}>
+                                                            <Input
+                                                                type='date'
+                                                                name='datefrom'
+                                                                value={values.datefrom}
+                                                                onChange={(e, data) => this.dateHandleChange(e, data, setFieldValue)}
+                                                            />
+                                                        </Grid.Column>
+                                                        <Grid.Column width={3}>
+                                                            <Input
+                                                                type='date'
+                                                                name='dateto'
+                                                                value={values.dateto}
+                                                                onChange={(e, data) => this.dateHandleChange(e, data, setFieldValue)}
+                                                            />
+                                                        </Grid.Column>
+                                                        <Grid.Column width={3}>
+                                                            <Dropdown fluid selection disabled={this.props.disabled}
+                                                                name='user'
+                                                                className='dropdown-userlist'
+                                                                value={values.user}
+                                                                options={this.props.userList}
+                                                                onChange={(e, data) => this.dropdownHandleChange(e, data, setFieldValue)}
+                                                            ></Dropdown>
+                                                        </Grid.Column>
+                                                        <Grid.Column width={2}>
+                                                            <Button
+                                                                type='submit'
+                                                                className='filterButton'>Filtruj
                                                                 </Button>
-                                                            </Grid.Column>
-                                                        </Grid.Row>
+                                                        </Grid.Column>
+                                                    </Grid.Row>
 
-                                                    </Grid >}
+                                                </Grid >}
 
 
-                                                {(matches.small || matches.medium) &&
-                                                    <Grid textAlign="center" verticalAlign="middle" >
-                                                        <Grid.Row>
-                                                            <Grid.Column>
-                                                                <Input
-                                                                    type='date'
-                                                                    className='filter-date'
-                                                                    name='datefrom'
-                                                                    value={values.datefrom}
-                                                                    onChange={(e, data) => this.dateHandleChange(e, data, setFieldValue)}
-                                                                />
-                                                            </Grid.Column>
-                                                        </Grid.Row>
+                                            {(matches.small || matches.medium) &&
+                                                <Grid textAlign="center" verticalAlign="middle" >
+                                                    <Grid.Row>
+                                                        <Grid.Column>
+                                                            <Input
+                                                                type='date'
+                                                                className='filter-date'
+                                                                name='datefrom'
+                                                                value={values.datefrom}
+                                                                onChange={(e, data) => this.dateHandleChange(e, data, setFieldValue)}
+                                                            />
+                                                        </Grid.Column>
+                                                    </Grid.Row>
 
-                                                        <Grid.Row>
-                                                            <Grid.Column>
-                                                                <Input
-                                                                    type='date'
-                                                                    name='dateto'
-                                                                    className='filter-date'
-                                                                    value={values.dateto}
-                                                                    onChange={(e, data) => this.dateHandleChange(e, data, setFieldValue)}
-                                                                />
-                                                            </Grid.Column>
-                                                        </Grid.Row>
+                                                    <Grid.Row>
+                                                        <Grid.Column>
+                                                            <Input
+                                                                type='date'
+                                                                name='dateto'
+                                                                className='filter-date'
+                                                                value={values.dateto}
+                                                                onChange={(e, data) => this.dateHandleChange(e, data, setFieldValue)}
+                                                            />
+                                                        </Grid.Column>
+                                                    </Grid.Row>
 
-                                                        <Grid.Row>
-                                                            <Grid.Column>
-                                                                <Dropdown fluid selection disabled={this.props.disabled}
-                                                                    name='user'
-                                                                    className='dropdown-userlist'
-                                                                    value={values.user}
-                                                                    options={this.props.userList}
-                                                                    onChange={(e, data) => this.dropdownHandleChange(e, data, setFieldValue)}
-                                                                ></Dropdown>
-                                                            </Grid.Column>
-                                                        </Grid.Row>
+                                                    <Grid.Row>
+                                                        <Grid.Column>
+                                                            <Dropdown fluid selection disabled={this.props.disabled}
+                                                                name='user'
+                                                                className='dropdown-userlist'
+                                                                value={values.user}
+                                                                options={this.props.userList}
+                                                                onChange={(e, data) => this.dropdownHandleChange(e, data, setFieldValue)}
+                                                            ></Dropdown>
+                                                        </Grid.Column>
+                                                    </Grid.Row>
 
-                                                        <Button
-                                                            type='submit'
-                                                            className='filterButton'>Filtruj
+                                                    <Button
+                                                        type='submit'
+                                                        className='filterButton'>Filtruj
                                                         </Button>
 
-                                                    </Grid >}
+                                                </Grid >}
 
 
-                                            </Fragment>
-                                        )}
-                                    </Media>
-                                </Form>
-                            )}
+                                        </Fragment>
+                                    )}
+                                </Media>
+                            </Form>
+                        )}
                     </Formik>
                 </Segment >
                 <Segment>

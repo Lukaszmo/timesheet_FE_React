@@ -239,28 +239,15 @@ const Cell = ({ header, value, action, rowAction, rowObject, tableState, handleB
 
     if (type === 'DATA') {
 
-        let label = header.label ? header.label : null;
+        let label = rowObject.label && (header.dataField === rowObject.label.dataField) ? rowObject.label : null;
         let cellLabel = null;
 
         if (label) {
-
-            if (eval(label.condition1)) {
-
-                cellLabel = <Label className={label.class1}>{label.msg1}</Label>
-            }
-            if (eval(label.condition2)) {
-
-                cellLabel = <Label className={label.class2}>{label.msg2}</Label>
-            }
-            if (eval(label.condition3)) {
-
-                cellLabel = <Label className={label.class3}>{label.msg3}</Label>
-            }
+            cellLabel = <Label className={label.class}>{label.msg}</Label>
         }
 
         return <Table.Cell className={header.className}>{value}{cellLabel}</Table.Cell>;
     }
-
 
 
     if (type === 'BUTTON') {
