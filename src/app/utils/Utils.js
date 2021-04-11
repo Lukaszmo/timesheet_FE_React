@@ -81,4 +81,14 @@ Number.prototype.pad = function (size) {
     return s;
 }
 
+export function groupBy(data, key) {
+
+    //Funkcja grupuje tablicę po kluczu podanym w parametrze
+
+    return data.reduce(function (rv, x) {
+        (rv[x[key]] = rv[x[key]] || []).push(x);
+        return rv;
+    }, {});
+};
+
 
