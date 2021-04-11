@@ -75,6 +75,19 @@ i.icon.tableIcon{
     font-size: small;
 }
 
+.row-positive{
+    background-color: #f0ffff; 
+}
+
+.tableRow{
+
+}
+
+.tableRow:hover, .row-positive:hover { 
+    background-color: #f0f0f3;
+}
+
+
 @media (max-width: 599px){
 
     .width15{

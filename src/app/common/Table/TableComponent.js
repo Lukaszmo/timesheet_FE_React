@@ -223,8 +223,10 @@ const Row = ({ headers, singleRow, rowNumber, rowAction, tableState, handleButto
         />
     });
 
+    const rowClass = singleRow.class ? singleRow.class : 'tableRow';
+
     return (
-        <Table.Row textAlign="center">{row}</Table.Row>
+        <Table.Row textAlign="center" className={rowClass}>{row}</Table.Row>
     );
 };
 

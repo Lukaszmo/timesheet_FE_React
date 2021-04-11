@@ -53,13 +53,44 @@ class HoursListContainer extends Component {
         else { this.setState({ deleteDisabled: false }); }
     }
 
+    addProperties = (data) => {
+
+        //W tym miejscu możemy dodać nowe properties do tablicy data przed przekazaniem jej do komponentu Tabela
+
+        const dailyRegularTime = 8; //TODO powinno być pobierane z bazy
+
+        for (const index in data) {
+
+            let result = data.filter(obj => {
+                return obj.date === data[index].date
+            })
+
+            let qnt = 0;
+
+            //dzienna ilość godzin regularnych
+            for (let i = 0; i < result.length; i++) {
+                qnt = (result[i].type.code === 'REGULAR') ? qnt + result[i].quantity : qnt;
+            }
+
+            if (data[index].type.code === 'REGULAR') {
+                if (qnt === dailyRegularTime) { data[index].class = 'row-positive'; }
+            }
+
+        }
+
+        return data;
+
+
+    }
+
     render() {
-        console.log(this.props.inferiors);
+
         if (this.props.data) {
+
             return (
                 <Container className="hours">
                     <HoursListComponent
-                        data={this.props.data}
+                        data={this.addProperties(this.props.data)}
                         onTableChange={this.onTableChange}
                         userList={generateUserListForDropdown(this.props.inferiors, this.props.user)}
                         loggedUser={this.props.user}
