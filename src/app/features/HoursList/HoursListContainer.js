@@ -75,6 +75,9 @@ class HoursListContainer extends Component {
 
             if (hoursType === 'REGULAR') {
                 if (qnt === dailyRegularTime) { data[index].class = 'row-positive'; }
+                else {
+                    data[index].class = 'row-negative';
+                }
             }
 
             if (hoursType === 'EXTRA') {

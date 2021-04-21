@@ -76,14 +76,18 @@ i.icon.tableIcon{
 }
 
 .row-positive{
-    background-color: #f0ffff; 
+    background-color: #eefce5; 
 }
 
-.tableRow{
-
+.row-negative{
+    background-color: #fdeced; 
 }
 
-.tableRow:hover, .row-positive:hover { 
+/*.tableRow{
+
+} */
+
+.tableRow:hover, .row-positive:hover, .row-negative:hover { 
     background-color: #f0f0f3;
 }
 
