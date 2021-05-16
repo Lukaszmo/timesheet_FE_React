@@ -70,7 +70,8 @@ class HoursListContainer extends Component {
 
             //dzienna ilość godzin regularnych
             for (let i = 0; i < result.length; i++) {
-                qnt = (hoursType === 'REGULAR') ? qnt + result[i].quantity : qnt;
+
+                if (result[i].type.code === 'REGULAR') { qnt = qnt + result[i].quantity; }
             }
 
             if (hoursType === 'REGULAR') {
