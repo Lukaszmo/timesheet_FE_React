@@ -50,7 +50,7 @@ class HomeComponent extends Component {
             </Button>
         }
 
-        if (checkMenuAccess('TASKS', this.props.accessList) === true) {
+        if (checkMenuAccess('TASK_TABLE', this.props.accessList) === true) {
 
             vacationBtn = <Button
                 className="bigBoxButton"
