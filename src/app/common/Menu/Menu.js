@@ -265,6 +265,25 @@ export const menuItems = [
                     },
                 ]
             },
+            {
+                id: 'ACCESS',
+                name: "Uprawnienia",
+                type: "DROPDOWN",
+                redirect: "/panel-admina/nadaj-uprawnienia",
+                icon: '',
+                dropdownItems: [
+                    {
+                        id: 'ACCESS_ADD',
+                        name: 'Nadaj nowe uprawnienia',
+                        redirect: "/panel-admina/nadaj-uprawnienia"
+                    },
+                    {
+                        id: 'ACCESS_LIST',
+                        name: 'Lista uprawnień',
+                        redirect: "/panel-admina/uprawnienia-lista"
+                    },
+                ]
+            },
 
         ]
     }

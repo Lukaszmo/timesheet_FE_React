@@ -28,14 +28,18 @@ class MenuContainer extends Component {
                 menu={this.menu}
                 activeMenuItem={this.props.menuId}
                 handleMenuItemClick={this.handleMenuItemClick}
+                accessList={this.props.user.accessItems}
             />
 
         )
     }
+
 }
 
+
 const mapStateToProps = state => ({
-    menu: state.menu
+    menu: state.menu,
+    user: state.loggedUser,
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -45,4 +49,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(MenuContainer); 
+)(MenuContainer);

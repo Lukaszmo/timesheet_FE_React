@@ -32,6 +32,8 @@ import TaskDetailsContainer from './features/Admin/Tasks/TaskDetailsContainer';
 import ProjectTaskAddContainer from './features/Admin/ProjectTasks/ProjectTaskAddContainer';
 import ProjectTasksListContainer from './features/Admin/ProjectTasksList/ProjectTasksListContainer';
 import ProjectTaskDetailsContainer from './features/Admin/ProjectTasks/ProjectTaskDetailsContainer';
+import AuthorizationContainer from './features/Admin/Authorization/AuthorizationContainer';
+import AuthorizationListContainer from './features/Admin/AuthorizationList/AuthorizationListContainer';
 
 function App() {
     return (
@@ -137,6 +139,12 @@ function App() {
 
                 <Route exact path='/panel-admina/zadania-w-projektach-edycja'
                     component={(props) => <MainContainer content={<ProjectTaskDetailsContainer {...props} />} menuId={"ADMIN"} submenuId='PROJECTS' />} />
+
+                <Route exact path='/panel-admina/nadaj-uprawnienia'
+                    component={(props) => <MainContainer content={<AuthorizationContainer {...props} />} menuId={"ADMIN"} submenuId='ACCESS' />} />
+
+                <Route exact path='/panel-admina/uprawnienia-lista'
+                    component={(props) => <MainContainer content={<AuthorizationListContainer {...props} />} menuId={"ADMIN"} submenuId='ACCESS' />} />
 
                 {/* z PrivateRoute nie działa
                 <PrivateRoute exact path='/home' />

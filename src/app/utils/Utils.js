@@ -91,4 +91,12 @@ export function groupBy(data, key) {
     }, {});
 };
 
+export const parseObjectToString = (object) => {
+    return JSON.stringify(Array.from(object.entries()));
+}
+
+export const parseStringToObject = (string) => {
+    return JSON.parse(string);
+}
+
 

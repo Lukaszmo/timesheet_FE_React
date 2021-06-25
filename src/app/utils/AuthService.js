@@ -1,3 +1,4 @@
+
 // const tokenLifeTime = 360000;
 const tokenKey = 'token';
 const expirationDateKey = 'token-expiration-date';
@@ -12,4 +13,20 @@ export function isAuthenticated() {
     //póki co zawsze autentykacja jest poprawna
     //return 1;
 }
+
+
+export const checkMenuAccess = (accessItem, accessList) => {
+
+    let accessMode = false;
+
+    accessList.forEach(function (value, key) {
+        if (accessList[key].item === accessItem) {
+            accessMode = accessList[key].access;
+            return accessMode;
+        }
+    })
+
+    return accessMode;
+}
+
 

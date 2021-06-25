@@ -14,6 +14,7 @@ import user from './app/features/Admin/Users/User';
 import task from './app/features/Admin/Tasks/Tasks';
 import taskTypes from './app/features/Admin/TaskTypes/TaskType';
 import projectTasks from './app/features/Admin/ProjectTasks/ProjectTasks';
+import roleAccessList from './app/features/Admin/Authorization/RoleAccess';
 
 /*export default combineReducers({
     toastr: toastrReducer,
@@ -39,7 +40,8 @@ const appReducer = combineReducers({
     projectUsers: projectUsers,
     user: user,
     taskTypes: taskTypes,
-    projectTasks: projectTasks
+    projectTasks: projectTasks,
+    roleAccessList: roleAccessList
 })
 
 const rootReducer = (state, action) => {

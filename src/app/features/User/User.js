@@ -1,9 +1,10 @@
 import axios from 'axios';
-import { USERS, USER_PROJECTS } from '../../../routes';
+import { USERS, USER_PROJECTS, ROLE_ACCESS_LIST } from '../../../routes';
 
 const SET_USER = 'SET_USER';
 const SET_INFERIORS = 'SET_INFERIORS';
 const SET_USER_PROJECTS = 'SET_USER_PROJECTS';
+const SET_USER_ITEMS = 'SET_USER_ITEMS';
 
 //actions
 export function setUserAction(user) {
@@ -31,6 +32,15 @@ export function setUserProjects(projectList) {
     }
 }
 
+export function setUserRoleItems(items) {
+    return {
+        type: SET_USER_ITEMS,
+        payload: {
+            accessItems: items
+        }
+    }
+}
+
 //operations
 export const getLoggedUser = (id) => {
 
@@ -45,6 +55,7 @@ export const getLoggedUser = (id) => {
             });
     }
 }
+
 
 export async function getUserDetails(id) {
 
@@ -112,6 +123,29 @@ export const generateUserListForDropdown = (listOfInferiors, loggedUser) => {
     return listOfUsers;
 };
 
+export const getRoleItemList = (roleId) => {
+
+    return (dispatch) => {
+
+        axios.get(ROLE_ACCESS_LIST + '?role=' + roleId).then(response => {
+
+            const data = response.data['hydra:member'].map(function (object) {
+                return ({
+                    item: object.item.code,
+                    access: object.access
+                })
+            })
+
+            dispatch(setUserRoleItems(data));
+
+        });
+    }
+
+}
+
+
+
+
 const initialState = {
     id: "",
     regnum: "",
@@ -137,6 +171,10 @@ export default (state = initialState, action) => {
         case SET_USER_PROJECTS: {
             return { ...state, ...action.payload };
 
+        }
+
+        case SET_USER_ITEMS: {
+            return { ...state, ...action.payload };
         }
 
         default:

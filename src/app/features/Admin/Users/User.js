@@ -86,7 +86,10 @@ export const getAllUsers = (filters) => {
                 return ({
                     ...object,
                     active: + object.active,
-                    activeString: object.active === true ? 'tak' : 'nie'
+                    activeString: object.active === true ? 'tak' : 'nie',
+                    role: object.userRoles[0].role
+                    /*w aplikacji używamy tylko jendej roli ale istnieje 
+                    możliwość zapisywania/pobierania wiekszej ilości ról uzytkownika*/
                 })
             })
             dispatch(setRecords(data));

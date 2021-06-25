@@ -76,7 +76,7 @@ class UserListComponent extends Component {
             id: "9",
             columnName: "Rola",
             className: "width15",
-            dataField: 'roles',
+            dataField: 'role',
             type: "data"
         },
         {
