@@ -12,9 +12,7 @@ class UserListContainer extends Component {
 
     componentDidMount() {
 
-        let filters = { active: true };
-
-        this.props.getAllUsers(filters);
+        this.props.getAllUsers();
     }
 
     onTableChange = (rowAction, rowId) => {
