@@ -16,15 +16,10 @@ class AuthorizationListContainer extends Component {
 
     onTableChange = (rowAction, rowId) => {
 
-        /*   if (rowAction === 'EDIT') {
-               let record = this.props.data.filter(item => item.id === rowId);
-               history.push({ pathname: '/panel-admina/autoryzacja-edycja', state: { recordDetails: record } });
-           }
-   
-           if (rowAction === 'DELETE') {
-   
-               this.props.removeRecord(rowId);
-           } */
+        if (rowAction === 'EDIT') {
+            let record = this.props.data.filter(item => item.id === rowId);
+            history.push({ pathname: '/panel-admina/uprawnienia-edycja', state: { recordDetails: record } });
+        }
     }
 
     render() {

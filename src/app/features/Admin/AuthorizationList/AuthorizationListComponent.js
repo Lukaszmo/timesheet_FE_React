@@ -43,7 +43,7 @@ class AuthorizationListComponent extends Component {
             id: "4",
             columnName: "Dostęp",
             className: "width15",
-            dataField: 'access',
+            dataField: 'accessString',
             type: "data"
         },
         {
@@ -54,15 +54,6 @@ class AuthorizationListComponent extends Component {
             type: "button",
             action: "edit",
             iconName: "edit outline"
-        },
-        {
-            id: "6",
-            columnName: "",
-            className: "width5",
-            dataField: '',
-            type: "button",
-            action: "delete",
-            iconName: "trash alternate"
         }
     ]
 
