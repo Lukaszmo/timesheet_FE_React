@@ -28,7 +28,7 @@ export default class MenuComponent extends Component {
                         let active = false;
                         if (element.id === this.props.activeMenuItem) { active = true; }
 
-                        if (checkMenuAccess(element.id, this.props.accessList) === true) {
+                        if (checkMenuAccess(element.id) === true) {
 
                             return (
                                 <Menu.Item

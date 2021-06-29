@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { USERS, USER_PROJECTS, ROLE_ACCESS_LIST } from '../../../routes';
+import { parseObjectToString } from './../../utils/Utils';
 
 const SET_USER = 'SET_USER';
 const SET_INFERIORS = 'SET_INFERIORS';
@@ -135,7 +136,7 @@ export const getRoleItemList = (roleId) => {
                     access: object.access
                 })
             })
-
+            localStorage.setItem('items', parseObjectToString(data));
             dispatch(setUserRoleItems(data));
 
         });

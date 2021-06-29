@@ -28,7 +28,7 @@ class HomeComponent extends Component {
         let tasksBtn = null;
         let reportsBtn = null;
 
-        if (checkMenuAccess('TIMESHEET', this.props.accessList) === true) {
+        if (checkMenuAccess('TIMESHEET') === true) {
 
             timesheetBtn = <Button
                 className="bigBoxButton"
@@ -39,7 +39,7 @@ class HomeComponent extends Component {
             </Button>
         }
 
-        if (checkMenuAccess('VACATION', this.props.accessList) === true) {
+        if (checkMenuAccess('VACATION') === true) {
 
             tasksBtn = <Button
                 className="bigBoxButton"
@@ -50,7 +50,7 @@ class HomeComponent extends Component {
             </Button>
         }
 
-        if (checkMenuAccess('TASK_TABLE', this.props.accessList) === true) {
+        if (checkMenuAccess('TASK_TABLE') === true) {
 
             vacationBtn = <Button
                 className="bigBoxButton"
@@ -61,7 +61,7 @@ class HomeComponent extends Component {
             </Button>
         }
 
-        if (checkMenuAccess('REPORTS', this.props.accessList) === true) {
+        if (checkMenuAccess('REPORTS') === true) {
 
             reportsBtn = <Button
                 className="bigBoxButton"

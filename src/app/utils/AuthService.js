@@ -1,4 +1,6 @@
 
+import { parseStringToObject } from '../utils/Utils';
+
 // const tokenLifeTime = 360000;
 const tokenKey = 'token';
 const expirationDateKey = 'token-expiration-date';
@@ -15,18 +17,26 @@ export function isAuthenticated() {
 }
 
 
-export const checkMenuAccess = (accessItem, accessList) => {
+export const checkMenuAccess = (accessItem) => {
 
     let accessMode = false;
 
-    accessList.forEach(function (value, key) {
-        if (accessList[key].item === accessItem) {
-            accessMode = accessList[key].access;
+    let accessList = new Map(JSON.parse(localStorage.getItem('items')));
+
+    accessList.forEach(function (el, index) {
+        if (el.item === accessItem) {
+            accessMode = el.access;
             return accessMode;
         }
     })
 
     return accessMode;
 }
+
+
+
+
+
+
 
 
