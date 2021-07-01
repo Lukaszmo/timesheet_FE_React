@@ -7,6 +7,7 @@ import VacationListComponent from "./VacationListComponent";
 import { fetchAllRecords } from "../Vacation/Vacation";
 import { fetchInferiors, generateUserListForDropdown } from "../User/User";
 import { getFirstDayOfMonth, getLastDayOfMonth } from '../../utils/Utils.js';
+import { checkItemAccess } from '../../utils/AuthService';
 
 
 class VacationListContainer extends Component {
@@ -23,8 +24,9 @@ class VacationListContainer extends Component {
             dateTo: this.state.dateTo
         }
 
-        this.props.fetchInferiors(this.props.user.id);
-        this.props.fetchAllRecords(this.props.user.id, filters);
+        checkItemAccess("VACATION")
+            .then(() => this.props.fetchInferiors(this.props.user.id))
+            .then(() => this.props.fetchAllRecords(this.props.user.id, filters));
     }
 
     filterData(data) {

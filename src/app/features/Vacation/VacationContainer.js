@@ -4,13 +4,15 @@ import { connect } from 'react-redux';
 import VacApplComponent from "./VacApplComponent";
 import { Container } from 'semantic-ui-react';
 import { addHolidayRequest, validationSchema, fetchVacRequestTypes } from "./Vacation";
+import { checkItemAccess } from '../../utils/AuthService';
 
 
 class VacationContainer extends Component {
 
     componentDidMount() {
 
-        this.props.fetchVacRequestTypes();
+        checkItemAccess("VACATION")
+            .then(() => this.props.fetchVacRequestTypes());
     }
 
     onSubmit = (object) => {
