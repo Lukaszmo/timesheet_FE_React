@@ -6,6 +6,7 @@ import HoursSummaryComponent from './HoursSummaryComponent';
 import { fetchInferiors, generateUserListForDropdown } from "../User/User";
 import { fetchHoursByType, fetchHoursByProject, fetchHoursByTask } from "../Hours/Hours";
 import { getFirstDayOfMonth, getLastDayOfMonth } from '../../utils/Utils.js';
+import { checkItemAccess } from '../../utils/AuthService';
 
 
 
@@ -20,10 +21,11 @@ class HoursSummaryContainer extends Component {
             dateTo: getLastDayOfMonth(currentDate)
         }
 
-        this.props.fetchInferiors(userId);
-        this.props.fetchHoursByType(userId, filters);
-        this.props.fetchHoursByProject(userId, filters);
-        this.props.fetchHoursByTask(userId, filters);
+        checkItemAccess("TIMESHEET")
+            .then(() => this.props.fetchInferiors(userId))
+            .then(() => this.props.fetchHoursByType(userId, filters))
+            .then(() => this.props.fetchHoursByProject(userId, filters))
+            .then(() => this.props.fetchHoursByTask(userId, filters));
     }
 
     onFilterSubmit = (userid, filters) => {

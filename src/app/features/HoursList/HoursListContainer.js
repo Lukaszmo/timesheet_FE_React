@@ -7,6 +7,7 @@ import HoursListComponent from "./HoursListComponent";
 import { fetchHourRecords, removeRecord } from "../Hours/Hours";
 import { fetchInferiors, generateUserListForDropdown } from "../User/User";
 import { getFirstDayOfMonth, getLastDayOfMonth } from '../../utils/Utils.js';
+import { checkItemAccess } from '../../utils/AuthService';
 
 
 class HoursListContainer extends Component {
@@ -24,8 +25,9 @@ class HoursListContainer extends Component {
             dateTo: this.state.dateTo
         }
 
-        this.props.fetchInferiors(this.props.user.id);
-        this.props.fetchHourRecords(this.props.user.id, filters);
+        checkItemAccess("TIMESHEET")
+            .then(() => this.props.fetchInferiors(this.props.user.id))
+            .then(() => this.props.fetchHourRecords(this.props.user.id, filters));
     }
 
     onTableChange = (rowAction, rowId) => {

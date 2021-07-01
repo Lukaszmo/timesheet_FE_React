@@ -6,6 +6,7 @@ import { fetchAllTypes, addRecord, HourValidationSchema } from "./Hours";
 import { fetchProjectTasks, generateTasksForDropdown } from "../Admin/ProjectTasks/ProjectTasks";
 import { getUserProjects } from "./../User/User";
 import { Container } from 'semantic-ui-react';
+import { checkItemAccess } from '../../utils/AuthService';
 
 class HoursContainer extends Component {
 
@@ -19,8 +20,9 @@ class HoursContainer extends Component {
 
     componentDidMount() {
 
-        this.props.fetchAllTypes();
-        this.props.getUserProjects(this.props.user.id);
+        checkItemAccess("TIMESHEET")
+            .then(() => this.props.fetchAllTypes())
+            .then(() => this.props.getUserProjects(this.props.user.id));
 
     }
 
