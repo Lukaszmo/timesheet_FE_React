@@ -5,13 +5,15 @@ import history from '../../../../history';
 
 import { getAllTasks, removeRecord } from '../Tasks/Tasks';
 import TaskListComponent from './TaskListComponent';
+import { checkItemAccess } from '../../../utils/AuthService';
 
 
 class TaskListContainer extends Component {
 
     componentDidMount() {
 
-        this.props.getAllTasks();
+        checkItemAccess("ADMIN")
+            .then(() => this.props.getAllTasks());
     }
 
     onTableChange = (rowAction, rowId) => {

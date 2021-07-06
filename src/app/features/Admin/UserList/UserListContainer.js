@@ -5,6 +5,7 @@ import UserListComponent from './UserListComponent';
 import history from '../../../../history';
 
 import { getAllUsers } from '../Users/User';
+import { checkItemAccess } from '../../../utils/AuthService';
 
 
 class UserListContainer extends Component {
@@ -12,7 +13,8 @@ class UserListContainer extends Component {
 
     componentDidMount() {
 
-        this.props.getAllUsers();
+        checkItemAccess("ADMIN")
+            .then(() => this.props.getAllUsers());
     }
 
     onTableChange = (rowAction, rowId) => {

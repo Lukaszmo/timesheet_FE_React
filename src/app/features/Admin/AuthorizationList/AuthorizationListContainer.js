@@ -5,13 +5,15 @@ import history from '../../../../history';
 
 import { getRoleAccessList } from '../Authorization/RoleAccess';
 import AuthorizationListComponent from './AuthorizationListComponent';
+import { checkItemAccess } from '../../../utils/AuthService';
 
 
 class AuthorizationListContainer extends Component {
 
     componentDidMount() {
 
-        this.props.getRoleAccessList();
+        checkItemAccess("ADMIN")
+            .then(() => this.props.getRoleAccessList());
     }
 
     onTableChange = (rowAction, rowId) => {

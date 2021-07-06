@@ -5,6 +5,7 @@ import UserCreateComponent from './UserCreateComponent';
 
 import { addUser, getAllUsers, generateUserListForDropdown, UserValidationSchema } from '../Users/User';
 import { getAllRoles } from '../Roles/Role';
+import { checkItemAccess } from '../../../utils/AuthService';
 
 
 class UsersContainer extends Component {
@@ -17,8 +18,9 @@ class UsersContainer extends Component {
 
         let filters = { active: true };
 
-        this.props.getAllUsers(filters);
-        getAllRoles().then(resp => this.setState({ roleList: resp }));
+        checkItemAccess("ADMIN")
+            .then(() => this.props.getAllUsers(filters))
+            .then(() => getAllRoles().then(resp => this.setState({ roleList: resp })));
     }
 
     addUser = (values) => {

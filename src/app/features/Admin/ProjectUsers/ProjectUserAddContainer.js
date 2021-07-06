@@ -5,6 +5,7 @@ import ProjectUserAddComponent from './ProjectUserAddComponent';
 import { getAllProjects, generateProjectListForDropdown } from '../Projects/Project';
 import { addUserToProject, ProjectUsersValidationSchema } from '../ProjectUsers/ProjectUsers';
 import { getAllUsers, generateUserListForDropdown } from '../Users/User';
+import { checkItemAccess } from '../../../utils/AuthService';
 
 
 class ProjectUserAddContainer extends Component {
@@ -13,8 +14,9 @@ class ProjectUserAddContainer extends Component {
 
         let projectFilters = { active: true };
 
-        this.props.getAllProjects(projectFilters);
-        this.props.getAllUsers();
+        checkItemAccess("ADMIN")
+            .then(() => this.props.getAllProjects(projectFilters))
+            .then(() => this.props.getAllUsers());
     }
 
     onSubmit = (values) => {

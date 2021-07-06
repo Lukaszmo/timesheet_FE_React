@@ -5,6 +5,7 @@ import ProjectTaskAddComponent from './ProjectTaskAddComponent';
 import { getAllTasks, generateTasksForDropdown } from '../Tasks/Tasks';
 import { addTaskToProject, ProjectTasksValidationSchema } from '../ProjectTasks/ProjectTasks';
 import { getAllProjects, generateProjectListForDropdown } from '../Projects/Project';
+import { checkItemAccess } from '../../../utils/AuthService';
 
 
 class ProjectTaskAddContainer extends Component {
@@ -13,8 +14,9 @@ class ProjectTaskAddContainer extends Component {
 
         let projectFilters = { active: true };
 
-        this.props.getAllProjects(projectFilters);
-        this.props.getAllTasks();
+        checkItemAccess("ADMIN")
+            .then(() => this.props.getAllProjects(projectFilters))
+            .then(() => this.props.getAllTasks());
     }
 
     onSubmit = (values) => {

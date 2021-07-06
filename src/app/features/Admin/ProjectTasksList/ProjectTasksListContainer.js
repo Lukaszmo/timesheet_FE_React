@@ -5,13 +5,15 @@ import history from '../../../../history';
 
 import ProjectTasksListComponent from './ProjectTasksListComponent';
 import { getAllTasksAssignedToProjects, removeRecord } from '../ProjectTasks/ProjectTasks';
+import { checkItemAccess } from '../../../utils/AuthService';
 
 
 class ProjectTasksListContainer extends Component {
 
     componentDidMount() {
 
-        this.props.getAllTasksAssignedToProjects();
+        checkItemAccess("ADMIN")
+            .then(() => this.props.getAllTasksAssignedToProjects());
     }
 
     onTableChange = (rowAction, rowId) => {

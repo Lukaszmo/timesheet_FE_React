@@ -4,13 +4,14 @@ import { Container } from 'semantic-ui-react';
 import TaskCreateComponent from './TaskCreateComponent';
 import { createTask, TaskValidationSchema } from './Tasks';
 import { getTaskTypes, generateTaskTypeListForDropdown } from '../TaskTypes/TaskType';
+import { checkItemAccess } from '../../../utils/AuthService';
 
 class TasksContainer extends Component {
 
     componentDidMount() {
 
-        // this.props.getAllTasks();
-        this.props.getTaskTypes();
+        checkItemAccess("ADMIN")
+            .then(() => this.props.getTaskTypes());
     }
 
     addTask = (values) => {

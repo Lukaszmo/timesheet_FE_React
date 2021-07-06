@@ -5,13 +5,15 @@ import history from '../../../../history';
 
 import { getAllProjects, removeRecord } from '../Projects/Project';
 import ProjectListComponent from './ProjectListComponent';
+import { checkItemAccess } from '../../../utils/AuthService';
 
 
 class ProjectListContainer extends Component {
 
     componentDidMount() {
 
-        this.props.getAllProjects();
+        checkItemAccess("ADMIN")
+            .then(() => this.props.getAllProjects());
     }
 
     onTableChange = (rowAction, rowId) => {

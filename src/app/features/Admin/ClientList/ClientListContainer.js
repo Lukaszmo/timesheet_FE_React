@@ -5,13 +5,15 @@ import history from '../../../../history';
 
 import { getAllClients, removeRecord } from '../Clients/Client';
 import ClientListComponent from './ClientListComponent';
+import { checkItemAccess } from '../../../utils/AuthService';
 
 
 class ClientListContainer extends Component {
 
     componentDidMount() {
 
-        this.props.getAllClients();
+        checkItemAccess("ADMIN")
+            .then(() => this.props.getAllClients());
     }
 
     onTableChange = (rowAction, rowId) => {
