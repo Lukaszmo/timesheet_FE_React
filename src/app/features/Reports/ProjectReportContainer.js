@@ -6,6 +6,7 @@ import ProjectReportComponent from './ProjectReportComponent';
 import { fetchHoursByTaskType } from '../Hours/Hours';
 import { getFirstDayOfMonth, getLastDayOfMonth } from '../../utils/Utils.js';
 import { getAllProjects, generateProjectListForDropdown } from '../Admin/Projects/Project';
+import { checkItemAccess } from '../../utils/AuthService';
 
 
 class ProjectReportContainer extends Component {
@@ -18,7 +19,8 @@ class ProjectReportContainer extends Component {
 
     componentDidMount() {
 
-        this.props.getAllProjects();
+        checkItemAccess("REPORTS")
+            .then(() => this.props.getAllProjects());
     }
 
     onSubmit = (values) => {

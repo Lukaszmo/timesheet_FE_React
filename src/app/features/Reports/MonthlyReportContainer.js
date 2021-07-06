@@ -7,7 +7,7 @@ import { getFirstDayOfMonth, getLastDayOfMonth } from '../../utils/Utils.js';
 import { getMonths } from '../Reports/ReportsUtility';
 import { fetchInferiors, generateUserListForDropdown } from "../User/User";
 import { getUserDetails } from "../User/User";
-
+import { checkItemAccess } from '../../utils/AuthService';
 
 
 class MonthlyReportContainer extends Component {
@@ -20,8 +20,10 @@ class MonthlyReportContainer extends Component {
 
     componentDidMount() {
 
-        this.props.fetchInferiors(this.props.user.id);
-        getHoursRange().then(resp => this.setState({ years: this.setOptionsForDropdown(resp.data.first, resp.data.last) }));
+        checkItemAccess("REPORTS")
+            .then(() => this.props.fetchInferiors(this.props.user.id))
+            .then(() => getHoursRange().then(resp => this.setState({ years: this.setOptionsForDropdown(resp.data.first, resp.data.last) })));
+
     }
 
     setOptionsForDropdown(startYear, lastYear) {
