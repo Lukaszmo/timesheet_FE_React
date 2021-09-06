@@ -85,24 +85,17 @@ class VacationDetailsComponent extends Component {
         //nie pokazuj przycisku anulowania gdy wniosek został już zaakceptowany przez kierownika
         if ((requestState == 4) && (mode !== 'ACCEPTANCE')) leftButton = null;
 
-        const printBar = (requestState == 4) ? <div className='print-bar'>
-            <div className='print-icon' onClick={this.handlePrintIconClick}>
-                <Icon name='file pdf'></Icon>
-                <span>PDF</span>
-            </div>
-            {/*} <div className='print-icon' id='printer' >
-                <Icon name='print' ></Icon>
-                <span>Drukuj</span>
-    </div> */}
-        </div> : null;
-
+        const printBar = (requestState == 4) ?
+            <div className='pdf-icon' onClick={this.handlePrintIconClick}>
+                <Icon name='file pdf' bordered></Icon>
+            </div> : null;
 
         let rightButton = <Button
             type='submit'
             className='saveButton'
             onClick={this.rightButtonOnClick}>
             Zaakceptuj
-             </Button>
+        </Button>
 
         //przycisk akceptacji wyświetlaj tylko dla statusu Czeka na akceptację w trybie akceptacji
         rightButton = (mode === 'ACCEPTANCE') && (requestState == 2) ? rightButton : null;
@@ -125,7 +118,7 @@ class VacationDetailsComponent extends Component {
                 {printBar}
 
 
-                <Divider className='custom-divider'></Divider>
+                <Divider id='custom-divider-vacation'></Divider>
 
                 <Formik
                     initialValues={{}}
@@ -145,89 +138,89 @@ class VacationDetailsComponent extends Component {
                         errors,
                         touched
                     }) => (
-                            <Form onSubmit={handleSubmit}>
-                                <Grid columns={7} textAlign="right" verticalAlign="middle" >
-                                    <Grid.Row>
-                                        <Grid.Column width={3}>
-                                            Numer wniosku</Grid.Column >
-                                        <Grid.Column width={3}>
-                                            <p className='data-field'>{this.props.recordDetails.id} </p>
-                                        </Grid.Column>
-                                    </Grid.Row>
+                        <Form onSubmit={handleSubmit}>
+                            <Grid columns={7} textAlign="right" verticalAlign="middle" >
+                                <Grid.Row>
+                                    <Grid.Column width={3}>
+                                        Numer wniosku</Grid.Column >
+                                    <Grid.Column width={3}>
+                                        <p className='data-field'>{this.props.recordDetails.id} </p>
+                                    </Grid.Column>
+                                </Grid.Row>
 
-                                    <Grid.Row>
-                                        <Grid.Column width={3}>
-                                            Imię i nazwisko</Grid.Column >
-                                        <Grid.Column width={3}>
-                                            <p className='data-field'>{employeeName} </p>
-                                        </Grid.Column>
-                                    </Grid.Row>
+                                <Grid.Row>
+                                    <Grid.Column width={3}>
+                                        Imię i nazwisko</Grid.Column >
+                                    <Grid.Column width={3}>
+                                        <p className='data-field'>{employeeName} </p>
+                                    </Grid.Column>
+                                </Grid.Row>
 
-                                    <Grid.Row>
-                                        <Grid.Column width={3}>
-                                            Stanowisko/Dział</Grid.Column >
-                                        <Grid.Column width={3}>
-                                            <p className='data-field'>{this.props.recordDetails.user.position} </p>
-                                        </Grid.Column>
-                                    </Grid.Row>
+                                <Grid.Row>
+                                    <Grid.Column width={3}>
+                                        Stanowisko/Dział</Grid.Column >
+                                    <Grid.Column width={3}>
+                                        <p className='data-field'>{this.props.recordDetails.user.position} </p>
+                                    </Grid.Column>
+                                </Grid.Row>
 
-                                    <Grid.Row>
-                                        <Grid.Column width={3}>
-                                            Rodzaj wniosku</Grid.Column >
-                                        <Grid.Column width={3}>
-                                            <p className='data-field'>{this.props.recordDetails.type.description} </p>
-                                        </Grid.Column>
-                                    </Grid.Row>
+                                <Grid.Row>
+                                    <Grid.Column width={3}>
+                                        Rodzaj wniosku</Grid.Column >
+                                    <Grid.Column width={3}>
+                                        <p className='data-field'>{this.props.recordDetails.type.description} </p>
+                                    </Grid.Column>
+                                </Grid.Row>
 
-                                    <Grid.Row>
-                                        <Grid.Column width={3}>
-                                            Zakres urlopu</Grid.Column >
-                                        <Grid.Column width={4}>
-                                            <p className='data-field'>{datefrom} do {dateto}</p>
-                                        </Grid.Column>
-                                    </Grid.Row>
+                                <Grid.Row>
+                                    <Grid.Column width={3}>
+                                        Zakres urlopu</Grid.Column >
+                                    <Grid.Column width={4}>
+                                        <p className='data-field'>{datefrom} do {dateto}</p>
+                                    </Grid.Column>
+                                </Grid.Row>
 
-                                    <Grid.Row>
-                                        <Grid.Column width={3}>
-                                            Liczba dni</Grid.Column >
-                                        <Grid.Column width={4}>
-                                            <p className='data-field'>{this.props.recordDetails.quantity}</p>
-                                        </Grid.Column>
-                                    </Grid.Row>
+                                <Grid.Row>
+                                    <Grid.Column width={3}>
+                                        Liczba dni</Grid.Column >
+                                    <Grid.Column width={4}>
+                                        <p className='data-field'>{this.props.recordDetails.quantity}</p>
+                                    </Grid.Column>
+                                </Grid.Row>
 
-                                    <Grid.Row>
-                                        <Grid.Column width={3}>
-                                            Komentarz</Grid.Column >
-                                        <Grid.Column width={4}>
-                                            <p className='data-field'>{this.props.recordDetails.comment}</p>
-                                        </Grid.Column>
-                                    </Grid.Row>
+                                <Grid.Row>
+                                    <Grid.Column width={3}>
+                                        Komentarz</Grid.Column >
+                                    <Grid.Column width={4}>
+                                        <p className='data-field'>{this.props.recordDetails.comment}</p>
+                                    </Grid.Column>
+                                </Grid.Row>
 
-                                    <Grid.Row>
-                                        <Grid.Column width={3}>
-                                            Status wniosku</Grid.Column >
-                                        <Grid.Column width={2}>
-                                            {label}
-                                        </Grid.Column>
-                                    </Grid.Row>
+                                <Grid.Row>
+                                    <Grid.Column width={3}>
+                                        Status wniosku</Grid.Column >
+                                    <Grid.Column width={2}>
+                                        {label}
+                                    </Grid.Column>
+                                </Grid.Row>
 
-                                    {acceptorRow}
+                                {acceptorRow}
 
-                                    <Grid.Row>
-                                        <Grid.Column width={3}>
-                                            Ostatnia zmiana statusu</Grid.Column >
-                                        <Grid.Column width={3}>
-                                            <p className='data-field'>{timestampDate} &nbsp;&nbsp; [ {timestampTime} ]</p>
-                                        </Grid.Column>
-                                    </Grid.Row>
+                                <Grid.Row>
+                                    <Grid.Column width={3}>
+                                        Ostatnia zmiana statusu</Grid.Column >
+                                    <Grid.Column width={3}>
+                                        <p className='data-field'>{timestampDate} &nbsp;&nbsp; [ {timestampTime} ]</p>
+                                    </Grid.Column>
+                                </Grid.Row>
 
 
 
-                                </Grid>
-                                <div className='vacation-button-row'> {leftButton}{rightButton} </div>
+                            </Grid>
+                            <div className='vacation-button-row'> {leftButton}{rightButton} </div>
 
-                            </Form>
-                        )}
+                        </Form>
+                    )}
                 </Formik>
             </Segment >
 
