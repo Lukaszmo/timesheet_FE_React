@@ -18,6 +18,14 @@ body{
     margin-top: 10px !important;
 }
 
+.print-icon{
+    float: left;
+    width: 8%;
+    font-size: 22px;
+    padding: 10px; 
+    color: #838282;
+}
+
 @media (min-width: 600px) and (max-width: 1199px){
 
     .ui.container{

@@ -50,22 +50,13 @@
     margin-top: 100px;
 }
 
-.pdf-icon{
-    clear: both;
-    float: left;
-    font-size: 22px;
-    padding: 10px; 
-    color: #838282;
+#pdf-icon{
+    clear:both;
 }
 
-.pdf-icon:hover{
+#pdf-icon:hover{
     color: #f40f02;
     cursor: pointer;
-}
-
-.pdf-icon span{
-    font-size: 13px;
-    vertical-align: top;
 }
 
 

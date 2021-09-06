@@ -86,7 +86,7 @@ class VacationDetailsComponent extends Component {
         if ((requestState == 4) && (mode !== 'ACCEPTANCE')) leftButton = null;
 
         const printBar = (requestState == 4) ?
-            <div className='pdf-icon' onClick={this.handlePrintIconClick}>
+            <div className='print-icon' id='pdf-icon' onClick={this.handlePrintIconClick}>
                 <Icon name='file pdf' bordered></Icon>
             </div> : null;
 
