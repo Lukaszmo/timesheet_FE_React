@@ -6,8 +6,8 @@ if (env === 'DEV') {
     var PhpApiRoot = 'timesheet.symfony.local/api/';
 }
 else {
-    var PhpRoot = 'timeinfo.com.pl/';
-    var PhpApiRoot = 'timeinfo.com.pl/api/';
+    var PhpRoot = 'hrewidencja.pl/';
+    var PhpApiRoot = 'hrewidencja.pl/api/';
 }
 
 export const ROOT = window.location.protocol + "//" + PhpRoot;

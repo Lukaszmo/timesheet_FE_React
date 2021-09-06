@@ -158,7 +158,7 @@ export const menuItems = [
                 id: 'PASSWORD_CHANGE',
                 name: "Zmiana hasła",
                 type: "MENU_ITEM",
-                redirect: "ustawienia/zmiana-hasla",
+                redirect: "/ustawienia/zmiana-hasla",
                 icon: ''
             }
         ]

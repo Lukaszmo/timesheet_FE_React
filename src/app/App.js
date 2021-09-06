@@ -35,6 +35,7 @@ import ProjectTaskDetailsContainer from './features/Admin/ProjectTasks/ProjectTa
 import AuthorizationContainer from './features/Admin/Authorization/AuthorizationContainer';
 import AuthorizationListContainer from './features/Admin/AuthorizationList/AuthorizationListContainer';
 import AuthorizationDetailsContainer from './features/Admin/AuthorizationList/AuthorizationDetailsContainer';
+import PasswordChangeContainer from './features/Settings/PasswordChangeContainer';
 
 function App() {
     return (
@@ -85,7 +86,7 @@ function App() {
                     component={(props) => <MainContainer content={<ProjectReportContainer {...props} />} menuId={"REPORTS"} submenuId='PROJECT_REPORT' />} />
 
                 <Route exact path='/ustawienia/zmiana-hasla'
-                    component={(props) => <MainContainer content={"USTAWIENIA IN PROGRESS..."} menuId={"SETTINGS"} submenuId='PASSWORD_CHANGE' />} />
+                    component={(props) => <MainContainer content={<PasswordChangeContainer {...props} />} menuId={"SETTINGS"} submenuId='PASSWORD_CHANGE' />} />
 
                 <Route exact path='/panel-admina/dodaj-uzytkownika'
                     component={(props) => <MainContainer content={<UsersContainer {...props} />} menuId={"ADMIN"} submenuId='USERS' />} />

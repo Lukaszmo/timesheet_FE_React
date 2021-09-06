@@ -22,7 +22,8 @@ ReactDOM.render(
                 <LoaderContainer />
                 <ReduxToastr
                     position='top-center'
-                    preventDuplicates />
+                    preventDuplicates
+                    timeOut={3000} />
                 <App />
             </Router>
         </PersistGate>

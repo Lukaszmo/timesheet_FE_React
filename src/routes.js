@@ -27,3 +27,4 @@ export const HOURS_BY_TASK = ROOT + 'hours/by_task';
 export const HOURS_BY_TASK_TYPE = ROOT + 'hours/project_report';
 export const HOURS_RANGE = ROOT + 'hours/range';
 export const HOURS_MONTHLY_REPORT = ROOT + 'hours/monthly_report';
+export const USER = ROOT + 'user';
