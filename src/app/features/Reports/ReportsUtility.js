@@ -24,3 +24,18 @@ export function getMonths() {
 
     return months;
 }
+
+
+export function getDayOfWeek(year, month) {
+
+    let dayOfWeek = [];
+
+    for (var i = 1; i <= 31; i++) {
+        let day = year + '-' + month + '-' + i;
+        day = new Date(day);
+        dayOfWeek[i] = day.getDay();
+    }
+
+    return dayOfWeek;
+
+}

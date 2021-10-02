@@ -6,6 +6,7 @@ import { Form, Grid, GridRow, Dropdown, Button, Table, Icon } from 'semantic-ui-
 import './Reports.css';
 import Media from 'react-media';
 import { numberToTime, pad } from '../../utils/Utils';
+import { getDayOfWeek } from './ReportsUtility';
 
 
 class MonthlyReportComponent extends Component {
@@ -32,6 +33,12 @@ class MonthlyReportComponent extends Component {
         setFieldValue(data.name, data.value);
     }
 
+    handlePrintIconClick = (type) => {
+
+        this.props.onPrintIconClick(type);
+
+    }
+
     render() {
         console.log(this.props);
 
@@ -44,13 +51,7 @@ class MonthlyReportComponent extends Component {
 
             const employeeFullName = this.props.user.firstname + ' ' + this.props.user.lastname;
 
-            let dayOfWeek = [] // przenieść do utility
-            for (var i = 1; i <= 31; i++) {
-                let day = this.state.year + '-' + this.state.month + '-' + i;
-                day = new Date(day);
-                dayOfWeek[i] = day.getDay()
-                console.log(dayOfWeek[i]);
-            }
+            let dayOfWeek = getDayOfWeek(this.state.year, this.state.month);
 
             const days = []
             for (var i = 1; i <= 31; i++) {
@@ -84,74 +85,80 @@ class MonthlyReportComponent extends Component {
             }
 
             printBar = <Segment className='printbar'>
-                <div className='print-icon' id='pdf-icon' onClick={this.handlePrintIconClick}>
+                <div className='print-icon'
+                    id='pdf-icon'
+                    title='generuj PDF'
+                    onClick={() => this.handlePrintIconClick('PDF')}>
                     <Icon name='file pdf' bordered></Icon>
                 </div>
-                <div className='print-icon' id='excel-icon'>
+                <div className='print-icon'
+                    id='excel-icon'
+                    title='generuj plik CSV'
+                    onClick={() => this.handlePrintIconClick('CSV')}>
                     <Icon name='file excel' bordered></Icon>
                 </div>
             </Segment>
 
-            report = <Table celled fixed striped unstackable className='monthly-report'>
+            report = <Table celled fixed striped unstackable className='monthly-report' id='monthly-report'>
                 <Table.Header >
                     <Table.Row>
-                        <Table.HeaderCell textAlign='center' colSpan={38}>RAPORT MIESIĘCZNY</Table.HeaderCell>
+                        <Table.HeaderCell textAlign='center' colSpan={36}>RAPORT MIESIĘCZNY</Table.HeaderCell>
                     </Table.Row>
                 </Table.Header>
 
                 <Table.Body>
                     <Table.Row>
-                        <Table.Cell colSpan={6} >Normatywny czas pracy:</Table.Cell>
+                        <Table.Cell colSpan={5} >Normatywny czas pracy:</Table.Cell>
                         <Table.Cell colSpan={5}></Table.Cell>
                         <Table.Cell colSpan={5} >Wymiar etatu:</Table.Cell>
-                        <Table.Cell colSpan={22}></Table.Cell>
+                        <Table.Cell colSpan={21}></Table.Cell>
                     </Table.Row>
                     <Table.Row>
-                        <Table.Cell colSpan={6} >Nazwisko i imię:</Table.Cell>
+                        <Table.Cell colSpan={5} >Nazwisko i imię:</Table.Cell>
                         <Table.Cell colSpan={5}>{employeeFullName}</Table.Cell>
                         <Table.Cell colSpan={5} >Stanowisko:</Table.Cell>
-                        <Table.Cell colSpan={22}>{this.props.user.position}</Table.Cell>
+                        <Table.Cell colSpan={21}>{this.props.user.position}</Table.Cell>
                     </Table.Row>
                     <Table.Row>
-                        <Table.Cell colSpan={6} >Numer ewidencyjny:</Table.Cell>
+                        <Table.Cell colSpan={5} >Numer ewidencyjny:</Table.Cell>
                         <Table.Cell colSpan={5}>{this.props.user.regnum}</Table.Cell>
                         <Table.Cell colSpan={5} >Dział:</Table.Cell>
-                        <Table.Cell colSpan={22}></Table.Cell>
+                        <Table.Cell colSpan={21}></Table.Cell>
                     </Table.Row>
                     <Table.Row>
-                        <Table.Cell colSpan={4}>Dzień</Table.Cell>
+                        <Table.Cell colSpan={3}>Dzień</Table.Cell>
                         {days}
-                        <Table.Cell colSpan={3} textAlign='center'>Suma</Table.Cell>
+                        <Table.Cell colSpan={2} textAlign='center'>Suma</Table.Cell>
                     </Table.Row>
                     <Table.Row>
-                        <Table.Cell colSpan={4}>Normatywny czas pracy</Table.Cell>
+                        <Table.Cell colSpan={3}>Norm. czas pracy</Table.Cell>
                         {regularHours}
-                        <Table.Cell colSpan={3}></Table.Cell>
+                        <Table.Cell colSpan={2}></Table.Cell>
                     </Table.Row>
                     <Table.Row>
-                        <Table.Cell colSpan={4}>Godziny przepracowane</Table.Cell>
+                        <Table.Cell colSpan={3}>Godz. przeprac.</Table.Cell>
                         {hours}
-                        <Table.Cell colSpan={3}></Table.Cell>
+                        <Table.Cell colSpan={2}></Table.Cell>
                     </Table.Row>
                     <Table.Row>
-                        <Table.Cell colSpan={4}>Praca autorska:</Table.Cell>
+                        <Table.Cell colSpan={3}>Praca autorska:</Table.Cell>
                         {mock}
-                        <Table.Cell colSpan={3}></Table.Cell>
+                        <Table.Cell colSpan={2}></Table.Cell>
                     </Table.Row>
                     <Table.Row>
-                        <Table.Cell colSpan={4}>Praca inna:</Table.Cell>
+                        <Table.Cell colSpan={3}>Praca inna:</Table.Cell>
                         {mock}
-                        <Table.Cell colSpan={3}></Table.Cell>
+                        <Table.Cell colSpan={2}></Table.Cell>
                     </Table.Row>
                     <Table.Row>
-                        <Table.Cell colSpan={4}>Nieobecności rodzaj:</Table.Cell>
+                        <Table.Cell colSpan={3}>Nieobecności rodzaj:</Table.Cell>
                         {mock}
-                        <Table.Cell colSpan={3}></Table.Cell>
+                        <Table.Cell colSpan={2}></Table.Cell>
                     </Table.Row>
                     <Table.Row>
-                        <Table.Cell colSpan={4}>godz:</Table.Cell>
+                        <Table.Cell colSpan={3}>godz:</Table.Cell>
                         {mock}
-                        <Table.Cell colSpan={3}></Table.Cell>
+                        <Table.Cell colSpan={2}></Table.Cell>
                     </Table.Row>
 
                     <Table.Row>

@@ -25,15 +25,19 @@
 
 .cell-day-off{
     background-color: #faeded;
-    font-size: 12px;
 }
 
 .cell{
     font-size: 12px;
 }
 
+.ui.celled.table td{
+    padding-left: 2px;
+    padding-right: 2px; 
+
+}  
+
 .ui.table.monthly-report{
-    width: 1700px;
     font-size: 12px;
 }
 

@@ -8,6 +8,7 @@ import { getMonths } from '../Reports/ReportsUtility';
 import { fetchInferiors, generateUserListForDropdown } from "../User/User";
 import { getUserDetails } from "../User/User";
 import { checkItemAccess } from '../../utils/AuthService';
+import { generatePDF } from '../Reports/Reports';
 
 
 class MonthlyReportContainer extends Component {
@@ -62,6 +63,17 @@ class MonthlyReportContainer extends Component {
         }));
     }
 
+    onPrintIconClick = (type) => {
+
+        if (type === 'PDF') {
+            generatePDF();
+        }
+
+        if (type === 'CSV') {
+            // generateCSV();
+        }
+    }
+
 
     render() {
 
@@ -78,6 +90,7 @@ class MonthlyReportContainer extends Component {
                     user={this.state.user}
                     showReport={this.state.showReport}
                     reportHours={this.state.reportHours}
+                    onPrintIconClick={this.onPrintIconClick}
                 >
 
                 </MonthlyReportComponent>
