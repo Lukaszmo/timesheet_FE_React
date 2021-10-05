@@ -10,6 +10,12 @@ import Media from 'react-media';
 
 class MainComponent extends Component {
 
+    displayUserDetails = () => {
+
+        alert('user details window in progress...');
+    }
+
+
 
     render() {
 
@@ -21,7 +27,10 @@ class MainComponent extends Component {
 
         return (
             <div className="main-container">
-                <Header menuId={menuId} open={this.props.open} setOpen={this.props.setOpen} />
+                <Header menuId={menuId}
+                    open={this.props.open}
+                    setOpen={this.props.setOpen}
+                    displayUserDetails={this.displayUserDetails} />
 
                 <Media queries={{
                     small: "(max-width: 599px)",                            //mobile

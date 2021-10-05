@@ -14,6 +14,11 @@ class Header extends Component {
         this.props.userLogoutOperation(); // teraz to jest w Login.js być może trzeba przenieść do Logout?
     }
 
+    displayUserDetails = () => {
+
+        this.props.displayUserDetails();
+    }
+
 
     render() {
 
@@ -35,12 +40,17 @@ class Header extends Component {
                 <div className="header-center"></div>
 
                 <div className="logged-in-username">
-                    <Icon name='user'></Icon><br></br>
-                    {this.props.user.username}
+                    <div className="username">
+                        <Icon name='user'></Icon>
+                        {this.props.user.username}
+                    </div>
+                    <div className="caret" onClick={this.displayUserDetails}>
+                        <Icon name='caret down'></Icon>
+                    </div>
                 </div>
 
                 <div className="logout" onClick={this.logoutOperation}>
-                    <Icon name='power off'></Icon><br></br>
+                    <Icon name='power off'></Icon>
                     <p>Wyloguj</p>
                 </div>
 
