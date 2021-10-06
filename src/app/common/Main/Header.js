@@ -4,6 +4,7 @@ import { Icon } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { userLogoutOperation } from '../../features/Login/Login';
 import Burger from '../Burger/Burger';
+import UserDetailsPopup from '../UserDetailsPopup/UserDetailsPopup';
 
 import './Header.css';
 
@@ -12,11 +13,6 @@ class Header extends Component {
     logoutOperation = () => {
 
         this.props.userLogoutOperation(); // teraz to jest w Login.js być może trzeba przenieść do Logout?
-    }
-
-    displayUserDetails = () => {
-
-        this.props.displayUserDetails();
     }
 
 
@@ -44,17 +40,17 @@ class Header extends Component {
                         <Icon name='user'></Icon>
                         {this.props.user.username}
                     </div>
-                    <div className="caret" onClick={this.displayUserDetails}>
-                        <Icon name='caret down'></Icon>
-                    </div>
-                </div>
+
+                    <UserDetailsPopup user={this.props.user}></UserDetailsPopup>
+
+                </div >
 
                 <div className="logout" onClick={this.logoutOperation}>
                     <Icon name='power off'></Icon>
                     <p>Wyloguj</p>
                 </div>
 
-            </div>
+            </div >
         )
     }
 }
