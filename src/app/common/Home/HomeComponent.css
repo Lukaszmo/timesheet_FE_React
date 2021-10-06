@@ -30,8 +30,7 @@
 .ui.button.bigBoxButton:hover{
     background-color:#009c95;
     box-shadow: 5px 5px #a8a7a7;
-    
-
+    transform: scale(1.01);
 }
 
 .button-icon{
