@@ -119,10 +119,27 @@ export const menuItems = [
     {
         id: "TASK_TABLE",
         name: "Tablica zadań",
-        redirect: "/tablica-zadan",
+        redirect: "/tablica-zadan/kanban",
         className: "menu-item",
         icon: 'table',
-        subMenu: []
+        subMenu: [
+            {
+                id: 'CANBAN',
+                name: "Kanban",
+                type: "MENU_ITEM",
+                redirect: "/tablica-zadan/kanban",
+                icon: ''
+            },
+            {
+                id: 'TASK_ASSIGN',
+                name: "Dodaj zadanie",
+                type: "MENU_ITEM",
+                redirect: "/tablica-zadan/kanban/dodaj-zadanie",
+                icon: ''
+            }
+
+
+        ]
     },
     {
         id: "REPORTS",

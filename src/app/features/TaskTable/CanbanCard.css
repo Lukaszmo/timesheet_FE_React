@@ -1,0 +1,38 @@
+
+.ui.card{
+    width: 100%;
+    cursor: pointer;
+}
+
+.ui.card:hover{
+    transform: scale(1.03);
+}
+
+.ui.card > .content > .header.canban{
+    font-size: 16px;
+}
+
+.ui.card.todo{
+    background-color: #f0f0f3;
+}
+
+.ui.card.todo:hover{
+    background-color: #f0f0f3;
+}
+
+
+.ui.card.in-progress{
+    background-color: #FFFACD;
+}
+
+.ui.card.in-progress:hover{
+    background-color: #FFFACD;
+}
+
+.ui.card.done{
+    background-color: #eefce5;
+}
+
+.ui.card.done:hover{
+    background-color: #eefce5;
+}

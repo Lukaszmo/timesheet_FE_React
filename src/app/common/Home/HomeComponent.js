@@ -16,7 +16,7 @@ class HomeComponent extends Component {
 
         if (buttonName === 'TIMESHEET') { history.push('/czas-pracy/rejestracja'); }
         if (buttonName === 'VACATION') { history.push('/urlopy/dodaj-wniosek'); }
-        if (buttonName === 'TASK_TABLE') { alert("TABLE TASK IN PROGRESS..."); }
+        if (buttonName === 'TASK_TABLE') { history.push("/tablica-zadan/kanban"); }
         if (buttonName === 'REPORTS') { history.push('/raporty/raport-miesieczny'); }
 
     }

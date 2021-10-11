@@ -36,6 +36,9 @@ import AuthorizationContainer from './features/Admin/Authorization/Authorization
 import AuthorizationListContainer from './features/Admin/AuthorizationList/AuthorizationListContainer';
 import AuthorizationDetailsContainer from './features/Admin/AuthorizationList/AuthorizationDetailsContainer';
 import PasswordChangeContainer from './features/Settings/PasswordChangeContainer';
+import CanbanTableContainer from './features/TaskTable/CanbanTableContainer';
+import TaskAssignContainer from './features/TaskTable/TaskAssignContainer';
+import AssignedTaskDetailsContainer from './features/TaskTable/AssignedTaskDetailsContainer';
 
 function App() {
     return (
@@ -76,8 +79,14 @@ function App() {
                 <Route exact path='/urlopy/planowanie'
                     component={(props) => <MainContainer content={"PLANOWANIE IN PROGRESS..."} menuId={"VACATION"} submenuId='VACATION_PLAN' />} />
 
-                <Route exact path='/tablica-zadan'
-                    component={(props) => <MainContainer content={"TABLICA ZADAŃ IN PROGRESS..."} menuId={"TASK_TABLE"} />} />
+                <Route exact path='/tablica-zadan/kanban'
+                    component={(props) => <MainContainer content={<CanbanTableContainer {...props} />} menuId={"TASK_TABLE"} submenuId='CANBAN' />} />
+
+                <Route exact path='/tablica-zadan/kanban/dodaj-zadanie'
+                    component={(props) => <MainContainer content={<TaskAssignContainer {...props} />} menuId={"TASK_TABLE"} submenuId='TASK_ASSIGN' />} />
+
+                <Route exact path='/tablica-zadan/kanban/edycja'
+                    component={(props) => <MainContainer content={<AssignedTaskDetailsContainer {...props} />} menuId={"TASK_TABLE"} submenuId='CANBAN' />} />
 
                 <Route exact path='/raporty/raport-miesieczny'
                     component={(props) => <MainContainer content={<MonthlyReportContainer {...props} />} menuId={"REPORTS"} submenuId='MONTHLY_REPORT' />} />

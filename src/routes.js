@@ -15,6 +15,7 @@ export const CLIENTS = API_ROOT + 'clients';
 export const PROJECT_USERS = API_ROOT + 'project_user_rels';
 export const PROJECT_TASKS_API = API_ROOT + 'project_task_rels';
 export const ROLE_ACCESS_LIST = API_ROOT + 'roles_accesses';
+export const ASSIGNED_TASKS = API_ROOT + 'assigned_tasks';
 
 //Services
 export const VACATION_REQUEST_MAIL = ROOT + 'vacation_requests/mail';
