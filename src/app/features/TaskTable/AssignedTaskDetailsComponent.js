@@ -52,7 +52,7 @@ class AssignedTaskdetailsComponent extends Component {
                             description: this.props.recordDetails.description,
                             stage: this.props.recordDetails.stage,
                             project: this.props.recordDetails.project.id,
-                            user: this.props.recordDetails.user.id,
+                            user: this.props.recordDetails.user ? this.props.recordDetails.user.id : null,
                         }}
 
                         onSubmit={(values, { setSubmitting }) => {
