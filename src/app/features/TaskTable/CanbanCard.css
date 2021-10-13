@@ -17,7 +17,7 @@
 }
 
 .ui.card.todo:hover{
-    background-color: #f0f0f3;
+    background-color: #dcdce4;
 }
 
 
@@ -26,7 +26,7 @@
 }
 
 .ui.card.in-progress:hover{
-    background-color: #FFFACD;
+    background-color: #f7f1bc;
 }
 
 .ui.card.done{
@@ -34,5 +34,10 @@
 }
 
 .ui.card.done:hover{
-    background-color: #eefce5;
+    background-color: #e3f7d6;
 }
+
+.ui.label.initials{
+    margin: 10px;
+}
+

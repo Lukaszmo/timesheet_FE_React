@@ -85,7 +85,8 @@ class CanbanTableComponent extends Component {
                                                 stage={el.stage}
                                                 title={el.title}
                                                 onclick={() => this.onCardClick(el.id)}
-                                                description={el.description}></CanbanCard>
+                                                description={el.description}
+                                                user={el.user ? el.user : null}></CanbanCard>
                                         )
                                     })}
 
@@ -101,7 +102,8 @@ class CanbanTableComponent extends Component {
                                                 stage={el.stage}
                                                 title={el.title}
                                                 onclick={() => this.onCardClick(el.id)}
-                                                description={el.description}></CanbanCard>
+                                                description={el.description}
+                                                user={el.user ? el.user : null}></CanbanCard>
                                         )
                                     })}
 
@@ -117,7 +119,8 @@ class CanbanTableComponent extends Component {
                                                 stage={el.stage}
                                                 title={el.title}
                                                 onclick={() => this.onCardClick(el.id)}
-                                                description={el.description}></CanbanCard>
+                                                description={el.description}
+                                                user={el.user ? el.user : null}></CanbanCard>
                                         )
                                     })}
 

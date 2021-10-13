@@ -3,3 +3,11 @@
     width: 30%;
     
 }
+
+.canban-card-description{
+    height: 150px;
+}
+
+.ui.input.canban-card-title{
+    width: 100%;
+}

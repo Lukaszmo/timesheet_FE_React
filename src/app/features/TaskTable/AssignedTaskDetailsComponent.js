@@ -76,7 +76,7 @@ class AssignedTaskdetailsComponent extends Component {
                                         <Grid.Column width={2}>
                                             <p className='data-field-header'>Id zadania</p>
                                         </Grid.Column >
-                                        <Grid.Column width={3}>
+                                        <Grid.Column width={2}>
                                             <Input disabled
                                                 type="text"
                                                 name='id'
@@ -88,10 +88,11 @@ class AssignedTaskdetailsComponent extends Component {
                                         <Grid.Column width={2}>
                                             <p className='data-field-header'>Tytuł</p>
                                         </Grid.Column >
-                                        <Grid.Column width={3}>
+                                        <Grid.Column width={5}>
                                             <Input
                                                 type="text"
                                                 name='title'
+                                                className='canban-card-title'
                                                 value={values.title}
                                                 onChange={(e, data) => this.handleChange(e, data, setFieldValue)} />
                                             {errors.title && touched.title ? <div><CustomLabel text={errors.title}></CustomLabel></div> : null}
@@ -102,10 +103,10 @@ class AssignedTaskdetailsComponent extends Component {
                                         <Grid.Column width={2}>
                                             <p className='data-field-header'>Opis</p>
                                         </Grid.Column >
-                                        <Grid.Column width={3}>
+                                        <Grid.Column width={5}>
                                             <TextArea
                                                 name='description'
-                                                className='hours-comment'  // zmienić
+                                                className='canban-card-description'  // zmienić
                                                 value={values.description}
                                                 onChange={handleChange} />
                                             {errors.description && touched.description ? <div><CustomLabel text={errors.description}></CustomLabel></div> : null}
