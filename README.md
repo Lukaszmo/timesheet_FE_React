@@ -1,11 +1,11 @@
-# timesheet
+# Timesheet
 App features:
 - Time register
 - Electronical vacation request
 - Kanban table
 - Reports module
 
-Tech Stack:
+## Tech Stack:
 Backend:
 - PHP 7
 - Symfony 4
