@@ -11,6 +11,7 @@ Backend:
 - Symfony 4
 - Api Platform
 - Doctrine
+
 [Link to repository](https://github.com/Lukaszmo/timesheet_BE)
 
 Frontend:
